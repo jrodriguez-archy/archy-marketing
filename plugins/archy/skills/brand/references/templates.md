@@ -2,13 +2,13 @@
 
 Read this when choosing a template for any Archy piece, and before touching any layer inside one.
 
-**Status: ready** means the master has named slots and measured limits, so it is quick to fill. **Not prepared** means the layout exists (as a past campaign on the file's `Archive` page) without slots yet: use that campaign as the starting point and replace its copy directly.
+**Status: ready** means the master has named slots and measured limits, so it is quick to fill. **Not prepared** means the layout exists on the file's `Archive` page but has no slots yet. `Archive` is the queue of templates still to prepare: use its campaign as the starting point and replace the copy directly.
 
 ---
 
 ## Master files
 
-Each `Master - …` file holds the templates on its `Templates` page, and past campaigns on `Archive` for reference. **Nothing is ever written in a master file.** Pieces are made in a copy (see the `brand` skill, *Where the work goes*).
+Each `Master - …` file holds its prepared templates on `Templates`, and the layouts still to prepare on `Archive`. Preparing one means duplicating it to `Templates`, naming its slots and marking it **ready** here; the original stays on `Archive` as its source. **Nothing is ever written in a master file.** Pieces are made in a copy (see the `brand` skill, *Where the work goes*).
 
 A template is named `TPL · <Family> · <Format> <W×H>`, with no numbers. A piece is named `<Event or campaign> · <Format> <W×H>`, for example `Hinman 2027 · Post 1080×1350`.
 
@@ -62,7 +62,7 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
 
-Past campaigns (numbered 1 to 9) are on its `Archive` page. Seven distinct layouts come out of them:
+The 9 original campaign families are on its `Archive` page (families 1 and 3, and 2 and 4, share a layout). Seven distinct templates come out of them:
 
 | Template | Built from | Layout in one line | Status |
 |---|---|---|---|

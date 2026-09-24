@@ -34,12 +34,23 @@ If the request does not say which one, infer it from the event, file or context;
 
 | Default | When the brief asks for more |
 |---|---|
-| Start from the closest template in `references/templates.md` | If nothing fits, or the requester wants something new, build a new proposal **inspired by** the templates: same grid, type scale, Rulers and colour logic. Say it is an exploration |
+| The requester picked a template (named it, or has it selected in Paper: check `get_selection`) | Use it |
+| The requester did not pick one | Choose **2 or 3 different templates** that suit the case and build one option from each, so they can compare and choose (see *Options* below) |
+| Nothing in the catalog fits, or the requester wants something new | Build a proposal **inspired by** the templates: same grid, type scale, Rulers and colour logic. Say it is an exploration |
 | Change the slots first | Adjust anything else the piece needs: rewrap, resize, reduce display type, move or remove a block |
 | Copy fits as given | Rewrap first, then reduce the type a little, then shorten, keeping the requester's wording |
 | Every fact is provided | Use a placeholder and keep going |
 
 **Report what you did**: what the piece started from, anything changed beyond the slots, and every placeholder left to fill.
+
+## Options
+
+When the requester has not chosen a template, give them a choice instead of a single answer:
+
+- Pick 2 or 3 templates that genuinely suit the content: what the piece announces (booth, talk, reminder), how much copy there is, whether there is a photo or a speaker. Prefer options that differ from each other (ground, composition, where the image sits) over near-duplicates, and do not default to the same template every time.
+- Build **one format per option** (the Post, unless the brief names another), with the real copy, side by side, named `<Campaign> · Option A · <Template>`.
+- Show them with one line each on why it suits the case. When the requester chooses, build the remaining formats from that option only, and delete the others unless they want to keep them.
+- Prepared (`ready`) and not-prepared templates can both be options.
 
 ## Where the work goes
 
@@ -51,7 +62,7 @@ If a copy cannot be made, ask the user to duplicate the master file in Paper (ri
 
 ## Workflow
 
-1. **Read the brief** and pick the starting template from `references/templates.md`.
+1. **Read the brief** and pick the starting template from `references/templates.md`, or 2 or 3 of them as options.
 2. **Make or open the working copy** (above). Ask once for missing facts; continue with placeholders if they are not available yet.
 3. **Fill and adapt.** Slots first, then whatever else the piece needs.
 4. **Review.** Screenshot every artboard and run `references/review-checklist.md`. Fix what fails.

@@ -11,7 +11,7 @@ Load the `brand` skill first and follow it: never touch the master, keep the bra
 
 ## Steps
 
-1. **Pick the template** whose *Use when* matches the brief. If the best one is not prepared yet, start from its campaign on the master's `Archive` page. If the requester wants something new, propose a piece inspired by the templates and say it is an exploration.
+1. **Pick the template.** If the requester named one or has it selected in Paper, use it. Otherwise choose 2 or 3 different templates that suit the case and build a Post from each as options (see *Options* in the `brand` skill); build Stories and OG once they choose. A template that is not prepared yet starts from its campaign on the master's `Archive` page. If they want something new, propose a piece inspired by the templates and say it is an exploration.
 2. **Make the working copy** as the `brand` skill describes (the user's file, or a clone of `Master - Events` named after the event). Keep only the artboards you use.
 3. **Get the facts**: event name and year, city and state, venue, dates, booth number, partner logo, formats (default: all three). Ask once; use placeholders for anything not available yet. Apply the mechanics in `../brand/references/voice.md`.
 4. **Fill and adapt** each format. Slots first; then make it fit (rewrap, reduce the type a little, shorten) and handle the partner logo as the catalog's *Partner logo* section describes. On the OG headline, set the line break yourself.
