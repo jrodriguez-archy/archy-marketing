@@ -20,7 +20,6 @@ A slot is a layer named for what it holds, where a piece is meant to change. The
 |---|---|---|
 | `slot-text-<role>` | A text to replace (`set_text_content`) | `slot-text-headline`, `slot-text-city`, `slot-text-booth` |
 | `slot-image-<role>` | A picture to replace | `slot-image-photo`, `slot-image-speaker` |
-| `slot-art-<role>` | Vector background art tied to the content (a city skyline); swap it for the right city's art or remove it | `slot-art-city` |
 | `slot-logo-partner` | The partner's mark, next to the Archy wordmark | |
 | `optional-<role>` | A block to remove when there is no content for it | `optional-tickets-offer` |
 | `variant-<name>` | One of several pre-designed versions; keep one | `variant-ground-dark` |
@@ -66,14 +65,14 @@ At a glance, to pick 2 or 3 options that differ from each other:
 | Template | Purpose | Ground | Signature |
 |---|---|---|---|
 | `Booth Icon List` | Booth invite | Royal blue | Kicker pill, three icon rows with Rulers, la mascota off the top |
-| `Booth Invite Photo` | Booth invite | Dark navy | City photo band on top, booth badge, skyline art behind |
+| `Booth Invite Photo` | Booth invite | Dark navy | City photo band on top, booth badge |
 | `Booth Light Rulers` | Booth invite | White | Rulers grid, two-tone headline, booth button |
 | `Booth Photo Band` | Booth invite | Light blue gradient | City photo as a base band at the bottom, la mascota off the side |
-| `Speaker Invite` | Talk, dinner, local event | Royal blue over a photo | Speaker portrait and name, date & time, optional share note |
+| `Speaker Invite` | Talk, dinner, local event | Royal blue | Speaker portrait and name, date & time, optional share note |
 | `Countdown Mascota` | Day-before reminder | Dark navy | Centred "Tomorrow is the day", la mascota and badge on top |
-| `Countdown Skyline Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
-| `Booth Invite Offer` | Booth invite with a giveaway | Blue under a dark skyline | Like `Booth Invite Photo`, plus an offer strip with a team or sponsor logo ("Win prizes + Bulls tickets") |
-| `Countdown Offer` | Day-before reminder with a giveaway | Blue under a dark skyline | Like `Countdown Mascota`, plus the offer strip |
+| `Countdown Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
+| `Booth Invite Offer` | Booth invite with a giveaway | Royal blue | Like `Booth Invite Photo`, plus an offer strip with a team or sponsor logo ("Win prizes + Bulls tickets") |
+| `Countdown Offer` | Day-before reminder with a giveaway | Royal blue | Like `Countdown Mascota`, plus the offer strip |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
 
@@ -112,7 +111,6 @@ Booth invite with a photo of the host city. **Use when** there is a booth and a 
 | Slot | Notes |
 |---|---|
 | `slot-image-photo` | City photo, `background-size: cover`. Post band 1080×379, Stories 1080×600, OG right half behind a scrim |
-| `slot-art-city` | Vector skyline behind the content (Post, Stories), faded by the BK Fade. Swap for the right city or remove it |
 | `slot-text-headline` | About 16 characters per line, 3 lines (Post, Stories); 2 lines on the OG. `Meet Archy at <event>` |
 | `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters (`#1039`) |
@@ -127,7 +125,6 @@ Day-before reminder. **Use when** the event is tomorrow. **Not when** it is an i
 | `slot-text-headline` | `Tomorrow is the day` or an equivalent short line; two lines, break with `\n` |
 | `slot-text-city`, `slot-text-venue` | Venue not on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters |
-| `slot-art-city` | Skyline silhouette behind the content (Post, Stories) |
 
 #### Speaker Invite
 
@@ -135,7 +132,6 @@ A talk, dinner or local event with a named speaker. **Use when** there is a spea
 
 | Slot | Notes |
 |---|---|
-| `slot-image-background` | Full-bleed photo behind a royal blue wash |
 | `slot-text-headline` | The talk title; two lines, about 22 characters each |
 | `slot-image-speaker` | Circular portrait (the frame clips it) |
 | `slot-text-speaker-name`, `slot-text-speaker-role`, `slot-text-speaker-company` | One line each |
@@ -173,7 +169,7 @@ Booth invite on a light ground with the city photo as a base band. **Use when** 
 
 | Slot | Notes |
 |---|---|
-| `slot-image-photo`, `slot-art-city` | City photo band and city skyline (Chicago in the sample) |
+| `slot-image-photo` | City photo band (Chicago in the sample) |
 | `slot-text-headline` | `Join Archy at <event>`, 3 lines |
 | `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters |
@@ -193,11 +189,10 @@ Booth invite on a light ground with the city photo as a base band. **Use when** 
 | `slot-text-city`, `slot-text-venue` | Venue not on the OG |
 | `slot-text-booth` | Inside the badge |
 | `optional-offer`, `slot-text-offer`, `slot-logo-offer` | As in `Booth Invite Offer` (Post, Stories) |
-| `slot-art-city` | City skyline behind the content |
 
-#### Countdown Skyline Masthead
+#### Countdown Masthead
 
-Day-before reminder with the event name as a Ruler-flanked masthead. **Use when** the event is tomorrow and the name should lead. **Not when** it is an early invitation.
+Day-before reminder with the event name as a Ruler-flanked masthead, on the dark navy ground. **Use when** the event is tomorrow and the name should lead. **Not when** it is an early invitation.
 
 | Slot | Notes |
 |---|---|
@@ -205,7 +200,6 @@ Day-before reminder with the event name as a Ruler-flanked masthead. **Use when*
 | `slot-text-headline` | `Tomorrow is the day`: two lines on Post and Stories, one on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters |
 | `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
-| `slot-art-city` | Skyline silhouette behind the content |
 
 
 ### Archy - Ads
