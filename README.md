@@ -12,16 +12,15 @@ The same setup covers **DOC** (Dental Ownership Collective) and the **Archy Offs
 |---|---|
 | **Paper Desktop** | The Paper app installed and signed in to the Archy team |
 | **Claude desktop app** | With the **Code** tab |
-| **GitHub account** | With access to `jrodriguez-archy/archy-marketing` (ask Marketing & Design) |
 | **The Archy Workspace folder** | The `workspace` folder from this repository (see step 1) |
 
 ---
 
-## One-time setup (about 10 minutes)
+## One-time setup (about 5 minutes)
 
 ### 1. Get the workspace folder
 
-Either get it from Marketing & Design, or on GitHub open this repository, click **Code → Download ZIP**, unzip it, and keep the `workspace` folder. Put it somewhere easy, for example `Documents/Archy Workspace`.
+Either get it from Marketing & Design, or open [github.com/jrodriguez-archy/archy-marketing](https://github.com/jrodriguez-archy/archy-marketing), click **Code → Download ZIP**, unzip it, and keep the `workspace` folder. Put it somewhere easy, for example `Documents/Archy Workspace`.
 
 ### 2. Open it in Claude
 
@@ -33,7 +32,7 @@ Type:
 
 > Set me up for Archy.
 
-Claude will walk you through the rest: connecting your GitHub account (a code you approve in the browser) and installing the **archy** plugin from **+ → Plugins → Add plugin**. The Paper plugin installs with it.
+Claude will walk you through installing the **archy** plugin from **+ → Plugins → Add plugin**. The Paper plugin installs with it.
 
 ### 4. Check it works
 
@@ -91,7 +90,6 @@ To force an update: **+ → Plugins → Manage plugins**, then update **archy**.
 | Claude stops responding to Paper, or tools fail | Quit and reopen Paper Desktop, then start a new Claude session |
 | Screenshots come back blank | Close the file in Paper and open it again |
 | The `archy` skills do not appear | Check **+ → Plugins**: is **archy** installed and enabled? If it is not listed, repeat step 3 of the setup |
-| "Authentication failed" or "repository not found" when installing | Your GitHub account is not connected, or has no access yet. Ask Claude to "connect my GitHub account", or ask Marketing & Design for access |
 | An export is not where you expected | Paper always saves exports to **Downloads** |
 
 Still stuck? Send Marketing & Design what you asked and a screenshot of the reply.
