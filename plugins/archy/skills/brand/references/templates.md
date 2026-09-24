@@ -20,6 +20,7 @@ A slot is a layer named for what it holds, where a piece is meant to change. The
 |---|---|---|
 | `slot-text-<role>` | A text to replace (`set_text_content`) | `slot-text-headline`, `slot-text-city`, `slot-text-booth` |
 | `slot-image-<role>` | A picture to replace | `slot-image-photo`, `slot-image-speaker` |
+| `slot-art-<role>` | Vector background art tied to the content (a city skyline); swap it for the right city's art or remove it | `slot-art-city` |
 | `slot-logo-partner` | The partner's mark, next to the Archy wordmark | |
 | `optional-<role>` | A block to remove when there is no content for it | `optional-tickets-offer` |
 | `variant-<name>` | One of several pre-designed versions; keep one | `variant-ground-dark` |
@@ -58,7 +59,21 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 ### Master - Events (event social)
 
-File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
+File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*). Masters are named `TPL · <Template> · <Format> <W×H>`.
+
+At a glance, to pick 2 or 3 options that differ from each other:
+
+| Template | Purpose | Ground | Signature |
+|---|---|---|---|
+| `Booth Icon List` | Booth invite | Royal blue | Kicker pill, three icon rows with Rulers, la mascota off the top |
+| `Booth Invite Photo` | Booth invite | Dark navy | City photo band on top, booth badge, skyline art behind |
+| `Booth Light Rulers` | Booth invite | White | Rulers grid, two-tone headline, booth button |
+| `Booth Photo Band` | Booth invite | Light blue gradient | City photo as a base band at the bottom, la mascota off the side |
+| `Speaker Invite` | Talk, dinner, local event | Royal blue over a photo | Speaker portrait and name, date & time, optional share note |
+| `Countdown Mascota` | Day-before reminder | Dark navy | Centred "Tomorrow is the day", la mascota and badge on top |
+| `Countdown Skyline Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
+
+Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
 
 #### Booth Icon List
 
@@ -86,6 +101,81 @@ Slots (limits measured on the canvas at each slot's own size; the rendered scree
 | `slot-logo-partner` | height about 100 | height about 86 | Hinman | Balance it optically with the Archy wordmark (see *Partner logo* above) |
 
 Fixed by design (adjust only when the piece needs it): the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, la mascota, the OG badge, the Archy wordmark.
+
+
+#### Booth Invite Photo
+
+Booth invite with a photo of the host city. **Use when** there is a booth and a good city photo. **Not when** there is no photo of the city (use `Booth Icon List` or `Booth Light Rulers`).
+
+| Slot | Notes |
+|---|---|
+| `slot-image-photo` | City photo, `background-size: cover`. Post band 1080×379, Stories 1080×600, OG right half behind a scrim |
+| `slot-art-city` | Vector skyline behind the content (Post, Stories), faded by the BK Fade. Swap for the right city or remove it |
+| `slot-text-headline` | About 16 characters per line, 3 lines (Post, Stories); 2 lines on the OG. `Meet Archy at <event>` |
+| `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
+| `slot-text-booth` | Inside the badge: 5 characters (`#1039`) |
+
+#### Countdown Mascota
+
+Day-before reminder. **Use when** the event is tomorrow. **Not when** it is an invitation weeks ahead.
+
+| Slot | Notes |
+|---|---|
+| `slot-text-kicker` | Event name + year in a white pill that grows with the text; keep it to one line (about 30 characters) |
+| `slot-text-headline` | `Tomorrow is the day` or an equivalent short line; two lines, break with `\n` |
+| `slot-text-city`, `slot-text-venue` | Venue not on the OG |
+| `slot-text-booth` | Inside the badge: 5 characters |
+| `slot-art-city` | Skyline silhouette behind the content (Post, Stories) |
+
+#### Speaker Invite
+
+A talk, dinner or local event with a named speaker. **Use when** there is a speaker and a date and time. **Not when** it is a booth at a trade show.
+
+| Slot | Notes |
+|---|---|
+| `slot-image-background` | Full-bleed photo behind a royal blue wash |
+| `slot-text-headline` | The talk title; two lines, about 22 characters each |
+| `slot-image-speaker` | Circular portrait (the frame clips it) |
+| `slot-text-speaker-name`, `slot-text-speaker-role`, `slot-text-speaker-company` | One line each |
+| `slot-text-city`, `slot-text-venue` | Venue not on the OG |
+| `slot-text-datetime` | `February 24, 2026 · 6:00 pm` |
+| `optional-footer-note` / `slot-text-footer-note` | Share prompt under a Ruler (Post, Stories); remove the block if there is none |
+| `slot-logo-partner` | The hosting association (AADOM in the sample) |
+
+#### Booth Light Rulers
+
+Booth invite on white with the Rulers grid. **Use when** the piece should feel light and editorial, or sits next to other light pieces. **Not when** the feed needs a strong colour moment.
+
+| Slot | Notes |
+|---|---|
+| `slot-text-headline-1` / `slot-text-headline-2` | Two-tone headline: `Meet Archy at` (navy) / `<event>` (grey) |
+| `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
+| `slot-text-booth` | The whole button label: `Booth #1039` |
+| Logos | Archy in royal blue, partner in navy (`--color-light-text`) on this ground |
+
+#### Booth Photo Band
+
+Booth invite on a light ground with the city photo as a base band. **Use when** there is a strong city photo and a lighter look is wanted. **Not when** there is no photo.
+
+| Slot | Notes |
+|---|---|
+| `slot-text-headline` | About 16 characters per line, 3 lines (Post, Stories), 3 on the OG |
+| `slot-text-city`, `slot-text-venue` | Venue not on the OG |
+| `slot-text-date`, `slot-text-booth` | Booth sits under the date as `Booth #1039` (Post, Stories); on the OG it is the badge (5 characters) |
+| `slot-image-photo` | Bottom band on Post and Stories, right third on the OG |
+| Logos | Archy in royal blue, partner in navy on this ground |
+
+#### Countdown Skyline Masthead
+
+Day-before reminder with the event name as a Ruler-flanked masthead. **Use when** the event is tomorrow and the name should lead. **Not when** it is an early invitation.
+
+| Slot | Notes |
+|---|---|
+| `slot-text-kicker` | Event name + year between two Rulers; the Rulers shrink as it grows, keep it to about 30 characters |
+| `slot-text-headline` | `Tomorrow is the day`: two lines on Post and Stories, one on the OG |
+| `slot-text-booth` | Inside the badge: 5 characters |
+| `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
+| `slot-art-city` | Skyline silhouette behind the content |
 
 
 ### Archy - Ads

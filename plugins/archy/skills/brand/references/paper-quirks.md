@@ -95,6 +95,11 @@ Each of these is accepted, often reported back by `get_computed_styles`, and pai
 
 ## SVG and icons
 
+- **Moving or duplicating a vector element into another SVG lands it in the wrong place.** Paper tries to keep the element's on-screen position, computes it from stale layout, and bakes the difference into a `translate` (seen at about −1,200px, outside the new SVG's box, so the logo simply disappears). The element also loses any `fill` it inherited from its old parent SVG. To split one SVG into two (a combined logo lockup, for example), write each new SVG fresh with `write_html`, using the path data from `get_jsx` and an explicit `fill="var(--color-…)"` on every path.
+- **`update_styles` cannot recolour an SVG path.** A `fill` set on a path node is accepted and ignored. Rewrite the SVG with the colour on each path, or, for a simple line, replace the SVG with a 2px frame that has a `backgroundColor`.
+- **A text pill drawn as a fixed-width SVG does not grow with its text.** Replace it with a frame (`display: flex`, `padding`, `backgroundColor`, `borderRadius: 999px`, `width: fit-content`) holding the text, so a longer event name stays inside it.
+
+
 - **`update_styles` cannot resize an `SVGVisualElement`.** Setting `width` / `height` on one is accepted, appears in `get_computed_styles`, and changes nothing; `get_node_info` still reports the old size. To rescale part of an SVG (one logo inside a lockup, say), resize it by hand in Paper, resize the whole parent SVG, or duplicate a copy that is already the right size from another artboard and swap it in. Verify with `get_node_info`, never with `get_computed_styles`.
   - **The `SVG` node itself *does* resize.** Only its `SVGVisualElement` children resist. Setting `width` / `height` on the `SVG` (and on the wrapper Frame) rescales a whole icon cleanly; `get_node_info` reports the new size (for example 40 × 40). That is how icons go 32 → 40 without re-writing markup.
 - **Setting `stroke` on an `SVG` node does not override a stroke already set on its `path` children.** It is accepted and reported back and nothing changes. Recolour the paths: `get_children` on the icon's wrapper Frame gives the SVG, and its children are the paths.
