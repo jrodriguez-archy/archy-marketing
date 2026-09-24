@@ -2,13 +2,11 @@
 
 Read this when choosing a template for any Archy piece, and before touching any layer inside one.
 
-**Status: ready** means the master has named slots and measured limits, so it is quick to fill. **Not prepared** means the layout exists on the file's `Archive` page but has no slots yet. `Archive` is the queue of templates still to prepare: use its campaign as the starting point and replace the copy directly.
-
 ---
 
 ## Master files
 
-Each `Master - …` file holds its prepared templates on `Templates`, and the layouts still to prepare on `Archive`. Preparing one means duplicating it to `Templates`, naming its slots and marking it **ready** here; the original stays on `Archive` as its source. **Nothing is ever written in a master file.** Pieces are made in a copy (see the `brand` skill, *Where the work goes*).
+Each `Master - …` file holds its templates on the `Templates` page. **Nothing is ever written in a master file.** Pieces are made in a copy (see the `brand` skill, *Where the work goes*).
 
 A template is named `TPL · <Family> · <Format> <W×H>`, with no numbers. A piece is named `<Event or campaign> · <Format> <W×H>`, for example `Hinman 2027 · Post 1080×1350`.
 
@@ -62,21 +60,7 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
 
-The 9 original campaign families are on its `Archive` page (families 1 and 3, and 2 and 4, share a layout). Seven distinct templates come out of them:
-
-| Template | Built from | Layout in one line | Status |
-|---|---|---|---|
-| `Booth Invite · Photo` | 1.x (Chicago), 3.x (Atlanta) | "Join/Meet Archy at <event>" over a photo band and city skyline, booth badge, location + date, optional tickets offer, logo lockup | not prepared |
-| `Countdown · Mascota` | 2.x (Chicago), 4.x (Atlanta) | Label pill, "Tomorrow is the day", la mascota bleeding off the top, skyline, badge, location, logo lockup | not prepared |
-| `Speaker Invite` | 5.x (Denver, AADOM) | Photographic ground, headline, speaker portrait + name, location, date & time, footer share note, logos at the top | not prepared |
-| `Booth · Light Rulers` | 6.x (Hinman) | Light ground, Rulers, two-tone headline, location + date, booth line, logo lockup | not prepared |
-| `Booth Icon List` | 7.x (Hinman) | Royal blue ground, kicker pill, headline, three icon rows (location, date, booth) separated by Rulers, la mascota off the top, logo lockup | **ready** |
-| `Booth · Photo Band` | 8.x (Hinman) | Photo band at the top, logos, headline, one Ruler, location and date side by side | not prepared |
-| `Countdown · Skyline Masthead` | 9.x (Hinman) | Ruler-flanked masthead, "Tomorrow is the day" with the badge in the headline band, skyline + BK Fade, details row, logo lockup | not prepared |
-
-Full slot tables are added here as each template is prepared.
-
-#### Booth Icon List · **ready**
+#### Booth Icon List
 
 Booth invitation for a dental meeting or trade show where Archy has a booth. Masters on page `Templates`:
 
@@ -87,7 +71,7 @@ Booth invitation for a dental meeting or trade show where Archy has a booth. Mas
 | OG | `TPL · Booth Icon List · OG 1200×630` |
 
 **Use when** the brief is "come see us at booth #N": event name, city, venue, dates, booth number and the organiser's logo.
-**Not when** there is no booth (a talk, a dinner, a local meetup: see `Speaker Invite`), or the day-before reminder (see the `Countdown` templates).
+**Not when** there is no booth (a talk, a dinner, a local meetup) or it is the day-before reminder.
 
 Slots (limits measured on the canvas at each slot's own size; the rendered screenshot is the final check):
 
@@ -108,21 +92,21 @@ Fixed by design (adjust only when the piece needs it): the kicker pill, labels (
 
 File: `Archy - Ads`, `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`.
 
-| Template | Formats | Status |
-|---|---|---|
-| `Claim Stack` | Post, Stories, OG | not prepared |
-| `Platform · One-pager` | 1500×1942 (Letter proportion) | not prepared |
-| `Platform · Post` | 1080×1080 | not prepared |
+| Template | Formats |
+|---|---|
+| `Claim Stack` | Post, Stories, OG |
+| `Platform · One-pager` | 1500×1942 (Letter proportion) |
+| `Platform · Post` | 1080×1080 |
 
 ### Archy - Various Collateral
 
 File: `Archy - Various Collateral`, `app.paper.design/file/01M37ZJ6ECM7XJ5TG5W2Z2YR4N`.
 
-| Template | Formats | Status |
-|---|---|---|
-| `Chrome Store · Feature Explainer` | 1280×800 | not prepared |
-| `Chrome Store · Sneak Peek Promo` | 440×280 | not prepared |
+| Template | Formats |
+|---|---|
+| `Chrome Store · Feature Explainer` | 1280×800 |
+| `Chrome Store · Sneak Peek Promo` | 440×280 |
 
 ### Master - Decks
 
-File: `Master - Decks`, `app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`. 55 slide layouts at 1920×1080, one page per category. The roster is in the `deck` skill (`layout-catalog.md`). Status: **not prepared** (all 55).
+File: `Master - Decks`, `app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`. 55 slide layouts at 1920×1080, one page per category. The roster is in the `deck` skill (`layout-catalog.md`).

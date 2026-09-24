@@ -50,7 +50,6 @@ When the requester has not chosen a template, give them a choice instead of a si
 - Pick 2 or 3 templates that genuinely suit the content: what the piece announces (booth, talk, reminder), how much copy there is, whether there is a photo or a speaker. Prefer options that differ from each other (ground, composition, where the image sits) over near-duplicates, and do not default to the same template every time.
 - Build **one format per option** (the Post, unless the brief names another), with the real copy, side by side, named `<Campaign> · Option A · <Template>`.
 - Show them with one line each on why it suits the case. When the requester chooses, build the remaining formats from that option only, and delete the others unless they want to keep them.
-- Prepared (`ready`) and not-prepared templates can both be options.
 
 ## Where the work goes
 

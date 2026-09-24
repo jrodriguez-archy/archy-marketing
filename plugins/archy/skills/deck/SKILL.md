@@ -11,8 +11,6 @@ Load the `brand` skill first; its hard rules and workflow apply here unchanged.
 
 Paper file `Master - Decks` (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 55 layouts on one page per content category (Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase). Pick a layout by the **content in hand** ("three stats and a claim"), using `references/layout-catalog.md`.
 
-Layouts are not slot-prepared yet (see `../brand/references/templates.md`). They can still be used: duplicate the layout and replace its copy directly.
-
 ## Starting point: two paths
 
 1. **Redesigning an existing deck** (the usual case). The requester creates a folder inside their Claude working folder, for example `Decks/<deck name>/`, and puts the source `.pptx` and its `.pdf` in it. Read both before anything else:
