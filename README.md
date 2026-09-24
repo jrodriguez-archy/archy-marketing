@@ -111,4 +111,13 @@ Still stuck? Send Marketing & Design what you asked and a screenshot of the repl
 
 Skills run on their own when your request matches; you can also call one directly, for example `/archy:social-post`.
 
+---
+
+## Maintaining the plugin
+
+- **Templates** live in the `Master - …` Paper files; edits there reach everyone as soon as they are saved.
+- **Rules, catalog and skills** live here, under `plugins/archy/skills/`. After a change: bump `version` in `plugins/archy/.claude-plugin/plugin.json` and in `.claude-plugin/marketplace.json`, add a line to `CHANGELOG.md`, commit and push, then run `claude plugin tag --push` from `plugins/archy/`. The tag (`archy--vX.Y.Z`) is what triggers everyone's auto-update.
+- Versions: **patch** for a rule or copy fix, **minor** for a new template, skill or tool, **major** for a change to the slot convention.
+- Setup for a new teammate only needs the `workspace` folder: its `.claude/settings.json` registers both marketplaces (`archy-marketing` and `paper`) with auto-update on. Both are needed; without the Paper marketplace the plugin cannot resolve its Paper dependency.
+
 Maintained by Marketing & Design. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
