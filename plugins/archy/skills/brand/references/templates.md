@@ -72,6 +72,8 @@ At a glance, to pick 2 or 3 options that differ from each other:
 | `Speaker Invite` | Talk, dinner, local event | Royal blue over a photo | Speaker portrait and name, date & time, optional share note |
 | `Countdown Mascota` | Day-before reminder | Dark navy | Centred "Tomorrow is the day", la mascota and badge on top |
 | `Countdown Skyline Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
+| `Booth Invite Offer` | Booth invite with a giveaway | Blue under a dark skyline | Like `Booth Invite Photo`, plus an offer strip with a team or sponsor logo ("Win prizes + Bulls tickets") |
+| `Countdown Offer` | Day-before reminder with a giveaway | Blue under a dark skyline | Like `Countdown Mascota`, plus the offer strip |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
 
@@ -164,6 +166,34 @@ Booth invite on a light ground with the city photo as a base band. **Use when** 
 | `slot-text-date`, `slot-text-booth` | Booth sits under the date as `Booth #1039` (Post, Stories); on the OG it is the badge (5 characters) |
 | `slot-image-photo` | Bottom band on Post and Stories, right third on the OG |
 | Logos | Archy in royal blue, partner in navy on this ground |
+
+#### Booth Invite Offer
+
+`Booth Invite Photo` with a giveaway strip, from the Chicago Midwinter campaign. **Use when** there is a booth and a prize or tickets to promote. **Not when** there is no offer (use `Booth Invite Photo`).
+
+| Slot | Notes |
+|---|---|
+| `slot-image-photo`, `slot-art-city` | City photo band and city skyline (Chicago in the sample) |
+| `slot-text-headline` | `Join Archy at <event>`, 3 lines |
+| `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
+| `slot-text-booth` | Inside the badge: 5 characters |
+| `optional-offer` | The giveaway strip (Post, Stories). Remove it if there is no offer |
+| `slot-text-offer` | Uppercase line in the navy bar, which grows with the text; about 30 characters |
+| `slot-logo-offer` | The team or sponsor mark at the left of the bar (the Bulls in the sample) |
+| `slot-logo-partner` | The organiser (Chicago Dental Society in the sample) |
+
+#### Countdown Offer
+
+`Countdown Mascota` with the giveaway strip, from the Chicago Midwinter campaign. **Use when** the event is tomorrow and there is an offer to promote.
+
+| Slot | Notes |
+|---|---|
+| `slot-text-kicker` | Event name in the white pill |
+| `slot-text-headline` | `Tomorrow is the day` |
+| `slot-text-city`, `slot-text-venue` | Venue not on the OG |
+| `slot-text-booth` | Inside the badge |
+| `optional-offer`, `slot-text-offer`, `slot-logo-offer` | As in `Booth Invite Offer` (Post, Stories) |
+| `slot-art-city` | City skyline behind the content |
 
 #### Countdown Skyline Masthead
 

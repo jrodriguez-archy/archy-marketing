@@ -96,6 +96,7 @@ Each of these is accepted, often reported back by `get_computed_styles`, and pai
 ## SVG and icons
 
 - **Moving or duplicating a vector element into another SVG lands it in the wrong place.** Paper tries to keep the element's on-screen position, computes it from stale layout, and bakes the difference into a `translate` (seen at about −1,200px, outside the new SVG's box, so the logo simply disappears). The element also loses any `fill` it inherited from its old parent SVG. To split one SVG into two (a combined logo lockup, for example), write each new SVG fresh with `write_html`, using the path data from `get_jsx` and an explicit `fill="var(--color-…)"` on every path.
+- **When a logo cannot be separated cleanly** (dozens of paths inheriting their colour from the root SVG), move the whole root SVG into the slot frame instead, delete the other logo's element from it, and offset it with `position: absolute; left: -<x>px` so only the wanted mark shows. Moving a root SVG (not its elements) keeps its colours and position.
 - **`update_styles` cannot recolour an SVG path.** A `fill` set on a path node is accepted and ignored. Rewrite the SVG with the colour on each path, or, for a simple line, replace the SVG with a 2px frame that has a `backgroundColor`.
 - **A text pill drawn as a fixed-width SVG does not grow with its text.** Replace it with a frame (`display: flex`, `padding`, `backgroundColor`, `borderRadius: 999px`, `width: fit-content`) holding the text, so a longer event name stays inside it.
 

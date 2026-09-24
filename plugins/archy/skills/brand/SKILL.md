@@ -28,7 +28,7 @@ If the request does not say which one, infer it from the event, file or context;
 1. **Never touch a master.** `Master - …` files are the templates. Work in a copy (see *Where the work goes*).
 2. **The brand rules hold**: the non-negotiables in `references/composition.md` (solid Rulers, wordmark colour, la mascota), tokens instead of hex, Onest + Inter for marketing type, Open Sans for any product UI.
 3. **Everything on the canvas is in US English**: copy, layer names, artboard names. Talk to the user in whatever language they write in.
-4. **Never invent facts.** A missing date, booth number, name or logo becomes a visible placeholder (`[Booth #]`, a `PARTNER LOGO` box), never a made-up value.
+4. **Never invent facts.** Dates, booth numbers, names and prices come from the requester or an official source. When one does not exist, the piece goes without it (see *Missing information*).
 
 ## Defaults, and how far they bend
 
@@ -39,9 +39,29 @@ If the request does not say which one, infer it from the event, file or context;
 | Nothing in the catalog fits, or the requester wants something new | Build a proposal **inspired by** the templates: same grid, type scale, Rulers and colour logic. Say it is an exploration |
 | Change the slots first | Adjust anything else the piece needs: rewrap, resize, reduce display type, move or remove a block |
 | Copy fits as given | Rewrap first, then reduce the type a little, then shorten, keeping the requester's wording |
-| Every fact is provided | Use a placeholder and keep going |
+| Every fact is provided | See *Missing information* below |
+| Every image is provided | See *Photos and background art* below |
 
-**Report what you did**: what the piece started from, anything changed beyond the slots, and every placeholder left to fill.
+**Report what you did**: what the piece started from, anything changed beyond the slots, what was removed or generated, and anything still to fill.
+
+## Missing information
+
+1. **Ask once** for everything the template shows (event, city, venue, dates, booth, speaker, partner...).
+2. **If a fact does not exist** (no booth number, no venue yet, no time), remove that block from the piece: the value **and its label** (`Booth` and `#1234` go together), or the whole `optional-*` block. Let the layout close up so the piece does not look like something is missing.
+3. **If it exists but the requester does not have it yet**, use a visible placeholder (`[Booth #]`) and list it as pending.
+4. The partner logo follows its own recipe (`references/templates.md`, *Partner logo*).
+
+## Photos and background art
+
+**Photos (`slot-image-*`).** Use the requester's photo when there is one. Otherwise generate one with Paper's image generation (`paper-gen://`, see its guide), and tell the requester it was generated (it uses their Paper generation credits):
+- Make it about the event: the host city (a recognisable view or landmark), the venue type, or the topic of the talk. Fall back to something generic and on-topic (a modern dental practice, a conference hall) when nothing specific fits.
+- Match the template's treatment, not just the subject. A city band is a natural, well-lit photo. The `Speaker Invite` background is a soft, low-contrast photo toned to Archy blue (monochrome royal blue duotone); pass the template's own background as `reference_nodes` so the new one takes the same toning.
+- Never generate a photo of a real, named person (a speaker's portrait must come from the requester or the speaker).
+- If generation is not possible or the requester declines, use the template's fallback: remove the photo layer and let the ground show (on `Speaker Invite` that is the flat blue gradient).
+
+**Background art (`slot-art-*`).** The vector skylines behind some templates belong to the city of the original campaign. For another city, redraw it in the same style instead of reusing the old one: generate an SVG (`quiver-arrow`) of that city's skyline or landmarks as a flat, solid-black silhouette with no background and no detail, then place it in the art frame with the same size, position and opacity as the original, and keep the BK Fade over it. If that is not possible, remove the art and keep the fade.
+
+
 
 ## Options
 
