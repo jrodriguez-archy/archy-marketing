@@ -2,65 +2,44 @@
 
 Read this when choosing a template for any Archy piece, and before touching any layer inside one.
 
-**Status: ready** means the master has named slots and measured limits, so filling it is fast and safe. **Not prepared** means the layout exists (usually as a campaign on `Archive`) but has no slots yet: it can still be used, by duplicating that campaign to `Output` and replacing its copy directly. Say which one you started from.
+**Status: ready** means the master has named slots and measured limits, so it is quick to fill. **Not prepared** means the layout exists (as a past campaign on the file's `Archive` page) without slots yet: use that campaign as the starting point and replace its copy directly.
 
 ---
 
-## Slot convention
+## Master files
 
-Slots are where a piece is meant to change. Start there. Anything else can still be adjusted when the piece needs it (see the `brand` skill, *Defaults, and how far they bend*), and every such adjustment is reported.
+Each `Master - …` file holds the templates on its `Templates` page, and past campaigns on `Archive` for reference. **Nothing is ever written in a master file.** Pieces are made in a copy (see the `brand` skill, *Where the work goes*).
 
-| Prefix | What the agent may do | Tool | Example |
-|---|---|---|---|
-| `slot-text-<role>` | Replace the text | `set_text_content` | `slot-text-headline-1`, `slot-text-city`, `slot-text-booth` |
-| `slot-image-<role>` | Replace the picture with an approved image file | `update_styles` on `backgroundImage` only (plus `backgroundSize` in the same call) | `slot-image-photo`, `slot-image-speaker` |
-| `slot-logo-partner` | Swap the partner mark for one from the file's `Assets` page, and size it to the format's logo height | `delete_nodes` on the mark inside the slot, `duplicate_nodes` from `Assets` with `parentId` = the slot frame, then `update_styles` `width`/`height` on that SVG only (keep its aspect ratio) | |
-| `optional-<role>` | Delete the whole block when there is no content for it | `delete_nodes` | `optional-tickets-offer`, `optional-footer-note` |
-| `variant-<name>` | Keep one of several pre-designed versions, delete the others | `delete_nodes` | `variant-ground-blue`, `variant-ground-dark` |
-
-A slot's role names what it holds, not what it currently says: `slot-text-city`, never `slot-text-atlanta`.
-
-### Two-tone headlines
-
-A two-tone headline is two text nodes (Paper cannot colour part of one). They are two slots: `slot-text-headline-1` (first colour) and `slot-text-headline-2` (second colour). Split the copy where the design splits it, usually mid-sentence.
-
-### Adapting beyond the slots
-
-- Keep the template's structure: the same blocks, in the same order, on the same grid.
-- Prefer, in this order: rewrapping text, resizing a text box, reducing display type (not below about 75% of the template size), adjusting a gap, hiding a block.
-- Never touch the master on `Templates`; adapt the copy on `Output`.
-- List every adjustment in the delivery message.
-
-### Missing partner logo
-
-The piece is always delivered; the logo is completed when it is available.
-
-1. **Check `Assets`** (`Partner Logos · White on blue`). If it is there, use it.
-2. **If the user has the file**, they can drop it straight into the `slot-logo-partner` frame in Paper; offer that.
-3. **Otherwise look for the official logo** on the organiser's website or press kit (their homepage header usually links it). Then:
-   - A vector you can recolour: set its fills to `var(--color-white)`.
-   - A colour raster or an SVG that only wraps a PNG (common): make a one-colour white version from its alpha channel (Python: `Image.open(f).convert('RGBA')`, keep the alpha, paint every pixel white) and save it to `${CLAUDE_PLUGIN_DATA}/logos/<name>-white.png`.
-   - Place it with `write_html` into `slot-logo-partner`: `<img src="paper-asset://<absolute path>" style="width:…;height:…;flex-shrink:0;object-fit:contain">`. Paper uploads it to its own storage, so the piece keeps working after the local file is gone.
-   - Size it **optically**, not to the number: a thin serif mark needs to be larger than a heavy one to match the Archy wordmark (Yankee Dental Congress needed 124px tall where Hinman sits at 100). Check the lockup in the screenshot.
-   - Copy it onto `Assets` → `Partner Logos · White on blue`, named `Logo <Partner> (to verify)`, and tell the user where it came from so a designer can swap in the official reversed version.
-4. **If there is no usable logo**, put a placeholder in `slot-logo-partner`: a frame at the format's logo height and about 300px wide, `2px dashed var(--color-blue-tint-300)` border, `--radius-tag` corners, with `PARTNER LOGO` centred in the kicker style (uppercase, `0.05em`, `--color-blue-tint-300`). Name it `placeholder-logo-partner` and list it as pending.
+A template is named `TPL · <Family> · <Format> <W×H>`, with no numbers. A piece is named `<Event or campaign> · <Format> <W×H>`, for example `Hinman 2027 · Post 1080×1350`.
 
 ---
 
-## File structure
+## Slots
 
-Every Paper file that holds templates has four pages:
+A slot is a layer named for what it holds, where a piece is meant to change. They make the common case fast; everything else can still be adjusted when the piece needs it.
 
-| Page | Purpose | Agent may write? |
+| Prefix | Holds | Example |
 |---|---|---|
-| `Templates` | Master artboards, named `TPL · <Family> · <Format> <W×H>` | **No** |
-| `Output` | Where the agent duplicates a master and fills it | Yes |
-| `Assets` | Approved partner logos, city skylines, photos | No (read and duplicate from it) |
-| `Archive` | Past campaigns kept for reference | No |
+| `slot-text-<role>` | A text to replace (`set_text_content`) | `slot-text-headline`, `slot-text-city`, `slot-text-booth` |
+| `slot-image-<role>` | A picture to replace | `slot-image-photo`, `slot-image-speaker` |
+| `slot-logo-partner` | The partner's mark, next to the Archy wordmark | |
+| `optional-<role>` | A block to remove when there is no content for it | `optional-tickets-offer` |
+| `variant-<name>` | One of several pre-designed versions; keep one | `variant-ground-dark` |
 
-Master names carry no numbers: order comes from the page, and a number goes stale the moment a template is inserted.
+A two-tone headline is two text nodes (Paper cannot colour part of one), so it is two slots: `slot-text-headline-1` and `slot-text-headline-2`, split where the design splits it.
 
-A new piece in `Output` is named `<Event or campaign> · <Format> <W×H>`, for example `Hinman 2026 · Post 1080×1350`.
+### Partner logo
+
+Each piece brings its own partner logo:
+
+1. **The user has the file**: they can drop it straight into the `slot-logo-partner` frame in Paper, or give you the path.
+2. **Otherwise find the official logo** on the organiser's website or press kit. It has to read on the piece's ground:
+   - A vector: set its fills to `var(--color-white)` on a blue or dark ground.
+   - A colour raster, or an SVG that only wraps a PNG (common): make a one-colour white version from its alpha channel (Python: `Image.open(f).convert('RGBA')`, keep the alpha, paint every pixel white), saved under `${CLAUDE_PLUGIN_DATA}/logos/`.
+   - Place it in `slot-logo-partner` with `write_html`: `<img src="paper-asset://<absolute path>" style="width:…;height:…;flex-shrink:0;object-fit:contain">`. Paper uploads it, so the piece keeps working without the local file.
+3. **No usable logo**: put a placeholder in the slot (a frame at the logo height, about 300px wide, `2px dashed var(--color-blue-tint-300)`, `PARTNER LOGO` centred in the kicker style) and list it as pending.
+
+Size the logo **optically**, not to a number: a thin serif mark needs to be larger than a heavy one to balance the Archy wordmark (Yankee Dental Congress needed 124px tall where Hinman sits at 100). A logo you made or found yourself is provisional: say where it came from so the official version can replace it.
 
 ---
 
@@ -68,13 +47,12 @@ A new piece in `Output` is named `<Event or campaign> · <Format> <W×H>`, for e
 
 | Field | Meaning |
 |---|---|
-| **File / page** | Which Paper file must be open, and which page the master lives on |
+| **File** | The master file that holds the template |
 | **Masters** | The master artboard name for each format |
 | **Slots** | Every editable layer, with its limit: characters per line × lines, measured at the slot's real type size |
-| **Optional** | Blocks that may be deleted when empty |
 | **Use when / not when** | The brief this template answers, and the one it does not |
 
-Limits are measured, not estimated: on the canvas, at the slot's own size and weight. A limit of `22 × 2` means two lines of about 22 characters. Treat it as a ceiling; the rendered screenshot is the final check.
+Limits are measured on the canvas at each slot's own size. They are a guide for when copy starts to need adapting; the screenshot is the final check.
 
 ---
 
@@ -84,7 +62,7 @@ Limits are measured, not estimated: on the canvas, at the slot's own size and we
 
 File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
 
-Past campaigns (numbered 1 to 9) are on the `Archive` page. Seven distinct layouts come out of them; each becomes a master on `Templates` once prepared:
+Past campaigns (numbered 1 to 9) are on its `Archive` page. Seven distinct layouts come out of them:
 
 | Template | Built from | Layout in one line | Status |
 |---|---|---|---|
@@ -121,12 +99,10 @@ Slots (limits measured on the canvas at each slot's own size; the rendered scree
 | `slot-text-venue` | ≤ 50 characters | (not in the OG) | `Georgia World Congress Center` | |
 | `slot-text-date` | ≤ 34 characters | see city | `March 12 – 14, 2026` | Format from `voice.md` |
 | `slot-text-booth` | ≤ 12 characters | **≤ 5 characters** (badge) | `#1039` | Always `#` + number. The OG badge holds 5 characters; check it at `scale: 2` |
-| `slot-logo-partner` | height 100 | height 86 | Hinman | Partner logos live on `Assets` → `Partner Logos · White on blue`. Match the Archy wordmark optically (see `composition.md`, *Logo lockups*) |
+| `slot-logo-partner` | height about 100 | height about 86 | Hinman | Balance it optically with the Archy wordmark (see *Partner logo* above) |
 
-Locked: the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, la mascota, the OG badge ribbon, the Archy wordmark, every position and size.
-No optional blocks.
+Fixed by design (adjust only when the piece needs it): the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, la mascota, the OG badge, the Archy wordmark.
 
-If the partner's logo is not on `Assets`, follow *Missing partner logo* above.
 
 ### Archy - Ads
 
