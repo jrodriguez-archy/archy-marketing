@@ -1,0 +1,23 @@
+{
+  "name": "archy",
+  "version": "0.1.0",
+  "description": "Produce on-brand Archy, DOC and Offsite assets in Paper from approved templates, and export them to Google Slides, Figma and print.",
+  "author": {
+    "name": "Juan Rodriguez",
+    "email": "jrodriguez@archy.com"
+  },
+  "keywords": [
+    "archy",
+    "paper",
+    "marketing",
+    "templates",
+    "brand"
+  ],
+  "dependencies": [
+    {
+      "name": "paper-desktop",
+      "marketplace": "paper"
+    }
+  ],
+  "repository": "https://github.com/jrodriguez-archy/archy-marketing"
+}

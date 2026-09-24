@@ -1,0 +1,21 @@
+{
+  "name": "archy-marketing",
+  "owner": {
+    "name": "Juan Rodriguez",
+    "email": "jrodriguez@archy.com"
+  },
+  "metadata": {
+    "description": "Archy's marketing production system for Paper: brand rules, template-based skills and export tools."
+  },
+  "allowCrossMarketplaceDependenciesOn": [
+    "paper"
+  ],
+  "plugins": [
+    {
+      "name": "archy",
+      "source": "./plugins/archy",
+      "description": "Produce on-brand Archy, DOC and Offsite assets in Paper from approved templates.",
+      "version": "0.1.0"
+    }
+  ]
+}
