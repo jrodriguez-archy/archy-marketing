@@ -117,7 +117,7 @@ When an existing deck is being redesigned, the job is to re-set its content in t
 
 **Work from the one source version the requester gave you.** If a folder holds several versions of a deck (`v1`, `v2`, `final`), ask which one is the reference before starting, and do not switch mid-deck even if another looks more current. Versions differ in ways that look like improvements and are not yours to apply. Never assume page numbers line up across versions.
 
-**Type is the one thing that does scale up.** Source decks are often set small (24pt headlines, 9.5pt captions); this system runs 60/70 headlines and 22/32 body because decks are read on a big screen. Plan for the consequence: copy that fits on one line in the source often will not here. Stack it; never shrink it below the scale, and never cut a word to fit without the requester's approval.
+**Type is the one thing that does scale up.** Source decks are often set small (24pt headlines, 9.5pt captions); this system runs 60/70 headlines and 22/32 body because decks are read on a big screen. Plan for the consequence: copy that fits on one line in the source often will not here. Stack it or rewrap it first; step below the scale only as a last resort, and report any cut or size change.
 
 ---
 

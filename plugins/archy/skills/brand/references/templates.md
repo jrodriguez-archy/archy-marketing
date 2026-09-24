@@ -2,13 +2,13 @@
 
 Read this when choosing a template for any Archy piece, and before touching any layer inside one.
 
-A skill may only produce a piece from a template whose row below says **Status: ready**. A template marked **not prepared** has no slots yet: stop, tell the user which template it is and that it has to be prepared first. Never improvise a layout, and never fill a template that is not ready.
+**Status: ready** means the master has named slots and measured limits, so filling it is fast and safe. **Not prepared** means the layout exists (usually as a campaign on `Archive`) but has no slots yet: it can still be used, by duplicating that campaign to `Output` and replacing its copy directly. Say which one you started from.
 
 ---
 
 ## Slot convention
 
-Only layers whose name starts with one of these prefixes may be changed. Every other layer is locked: do not restyle, move, resize, rename or delete it.
+Slots are where a piece is meant to change. Start there. Anything else can still be adjusted when the piece needs it (see the `brand` skill, *Defaults, and how far they bend*), and every such adjustment is reported.
 
 | Prefix | What the agent may do | Tool | Example |
 |---|---|---|---|
@@ -24,11 +24,21 @@ A slot's role names what it holds, not what it currently says: `slot-text-city`,
 
 A two-tone headline is two text nodes (Paper cannot colour part of one). They are two slots: `slot-text-headline-1` (first colour) and `slot-text-headline-2` (second colour). Split the copy where the design splits it, usually mid-sentence.
 
-### What is never allowed
+### Adapting beyond the slots
 
-- `write_html` into a template or a copy of one.
-- `update_styles` on anything except a `slot-image-*` background, the size of the partner logo inside `slot-logo-partner`, and the position of the new artboard itself.
-- Changing a font size to make copy fit. If copy does not fit its slot, shorten the copy.
+- Keep the template's structure: the same blocks, in the same order, on the same grid.
+- Prefer, in this order: rewrapping text, resizing a text box, reducing display type (not below about 75% of the template size), adjusting a gap, hiding a block.
+- Never touch the master on `Templates`; adapt the copy on `Output`.
+- List every adjustment in the delivery message.
+
+### Missing partner logo
+
+The piece is always delivered; the logo is completed when it is available.
+
+1. **Check `Assets`** (`Partner Logos · White on blue`). If it is there, use it.
+2. **If the user has the file**, they can drop it straight into the `slot-logo-partner` frame in Paper; offer that.
+3. **Otherwise look for the official logo** on the organiser's website or press kit. If you find a clean version that reads on the piece's ground (white, or an SVG you can set to `var(--color-white)`), place it in `slot-logo-partner` at the format's logo height and tell the user where it came from, so a designer can confirm it and add it to `Assets`.
+4. **If there is no usable logo**, put a placeholder in `slot-logo-partner`: a frame at the format's logo height and about 300px wide, `2px dashed var(--color-blue-tint-300)` border, `--radius-tag` corners, with `PARTNER LOGO` centred in the kicker style (uppercase, `0.05em`, `--color-blue-tint-300`). Name it `placeholder-logo-partner` and list it as pending.
 
 ---
 
@@ -101,7 +111,7 @@ Slots (limits measured on the canvas at each slot's own size; the rendered scree
 | Slot | Post / Stories | OG | Example | Notes |
 |---|---|---|---|---|
 | `slot-text-kicker` | ≤ 48 characters, 1 line | ≤ 48, 1 line | `Hinman Dental Meeting 2026` | Official event name + year. Set uppercase by the style; type it in title case |
-| `slot-text-headline` | ≤ 15 characters per line, ≤ 3 lines (~40 total) | ≤ 20 per line, **2 lines**, break with `\n` | `Meet Archy at Hinman Dental Meeting` | Keep the `Meet Archy at <event>` pattern. OG: put the line break yourself (`Meet Archy at\nHinman Dental Meeting`); its second line must end before the badge. If the event name is longer than 20 characters, propose the organiser's own short name (`Yankee Dental`, `Hinman`) for the OG only and get approval; the full name still appears in the kicker |
+| `slot-text-headline` | ≤ 15 characters per line, ≤ 3 lines (~40 total) | ≤ 20 per line, **2 lines**, break with `\n` | `Meet Archy at Hinman Dental Meeting` | Keep the `Meet Archy at <event>` pattern. OG: put the line break yourself (`Meet Archy at\nHinman Dental Meeting`); its second line must end before the badge. If the event name does not fit two lines, first reduce the headline size in small steps (down to about 64px); if it still does not fit, use the organiser's own short name (`Yankee Dental`, `Hinman`) on the OG only and mention it. The full name stays in the kicker |
 | `slot-text-city` | ≤ 34 characters | city + date together ≤ 44 | `Atlanta, GA` | `City, ST` |
 | `slot-text-venue` | ≤ 50 characters | (not in the OG) | `Georgia World Congress Center` | |
 | `slot-text-date` | ≤ 34 characters | see city | `March 12 – 14, 2026` | Format from `voice.md` |
@@ -111,7 +121,7 @@ Slots (limits measured on the canvas at each slot's own size; the rendered scree
 Locked: the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, la mascota, the OG badge ribbon, the Archy wordmark, every position and size.
 No optional blocks.
 
-If the partner's logo is not on the `Assets` page, stop and ask for it to be added; do not redraw or import one.
+If the partner's logo is not on `Assets`, follow *Missing partner logo* above.
 
 ### Archy - Ads
 

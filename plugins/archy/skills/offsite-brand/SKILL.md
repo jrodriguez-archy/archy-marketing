@@ -32,7 +32,7 @@ Read the reference before touching the canvas; both carry exact geometry that mu
 4. **FutureProof never appears on any Offsite piece**, even though the agenda source mentions it.
 5. **Type is Overpass** (Regular 400, Bold 700) as the substitute for Interstate, which is not installed.
 6. **Navy (`--color-navy`) is the only ground.** Never set `--color-royal` as text on navy; it vanishes.
-7. **Cut copy, never shrink type**, when a row or note does not fit.
+7. **Prefer cutting copy to shrinking type** when a row or note does not fit, and report what changed.
 8. **The dot frame's colour sequence is deliberately irregular.** Do not normalise it into a pattern.
 9. **Fixed-width time slots, never a gap**, so every title starts on the same lane.
 10. **Dashed rules are `border` dashes**, never `repeating-linear-gradient` (Paper paints nothing).

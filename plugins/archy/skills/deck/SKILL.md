@@ -11,7 +11,7 @@ Load the `brand` skill first; its hard rules and workflow apply here unchanged.
 
 Paper file `Master - Decks` (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 55 layouts on one page per content category (Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase). Pick a layout by the **content in hand** ("three stats and a claim"), using `references/layout-catalog.md`.
 
-Layouts are not slot-prepared yet (see `../brand/references/templates.md`). Until a layout is marked `ready`, stop and say it needs preparing.
+Layouts are not slot-prepared yet (see `../brand/references/templates.md`). They can still be used: duplicate the layout and replace its copy directly.
 
 ## Starting point: two paths
 
@@ -21,13 +21,13 @@ Layouts are not slot-prepared yet (see `../brand/references/templates.md`). Unti
    - For each source slide, pick the Master - Decks layout that holds its content shape, and list the mapping (source slide → layout) for the requester to confirm before building.
 2. **A new deck from the templates** (less common). Ask for the content slide by slide, pick layouts by content shape, and build from the masters the same way.
 
-Either way, every slide is a duplicate of a Master - Decks layout. If no layout fits a source slide, say so and propose the closest one; do not invent a layout.
+Either way, every slide starts as a duplicate of a Master - Decks layout. If no layout fits a source slide exactly, take the closest one and adapt it (more rows, a column less, a different split), keeping the header, Rulers and type scale, and note it in the mapping.
 
 ## Deck-specific rules
 
 1. **Content is transcribed, never authored.** When re-setting an existing deck, copy is the source's character for character. Verify against the `.pptx` text before finishing.
 2. **Every slide carries the three-part header**: eyebrow, meta line, two-tone headline (two stacked text nodes).
-3. **Canvas 1920 × 1080, margins 96**, type from the slide scale. Never below the scale to make copy fit: stack it or cut it with the requester's approval.
+3. **Canvas 1920 × 1080, margins 96**, type from the slide scale. When copy does not fit, stack it or rewrap it first; step type down only as a last resort, and report it.
 4. **Rulers frame** at y 20 / 344 / 1056 plus column verticals, solid colour for the ground.
 5. **Charts are drawn from frames**, with bar heights derived from the data. Never eyeball a data mark.
 6. **A dark slide is a beat, not a recolour.** Use a dark layout only where the deck needs punctuation.

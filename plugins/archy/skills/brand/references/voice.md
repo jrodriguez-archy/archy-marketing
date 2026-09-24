@@ -43,10 +43,10 @@ Dental practice owners, office managers and their teams in the United States. Ar
 
 ## When copy does not fit
 
-Shorten the copy; never shrink the type. Cut in this order: adjectives, then the secondary line (venue before city), then the whole optional block. Propose the shorter version to the requester before applying it.
+Make it fit, in this order: rewrap it, reduce the type a little (see the `brand` skill), then shorten it. When shortening, cut adjectives first, then the secondary line (venue before city), then use the short form the organiser itself uses. Tell the requester what changed.
 
 ## Never
 
-- Invent facts: dates, booth numbers, speaker names, prizes. If a fact is missing, ask.
-- Change copy the requester supplied, other than to fit a slot, and then only with their approval.
+- Invent facts: dates, booth numbers, speaker names, prizes. Use a visible placeholder (`[Booth #]`) and list it as pending.
+- Change the meaning of copy the requester supplied. Fitting it is fine; rewriting it is their call.
 - Write copy in any language other than US English.
