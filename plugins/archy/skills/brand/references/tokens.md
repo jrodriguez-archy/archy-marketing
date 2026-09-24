@@ -11,7 +11,7 @@ For how those tokens are composed on a canvas (Rulers, la mascota, lockups, layo
 | | Where | Contents |
 |---|---|---|
 | **Brand** (Paper) | `app.paper.design/file/01M1EY5TFVT7MBV4DRBZXZRR9V` | 95 design tokens. Pages: **Styleguide** (color, themes, type, spacing, layout, components), **Brand Guidelines** (logo, iconography), **Icons** (164 Hugeicons) |
-| **Small Events - 2026** (Paper) | `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD` | Page **Templates**: event campaign artboards |
+| **Master - Events** (Paper) | `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD` | Page **Templates**: event campaign artboards |
 | **Ads** (Paper) | `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0` | Page 1: `Claim Stack` Post/Stories/OG. Page 2: `Platform · One-pager 1500×1942` (Letter proportion), rebuilt from a raster reference that sits beside it, and `Platform · Post 1080×1080` derived from it |
 | **Master - Decks** (Paper) | `app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7` | Slide template library, 1920 × 1080. **One page per content category**: Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase. 55 layouts, all with export specs (see `templates.md`) |
 | **Various Collateral** (Paper) | `app.paper.design/file/01M37ZJ6ECM7XJ5TG5W2Z2YR4N` | Page `Chrome - Portal Manager`: Chrome Web Store listing images for the Portal Manager extension, plus the product frames they are built from |

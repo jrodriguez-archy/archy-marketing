@@ -58,7 +58,7 @@ At poster scale use **2px**; 1px vanishes on a phone. On every ground a Ruler is
 
 **Match the partner marks optically, not numerically.** The Archy wordmark ships at 210 × 81 and the Hinman mark at 304 × 100; dropped in as-is, Archy reads noticeably smaller. Scale Archy to roughly **250 × 97** so the two share a cap height. Check every lockup this way; the imported sizes are never the right relationship.
 
-**Do not take the wordmark from `index.html`.** The inline SVG there (viewBox `0 0 500 195.5`) is missing the counter of the "A", so it renders as "∩rchy". The correct mark is the one already on the canvas in the Small Events - 2026 file: 5 paths in a `<g transform="translate(0 21.752)">`, viewBox `0 5 252 98`, ink 252 × 98. Copy it from there, or from the Decks cover.
+**Do not take the wordmark from `index.html`.** The inline SVG there (viewBox `0 0 500 195.5`) is missing the counter of the "A", so it renders as "∩rchy". The correct mark is the one already on the canvas in the Master - Events file: 5 paths in a `<g transform="translate(0 21.752)">`, viewBox `0 5 252 98`, ink 252 × 98. Copy it from there, or from the Decks cover.
 
 **The wordmark's native ink is 252 × 98, which is exactly 18:7, so its integer scales are `18k × 7k`.** This matters whenever the mark sits inside auto-layout: in a 420 × 220 flex column, a 260 × 101 mark centred its content at y 41.5 and put both children on sub-pixel positions, while 252 × 98 (k = 14) lands on 43. Pick an `18k × 7k` pair before reaching for a hand-tuned height.
 

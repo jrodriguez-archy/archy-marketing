@@ -13,7 +13,7 @@ Three identities live in this plugin and they never mix:
 
 | Identity | Skill | Paper files |
 |---|---|---|
-| **Archy** | this one | `Brand`, `Small Events - 2026`, `Archy - Ads`, `Master - Decks`, `Archy - Various Collateral` |
+| **Archy** | this one | `Brand`, `Master - Events`, `Archy - Ads`, `Master - Decks`, `Archy - Various Collateral` |
 | **DOC** (Dental Ownership Collective) | `doc-brand` | `DOC - Brand`, `DOC - Ads` |
 | **Archy Offsite 2026** | `offsite-brand` | `Archy Offsite - 2026` |
 

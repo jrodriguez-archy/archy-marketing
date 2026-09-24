@@ -37,7 +37,12 @@ The piece is always delivered; the logo is completed when it is available.
 
 1. **Check `Assets`** (`Partner Logos · White on blue`). If it is there, use it.
 2. **If the user has the file**, they can drop it straight into the `slot-logo-partner` frame in Paper; offer that.
-3. **Otherwise look for the official logo** on the organiser's website or press kit. If you find a clean version that reads on the piece's ground (white, or an SVG you can set to `var(--color-white)`), place it in `slot-logo-partner` at the format's logo height and tell the user where it came from, so a designer can confirm it and add it to `Assets`.
+3. **Otherwise look for the official logo** on the organiser's website or press kit (their homepage header usually links it). Then:
+   - A vector you can recolour: set its fills to `var(--color-white)`.
+   - A colour raster or an SVG that only wraps a PNG (common): make a one-colour white version from its alpha channel (Python: `Image.open(f).convert('RGBA')`, keep the alpha, paint every pixel white) and save it to `${CLAUDE_PLUGIN_DATA}/logos/<name>-white.png`.
+   - Place it with `write_html` into `slot-logo-partner`: `<img src="paper-asset://<absolute path>" style="width:…;height:…;flex-shrink:0;object-fit:contain">`. Paper uploads it to its own storage, so the piece keeps working after the local file is gone.
+   - Size it **optically**, not to the number: a thin serif mark needs to be larger than a heavy one to match the Archy wordmark (Yankee Dental Congress needed 124px tall where Hinman sits at 100). Check the lockup in the screenshot.
+   - Copy it onto `Assets` → `Partner Logos · White on blue`, named `Logo <Partner> (to verify)`, and tell the user where it came from so a designer can swap in the official reversed version.
 4. **If there is no usable logo**, put a placeholder in `slot-logo-partner`: a frame at the format's logo height and about 300px wide, `2px dashed var(--color-blue-tint-300)` border, `--radius-tag` corners, with `PARTNER LOGO` centred in the kicker style (uppercase, `0.05em`, `--color-blue-tint-300`). Name it `placeholder-logo-partner` and list it as pending.
 
 ---
@@ -75,9 +80,9 @@ Limits are measured, not estimated: on the canvas, at the slot's own size and we
 
 ## Catalog
 
-### Small Events - 2026 (event social)
+### Master - Events (event social)
 
-File: `Small Events - 2026`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
+File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
 
 Past campaigns (numbered 1 to 9) are on the `Archive` page. Seven distinct layouts come out of them; each becomes a master on `Templates` once prepared:
 

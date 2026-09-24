@@ -7,11 +7,11 @@ description: Create Archy event social posts in Paper (Instagram/LinkedIn Post 1
 
 Load the `brand` skill first. Its *Always true* list holds without exception; everything else is a default that bends to the brief. The job is to **always deliver the pieces**, adapted to the content, with anything unresolved marked for the requester.
 
-**Paper file:** `Small Events - 2026` (the Events template file, `01M1F9VXX1S3JJETTVWG2H2PCD`). Masters on `Templates`, work on `Output`, partner logos on `Assets`, past campaigns on `Archive`.
+**Paper file:** `Master - Events` (the Events template file, `01M1F9VXX1S3JJETTVWG2H2PCD`). Masters on `Templates`, work on `Output`, partner logos on `Assets`, past campaigns on `Archive`.
 
 ## 1. Open the file
 
-`get_basic_info`. If `Small Events - 2026` is not the open file, `open_file` it. Read `../brand/references/templates.md` (section *Small Events - 2026*) and `../brand/references/paper-quirks.md` once per session.
+`get_basic_info`. Identify the file by its id (`01M1F9VXX1S3JJETTVWG2H2PCD`), not its name, which may change. If it is not the open file, `open_file` it. Read `../brand/references/templates.md` (section *Master - Events*) and `../brand/references/paper-quirks.md` once per session.
 
 ## 2. Pick the starting point
 
