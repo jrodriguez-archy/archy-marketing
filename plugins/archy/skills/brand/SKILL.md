@@ -24,7 +24,7 @@ If the request does not say which one, ask. Never apply one identity's tokens, t
 1. **Never create from scratch.** Every piece starts as a duplicate of a master artboard from the template catalog (`references/templates.md`). If no template fits, stop and say so. Do not improvise a layout.
 2. **Only slots change.** Edit only layers named `slot-*`, `optional-*` or `variant-*`, and only in the ways the catalog allows. Everything else is locked.
 3. **Only `ready` templates.** A template marked `not prepared` cannot be used yet. Stop and name it.
-4. **Everything on the canvas is in US English**: copy, layer names, artboard names.
+4. **Everything on the canvas is in US English**: copy, layer names, artboard names. Talk to the user in whatever language they write in.
 5. **Tokens, never hex.** Colours go through `var(--color-…)`.
 6. **Never shrink type to fit copy.** Shorten the copy and get the requester's approval.
 7. **Never invent facts.** Dates, booth numbers, names and prices come from the requester.
