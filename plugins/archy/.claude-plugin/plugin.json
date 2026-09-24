@@ -1,6 +1,6 @@
 {
   "name": "archy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Produce on-brand Archy, DOC and Offsite assets in Paper from approved templates, and export them to Google Slides, Figma and print.",
   "author": {
     "name": "Juan Rodriguez",
