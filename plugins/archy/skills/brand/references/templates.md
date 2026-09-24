@@ -14,7 +14,7 @@ Only layers whose name starts with one of these prefixes may be changed. Every o
 |---|---|---|---|
 | `slot-text-<role>` | Replace the text | `set_text_content` | `slot-text-headline-1`, `slot-text-city`, `slot-text-booth` |
 | `slot-image-<role>` | Replace the picture with an approved image file | `update_styles` on `backgroundImage` only (plus `backgroundSize` in the same call) | `slot-image-photo`, `slot-image-speaker` |
-| `slot-logo-partner` | Swap the partner mark for one from the file's `Assets` page | `duplicate_nodes` from `Assets` + `delete_nodes` on the old mark | |
+| `slot-logo-partner` | Swap the partner mark for one from the file's `Assets` page, and size it to the format's logo height | `delete_nodes` on the mark inside the slot, `duplicate_nodes` from `Assets` with `parentId` = the slot frame, then `update_styles` `width`/`height` on that SVG only (keep its aspect ratio) | |
 | `optional-<role>` | Delete the whole block when there is no content for it | `delete_nodes` | `optional-tickets-offer`, `optional-footer-note` |
 | `variant-<name>` | Keep one of several pre-designed versions, delete the others | `delete_nodes` | `variant-ground-blue`, `variant-ground-dark` |
 
@@ -27,7 +27,7 @@ A two-tone headline is two text nodes (Paper cannot colour part of one). They ar
 ### What is never allowed
 
 - `write_html` into a template or a copy of one.
-- `update_styles` on anything except a `slot-image-*` background and the position of the new artboard itself.
+- `update_styles` on anything except a `slot-image-*` background, the size of the partner logo inside `slot-logo-partner`, and the position of the new artboard itself.
 - Changing a font size to make copy fit. If copy does not fit its slot, shorten the copy.
 
 ---
@@ -69,7 +69,7 @@ Limits are measured, not estimated: on the canvas, at the slot's own size and we
 
 File: `Small Events - 2026`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*).
 
-The file currently holds finished campaigns on a single page, numbered 1 to 9. Seven distinct layouts come out of them:
+Past campaigns (numbered 1 to 9) are on the `Archive` page. Seven distinct layouts come out of them; each becomes a master on `Templates` once prepared:
 
 | Template | Built from | Layout in one line | Status |
 |---|---|---|---|
@@ -77,11 +77,41 @@ The file currently holds finished campaigns on a single page, numbered 1 to 9. S
 | `Countdown · Mascota` | 2.x (Chicago), 4.x (Atlanta) | Label pill, "Tomorrow is the day", la mascota bleeding off the top, skyline, badge, location, logo lockup | not prepared |
 | `Speaker Invite` | 5.x (Denver, AADOM) | Photographic ground, headline, speaker portrait + name, location, date & time, footer share note, logos at the top | not prepared |
 | `Booth · Light Rulers` | 6.x (Hinman) | Light ground, Rulers, two-tone headline, location + date, booth line, logo lockup | not prepared |
-| `Booth · Icon List` | 7.x (Hinman) | Light ground, kicker with dot, headline, three icon rows (location, date, booth) separated by Rulers | not prepared |
+| `Booth Icon List` | 7.x (Hinman) | Royal blue ground, kicker pill, headline, three icon rows (location, date, booth) separated by Rulers, la mascota off the top, logo lockup | **ready** |
 | `Booth · Photo Band` | 8.x (Hinman) | Photo band at the top, logos, headline, one Ruler, location and date side by side | not prepared |
 | `Countdown · Skyline Masthead` | 9.x (Hinman) | Ruler-flanked masthead, "Tomorrow is the day" with the badge in the headline band, skyline + BK Fade, details row, logo lockup | not prepared |
 
 Full slot tables are added here as each template is prepared.
+
+#### Booth Icon List · **ready**
+
+Booth invitation for a dental meeting or trade show where Archy has a booth. Masters on page `Templates`:
+
+| Format | Master |
+|---|---|
+| Post | `TPL · Booth Icon List · Post 1080×1350` |
+| Stories | `TPL · Booth Icon List · Stories 1080×1920` |
+| OG | `TPL · Booth Icon List · OG 1200×630` |
+
+**Use when** the brief is "come see us at booth #N": event name, city, venue, dates, booth number and the organiser's logo.
+**Not when** there is no booth (a talk, a dinner, a local meetup: see `Speaker Invite`), or the day-before reminder (see the `Countdown` templates).
+
+Slots (limits measured on the canvas at each slot's own size; the rendered screenshot is the final check):
+
+| Slot | Post / Stories | OG | Example | Notes |
+|---|---|---|---|---|
+| `slot-text-kicker` | ≤ 48 characters, 1 line | ≤ 48, 1 line | `Hinman Dental Meeting 2026` | Official event name + year. Set uppercase by the style; type it in title case |
+| `slot-text-headline` | ≤ 15 characters per line, ≤ 3 lines (~40 total) | ≤ 20 per line, **2 lines**, break with `\n` | `Meet Archy at Hinman Dental Meeting` | Keep the `Meet Archy at <event>` pattern. OG: put the line break yourself (`Meet Archy at\nHinman Dental Meeting`); its second line must end before the badge |
+| `slot-text-city` | ≤ 34 characters | city + date together ≤ 44 | `Atlanta, GA` | `City, ST` |
+| `slot-text-venue` | ≤ 50 characters | (not in the OG) | `Georgia World Congress Center` | |
+| `slot-text-date` | ≤ 34 characters | see city | `March 12 – 14, 2026` | Format from `voice.md` |
+| `slot-text-booth` | ≤ 12 characters | **≤ 5 characters** (badge) | `#1039` | Always `#` + number. The OG badge holds 5 characters; check it at `scale: 2` |
+| `slot-logo-partner` | height 100 | height 86 | Hinman | Partner logos live on `Assets` → `Partner Logos · White on blue`. Match the Archy wordmark optically (see `composition.md`, *Logo lockups*) |
+
+Locked: the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, la mascota, the OG badge ribbon, the Archy wordmark, every position and size.
+No optional blocks.
+
+If the partner's logo is not on the `Assets` page, stop and ask for it to be added; do not redraw or import one.
 
 ### Archy - Ads
 
