@@ -69,7 +69,7 @@ Run this after filling or adapting a template, and before reporting the work as 
 - [ ] **His antenna points into the canvas.** Top bleed: rotated 180°; right edge: −90°; left edge: +90°; bottom: upright. If the antenna is off the trim, he is backwards.
 - [ ] **About two thirds of him shows**, never three quarters.
 - [ ] **The crop never touches the eyes.** Both eyes are whole and clear of the trim (raised in a bleed). The ears may be trimmed a little.
-- [ ] **Canvas names say `Mascot`**, never "Mascota".
+- [ ] **He is the Brand master, at the master's proportions.** Eyes, antenna and shell come from Brand › Mascot as they are; nothing was rescaled, redrawn or swapped in by hand.
 
 ## Wordmark and logos
 

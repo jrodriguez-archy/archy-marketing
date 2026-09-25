@@ -15,7 +15,7 @@
       "name": "archy",
       "source": "./plugins/archy",
       "description": "Produce on-brand Archy, DOC and Offsite assets in Paper from approved templates.",
-      "version": "0.4.0"
+      "version": "0.4.1"
     },
     {
       "name": "archy-design",

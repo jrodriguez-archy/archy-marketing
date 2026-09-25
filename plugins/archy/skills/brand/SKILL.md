@@ -80,6 +80,7 @@ If a copy cannot be made, ask the user to duplicate the master file in Paper (ri
 1. **Read the brief** and pick the starting template from `references/templates.md`, or 2 or 3 of them as options.
 2. **Make or open the working copy** (above). Ask once for missing facts; continue with placeholders if they are not available yet.
 3. **Fill and adapt.** Slots first, then whatever else the piece needs.
+   **If the piece uses the mascot**, read *The mascot* in `references/composition.md` and copy him from Brand › Mascot before placing him. Then apply every rule in that section: the antenna colour for the ground, the tone-matched edge, the orientation for the bleed, the raised eyes, about two thirds visible and the eyes clear of the trim. They apply every time he appears, not only when a reviewer asks.
 4. **Review.** Screenshot every artboard and run `references/review-checklist.md`. Fix what fails.
 5. **Deliver.** Call `finish_working_on_nodes` and report as above.
 

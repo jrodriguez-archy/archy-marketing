@@ -6,6 +6,13 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.1 (2026-09-25)
+
+- archy: the mascot's eyes are sized by the master; never transplant or hand-scale them.
+- archy: a piece that still carries the superseded head gets the whole Brand head, at the old shell size.
+- archy: the brand workflow now applies the mascot rules (antenna, edge, orientation, raised eyes, crop) every time he is used.
+- archy: review checklist checks that the mascot is the Brand master at its proportions.
+
 ## archy 0.4.0 and archy-design 0.1.1 (2026-09-24)
 
 - archy: the mascot is named Archy and is "he"; canvas names say `Mascot`, never "Mascota" (layers and the `Countdown Mascot` template renamed in Master - Events).

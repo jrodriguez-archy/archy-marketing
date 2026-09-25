@@ -40,14 +40,15 @@ At poster scale use **2px**; 1px vanishes on a phone. On every ground a Ruler is
 
 ## The mascot
 
-**The mascot is named Archy**, the same as the brand: a robot with a rounded shell, sleepy eyes and a dark navy face plate, as a head or full body (head plus a blue capsule body with the Archy "A"). Refer to him as **he** (him, his). On the canvas he is always **Mascot** (layer and artboard names, labels), never "Mascot".
+**The mascot is named Archy**, the same as the brand: a robot with a rounded shell, sleepy eyes and a dark navy face plate, as a head or full body (head plus a blue capsule body with the Archy "A"). Refer to him as **he** (him, his). On the canvas he is always **Mascot** (layer and artboard names, labels).
 
 ### Where he lives
 
 The masters are in the Brand file, page **Mascot**, left to right: `Mascot · Expressions` (full body, four faces), `Mascot · Heads` (head only), `Mascot · Poses` (exploration), `Mascot · Agents` (the five agents), `Mascot · Mono` (one-colour head, four faces), `Mascot · Mono Colour` (positive and reversed colourways), `Mascot · Construction` (seven parts and their colours), `Mascot · Grounds` (blue, dark and white, antenna rule and body edge applied), `Mascot · Light Blue Grounds` (Tint 100 and Tint 300 with their edges, plus the screen and print edge table), `Mascot · Placement` (the three bleeds, raised eyes) and `Mascot · Misuse` (antenna off the edge, upright side crop, crop through the eyes). **Copy him from there** rather than redrawing or re-deriving a rotation.
 
-- **One canonical construction:** short antenna (24 units wide) and the wider shell. Full body `viewBox 0 0 670.54 644`, head only `0 0 670.54 444`, flattened (no `<g>`). The older long-antenna head still found in some templates (Events, the HR deck) is the superseded drawing; prefer the Brand masters in new work.
+- **One canonical construction:** short antenna (24 units wide) and the wider shell. Full body `viewBox 0 0 670.54 644`, head only `0 0 670.54 444`, flattened (no `<g>`). The older long-antenna head still found in some templates (Events) is the superseded drawing. When you touch a piece that still carries it, replace the whole head with the master, match the old shell size so the layout does not move, then apply the antenna colour and the raised eyes.
 - **Expressions:** `Neutral` (round eyes) is the default; `Joyful` (filled arcs) is a favourite and used a lot; `Happy` (outline arcs) and `Love` (hearts) by context. To change the expression, swap the whole SVG: rewriting only the eye nodes with `write_html` turns a `<circle>` into an empty rectangle.
+- **The eyes are sized by the master.** Never transplant eyes from one drawing into another, and never scale or redraw them by hand: the eye-to-plate ratio is fixed by the asset, and a hand-fitted eye always comes out the wrong size.
 
 ### Placing him
 
