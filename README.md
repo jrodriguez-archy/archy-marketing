@@ -76,7 +76,19 @@ Tips:
 
 The plugin updates itself in the background when a new version is published; Claude may ask you to reload once it has. Templates live in Paper, so changes to them reach you as soon as they are saved.
 
-To force an update: **+ → Plugins → Manage plugins**, then update **archy**.
+To force an update: **+ → Plugins → Manage plugins**, then update **Archy - Marketing** (and **Archy - Design** if you have it).
+
+### When the update button is greyed out
+
+Sometimes Claude keeps an old copy of the plugin list and believes you are already up to date, so auto-update does nothing and the **Update** button stays disabled, even after turning auto-update off and on. Refresh it from the Terminal:
+
+```bash
+claude plugin marketplace update archy-marketing
+claude plugin update archy@archy-marketing
+claude plugin update archy-design@archy-marketing   # only if you have Archy - Design
+```
+
+Then quit Claude completely (Cmd+Q) and open it again. **+ → Plugins → Manage plugins** should now show the latest version.
 
 ---
 
@@ -89,8 +101,9 @@ To force an update: **+ → Plugins → Manage plugins**, then update **archy**.
 | No Paper tools at all, even with Paper open | You are in a **cloud** session. Start a **local** session in the workspace folder instead |
 | Claude stops responding to Paper, or tools fail | Quit and reopen Paper Desktop, then start a new Claude session |
 | Screenshots come back blank | Close the file in Paper and open it again |
-| The `archy` skills do not appear | Check **+ → Plugins**: is **archy** installed and enabled? If it is not listed, repeat step 3 of the setup |
+| The `archy` skills do not appear | Check **+ → Plugins**: is **Archy - Marketing** installed and enabled? If it is not listed, repeat step 3 of the setup |
 | An export is not where you expected | Paper always saves exports to **Downloads** |
+| A new version was published but you do not get it, and **Update** is greyed out | See *When the update button is greyed out* under **Updates** |
 
 Still stuck? Send Marketing & Design what you asked and a screenshot of the reply.
 
