@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.2 (2026-09-25)
+
+- archy: every Archy file now carries the Brand mascot master; removed the notes that described the superseded Events head as current.
+
 ## archy 0.4.1 (2026-09-25)
 
 - archy: the mascot's eyes are sized by the master; never transplant or hand-scale them.
