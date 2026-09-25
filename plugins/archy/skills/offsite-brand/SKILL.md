@@ -9,7 +9,7 @@ The Offsite 2026 identity is **its own system**. It borrows Archy's blues and th
 
 ## Separation, both ways
 
-- **Never apply the Archy system here:** no Brand tokens (`--color-royal-blue-500` and the rest), no Onest or Inter, no Rulers, no mascota, no Archy type scale. Do not "correct" an Offsite piece toward Archy tokens.
+- **Never apply the Archy system here:** no Brand tokens (`--color-royal-blue-500` and the rest), no Onest or Inter, no Rulers, no mascot, no Archy type scale. Do not "correct" an Offsite piece toward Archy tokens.
 - **Never apply Offsite tokens to Archy or DOC work.** `--color-navy`, `--color-royal`, `--color-cyan`, `--color-sky`, `--color-ice`, `--color-gold` and Overpass belong to this event only.
 
 Paper file: `Archy Offsite - 2026` (`app.paper.design/file/01M1J43XB229DWACG11Z51P1AV`). New pieces clone the `Asset · Lockup` artboard.

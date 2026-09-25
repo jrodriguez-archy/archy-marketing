@@ -15,8 +15,8 @@ Paper file **`Archy - Ads`** (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`
 
 | | As built | As reviewed |
 |---|---|---|
-| Mascota | 437 × 292 @ 55, −92, visible to y200 | **589 × 394 @ 53, −131**, visible to y263, **55% of the width** |
-| Masthead band | 138 | **224**: the headline drops 86px to sit clear of her |
+| Mascot | 437 × 292 @ 55, −92, visible to y200 | **589 × 394 @ 53, −131**, visible to y263, **55% of the width** |
+| Masthead band | 138 | **224**: the headline drops 86px to sit clear of him |
 | Claim | Onest 60/66, two lines | **Onest 40, one line** |
 | Body | Inter 32/44, two forced lines, `all-in-one platform` SemiBold as its own node | **Inter 34/44, one node, `text-wrap: pretty`, three lines, no inline bold** |
 | Footer alignment | top: button edge on the cap line of "Meet" | **bottom: URL and tagline share one baseline**, `align-items: end` |
@@ -27,7 +27,7 @@ Paper file **`Archy - Ads`** (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`
 
 ## Lessons
 
-**The mascota is the image, so size her first and fit the content around her.** Scaling her *down* from the one-pager to make room for text is backwards: on a square post she is the only picture, and at 44% of the width she reads as a corner accent. At 55% she carries the top of the piece. Budget her band before the type, not after.
+**The mascot is the image, so size him first and fit the content around him.** Scaling him *down* from the one-pager to make room for text is backwards: on a square post he is the only picture, and at 44% of the width he reads as a corner accent. At 55% he carries the top of the piece. Budget his band before the type, not after.
 
 **One hero per format.** Setting the claim at 60px over two lines (because 40px seemed weak after an 82px headline) made it a second headline competing with the first. A square has room for one display element. The claim is a *lead*: one line, and its emphasis comes from the weight contrast inside it (Regular / SemiBold on the two figures), not from size. **"Type runs bigger than feels safe" is about the hero, not about every level.** The footer went the same way: lockup 48 → 40 and the tagline down to one line. When a format shrinks, cut levels and quiet the supporting ones; do not enlarge everything.
 

@@ -4,7 +4,7 @@ Read this when building or editing any Archy Offsite 2026 piece (key art, lockup
 
 The Paper file **`Archy Offsite - 2026`** (`app.paper.design/file/01M1J43XB229DWACG11Z51P1AV`) holds the Archy Offsite 2026 event identity.
 
-**It does not use the Archy design system.** No tokens from Brand, no Onest/Inter scale, no Rulers, no mascota. It borrows Archy's blues and the arch icon, but it is its own thing with its own token set. Do not "correct" it toward the Archy tokens.
+**It does not use the Archy design system.** No tokens from Brand, no Onest/Inter scale, no Rulers, no mascot. It borrows Archy's blues and the arch icon, but it is its own thing with its own token set. Do not "correct" it toward the Archy tokens.
 
 ## Palette
 

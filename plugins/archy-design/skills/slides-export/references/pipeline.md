@@ -190,13 +190,13 @@ The reads sit in `$WORK/` or `$WORK/scratchpad/`. `mkdump.py` only staples them 
 
 `get_tree_summary` truncates text at 60 characters with no marker. Put the full string from `get_node_info` into `text/NN.json` for any node that could be longer.
 
-A shared factory module for the header, Meta and Rulers every slide shares keeps a fifty-node slide to two dozen lines instead of two hundred. `dumpkit.py` holds the generic style builders (`abs_`, `flex`, `txt`, `fill`, `ruler`, `image`, `photo`) and `write()`, which saves to `$WORK/dump/`; import it with `$TOOLS` on `sys.path`.
+A small factory module for the header, Meta and Rulers every slide shares keeps a fifty-node slide to two dozen lines instead of two hundred. Write one per deck in the work directory (style builders such as `abs_`, `flex`, `txt`, `fill`, `ruler`, `image`, and a `write()` that saves to `$WORK/dump/`).
 
 ---
 
 ## Assets
 
-Google Slides cannot take SVG, so vector art (the wordmark, icons, la mascota, logos) goes in as PNG.
+Google Slides cannot take SVG, so vector art (the wordmark, icons, the mascot, logos) goes in as PNG.
 
 - **`jsx2png.py <in.jsx> <out.png> [scale]`** (default scale 4.0) converts the React attribute spellings `get_jsx` returns (`fillRule`, `strokeWidth`, `stopColor`, …) back to SVG ones and substitutes tokens from `tokens.json` (a `var()` fill renders as black outside Paper). Anything left camelCase is *silently ignored* by the renderer, which is how a gradient or a fill-rule goes missing without an error. **Never retype path data: copy the markup, and check the ink is non-zero.**
 - **A connector arrow is width-specific**, the one asset that cannot be reused by name. Its viewBox is the node's own width (`0 0 200 16`, `0 0 90 16`), not a 24 grid, so scaling the 200px file into an 80px box stretches the head into a wedge. One PNG per width: `arrow-right`, `arrow-right-140`, `arrow-right-90`, `arrow-right-80`.
@@ -204,7 +204,6 @@ Google Slides cannot take SVG, so vector art (the wordmark, icons, la mascota, l
 - **The wordmark** is the 5-path mark off the Paper canvas, `viewBox "0 5 252 98"` in a `translate(0 21.752)` group; its 252 × 98 ink matches a 360 × 140 placement exactly. Never take it from the Webflow `index.html`: that inline SVG is missing the counter of the "A" and renders as "∩rchy".
 - **Hugeicons** for the template library come straight from the `@hugeicons/core-free-icons` npm package (see the `hugeicons` skill), and the generator refuses to write an icon whose path data came back empty. An icon may exist twice, neutral and royal (`icon-verify` / `icon-verify-royal`), when layouts need both states.
 - **`assets-base/`** in `$TOOLS` is the pre-built output of `build-assets.py`: the wordmark, the fourteen template Hugeicons and the scrim. `build.js` and `paper2spec.js` fall back to it for any `assets/<file>` the work directory does not have, so the template library builds with no assets of its own. Re-run `build-assets.py` (it writes `$WORK/assets/`, which then wins) only to change an icon.
-- **`deck-icons.py` / `offsite-icons.py`** rasterise one deck's icons and connector arrows from path data pasted into the script; they write `$WORK/assets/deck/`. They are worked examples tied to that deck, kept as the pattern for a new one; for a new deck prefer `jsx2png.py` per icon.
 - **`bk-fade-dark.png`** is the template library's one scrim (`Capture + Scrim`): 1920 × 680, transparent to `#00004E` by 65% of its height, generated with Pillow.
 
 ### Gradients

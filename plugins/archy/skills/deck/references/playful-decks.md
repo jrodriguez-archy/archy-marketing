@@ -7,13 +7,13 @@ Read this when a deck is meant to be warm rather than corporate: onboarding, cul
 ## What the play may use
 
 - **Native colour emoji** as the icon of a title (in its own fixed-size slot beside the title, not typed inside the title string) or as a standalone 56px glyph where the source had one.
-- **La mascota in a few extra spots**, on slides that are a pause: a section divider, a culture slide, the Closing. All her rules still hold (antenna into the canvas, about two thirds visible, no ear crop, white-only outline).
+- **The mascot in a few extra spots**, on slides that are a pause: a section divider, a culture slide, the Closing. All his rules still hold (antenna into the canvas, about two thirds visible, eyes clear of the crop, edges per the ground).
 - **One tilted sticker** (about −6°, white with a 3px royal border), on the Cover.
 - **A rising line** replacing a flat timeline axis, with the marks climbing inside a fixed-height frame per column so every text lane below stays flat.
 
 ## What the play may not touch
 
-- **La mascota is a beat, not wallpaper.** Two or three appearances in a deck of about 20 slides, never on a slide with a grid of content: there she competes with the information.
+- **The mascot is a beat, not wallpaper.** Two or three appearances in a deck of about 20 slides, never on a slide with a grid of content: there he competes with the information.
 - **A sticker never goes on data** (a chart, a number).
 - **One greeting, at the door.** The welcome sticker belongs on the Cover, in the slot the template gives the presenter row; no second welcome later in the deck and no timid "Welcome!" subtitle under the title.
 - **An emoji that ends a display line can cross a Ruler.** Measure the line with the emoji and bring the size down if it does.

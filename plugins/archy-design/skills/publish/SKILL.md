@@ -16,7 +16,7 @@ Look for a local clone (commonly `~/Documents/Claude/archy-marketing`; `git -C <
 | What was learned | Where |
 |---|---|
 | Colour, token, font, icon | `plugins/archy/skills/brand/references/tokens.md` |
-| Layout, Rulers, la mascota, logos, scale | `.../brand/references/composition.md` |
+| Layout, Rulers, the mascot, logos, scale | `.../brand/references/composition.md` |
 | Copy, tone, formats (dates, cities) | `.../brand/references/voice.md` |
 | Something to check before delivering | `.../brand/references/review-checklist.md` |
 | How Paper's tools behave | `.../brand/references/paper-quirks.md` |

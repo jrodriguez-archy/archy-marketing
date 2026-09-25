@@ -64,15 +64,15 @@ At a glance, to pick 2 or 3 options that differ from each other:
 
 | Template | Purpose | Ground | Signature |
 |---|---|---|---|
-| `Booth Icon List` | Booth invite | Royal blue | Kicker pill, three icon rows with Rulers, la mascota off the top |
+| `Booth Icon List` | Booth invite | Royal blue | Kicker pill, three icon rows with Rulers, the mascot off the top |
 | `Booth Invite Photo` | Booth invite | Dark navy | City photo band on top, booth badge |
 | `Booth Light Rulers` | Booth invite | White | Rulers grid, two-tone headline, booth button |
-| `Booth Photo Band` | Booth invite | Light blue gradient | City photo as a base band at the bottom, la mascota off the side |
+| `Booth Photo Band` | Booth invite | Light blue gradient | City photo as a base band at the bottom, the mascot off the side |
 | `Speaker Invite` | Talk, dinner, local event | Royal blue | Speaker portrait and name, date & time, optional share note |
-| `Countdown Mascota` | Day-before reminder | Dark navy | Centred "Tomorrow is the day", la mascota and badge on top |
+| `Countdown Mascot` | Day-before reminder | Dark navy | Centred "Tomorrow is the day", the mascot and badge on top |
 | `Countdown Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
 | `Booth Invite Offer` | Booth invite with a giveaway | Royal blue | Like `Booth Invite Photo`, plus an offer strip with a team or sponsor logo ("Win prizes + Bulls tickets") |
-| `Countdown Offer` | Day-before reminder with a giveaway | Royal blue | Like `Countdown Mascota`, plus the offer strip |
+| `Countdown Offer` | Day-before reminder with a giveaway | Royal blue | Like `Countdown Mascot`, plus the offer strip |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
 
@@ -101,7 +101,7 @@ Slots (limits measured on the canvas at each slot's own size; the rendered scree
 | `slot-text-booth` | ≤ 12 characters | **≤ 5 characters** (badge) | `#1039` | Always `#` + number. The OG badge holds 5 characters; check it at `scale: 2` |
 | `slot-logo-partner` | height about 100 | height about 86 | Hinman | Balance it optically with the Archy wordmark (see *Partner logo* above) |
 
-Fixed by design (adjust only when the piece needs it): the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, la mascota, the OG badge, the Archy wordmark.
+Fixed by design (adjust only when the piece needs it): the kicker pill, labels (`Location`, `Date`, `Booth`), icons, Rulers, the mascot, the OG badge, the Archy wordmark.
 
 
 #### Booth Invite Photo
@@ -115,7 +115,7 @@ Booth invite with a photo of the host city. **Use when** there is a booth and a 
 | `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters (`#1039`) |
 
-#### Countdown Mascota
+#### Countdown Mascot
 
 Day-before reminder. **Use when** the event is tomorrow. **Not when** it is an invitation weeks ahead.
 
@@ -180,7 +180,7 @@ Booth invite on a light ground with the city photo as a base band. **Use when** 
 
 #### Countdown Offer
 
-`Countdown Mascota` with the giveaway strip, from the Chicago Midwinter campaign. **Use when** the event is tomorrow and there is an offer to promote.
+`Countdown Mascot` with the giveaway strip, from the Chicago Midwinter campaign. **Use when** the event is tomorrow and there is an offer to promote.
 
 | Slot | Notes |
 |---|---|

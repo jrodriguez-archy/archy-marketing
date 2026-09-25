@@ -2,7 +2,7 @@
 
 Read this when you need a colour, type, icon, radius or Ruler value, when you need to know which artboard ground to use, or when you need to find the Paper file a piece of work lives in.
 
-For how those tokens are composed on a canvas (Rulers, la mascota, lockups, layout families), see `composition.md`. For Paper MCP behaviour that affects how tokens land, see `paper-quirks.md`.
+For how those tokens are composed on a canvas (Rulers, the mascot, lockups, layout families), see `composition.md`. For Paper MCP behaviour that affects how tokens land, see `paper-quirks.md`.
 
 ---
 

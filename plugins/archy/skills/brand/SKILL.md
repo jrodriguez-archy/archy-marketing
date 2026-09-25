@@ -26,7 +26,7 @@ If the request does not say which one, infer it from the event, file or context;
 ## Always true
 
 1. **Never touch a master.** `Master - …` files are the templates. Work in a copy (see *Where the work goes*).
-2. **The brand rules hold**: the non-negotiables in `references/composition.md` (solid Rulers, wordmark colour, la mascota), tokens instead of hex, Onest + Inter for marketing type, Open Sans for any product UI.
+2. **The brand rules hold**: the non-negotiables in `references/composition.md` (solid Rulers, wordmark colour, the mascot), tokens instead of hex, Onest + Inter for marketing type, Open Sans for any product UI.
 3. **Everything on the canvas is in US English**: copy, layer names, artboard names. Talk to the user in whatever language they write in.
 4. **Never invent facts.** Dates, booth numbers, names and prices come from the requester or an official source. When one does not exist, the piece goes without it (see *Missing information*).
 
@@ -89,7 +89,7 @@ If a copy cannot be made, ask the user to duplicate the master file in Paper (ri
 |---|---|
 | `references/templates.md` | Choosing a template, and the slots of each one |
 | `references/tokens.md` | Checking a colour, ground, font or icon, or finding which Paper file holds what |
-| `references/composition.md` | Anything about Rulers, la mascota, logo lockups, the booth badge, BK Fade, scale or the three-format family |
+| `references/composition.md` | Anything about Rulers, the mascot, logo lockups, the booth badge, BK Fade, scale or the three-format family |
 | `references/voice.md` | Writing or shortening copy |
 | `references/review-checklist.md` | Step 6, every time |
 | `references/paper-quirks.md` | Before your first Paper write in a session, and whenever a Paper tool result looks wrong |

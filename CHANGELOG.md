@@ -6,6 +6,15 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.0 and archy-design 0.1.1 (2026-09-24)
+
+- archy: the mascot is named Archy and is "he"; canvas names say `Mascot`, never "Mascota" (layers and the `Countdown Mascot` template renamed in Master - Events).
+- archy: crop rule changed: the ears may be trimmed, the eyes never.
+- archy: tone-matched edge per ground (screen and print colours, 5 units, `overflow: visible`), antenna colour per ground, raised eyes in a bleed.
+- archy: Brand Mascot page, canonical construction, expressions, the five agents, Mono, and poses.
+- archy: review checklist and Paper quirks updated (SVG child replace, SVG via img imports as raster, CSS `d: path`).
+- archy-design: print-pdf swaps the mascot edges to print colours; removed the deck-specific scripts from slides-export.
+
 ## archy 0.3.0 and archy-design 0.1.0 (2026-09-24)
 
 - New plugin `archy-design` for designers (depends on `archy`): `prepare-template`, `explore`, `publish`, and the tools `slides-export`, `figma-export`, `print-pdf`, `hugeicons`, which moved here from `archy`.

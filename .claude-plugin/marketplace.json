@@ -15,13 +15,13 @@
       "name": "archy",
       "source": "./plugins/archy",
       "description": "Produce on-brand Archy, DOC and Offsite assets in Paper from approved templates.",
-      "version": "0.3.0"
+      "version": "0.4.0"
     },
     {
       "name": "archy-design",
       "source": "./plugins/archy-design",
       "description": "For Archy designers: prepare templates, explore designs, publish updates, export to Slides, Figma and print.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     }
   ]
 }

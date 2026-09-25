@@ -54,6 +54,8 @@ Check: `pdfinfo "$WORK/trim.pdf"` must report the target, e.g. `Page size: 576 x
 
 ## 5. CMYK and a pure-K QR
 
+**Before exporting, swap the mascot's tone-matched edges to their print colours** (the print column in `archy:brand` → `composition.md`, *Colour against the ground*). An edge that is barely there on screen disappears on press, where blues print duller; the width stays the same.
+
 1. Convert with the profile: `-sColorConversionStrategy=CMYK -dRenderIntent=1`, with `CoatedGRACoL2006.icc` from `$WORK` as the output profile.
 2. RGB black converts to a 4-colour rich black (C86 M77 Y70 K96). **A QR must be pure K.** Using the copy exported with the QR at `--color-black`:
    ```bash

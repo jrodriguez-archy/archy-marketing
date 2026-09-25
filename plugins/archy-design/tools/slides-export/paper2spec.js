@@ -691,7 +691,7 @@ function convert(dump) {
       const { x, y, rot } = at(n);
       const item = { type: "image", layer: n.name, x, y, w: n.w, h: n.h, src: asset };
       if (rot) item.rot = rot;
-      // Vector art bleeds off an edge as readily as a photo does - the mascota runs off
+      // Vector art bleeds off an edge as readily as a photo does - the mascot runs off
       // the top - and the artboard's own `overflow: clip` is what cuts it.
       const win = clip[n.id];
       if (win) {

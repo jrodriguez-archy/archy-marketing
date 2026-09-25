@@ -39,7 +39,7 @@ Run this after filling or adapting a template, and before reporting the work as 
 ## Structure and layers
 
 - [ ] **Layer names match content.** A text reading "DATE & TIME" is not named `Location`. `write_html` names everything `Frame` / `Text`; rename after each write.
-- [ ] **Not everything is absolute.** One `Content` frame with real auto-layout holds the stacked blocks; only bleed and overlay layers (background art, photo band, scrim, `BK Fade`, la mascota, the badge) stay absolute.
+- [ ] **Not everything is absolute.** One `Content` frame with real auto-layout holds the stacked blocks; only bleed and overlay layers (background art, photo band, scrim, `BK Fade`, the mascot, the badge) stay absolute.
 - [ ] **Layer order reads top to bottom like the design does.**
 - [ ] **The artboard is `display: block`**, and `Content` is pinned with explicit `left` / `top`.
 - [ ] **The gap between blocks is larger than the gap within a block.**
@@ -62,12 +62,14 @@ Run this after filling or adapting a template, and before reporting the work as 
 - [ ] **`BK Fade` is present wherever vector art ends inside the canvas.** The check is mechanical: if `art top + art height < artboard height`, the artboard needs one. Only art clipped by the trim can go without.
 - [ ] **The `BK Fade` reaches full opacity before the art ends**, and its end stop matches the artboard's own background token (`--color-royal-blue-500` on blue, `--color-dark-background` on navy).
 
-## La mascota
+## The mascot
 
-- [ ] **Her edge reads against the ground.** On a light blue ground close to her own tones she has a white (or very light) outline. The outline is never blue or tinted. On other grounds she usually needs none.
-- [ ] **Her antenna points into the canvas.** Top bleed: rotated 180°; right edge: −90°; left edge: +90°; bottom: upright. If the antenna is off the trim, she is backwards.
-- [ ] **About two thirds of her shows**, never three quarters.
-- [ ] **The crop never runs through an ear.** It falls on the shell. The only sanctioned exception is a thumbnail-scale piece where she peeks in from the bottom, upright.
+- [ ] **Every part reads against the ground.** A part that matches the ground (the body capsule on royal blue, the shell on Tint 100, the ears on Tint 300) has its tone-matched edge, 5 units, screen or print colour as the output requires (table in `composition.md`). A contour around the whole mascot, when one is needed, is white.
+- [ ] **The antenna colour matches the ground**: `--color-blue-tint-800` on light, `--color-blue-tint-300` on blue or dark.
+- [ ] **His antenna points into the canvas.** Top bleed: rotated 180°; right edge: −90°; left edge: +90°; bottom: upright. If the antenna is off the trim, he is backwards.
+- [ ] **About two thirds of him shows**, never three quarters.
+- [ ] **The crop never touches the eyes.** Both eyes are whole and clear of the trim (raised in a bleed). The ears may be trimmed a little.
+- [ ] **Canvas names say `Mascot`**, never "Mascota".
 
 ## Wordmark and logos
 
@@ -81,7 +83,7 @@ Run this after filling or adapting a template, and before reporting the work as 
 - [ ] **Every Ruler is a solid colour.** No `opacity`, no alpha colour, on any ground. Check the intersections on the screenshot: a darker knot where two lines cross means a translucent Ruler.
 - [ ] **Ruler colour matches the ground:** `--color-light-border` on white, `--color-blue-tint-200` on a blue-tinted light gradient, `#2A5DF6` on royal blue, `--color-dark-border` on dark navy.
 - [ ] **Rulers are 2px at poster scale.**
-- [ ] **No sticker sits across a Ruler mid-span.** A sticker may terminate a Ruler at the trim. La mascota may cross one.
+- [ ] **No sticker sits across a Ruler mid-span.** A sticker may terminate a Ruler at the trim. The mascot may cross one.
 - [ ] **Rulers separate, they do not bracket:** none above the first row or below the last.
 - [ ] **Content does not touch a column vertical.** It is inset to the cell lane, or the verticals were removed on purpose.
 - [ ] **One Ruler per boundary.**

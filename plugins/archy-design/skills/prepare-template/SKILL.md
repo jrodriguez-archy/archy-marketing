@@ -45,7 +45,7 @@ Rename every layer that changes per piece (convention in `templates.md`, *Slots*
 - `slot-logo-partner`, `slot-logo-offer`.
 - `optional-<role>` for a block that can go when empty (`optional-offer`, `optional-footer-note`).
 
-Read the tree (`get_tree_summary`) and confirm each name against the node's actual text: children are not always in the same order between formats. Name la mascota `Mascota`.
+Read the tree (`get_tree_summary`) and confirm each name against the node's actual text: children are not always in the same order between formats. Name the mascot `Mascot`.
 
 ## 5. Measure and document
 

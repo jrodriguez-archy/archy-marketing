@@ -1,6 +1,6 @@
 # Archy composition rules
 
-Read this when you are laying out a marketing piece (social post, Stories, OG card, event poster, ad): placing la mascota, drawing Rulers, building a logo lockup, sizing type and gaps, or adapting a layout across formats.
+Read this when you are laying out a marketing piece (social post, Stories, OG card, event poster, ad): placing the mascot, drawing Rulers, building a logo lockup, sizing type and gaps, or adapting a layout across formats.
 
 Token values (colours, grounds, radii, Ruler colours per ground) live in `tokens.md`. Slide layouts live in the `deck` skill (`layout-catalog.md`); marketing templates and their slots in `templates.md`. Pre-ship checks live in `review-checklist.md`. Paper MCP behaviour (rotation pivots, badge offsets, masks) lives in `paper-quirks.md`.
 
@@ -12,9 +12,9 @@ These are not preferences to weigh. They are always true.
 
 - **Rulers are always a SOLID colour. Never `opacity`, never an alpha colour, on any ground.** Translucent lines darken wherever they cross, and on a grid device the intersections are what the eye lands on. The colour per ground is in `tokens.md`. This supersedes every older "white at 0.3" instruction; convert old Rulers to solid when a piece is touched, and never copy the translucent version into new work.
 - **The Archy wordmark on any white or light ground is `--color-royal-blue-500`.** Never navy, never black. On dark grounds it stays white.
-- **When la mascota sits on a light blue ground close to her own tones, she gets a white (or very light) outline.** Her shell and face read as the same colour as that ground and she dissolves without it. The outline is never blue or tinted. See *La mascota* below.
-- **La mascota's antenna always points into the canvas.** When she peeks in from an edge, the top of her head leads in and the crop falls on her chin (orientation table under *La mascota*). An upright figure with a side crop, or an antenna hidden off the trim, reads as a sticker pasted on.
-- **Never crop the mascota through an ear.** She may bleed off an edge, but the crop must fall on the shell, not amputate a feature. Check the crop line against her silhouette before committing. One sanctioned exception is listed under *La mascota*.
+- **A contour around the whole mascot is white, never tinted.** He only needs one when he would otherwise dissolve into the ground. A part that matches the ground gets its own tone-matched edge instead (see *The mascot*).
+- **The mascot's antenna always points into the canvas.** When he peeks in from an edge, the top of his head leads in and the crop falls on his chin (orientation table under *The mascot*). An upright figure with a side crop, or an antenna hidden off the trim, reads as a sticker pasted on.
+- **A crop never touches the eyes.** Both eyes stay whole and clear of the trim. The ears may be trimmed a little by a bleed.
 - **No mint in event pieces.** It has an in-house precedent on the campaign pages (see *Devices from the website*), but it is not part of this system.
 
 ---
@@ -33,41 +33,84 @@ At poster scale use **2px**; 1px vanishes on a phone. On every ground a Ruler is
 - **One Ruler per boundary.** If full-bleed Rulers already divide the artboard into bands, an inset Ruler inside one of those bands is noise. Pick the level the Ruler belongs to and use it there only.
 - **Removing something from a band must not move the band.** Give the block a fixed height and `justify-content: center` so the full-bleed Rulers stay where they are. Otherwise every edit re-flows the whole grid.
 - **A Ruler can carry the kicker.** Flanking the label with two Ruler segments turns a floating kicker into a masthead, and it is the fix when the top of a layout feels unanchored. Build it as a flex row, `[Ruler flex-grow:1] [label] [Ruler flex-grow:1]`, **not** as one full-width Ruler with the label knocked out on top of it: a Text node's `backgroundColor` does not paint in Paper, so the line runs straight through the words. If you want the knock-out version, the label has to sit in a Frame that carries the background.
-- **La mascota may cross a Ruler; she is not a sticker.** Her antenna running across a band Ruler where she peeks up from the bottom reads well. The sticker rule below does not apply to her.
+- **The mascot may cross a Ruler; he is not a sticker.** His antenna running across a band Ruler where he peeks up from the bottom reads well. The sticker rule below does not apply to him.
 - **A sticker may terminate a Ruler, but never sit across one.** Covering the *end* of a rule at the trim is fine: a badge landing in the top-right corner turns a symmetric header into `rule → label → sticker`, which reads as deliberate. What is wrong is a sticker dropped mid-span, hiding the middle of a line that then reappears on both sides.
 
 ---
 
-## La mascota
+## The mascot
 
-**"La mascota"** is Archy's robot-face character: rounded shell, sleepy half-closed eyes, dark navy face plate. Always call it that.
+**The mascot is named Archy**, the same as the brand: a robot with a rounded shell, sleepy eyes and a dark navy face plate, as a head or full body (head plus a blue capsule body with the Archy "A"). Refer to him as **he** (him, his). On the canvas he is always **Mascot** (layer and artboard names, labels), never "Mascot".
 
-- **Outline: white, and only when the ground is close to her tones.** On a light blue ground that is the same or nearly the same tone as her shell or face, add a white (or very light) contour so she separates from it. Never a blue or tinted contour. Elsewhere she needs none: on royal blue, navy or a photo, or when she is large and cropped by an edge, her navy face plate carries her on its own.
-- **Bleed direction follows the canvas orientation, not the source layout.** She bleeds off the *top* on vertical formats (Post, Stories) and off the *side* on landscape (OG, slides). What stays constant is that she peeks in and how much shows, not which edge.
-- **Orientation: the antenna points into the canvas.** The antenna is the top of her head; the crop always falls on her chin.
+### Where he lives
+
+The masters are in the Brand file, page **Mascot**, left to right: `Mascot · Expressions` (full body, four faces), `Mascot · Heads` (head only), `Mascot · Poses` (exploration), `Mascot · Agents` (the five agents), `Mascot · Mono` (one-colour head, four faces), `Mascot · Mono Colour` (positive and reversed colourways), `Mascot · Construction` (seven parts and their colours), `Mascot · Grounds` (blue, dark and white, antenna rule and body edge applied), `Mascot · Light Blue Grounds` (Tint 100 and Tint 300 with their edges, plus the screen and print edge table), `Mascot · Placement` (the three bleeds, raised eyes) and `Mascot · Misuse` (antenna off the edge, upright side crop, crop through the eyes). **Copy him from there** rather than redrawing or re-deriving a rotation.
+
+- **One canonical construction:** short antenna (24 units wide) and the wider shell. Full body `viewBox 0 0 670.54 644`, head only `0 0 670.54 444`, flattened (no `<g>`). The older long-antenna head still found in some templates (Events, the HR deck) is the superseded drawing; prefer the Brand masters in new work.
+- **Expressions:** `Neutral` (round eyes) is the default; `Joyful` (filled arcs) is a favourite and used a lot; `Happy` (outline arcs) and `Love` (hearts) by context. To change the expression, swap the whole SVG: rewriting only the eye nodes with `write_html` turns a `<circle>` into an empty rectangle.
+
+### Placing him
+
+- **Bleed direction follows the canvas orientation, not the source layout.** He bleeds off the *top* on vertical formats (Post, Stories) and off the *side* on landscape (OG, slides). What stays constant is that he peeks in and how much shows, not which edge.
+- **Orientation: the antenna points into the canvas.** The antenna is the top of his head; the crop falls on his chin.
 
   | Bleeds off | Rotation of the upright master (antenna up) | Antenna points |
   |---|---|---|
   | Top (Post, Stories) | **180°**, upside down | down, into the frame |
   | Right edge (OG, slides) | **−90°** | left, into the frame |
   | Left edge | **+90°** | right, into the frame |
-  | Bottom (the thumbnail exception below) | **0°**, upright | up, into the frame |
+  | Bottom (thumbnail-scale pieces) | **0°**, upright | up, into the frame |
 
-  The head vector in the Events templates has its antenna at the bottom: it is not upside down, it is already oriented for the top bleed (`691×461 @ 195, -152` works as is). Before placing her, check where the antenna lands; if it is off the canvas, she is backwards.
-- **"Raise" and "lower" her in her own axis, not the canvas's** (antenna = up, chin = down). Raise = rise out of the edge, show more; lower = sink into the edge, show less. On the upside-down top bleed, lowering her moves her *up* the canvas. When an instruction is ambiguous, restate it as "show more / show less of her" before moving anything.
-- **Show about two thirds of her on every edge** (measured: 65% on a top bleed, 64% off the right edge, 62% from the bottom). A peek reads as curiosity; three quarters of her reads as a second headline.
-- **Never crop through an ear.** The crop falls on the shell.
-  - **One sanctioned exception: a thumbnail-scale piece where she only peeks in from the bottom, upright (antenna up).** On the 440 × 280 Chrome Store sneak peek she shows about two thirds of her height under a wordmark that is the real hero, and the crop runs through both ears. This is a confirmed exception. It does not extend to posters, slides or any format where she is the image.
-- **The empty column beside a left-aligned headline is where she goes.** A 3-line headline set left leaves a tall gap on the right; she fills it, bleeding off the right edge rotated −90° (antenna pointing left, into the canvas), at the headline's own height. That beats placing her on the photo: on the photo she competes with the image, beside the headline she balances it. She needs no outline there even on a near-white ground; at that size the navy face plate carries her.
-- **She may cross a Ruler.** She is not a sticker.
-- **On white or a pale blue ground, check her edge on the screenshot.** Her shell is a near-white gradient, so on a pale ground only the navy face plate may read. If the shell disappears into the ground, add the white or very light contour (a stroke on the shell path, leaving the fill untouched). Treat it as a modification to a brand asset, not a layout choice.
-- **When rotated she does not render where `left`/`top` say.** Position by screenshot and nudge (see `paper-quirks.md`).
-- **The masters live in the Brand file, page `Mascot`**, left to right: `Mascota · Expressions` (full body, four faces), `Mascota · Heads` (head only), `Mascota · Grounds` (all four on blue, dark and white, antenna rule applied) and `Mascota · Placement` (the three bleeds). Copy from there rather than re-deriving a rotation.
-- **One canonical construction.** The full-body mascota (head plus the blue capsule body with the Archy "A") uses the short, thin antenna and the wider shell: full body `viewBox 0 0 670.54 644`, head only `0 0 670.54 444`, flattened (no `<g>`). The older head master still found in some templates (Events, the HR deck) is the superseded drawing; prefer the Brand masters in new work.
-- **Expressions:** `Neutral` (round eyes) is the default; `Joyful` (filled arcs) is a favourite and used a lot; `Happy` (outline arcs) and `Love` (hearts) by context. To change the expression, swap the whole SVG: rewriting only the eye nodes with `write_html` turns a `<circle>` into an empty rectangle.
+  The head vector in the Events templates has its antenna at the bottom: it is not upside down, it is already oriented for the top bleed (`691×461 @ 195, -152` works as is). Before placing him, check where the antenna lands; if it is off the canvas, he is backwards.
+- **"Raise" and "lower" him in his own axis, not the canvas's** (antenna = up, chin = down). Raise = rise out of the edge, show more; lower = sink into the edge, show less. On the upside-down top bleed, lowering him moves him *up* the canvas. When an instruction is ambiguous, restate it as "show more / show less of him" before moving anything.
+- **Show about two thirds of him on every edge** (measured: 65% on a top bleed, 64% off the right edge, 62% from the bottom). A peek reads as curiosity; three quarters of him reads as a second headline.
+- **The crop never touches the eyes.** Both eyes stay whole and clear of the trim; the ears may be trimmed a little.
+- **In a bleed his eyes move up, toward the antenna** (`translate: 0 -50px` in viewBox units on both eye nodes, about 17% of the face plate height). With centred eyes and two thirds visible, the crop would land on the eyes; raised, they clear it on every edge. It is the one place the eyes leave centre.
+- **The empty column beside a left-aligned headline is where he goes.** A 3-line headline set left leaves a tall gap on the right; he fills it, bleeding off the right edge rotated −90° (antenna pointing left), at the headline's own height. Beside the headline he balances it; on a photo he competes with it.
+- **He may cross a Ruler.** He is not a sticker.
+- **When rotated he does not render where `left`/`top` say.** Position by screenshot and nudge (see `paper-quirks.md`).
+
+### Colour against the ground
+
 - **Antenna colour follows the ground.** Light ground: `--color-blue-tint-800`. Blue or dark ground: `--color-blue-tint-300`, because a dark antenna sinks into both. It is a solid token fill on a node named `Antenna`, so switching it is one `update_styles` on that node.
-- **In a bleed her eyes move up, toward the antenna** (`translate: 0 -50px` in viewBox units on both eye nodes, about 17% of the face plate height). With centred eyes and two thirds visible, the crop lands on the eyes; raised, they clear it on every edge. It is the one place the eyes leave centre.
-- **Open question:** on the blue ground the full-body capsule blends into the royal blue.
+- **Tone-matched edge: when one part matches the ground, only that part gets a barely-there darker edge** in its own hue. A contour around the whole mascot is still white only; this is a per-part edge. Values are asset hexes (no token sits that close to the part):
+
+  | Ground | Part that sinks | Edge, screen | Edge, print (CMYK) |
+  |---|---|---|---|
+  | Royal blue gradient | body capsule | `#0A30D6` | `#0726B0` |
+  | `--color-blue-tint-100` (close to the shell) | shell | `#C3DDF3` | `#A9C8E6` |
+  | `--color-blue-tint-300` (close to the ears) | both ears | `#4DA8F0` | `#3690DB` |
+
+  **5 units** wide on the 670-wide viewBox (about 1.5px at 200px display): it must be felt, not seen; 10 units in stronger blues was far too heavy. **For print, use the darker column** before running `archy-design:print-pdf`, because an edge this subtle disappears on press, where blues already print duller; the width stays 5 units. The ears touch the viewBox edge, so the SVG and its wrapper need `overflow: visible` or half the ear stroke is clipped.
+- **On white or a pale blue ground, check his edges on the screenshot.** His shell is a near-white gradient; if it disappears into the ground, apply the tone-matched edge above.
+
+### Agents
+
+Archy has **five agents**: the full-body mascot plus the objects of each job, in the brand greens (the `#00E08F` family). This is the one sanctioned use of mint outside the campaign pages; do not spread it to layouts.
+
+| Agent | Face | Objects |
+|---|---|---|
+| Insight | Neutral | chart report (left), document (right) |
+| Scribe | Neutral | pencil (left), clipboard (right) |
+| Connect | Happy | phone (left), chat bubble (right) |
+| Verify | Joyful | magnifier (left), check seal (right) |
+| Revenue | Happy | card terminal (left), card and coin (right) |
+
+Each is built as a `Props · <Agent>` SVG layered over a duplicate of the base, same viewBox, `overflow: visible`. The one-line job descriptions on the sheet were inferred from the objects and are not yet confirmed.
+
+### Mono
+
+**Mono** is Archy in one colour, for icons, favicons, app tiles, stamps, embroidery and any surface where gradients cannot go. All four expressions exist. It is its own drawing (antenna 26 wide); do not force it to the full-colour construction.
+
+- **Positive, on light grounds:** two paths, `Contour` (shell ring, ears, antenna) and `Face` (the plate, with the eyes as `fill-rule: evenodd` holes), both `--color-blue-tint-800` by default; `--color-royal-blue-500` when the piece should carry the brand colour; pure black only for one-colour print.
+- **Reverse, on royal or navy:** never the positive recoloured white (that paints the face plate white and leaves dark eyes, a photographic negative). The reverse is its own shape: one white path, `evenodd`, built as outer silhouette + face plate as a hole + eyes, so the shell is solid white, the face plate is the ground, and the eyes are white.
+- **Open:** minimum size and clear space.
+
+### Poses (exploration)
+
+Motion without redrawing: the parts stay identical, only their angle and offset change. `Mascot · Poses` has Tilt (head +7°, body −3°), Listen (Neutral, head +10°, dropped 8), Look (Neutral, eyes slid 38 toward the content, head −4°, body +2°), Laugh (Joyful, head −9° and up 14, body +4°), Jump (Joyful, head up 40, body up 16), Crush (Love, head +12°, antenna flicked −18°, body −4°).
+
+Built with CSS `rotate` + `translate` on each SVG child, no path rewritten. Paper rotates SVG children about the viewBox origin, so a rotation θ about a pivot c is `rotate: θ` plus `translate: c − R(θ)·c (+ offset)`. Pivots on the 670 × 644 viewBox: head (335.27, 244), body (335.27, 553.6), antenna base (335.27, 53.41). Keep head angles within about ±12° and body within ±4°: past that the neck gap closes on one side and he reads as broken rather than lively.
 
 ---
 
@@ -108,7 +151,7 @@ The Webflow home is **entirely light**: white, `#F7F7F7` and `#EEE` hairlines, r
 
 **What the site does not have:** no blobs, meshes, glows, drop shadows, rotations or blend modes. Decoration is hairlines, `1px #EEE` rounded rectangles, and *inset* shadows used as a letterpress cue. Do not introduce those effects; they read as off-brand.
 
-**The rotation half of that ban is scoped to decoration.** Rotation is legal where the angle is the content rather than an effect: the event family already rotates (the booth badge at 6°, la mascota at 90° off a side edge), and a scrapbook slide may tilt polaroid cards between −5° and +5° because it *is* a scrapbook. **A tilt on a chart, a Ruler, a grid cell or a photo that is not pretending to be a print is still wrong.**
+**The rotation half of that ban is scoped to decoration.** Rotation is legal where the angle is the content rather than an effect: the event family already rotates (the booth badge at 6°, the mascot at 90° off a side edge), and a scrapbook slide may tilt polaroid cards between −5° and +5° because it *is* a scrapbook. **A tilt on a chart, a Ruler, a grid cell or a photo that is not pretending to be a print is still wrong.**
 
 **That list is the whole ban, and gradients are not on it.** Both artboard grounds are `linear-gradient`s, and the `BK Fade` is a gradient the composition rules call mandatory. Paper's own house guide warns against "excessive gradients"; that is Paper's advice, not Archy's. The Decks artboards are flat-filled because the source deck is flat-filled, which is an observation about the source, not a constraint on new work. A gradient ground on a slide is open to explore; what stays out is the effects list above.
 
@@ -120,7 +163,7 @@ The Webflow home is **entirely light**: white, `#F7F7F7` and `#EEE` hairlines, r
 
 ## Social layouts and the label/value pattern
 
-There is no single Post layout. Campaigns arrive as different designs: the mascota-hero families (1–4) put logos at the bottom; the speaker-invite layout (5) puts them at the top, adds a photographic ground, a circular speaker portrait and a footer note. **Expect a new layout with each paste and read it on its own terms; only the token system, the safe areas and the label/value pattern below carry across.**
+There is no single Post layout. Campaigns arrive as different designs: the mascot-hero families (1–4) put logos at the bottom; the speaker-invite layout (5) puts them at the top, adds a photographic ground, a circular speaker portrait and a footer note. **Expect a new layout with each paste and read it on its own terms; only the token system, the safe areas and the label/value pattern below carry across.**
 
 ### The label/value pattern
 
@@ -148,7 +191,7 @@ Inside a text block 12; label to a photo or any non-text block 20; between detai
 
 ## Event three-format family (Post / Stories / OG)
 
-Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Duplicate and adapt, never rebuild, so the SVG assets (logos, badge ribbon, Bulls mark, mascota) carry over intact.
+Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Duplicate and adapt, never rebuild, so the SVG assets (logos, badge ribbon, Bulls mark, mascot) carry over intact.
 
 | | Size | Safe area |
 |---|---|---|
@@ -170,21 +213,21 @@ Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Du
 
 **1200 × 630 is the Open Graph standard**: the preview card when a link is shared on Facebook, LinkedIn, X, Slack, Discord, WhatsApp, plus feed link ads. It renders around 500px wide, so legibility beats completeness. Drop the secondary hook (the Bulls tickets bar) and the venue line; keep title, city, dates, booth badge and the logos.
 
-**Structure every artboard the same way:** one `Content` frame with real auto-layout (flex column + gap) holding the stacked blocks. Only bleed and overlay layers stay absolute: background art, photo band, scrim, `BK Fade`, the mascota, the badge. Layer order should read top-to-bottom like the design does.
+**Structure every artboard the same way:** one `Content` frame with real auto-layout (flex column + gap) holding the stacked blocks. Only bleed and overlay layers stay absolute: background art, photo band, scrim, `BK Fade`, the mascot, the badge. Layer order should read top-to-bottom like the design does.
 
 **Spacing:** the gap *between* blocks must exceed the gap *within* a block. Getting this backwards is the most common reason a layout feels cramped.
 
-**Two anchors fix the vertical rhythm on the Post; the block gap absorbs the rest.** The mascota bleed and the logos lockup are constants: the mascota's visible edge lands at y309 and the content's bottom at y≈1241, just inside the safe area. So place the `Content` frame ~40px below the mascota, end it at 1241, and *derive* the gap: `(1241 − top − Σ block heights) / (blocks − 1)`. A campaign with fewer blocks gets a bigger gap, not a hole at one end. Family 2 has five blocks and lands on 40; family 4 has four and lands on 96. Never solve the difference by parking the content at one end and leaving a gap at the other.
+**Two anchors fix the vertical rhythm on the Post; the block gap absorbs the rest.** The mascot bleed and the logos lockup are constants: the mascot's visible edge lands at y309 and the content's bottom at y≈1241, just inside the safe area. So place the `Content` frame ~40px below the mascot, end it at 1241, and *derive* the gap: `(1241 − top − Σ block heights) / (blocks − 1)`. A campaign with fewer blocks gets a bigger gap, not a hole at one end. Family 2 has five blocks and lands on 40; family 4 has four and lands on 96. Never solve the difference by parking the content at one end and leaving a gap at the other.
 
 ---
 
 ## Composition rules
 
-1. **Bleed direction follows the canvas orientation, not the source layout.** La mascota bleeds off the *top* on vertical formats (Post, Stories: `691×461 @ 195, -152`, a 33% crop) and rotates 90° to bleed off the *side* on landscape (OG). What stays constant is that she peeks in and how much shows, not which edge.
+1. **Bleed direction follows the canvas orientation, not the source layout.** The mascot bleeds off the *top* on vertical formats (Post, Stories: `691×461 @ 195, -152`, a 33% crop) and rotates 90° to bleed off the *side* on landscape (OG). What stays constant is that he peeks in and how much shows, not which edge.
 
-2. **Make room for a sticker; do not squeeze it in.** A badge dropped into whatever gap is left will end up crossing a Ruler or sitting on the headline, and covering a letter of the hero line ("day" reading as "dau") is a legibility failure, not a depth cue. The fix is upstream: re-anchor the block above it (align the headline to the top of its band instead of centring it) so a real hole opens, then place the sticker in it. It may overlap the mascota or run off the trim; it may not overlap type or a Ruler.
+2. **Make room for a sticker; do not squeeze it in.** A badge dropped into whatever gap is left will end up crossing a Ruler or sitting on the headline, and covering a letter of the hero line ("day" reading as "dau") is a legibility failure, not a depth cue. The fix is upstream: re-anchor the block above it (align the headline to the top of its band instead of centring it) so a real hole opens, then place the sticker in it. It may overlap the mascot or run off the trim; it may not overlap type or a Ruler.
 
-3. **The booth badge is a decorative sticker; it may break the safe area.** The safe area protects information; the badge repeats a fact that survives a clipped edge. Letting it push out means it overlaps the mascota, which reads better than floating in a gap. Do not police the safe area on decorative elements.
+3. **The booth badge is a decorative sticker; it may break the safe area.** The safe area protects information; the badge repeats a fact that survives a clipped edge. Letting it push out means it overlaps the mascot, which reads better than floating in a gap. Do not police the safe area on decorative elements.
 
    **It should attach to something, not float in open field.** Every time it has been placed fully inside an empty area it has been moved: to a corner bleeding off the trim, or onto the seam where two fields meet. A sticker that clears everything by a comfortable margin reads as *placed*; one that breaks an edge reads as *stuck on*. Give it something to overlap. (The badge's rendered position is offset from `left`/`top` by its rotation; see `paper-quirks.md`.)
 

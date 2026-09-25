@@ -7,7 +7,7 @@ Read this when building or editing Chrome Web Store listing images for the Porta
 | Artboard | Size | Construction |
 |---|---|---|
 | `Chrome Store · Feature Explainer 1280×800` | 1280 × 800 | Blue ground · wordmark **158 × 61 @ top 52** · two-tone headline Onest 600 56/60, **gap 6** between the two nodes · browser window 1040 wide @ 120, 298, bleeding off the bottom · extension popup 380 wide hanging from the toolbar icon, right edge 16px inside the window |
-| `Chrome Store · Sneak Peek Promo 440×280` | 440 × 280 | Blue ground · wordmark **246 × 95** (56% of the width) as the hero · mascota 304 × 203 rotated 180°, bleeding off the bottom, ~55% visible |
+| `Chrome Store · Sneak Peek Promo 440×280` | 440 × 280 | Blue ground · wordmark **246 × 95** (56% of the width) as the hero · mascot 304 × 203 rotated 180°, bleeding off the bottom, ~55% visible |
 
 Source frames: `Portal Manager - Archy - Chrome` (the popup), `Top level navigation - Grid view` (the app), `Portal Manager - Popup Compact (no 2FA)`.
 
@@ -20,7 +20,7 @@ Export: PNG, full bleed, no transparency, no rounded outer corners (Google's rul
 - **The product does not have to be faithful, it has to fill the frame.** A 1:1 app shown at 0.54× reads as a white page with small islands of UI. Enlarge sidebar and grid so they occupy the window, in preference to accuracy.
 - **Height budget decides what the popup keeps.** At 1:1 the full popup (637) cannot fit under a 40px toolbar at y≈300 with its button visible, so the card's email / status / avatars strip is dropped because the fields below repeat it. Cut repeated information before shrinking anything.
 - **Browser chrome:** the address bar carries a **lock + grey skeleton bar**, not a URL; a real-looking address commits to one that may change. The extension icon is a **plain `#2057FE` circle with a white A**, no square tile inside a grey hover circle.
-- **The wordmark runs bigger than feels safe too.** It went 108 → 144 → 158 on the 1280, and to 56% of the width on the 440. At thumbnail scale the logo is the message and the mascota is the accent.
+- **The wordmark runs bigger than feels safe too.** It went 108 → 144 → 158 on the 1280, and to 56% of the width on the 440. At thumbnail scale the logo is the message and the mascot is the accent.
 - **A two-tone headline at 56/60 wants a few pixels between its two nodes** (6 here). At gap 0 the two lines read as crowded at this size.
-- **The 440 sneak peek is the one sanctioned mascota crop through the ears**: a thumbnail-scale piece where she only peeks in from the bottom, rotated 180°, under a wordmark that is the real hero. It does not extend to posters, slides or any format where she is the image.
+- **On the 440 sneak peek the mascot only peeks in from the bottom**, under a wordmark that is the real hero, and the crop trims the ears. That is fine; the eyes stay clear of the trim.
 - **Round what a hand-drag leaves behind** (`top 52.276`, `height 61.4375`): set integer `left` / `top` / `width` / `height` and `translate: none`, then confirm with `get_node_info`.

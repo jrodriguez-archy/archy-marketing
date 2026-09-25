@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rasterise an SVG lifted out of Paper with get_jsx.
 
-Google Slides takes no SVG, so anything vector on a slide - the mascota, a logo, an icon -
+Google Slides takes no SVG, so anything vector on a slide - the mascot, a logo, an icon -
 has to be embedded as a bitmap. The markup is copied verbatim rather than redrawn:
 CLAUDE.md's rule is never to hand-type path data, because a wrong `d` renders a plausible
 broken shape. get_jsx returns React attribute spellings, so the only edit is turning those

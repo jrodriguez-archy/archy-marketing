@@ -104,7 +104,7 @@ Two plugins live in this repository.
 
 | Skill | What it does |
 |---|---|
-| `brand` | Archy brand rules: colours, type, Rulers, la mascota, logos, voice, review checklist, template catalog |
+| `brand` | Archy brand rules: colours, type, Rulers, the mascot, logos, voice, review checklist, template catalog |
 | `social-post` | Event social: Post, Stories and OG link previews |
 | `deck` | Slides from the Master - Decks library |
 | `offsite-brand` | The Archy Offsite 2026 identity |
@@ -128,7 +128,7 @@ Skills run on their own when your request matches; you can also call one directl
 Follow the setup above, then also install **archy-design** from **+ → Plugins → Add plugin**. To publish changes you need write access to this repository with your own GitHub account; ask Marketing & Design. The export tools also need Node and Python on your Mac (the skills tell you what is missing).
 
 ---|---|
-| `brand` | Archy brand rules: colours, type, Rulers, la mascota, logos, voice, review checklist |
+| `brand` | Archy brand rules: colours, type, Rulers, the mascot, logos, voice, review checklist |
 | `social-post` | Event social: Post, Stories and OG link previews |
 | `deck` | Slides from the Master - Decks library |
 | `slides-export` | Turn Paper slides into an editable Google Slides / PowerPoint file |
