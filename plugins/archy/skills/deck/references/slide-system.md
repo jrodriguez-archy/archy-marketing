@@ -2,7 +2,7 @@
 
 Read this when building, deriving or reviewing any 1920 × 1080 slide: canvas, type scale, header, meta line, Rulers, source transcription, dark-ground mapping, bands, lanes, rows and icons.
 
-The template library lives in the Paper file **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`). For the roster see `layout-catalog.md`; for dark layouts `dark-set.md`; for charts `charts.md`. Getting a slide or a deck out to Google Slides is covered by the `slides-export` skill. Brand-wide rules (tokens, solid Rulers, wordmark) live in `../../brand/references/tokens.md` and `../../brand/references/composition.md`; Paper tool behaviour in `../../brand/references/paper-quirks.md`.
+The template library lives in the Paper file **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`). For the roster see `layout-catalog.md`; for dark layouts `dark-set.md`; for charts `charts.md`. Getting a slide or a deck out to Google Slides is covered by the `archy-design:slides-export` skill. Brand-wide rules (tokens, solid Rulers, wordmark) live in `../../brand/references/tokens.md` and `../../brand/references/composition.md`; Paper tool behaviour in `../../brand/references/paper-quirks.md`.
 
 ---
 

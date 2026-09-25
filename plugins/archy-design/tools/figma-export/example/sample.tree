@@ -1,0 +1,17 @@
+Frame "Sample Card" (A-0) 416×264
+  Frame "Header" (B-0) 384×56
+    Text "Title" (C-0) 384×32 "Weekly digest"
+    Text "Subtitle" (D-0) 384×20 "Four things worth a look"
+  Frame "List" (E-0) 384×112
+    Frame "Row" (F-0) 384×56
+      Text "Index" (G-0) 40×16 "01"
+      Frame "Detail" (H-0) 316×42
+        Text "Title" (I-0) 316×20 "Design review"
+        Text "Meta" (J-0) 316×16 "Tuesday"
+    Frame "Row" (K-0) 384×56
+      Text "Index" (L-0) 40×16 "02"
+      Frame "Detail" (M-0) 316×42
+        Text "Title" (N-0) 316×20 "Roadmap sync"
+        Text "Meta" (O-0) 316×16 "Thursday"
+  Frame "Button" (P-0) 384×44
+    Text "Label" (Q-0) 384×20 "OPEN DIGEST"

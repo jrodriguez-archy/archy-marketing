@@ -1,0 +1,9 @@
+{
+  "name": "archy-design",
+  "version": "0.1.0",
+  "description": "For Archy designers: prepare templates for the marketing team, explore new designs on brand, publish rules and templates, and export to Google Slides, Figma and print.",
+  "author": { "name": "Juan Rodriguez", "email": "jrodriguez@archy.com" },
+  "repository": "https://github.com/jrodriguez-archy/archy-marketing",
+  "keywords": ["archy", "paper", "design", "templates", "brand"],
+  "dependencies": ["archy"]
+}

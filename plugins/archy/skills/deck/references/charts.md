@@ -2,7 +2,7 @@
 
 Read this when building or reviewing any chart slide: bars, lines, waterfalls, stacked or nested blocks, chart pairs.
 
-Chart layouts live on the **Charts** page of **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`); the roster is in `layout-catalog.md`. Dark-ground series colours are in `dark-set.md`. Header and Rulers are in `slide-system.md`. The exporter is the `slides-export` skill.
+Chart layouts live on the **Charts** page of **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`); the roster is in `layout-catalog.md`. Dark-ground series colours are in `dark-set.md`. Header and Rulers are in `slide-system.md`. The exporter is the `archy-design:slides-export` skill.
 
 ---
 

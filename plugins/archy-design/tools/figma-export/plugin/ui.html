@@ -1,0 +1,231 @@
+<style>
+  :root { color-scheme: light dark; --line: rgba(128,128,128,.28); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 14px;
+    font: 12px/1.45 Inter, -apple-system, system-ui, sans-serif;
+    display: flex; flex-direction: column; gap: 12px;
+    height: 100vh;
+  }
+  h1 { font-size: 12px; font-weight: 600; margin: 0; }
+  h2 { font-size: 11px; font-weight: 600; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em; opacity: .55; }
+  p  { margin: 0; opacity: .62; }
+  .step { display: none; flex-direction: column; gap: 12px; flex: 1; min-height: 0; }
+  .step.on { display: flex; }
+  textarea {
+    flex: 1; width: 100%; resize: none;
+    font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    padding: 8px; border: 1px solid var(--line); border-radius: 6px;
+    background: transparent; color: inherit;
+  }
+  .scroll { flex: 1; overflow-y: auto; min-height: 0; display: flex; flex-direction: column; gap: 16px; }
+  .row {
+    display: grid; grid-template-columns: 1fr auto 1.15fr; gap: 8px;
+    align-items: center; padding: 5px 0; border-bottom: 1px solid var(--line);
+  }
+  .row:last-child { border-bottom: 0; }
+  .who { display: flex; align-items: center; gap: 7px; min-width: 0; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--line); flex: 0 0 auto; }
+  .nm { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sub { opacity: .5; font-size: 10px; }
+  .arrow { opacity: .35; }
+  select {
+    width: 100%; padding: 5px 6px; border-radius: 5px;
+    border: 1px solid var(--line); background: transparent; color: inherit;
+    font: inherit; font-size: 11px;
+  }
+  .bar { display: flex; gap: 8px; align-items: center; }
+  button {
+    padding: 9px 14px; border: 0; border-radius: 6px;
+    background: #0d99ff; color: #fff; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  button.ghost { background: transparent; color: inherit; border: 1px solid var(--line); font-weight: 500; }
+  button:disabled { opacity: .5; cursor: default; }
+  #status { white-space: pre-wrap; font-size: 11px; max-height: 140px; overflow-y: auto; }
+  #status.err { color: #d33; }
+  #status.ok  { color: #1a7f37; }
+  .note { font-size: 11px; opacity: .6; }
+  label.inline { display: flex; align-items: center; gap: 6px; font-size: 11px; opacity: .8; }
+  input[type=text] {
+    padding: 5px 6px; border-radius: 5px; border: 1px solid var(--line);
+    background: transparent; color: inherit; font: inherit; font-size: 11px; flex: 1;
+  }
+</style>
+
+<h1>Paper Import</h1>
+
+<!-- step 1 --------------------------------------------------------------- -->
+<div class="step on" id="step-paste">
+  <p>Paste a payload from <code>Figma Export/payloads/</code>.</p>
+  <textarea id="json" placeholder='{ "meta": …, "tokens": …, "fonts": …, "document": … }' spellcheck="false"></textarea>
+  <div class="bar"><button id="analyze">Continue</button></div>
+  <div id="status"></div>
+</div>
+
+<!-- step 2 --------------------------------------------------------------- -->
+<div class="step" id="step-map">
+  <p id="summary"></p>
+  <div class="scroll">
+    <div>
+      <h2>Colours</h2>
+      <div id="tokens"></div>
+      <div class="bar" style="margin-top:8px">
+        <label class="inline">New variables go in
+          <select id="collection" style="width:auto"></select>
+        </label>
+      </div>
+    </div>
+    <div>
+      <h2>Fonts</h2>
+      <div id="fonts"></div>
+    </div>
+  </div>
+  <div class="bar">
+    <button id="build">Build</button>
+    <button class="ghost" id="back">Back</button>
+  </div>
+  <div id="status2"></div>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id)
+  let analysis = null
+
+  const show = (el, text, cls) => { el.textContent = text; el.className = cls || '' }
+  const go = (id) => {
+    for (const s of document.querySelectorAll('.step')) s.classList.remove('on')
+    $(id).classList.add('on')
+  }
+
+  $('analyze').onclick = () => {
+    const json = $('json').value.trim()
+    if (!json) { show($('status'), 'Paste a payload first.', 'err'); return }
+    show($('status'), 'Reading…')
+    parent.postMessage({ pluginMessage: { type: 'analyze', json } }, '*')
+  }
+
+  $('back').onclick = () => go('step-paste')
+
+  $('build').onclick = () => {
+    const mapping = { tokens: {}, fonts: {} }
+    for (const sel of document.querySelectorAll('[data-token]')) mapping.tokens[sel.dataset.token] = sel.value
+    for (const sel of document.querySelectorAll('[data-font]')) mapping.fonts[sel.dataset.font] = sel.value
+    const col = $('collection')
+    if (col.value.indexOf('VariableCollectionId') === 0) mapping.collectionId = col.value
+    else mapping.collectionName = $('newCollectionName') ? $('newCollectionName').value : 'Paper'
+    $('build').disabled = true
+    show($('status2'), 'Building…')
+    parent.postMessage({ pluginMessage: { type: 'build', mapping } }, '*')
+  }
+
+  function renderTokens(a) {
+    const host = $('tokens'); host.innerHTML = ''
+    if (!a.tokens.length) { host.innerHTML = '<p class="note">This artboard uses no colours.</p>'; return }
+
+    for (const t of a.tokens) {
+      const row = document.createElement('div'); row.className = 'row'
+
+      const who = document.createElement('div'); who.className = 'who'
+      const sw = document.createElement('div'); sw.className = 'swatch'
+      if (t.hex) sw.style.background = t.hex
+      const nm = document.createElement('div')
+      nm.innerHTML = '<div class="nm">' + t.name + '</div>' +
+                     '<div class="sub">' + (t.hex || 'no value') + '</div>'
+      who.append(sw, nm)
+
+      const arrow = document.createElement('div'); arrow.className = 'arrow'; arrow.textContent = '→'
+
+      const sel = document.createElement('select')
+      sel.dataset.token = t.name
+      if (t.hex) sel.append(new Option('Create variable "' + t.name + '"', '__create__'))
+      sel.append(new Option('Plain colour, no variable', '__raw__'))
+      const byCollection = {}
+      for (const v of a.existingVariables) {
+        byCollection[v.collection] = byCollection[v.collection] || []
+        byCollection[v.collection].push(v)
+      }
+      for (const cname of Object.keys(byCollection)) {
+        const g = document.createElement('optgroup'); g.label = cname
+        for (const v of byCollection[cname]) g.append(new Option(v.name, v.id))
+        sel.append(g)
+      }
+      sel.value = t.suggestion === '__pick__' ? '__raw__' : t.suggestion
+      if (t.reason) {
+        const s = document.createElement('div'); s.className = 'sub'
+        s.textContent = 'matched by ' + t.reason
+        nm.append(s)
+      }
+
+      row.append(who, arrow, sel)
+      host.append(row)
+    }
+  }
+
+  function renderCollections(a) {
+    const sel = $('collection'); sel.innerHTML = ''
+    sel.append(new Option('a new collection', '__new__'))
+    for (const c of a.collections) sel.append(new Option(c.name, c.id))
+    const wrap = sel.parentElement
+    let input = $('newCollectionName')
+    if (!input) {
+      input = document.createElement('input')
+      input.type = 'text'; input.id = 'newCollectionName'; input.value = 'Paper'
+      wrap.append(input)
+    }
+    const sync = () => { input.style.display = sel.value === '__new__' ? '' : 'none' }
+    sel.onchange = sync; sync()
+  }
+
+  function renderFonts(a) {
+    const host = $('fonts'); host.innerHTML = ''
+    if (!a.fonts.length) { host.innerHTML = '<p class="note">This artboard has no text.</p>'; return }
+
+    for (const f of a.fonts) {
+      const row = document.createElement('div'); row.className = 'row'
+      const who = document.createElement('div'); who.className = 'who'
+      who.innerHTML = '<div><div class="nm">' + f.family + '</div>' +
+        '<div class="sub">weights ' + f.weights.join(', ') +
+        (f.available ? '' : ' · not in this file') + '</div></div>'
+      const arrow = document.createElement('div'); arrow.className = 'arrow'; arrow.textContent = '→'
+      const sel = document.createElement('select')
+      sel.dataset.font = f.family
+      for (const fam of a.families) sel.append(new Option(fam, fam))
+      sel.value = f.suggestion || (a.families.indexOf('Inter') !== -1 ? 'Inter' : a.families[0])
+      row.append(who, arrow, sel)
+      host.append(row)
+    }
+  }
+
+  onmessage = (e) => {
+    const msg = e.data.pluginMessage
+    if (!msg) return
+
+    if (msg.type === 'analysis') {
+      analysis = msg
+      const unmatched = msg.tokens.filter((t) => !t.reason).length
+      show($('summary'),
+        (msg.meta.name || 'Artboard') + ' · ' + msg.tokens.length + ' colour(s), ' +
+        msg.fonts.length + ' font(s). ' +
+        (unmatched ? unmatched + ' colour(s) had no match here \u2014 check them.' : 'Everything matched something already in this file.'))
+      renderTokens(msg); renderCollections(msg); renderFonts(msg)
+      $('build').disabled = false
+      show($('status2'), '')
+      go('step-map')
+      return
+    }
+
+    $('build').disabled = false
+    const target = $('step-map').classList.contains('on') ? $('status2') : $('status')
+    if (msg.type === 'done') {
+      let text = 'Built ' + msg.count + ' nodes.'
+      if (msg.warnings && msg.warnings.length) {
+        text += '\n\n' + msg.warnings.length + ' warning(s):\n· ' + msg.warnings.join('\n· ')
+      }
+      show(target, text, msg.warnings && msg.warnings.length ? '' : 'ok')
+    } else if (msg.type === 'error') {
+      let text = 'Failed: ' + msg.message
+      if (msg.warnings && msg.warnings.length) text += '\n\n· ' + msg.warnings.join('\n· ')
+      show(target, text, 'err')
+    }
+  }
+</script>

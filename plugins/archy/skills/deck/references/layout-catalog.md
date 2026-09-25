@@ -2,7 +2,7 @@
 
 Read this when choosing a layout for content in hand, adding a layout to the library, deriving a new slide from an existing one, or placing an image or logo slot.
 
-The library is the Paper file **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 55 layouts at 1920 × 1080, all with export specs. Shared geometry (header, Rulers, type scale) is in `slide-system.md`; the dark layouts' rules in `dark-set.md`; chart construction in `charts.md`. Export to Google Slides is the `slides-export` skill.
+The library is the Paper file **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 55 layouts at 1920 × 1080, all with export specs. Shared geometry (header, Rulers, type scale) is in `slide-system.md`; the dark layouts' rules in `dark-set.md`; chart construction in `charts.md`. Export to Google Slides is the `archy-design:slides-export` skill.
 
 ---
 
@@ -103,7 +103,7 @@ Note: `charts.md` ("Name the mark in place") states that once `Market Sizing`'s 
 
 The source deck has no closing slide.
 
-**The meta page number is `NN` on every template, on purpose.** It is a placeholder: the exporter (see the `slides-export` skill) substitutes the real number from the slide index. Hand-typing fifty-five numbers is the same staleness trap as numbering the artboards.
+**The meta page number is `NN` on every template, on purpose.** It is a placeholder: the exporter (see the `archy-design:slides-export` skill) substitutes the real number from the slide index. Hand-typing fifty-five numbers is the same staleness trap as numbering the artboards.
 
 ---
 

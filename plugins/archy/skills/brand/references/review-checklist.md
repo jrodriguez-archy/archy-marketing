@@ -65,8 +65,9 @@ Run this after filling or adapting a template, and before reporting the work as 
 ## La mascota
 
 - [ ] **Her edge reads against the ground.** On a light blue ground close to her own tones she has a white (or very light) outline. The outline is never blue or tinted. On other grounds she usually needs none.
-- [ ] **Off a side edge she is rotated 90°.** Upright with a side crop is wrong. Off the top she stays upright.
-- [ ] **The crop never runs through an ear.** It falls on the shell. The only sanctioned exception is a thumbnail-scale piece where she peeks in from the bottom rotated 180°.
+- [ ] **Her antenna points into the canvas.** Top bleed: rotated 180°; right edge: −90°; left edge: +90°; bottom: upright. If the antenna is off the trim, she is backwards.
+- [ ] **About two thirds of her shows**, never three quarters.
+- [ ] **The crop never runs through an ear.** It falls on the shell. The only sanctioned exception is a thumbnail-scale piece where she peeks in from the bottom, upright.
 
 ## Wordmark and logos
 

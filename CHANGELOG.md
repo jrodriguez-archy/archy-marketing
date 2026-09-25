@@ -6,6 +6,14 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.3.0 and archy-design 0.1.0 (2026-09-24)
+
+- New plugin `archy-design` for designers (depends on `archy`): `prepare-template`, `explore`, `publish`, and the tools `slides-export`, `figma-export`, `print-pdf`, `hugeicons`, which moved here from `archy`.
+- Tools ported into `archy-design/tools/`: every script reads and writes a work directory (`ARCHY_WORK`, default `${CLAUDE_PLUGIN_DATA}/<tool>/`), never the plugin folder; generic assets in `assets-base/`; new `hugeicons.py`.
+- La mascota: the antenna always points into the canvas (top 180°, right −90°, left +90°, bottom upright), "raise/lower" read in her own axis, about two thirds visible, one canonical full-body construction with four expressions, antenna colour follows the ground, eyes raised in a bleed.
+- New deck reference: playful decks (warm, non-corporate decks such as onboarding).
+- README: the two plugins and setup for designers.
+
 ## 0.2.0 (2026-09-24)
 
 - Master - Events: nine event templates, each with Post, Stories and OG: Booth Icon List, Booth Invite Photo, Booth Invite Offer, Booth Light Rulers, Booth Photo Band, Speaker Invite, Countdown Mascota, Countdown Offer, Countdown Masthead. Slots named, partner logo separated into its own slot, solid Rulers, pills and offer bars that grow with their text.

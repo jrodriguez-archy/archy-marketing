@@ -13,7 +13,7 @@ These are not preferences to weigh. They are always true.
 - **Rulers are always a SOLID colour. Never `opacity`, never an alpha colour, on any ground.** Translucent lines darken wherever they cross, and on a grid device the intersections are what the eye lands on. The colour per ground is in `tokens.md`. This supersedes every older "white at 0.3" instruction; convert old Rulers to solid when a piece is touched, and never copy the translucent version into new work.
 - **The Archy wordmark on any white or light ground is `--color-royal-blue-500`.** Never navy, never black. On dark grounds it stays white.
 - **When la mascota sits on a light blue ground close to her own tones, she gets a white (or very light) outline.** Her shell and face read as the same colour as that ground and she dissolves without it. The outline is never blue or tinted. See *La mascota* below.
-- **A mascota bleeding off a side edge is rotated 90°.** Upright plus a side crop is wrong: it reads as a sticker pasted on. Off the top she stays upright; off the left or right she turns.
+- **La mascota's antenna always points into the canvas.** When she peeks in from an edge, the top of her head leads in and the crop falls on her chin (orientation table under *La mascota*). An upright figure with a side crop, or an antenna hidden off the trim, reads as a sticker pasted on.
 - **Never crop the mascota through an ear.** She may bleed off an edge, but the crop must fall on the shell, not amputate a feature. Check the crop line against her silhouette before committing. One sanctioned exception is listed under *La mascota*.
 - **No mint in event pieces.** It has an in-house precedent on the campaign pages (see *Devices from the website*), but it is not part of this system.
 
@@ -43,14 +43,31 @@ At poster scale use **2px**; 1px vanishes on a phone. On every ground a Ruler is
 **"La mascota"** is Archy's robot-face character: rounded shell, sleepy half-closed eyes, dark navy face plate. Always call it that.
 
 - **Outline: white, and only when the ground is close to her tones.** On a light blue ground that is the same or nearly the same tone as her shell or face, add a white (or very light) contour so she separates from it. Never a blue or tinted contour. Elsewhere she needs none: on royal blue, navy or a photo, or when she is large and cropped by an edge, her navy face plate carries her on its own.
-- **Bleed direction follows the canvas orientation, not the source layout.** She bleeds off the *top* on vertical formats (Post, Stories: `691×461 @ 195, -152`, a 33% crop) and rotates 90° to bleed off the *side* on landscape (OG). What stays constant is that she peeks in and how much shows, not which edge.
-- **Off a side edge she is rotated 90°.** Upright plus a side crop reads as a sticker pasted on.
+- **Bleed direction follows the canvas orientation, not the source layout.** She bleeds off the *top* on vertical formats (Post, Stories) and off the *side* on landscape (OG, slides). What stays constant is that she peeks in and how much shows, not which edge.
+- **Orientation: the antenna points into the canvas.** The antenna is the top of her head; the crop always falls on her chin.
+
+  | Bleeds off | Rotation of the upright master (antenna up) | Antenna points |
+  |---|---|---|
+  | Top (Post, Stories) | **180°**, upside down | down, into the frame |
+  | Right edge (OG, slides) | **−90°** | left, into the frame |
+  | Left edge | **+90°** | right, into the frame |
+  | Bottom (the thumbnail exception below) | **0°**, upright | up, into the frame |
+
+  The head vector in the Events templates has its antenna at the bottom: it is not upside down, it is already oriented for the top bleed (`691×461 @ 195, -152` works as is). Before placing her, check where the antenna lands; if it is off the canvas, she is backwards.
+- **"Raise" and "lower" her in her own axis, not the canvas's** (antenna = up, chin = down). Raise = rise out of the edge, show more; lower = sink into the edge, show less. On the upside-down top bleed, lowering her moves her *up* the canvas. When an instruction is ambiguous, restate it as "show more / show less of her" before moving anything.
+- **Show about two thirds of her on every edge** (measured: 65% on a top bleed, 64% off the right edge, 62% from the bottom). A peek reads as curiosity; three quarters of her reads as a second headline.
 - **Never crop through an ear.** The crop falls on the shell.
-  - **One sanctioned exception: a thumbnail-scale piece where she only peeks in from the bottom, rotated 180°.** On the 440 × 280 Chrome Store sneak peek she shows ~55% of her height under a wordmark that is the real hero, and the crop runs through both ears. This is a confirmed exception. It does not extend to posters, slides or any format where she is the image.
-- **The empty column beside a left-aligned headline is where she goes.** A 3-line headline set left leaves a tall gap on the right; she fills it, bleeding off the right edge and rotated 90°, at the headline's own height. That beats placing her on the photo: on the photo she competes with the image, beside the headline she balances it. She needs no outline there even on a near-white ground; at that size the navy face plate carries her.
+  - **One sanctioned exception: a thumbnail-scale piece where she only peeks in from the bottom, upright (antenna up).** On the 440 × 280 Chrome Store sneak peek she shows about two thirds of her height under a wordmark that is the real hero, and the crop runs through both ears. This is a confirmed exception. It does not extend to posters, slides or any format where she is the image.
+- **The empty column beside a left-aligned headline is where she goes.** A 3-line headline set left leaves a tall gap on the right; she fills it, bleeding off the right edge rotated −90° (antenna pointing left, into the canvas), at the headline's own height. That beats placing her on the photo: on the photo she competes with the image, beside the headline she balances it. She needs no outline there even on a near-white ground; at that size the navy face plate carries her.
 - **She may cross a Ruler.** She is not a sticker.
 - **On white or a pale blue ground, check her edge on the screenshot.** Her shell is a near-white gradient, so on a pale ground only the navy face plate may read. If the shell disappears into the ground, add the white or very light contour (a stroke on the shell path, leaving the fill untouched). Treat it as a modification to a brand asset, not a layout choice.
-- **When rotated 90° she does not render where `left`/`top` say.** Position by screenshot and nudge (see `paper-quirks.md`).
+- **When rotated she does not render where `left`/`top` say.** Position by screenshot and nudge (see `paper-quirks.md`).
+- **The masters live in the Brand file, page `Mascot`**, left to right: `Mascota · Expressions` (full body, four faces), `Mascota · Heads` (head only), `Mascota · Grounds` (all four on blue, dark and white, antenna rule applied) and `Mascota · Placement` (the three bleeds). Copy from there rather than re-deriving a rotation.
+- **One canonical construction.** The full-body mascota (head plus the blue capsule body with the Archy "A") uses the short, thin antenna and the wider shell: full body `viewBox 0 0 670.54 644`, head only `0 0 670.54 444`, flattened (no `<g>`). The older head master still found in some templates (Events, the HR deck) is the superseded drawing; prefer the Brand masters in new work.
+- **Expressions:** `Neutral` (round eyes) is the default; `Joyful` (filled arcs) is a favourite and used a lot; `Happy` (outline arcs) and `Love` (hearts) by context. To change the expression, swap the whole SVG: rewriting only the eye nodes with `write_html` turns a `<circle>` into an empty rectangle.
+- **Antenna colour follows the ground.** Light ground: `--color-blue-tint-800`. Blue or dark ground: `--color-blue-tint-300`, because a dark antenna sinks into both. It is a solid token fill on a node named `Antenna`, so switching it is one `update_styles` on that node.
+- **In a bleed her eyes move up, toward the antenna** (`translate: 0 -50px` in viewBox units on both eye nodes, about 17% of the face plate height). With centred eyes and two thirds visible, the crop lands on the eyes; raised, they clear it on every edge. It is the one place the eyes leave centre.
+- **Open question:** on the blue ground the full-body capsule blends into the royal blue.
 
 ---
 

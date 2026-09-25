@@ -1,0 +1,395 @@
+{
+  "meta": {
+    "name": "Sample Card",
+    "source": "sample.jsx",
+    "generated": "2026-09-04T22:29:32.377Z"
+  },
+  "tokens": {
+    "surface": "#F4F5F7",
+    "ink": "#14161A",
+    "muted": "#6B7280",
+    "line": "#E3E5E9",
+    "accent": "#3B5BFD"
+  },
+  "fonts": {
+    "Inter": [
+      400,
+      600,
+      700
+    ]
+  },
+  "document": {
+    "name": "Sample Card",
+    "id": "A-0",
+    "kind": "FRAME",
+    "style": {
+      "unknown": [],
+      "padding": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "clip": true,
+      "position": "relative",
+      "fill": "surface",
+      "w": 416,
+      "h": 264
+    },
+    "children": [
+      {
+        "name": "Header",
+        "id": "B-0",
+        "kind": "FRAME",
+        "style": {
+          "unknown": [],
+          "padding": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "position": "absolute",
+          "x": 32,
+          "y": 32,
+          "w": 384,
+          "flex": true,
+          "direction": "VERTICAL",
+          "gap": 8
+        },
+        "children": [
+          {
+            "name": "Title",
+            "id": "C-0",
+            "kind": "TEXT",
+            "style": {
+              "unknown": [],
+              "padding": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              },
+              "fontSize": 28,
+              "lineHeight": 32,
+              "letterSpacingEm": 0.01,
+              "fontFamily": "Inter",
+              "fontWeight": 700,
+              "color": "ink"
+            },
+            "characters": "Weekly digest",
+            "children": []
+          },
+          {
+            "name": "Subtitle",
+            "id": "D-0",
+            "kind": "TEXT",
+            "style": {
+              "unknown": [],
+              "padding": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              },
+              "fontSize": 14,
+              "lineHeight": 20,
+              "fontFamily": "Inter",
+              "color": "muted"
+            },
+            "characters": "Four things worth a look",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "List",
+        "id": "E-0",
+        "kind": "FRAME",
+        "style": {
+          "unknown": [],
+          "padding": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "position": "absolute",
+          "x": 32,
+          "y": 120,
+          "w": 384,
+          "flex": true,
+          "direction": "VERTICAL",
+          "gap": 0,
+          "radius": 12,
+          "clip": true,
+          "fillRaw": "#FFFFFF"
+        },
+        "children": [
+          {
+            "name": "Row",
+            "id": "F-0",
+            "kind": "FRAME",
+            "style": {
+              "unknown": [],
+              "padding": {
+                "top": 0,
+                "right": 16,
+                "bottom": 0,
+                "left": 16
+              },
+              "w": 384,
+              "h": 56,
+              "shrink0": true,
+              "flex": true,
+              "counterAlign": "CENTER",
+              "gap": 12,
+              "borderBottomWidth": 1,
+              "borderBottomStyle": "dashed",
+              "borderBottomColor": "line"
+            },
+            "children": [
+              {
+                "name": "Index",
+                "id": "G-0",
+                "kind": "TEXT",
+                "style": {
+                  "unknown": [],
+                  "padding": {
+                    "top": 0,
+                    "right": 0,
+                    "bottom": 0,
+                    "left": 0
+                  },
+                  "w": 40,
+                  "shrink0": true,
+                  "fontSize": 13,
+                  "lineHeight": 16,
+                  "fontFamily": "Inter",
+                  "color": "muted"
+                },
+                "characters": "01",
+                "children": []
+              },
+              {
+                "name": "Detail",
+                "id": "H-0",
+                "kind": "FRAME",
+                "style": {
+                  "unknown": [],
+                  "padding": {
+                    "top": 0,
+                    "right": 0,
+                    "bottom": 0,
+                    "left": 0
+                  },
+                  "grow": 1,
+                  "flex": true,
+                  "direction": "VERTICAL",
+                  "gap": 2
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "id": "I-0",
+                    "kind": "TEXT",
+                    "style": {
+                      "unknown": [],
+                      "padding": {
+                        "top": 0,
+                        "right": 0,
+                        "bottom": 0,
+                        "left": 0
+                      },
+                      "fontSize": 15,
+                      "lineHeight": 20,
+                      "fontFamily": "Inter",
+                      "fontWeight": 600,
+                      "color": "ink"
+                    },
+                    "characters": "Design review",
+                    "children": []
+                  },
+                  {
+                    "name": "Meta",
+                    "id": "J-0",
+                    "kind": "TEXT",
+                    "style": {
+                      "unknown": [],
+                      "padding": {
+                        "top": 0,
+                        "right": 0,
+                        "bottom": 0,
+                        "left": 0
+                      },
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                      "fontFamily": "Inter",
+                      "color": "muted"
+                    },
+                    "characters": "Tuesday",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "id": "K-0",
+            "kind": "FRAME",
+            "style": {
+              "unknown": [],
+              "padding": {
+                "top": 0,
+                "right": 16,
+                "bottom": 0,
+                "left": 16
+              },
+              "w": 384,
+              "h": 56,
+              "shrink0": true,
+              "flex": true,
+              "counterAlign": "CENTER",
+              "gap": 12
+            },
+            "children": [
+              {
+                "name": "Index",
+                "id": "L-0",
+                "kind": "TEXT",
+                "style": {
+                  "unknown": [],
+                  "padding": {
+                    "top": 0,
+                    "right": 0,
+                    "bottom": 0,
+                    "left": 0
+                  },
+                  "w": 40,
+                  "shrink0": true,
+                  "fontSize": 13,
+                  "lineHeight": 16,
+                  "fontFamily": "Inter",
+                  "color": "muted"
+                },
+                "characters": "02",
+                "children": []
+              },
+              {
+                "name": "Detail",
+                "id": "M-0",
+                "kind": "FRAME",
+                "style": {
+                  "unknown": [],
+                  "padding": {
+                    "top": 0,
+                    "right": 0,
+                    "bottom": 0,
+                    "left": 0
+                  },
+                  "grow": 1,
+                  "flex": true,
+                  "direction": "VERTICAL",
+                  "gap": 2
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "id": "N-0",
+                    "kind": "TEXT",
+                    "style": {
+                      "unknown": [],
+                      "padding": {
+                        "top": 0,
+                        "right": 0,
+                        "bottom": 0,
+                        "left": 0
+                      },
+                      "fontSize": 15,
+                      "lineHeight": 20,
+                      "fontFamily": "Inter",
+                      "fontWeight": 600,
+                      "color": "ink"
+                    },
+                    "characters": "Roadmap sync",
+                    "children": []
+                  },
+                  {
+                    "name": "Meta",
+                    "id": "O-0",
+                    "kind": "TEXT",
+                    "style": {
+                      "unknown": [],
+                      "padding": {
+                        "top": 0,
+                        "right": 0,
+                        "bottom": 0,
+                        "left": 0
+                      },
+                      "fontSize": 13,
+                      "lineHeight": 16,
+                      "fontFamily": "Inter",
+                      "color": "muted"
+                    },
+                    "characters": "Thursday",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Button",
+        "id": "P-0",
+        "kind": "FRAME",
+        "style": {
+          "unknown": [],
+          "padding": {
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "position": "absolute",
+          "x": 32,
+          "y": 208,
+          "w": 384,
+          "h": 44,
+          "flex": true,
+          "counterAlign": "CENTER",
+          "primaryAlign": "CENTER",
+          "radius": 8,
+          "fill": "accent"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "id": "Q-0",
+            "kind": "TEXT",
+            "style": {
+              "unknown": [],
+              "padding": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              },
+              "fontSize": 14,
+              "lineHeight": 20,
+              "letterSpacingEm": 0.02,
+              "textAlign": "CENTER",
+              "fontFamily": "Inter",
+              "fontWeight": 600,
+              "colorRaw": "#FFFFFF"
+            },
+            "characters": "OPEN DIGEST",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

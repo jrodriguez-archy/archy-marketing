@@ -98,8 +98,36 @@ Still stuck? Send Marketing & Design what you asked and a screenshot of the repl
 
 ## What is inside (for the curious)
 
+Two plugins live in this repository.
+
+**`archy`**, for everyone:
+
 | Skill | What it does |
 |---|---|
+| `brand` | Archy brand rules: colours, type, Rulers, la mascota, logos, voice, review checklist, template catalog |
+| `social-post` | Event social: Post, Stories and OG link previews |
+| `deck` | Slides from the Master - Decks library |
+| `offsite-brand` | The Archy Offsite 2026 identity |
+
+**`archy-design`**, for designers (it installs `archy` with it):
+
+| Skill | What it does |
+|---|---|
+| `prepare-template` | Turn a finished design into a slot-ready template for marketing, and document it |
+| `explore` | Design new pieces on brand, beyond the templates |
+| `publish` | Add rules, templates or skills to this repository and release a new version |
+| `slides-export` | Turn Paper slides into an editable Google Slides / PowerPoint file |
+| `figma-export` | Publish a Paper artboard into Figma as editable layers |
+| `print-pdf` | Turn a Paper PDF into a print-ready file |
+| `hugeicons` | Bring Hugeicons into a Paper file |
+
+Skills run on their own when your request matches; you can also call one directly, for example `/archy:social-post` or `/archy-design:prepare-template`.
+
+### For designers
+
+Follow the setup above, then also install **archy-design** from **+ → Plugins → Add plugin**. To publish changes you need write access to this repository with your own GitHub account; ask Marketing & Design. The export tools also need Node and Python on your Mac (the skills tell you what is missing).
+
+---|---|
 | `brand` | Archy brand rules: colours, type, Rulers, la mascota, logos, voice, review checklist |
 | `social-post` | Event social: Post, Stories and OG link previews |
 | `deck` | Slides from the Master - Decks library |
