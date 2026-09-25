@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.5 and archy-design 0.2.0 (2026-09-25)
+
+- archy-design: new `gradients` skill and tool: the nine Archy pixel-dithered gradients (Navy, Deep Blue, Primary, Royal Blue, Sky, Ice, Pure White, White, Mist) as static PNG, seamless MP4/WebM loops, and live backgrounds for Webflow and React, all from one `presets.json`.
+- archy: tokens reference lists the Brand file's new **Gradients** page.
+- README lists the `gradients` skill.
+
 ## archy 0.4.4 (2026-09-25)
 
 - archy: new `ad/references/ad-layouts.md`, the reviewed rules for person-led ads: starting from an AI mockup, the three-anchor column, headline sizing, benefit lists with icons, the CTA button, photo and name tile, the arch frame and grid layouts.

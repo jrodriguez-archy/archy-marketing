@@ -1,0 +1,41 @@
+{
+  "recipe": {
+    "type": "8x8",
+    "size": 8.8,
+    "steps": 6,
+    "scale": 1.08,
+    "blobs": [
+      [0.650115, 0.976657, 0.335137, 0.720067],
+      [0.948264, -0.093682, 0.344246, -0.918828],
+      [0.461522, 0.263639, 0.235685, 0.778031],
+      [0.505458, 0.564197, 0.3791, -0.917065],
+      [0.646615, 1.086752, 0.223062, 0.845016],
+      [-0.04727, -0.057184, 0.282978, -0.786482]
+    ],
+    "blobs_note": "Each blob is [x, y, radius, weight] in a 0..1 frame. They are the fixed field every gradient shares, so all nine read as one family."
+  },
+  "tokens": {
+    "blue-tint-800": "#00004E",
+    "blue-tint-700": "#000484",
+    "primary-blue-600": "#0000C9",
+    "royal-blue-500": "#013DF5",
+    "sky-blue-400": "#0095FF",
+    "blue-tint-300": "#66BFFF",
+    "blue-tint-200": "#CCEAFF",
+    "blue-tint-100": "#E6F4FF",
+    "white": "#FFFFFF",
+    "neutral-super-light": "#F7F7F7",
+    "neutral-lightest": "#EEEEEE"
+  },
+  "gradients": [
+    {"name": "navy",       "label": "Navy",       "group": "Blues",  "base": "blue-tint-800",       "toward": "blue-tint-700",       "amount": 1.0},
+    {"name": "deep-blue",  "label": "Deep Blue",  "group": "Blues",  "base": "blue-tint-700",       "toward": "sky-blue-400",        "amount": 0.5},
+    {"name": "primary",    "label": "Primary",    "group": "Blues",  "base": "primary-blue-600",    "toward": "royal-blue-500",      "amount": 1.0},
+    {"name": "royal-blue", "label": "Royal Blue", "group": "Blues",  "base": "royal-blue-500",      "toward": "sky-blue-400",        "amount": 0.5},
+    {"name": "sky",        "label": "Sky",        "group": "Blues",  "base": "sky-blue-400",        "toward": "blue-tint-300",       "amount": 0.6},
+    {"name": "ice",        "label": "Ice",        "group": "Blues",  "base": "blue-tint-100",       "toward": "blue-tint-200",       "amount": 1.0},
+    {"name": "pure-white", "label": "Pure White", "group": "Whites", "base": "white",               "toward": "neutral-lightest",    "amount": 1.0, "gamma": 3.0},
+    {"name": "white",      "label": "White",      "group": "Whites", "base": "neutral-super-light", "toward": "white",               "amount": 1.0},
+    {"name": "mist",       "label": "Mist",       "group": "Whites", "base": "neutral-lightest",    "toward": "neutral-super-light", "amount": 1.0}
+  ]
+}

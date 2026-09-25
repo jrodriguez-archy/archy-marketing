@@ -120,6 +120,7 @@ Two plugins live in this repository.
 | `figma-export` | Publish a Paper artboard into Figma as editable layers |
 | `print-pdf` | Turn a Paper PDF into a print-ready file |
 | `hugeicons` | Bring Hugeicons into a Paper file |
+| `gradients` | Pixel gradient backgrounds as PNG, seamless video loops and live Webflow backgrounds |
 
 Skills run on their own when your request matches; you can also call one directly, for example `/archy:social-post` or `/archy-design:prepare-template`.
 
