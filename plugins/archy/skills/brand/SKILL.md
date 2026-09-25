@@ -92,6 +92,7 @@ If a copy cannot be made, ask the user to duplicate the master file in Paper (ri
 | `references/tokens.md` | Checking a colour, ground, font or icon, or finding which Paper file holds what |
 | `references/composition.md` | Anything about Rulers, the mascot, logo lockups, the booth badge, BK Fade, scale or the three-format family |
 | `references/voice.md` | Writing or shortening copy |
+| `../ad/references/ad-layouts.md` | Building a person-led ad (headline, benefit list, CTA, photo or portrait), or starting from an AI mockup |
 | `references/review-checklist.md` | Step 6, every time |
 | `references/paper-quirks.md` | Before your first Paper write in a session, and whenever a Paper tool result looks wrong |
 

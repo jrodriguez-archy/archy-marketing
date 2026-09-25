@@ -6,6 +6,13 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.4 (2026-09-25)
+
+- archy: new `ad/references/ad-layouts.md`, the reviewed rules for person-led ads: starting from an AI mockup, the three-anchor column, headline sizing, benefit lists with icons, the CTA button, photo and name tile, the arch frame and grid layouts.
+- archy: Rulers: side verticals run the full height; a photo may fill its grid cell flush to the Rulers.
+- archy: the website's primary button (`.button_v2`) and its poster-scale values added to *Devices from the website*.
+- archy: the brand skill lists `ad-layouts.md` among its references.
+
 ## archy 0.4.3 (2026-09-25)
 
 - archy: the shell edge (`#C3DDF3`, print `#A9C8E6`) applies on any tinted pale ground, not only Tint 100; pure white keeps no edge.
