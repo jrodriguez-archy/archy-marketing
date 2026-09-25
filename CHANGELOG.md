@@ -6,6 +6,13 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.7 and archy-design 0.3.0 (2026-09-25)
+
+- archy-design: the `gradients` skill and tool are now `pixel` (`/archy-design:pixel`, `tools/pixel/pixel.py`), covering both texture families: `pixel.py gradient …` for Pixel Gradients and `pixel.py effect dissolve | behind | tone` for Pixel Effects.
+- archy-design: new Pixel Effects: Pixel Dissolve (scattered cells over a portrait that bleeds off the bottom, as a separate overlay layer), Pixels Behind (a band of cells behind a tight headshot) and Pixel Tone (a place photo in a gradient's own two tones). The ground and the cells share one grid that divides the frame and is anchored to the bleed edge.
+- archy-design: every value is a starting point and a flag: `--cell` and `--steps` on gradients; `--colours`, `--density`, `--curve`, `--seed` and `--start` on effects. The skill spells out what is fixed and what is flexible.
+- archy: tokens reference points to the Brand file's Textures page; the ad layout guide covers Pixel Effects on portraits.
+
 ## archy 0.4.6 and archy-design 0.2.1 (2026-09-25)
 
 - Display names in the plugin manager: `archy` shows as "Archy - Marketing", `archy-design` as "Archy - Design". Plugin ids and skill commands are unchanged.
