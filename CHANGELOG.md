@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.4.3 (2026-09-25)
+
+- archy: the shell edge (`#C3DDF3`, print `#A9C8E6`) applies on any tinted pale ground, not only Tint 100; pure white keeps no edge.
+- archy: review checklist checks the shell edge on pale grounds.
+
 ## archy 0.4.2 (2026-09-25)
 
 - archy: every Archy file now carries the Brand mascot master; removed the notes that described the superseded Events head as current.

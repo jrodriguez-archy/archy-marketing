@@ -79,11 +79,11 @@ The masters are in the Brand file, page **Mascot**, left to right: `Mascot · Ex
   | Ground | Part that sinks | Edge, screen | Edge, print (CMYK) |
   |---|---|---|---|
   | Royal blue gradient | body capsule | `#0A30D6` | `#0726B0` |
-  | `--color-blue-tint-100` (close to the shell) | shell | `#C3DDF3` | `#A9C8E6` |
+  | Any tinted pale ground: `--color-light-foreground`, `--color-blue-tint-25`, `-50`, `-100` (close to the shell) | shell | `#C3DDF3` | `#A9C8E6` |
   | `--color-blue-tint-300` (close to the ears) | both ears | `#4DA8F0` | `#3690DB` |
 
   **5 units** wide on the 670-wide viewBox (about 1.5px at 200px display): it must be felt, not seen; 10 units in stronger blues was far too heavy. **For print, use the darker column** before running `archy-design:print-pdf`, because an edge this subtle disappears on press, where blues already print duller; the width stays 5 units. The ears touch the viewBox edge, so the SVG and its wrapper need `overflow: visible` or half the ear stroke is clipped.
-- **On white or a pale blue ground, check his edges on the screenshot.** His shell is a near-white gradient; if it disappears into the ground, apply the tone-matched edge above.
+- **Pure white ground: no edge**, the navy face plate carries him. **Any tinted pale ground** (off-white, `--color-light-foreground`, the pale blue tints, or a gradient between them): the shell gets its `#C3DDF3` edge by default, because his near-white shell sinks into it and the head reads as a floating plate. Check it on the screenshot either way.
 
 ### Agents
 

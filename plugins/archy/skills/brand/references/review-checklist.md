@@ -64,6 +64,7 @@ Run this after filling or adapting a template, and before reporting the work as 
 
 ## The mascot
 
+- [ ] **On a tinted pale ground the shell has its `#C3DDF3` edge** (print `#A9C8E6`); on pure white it has none.
 - [ ] **Every part reads against the ground.** A part that matches the ground (the body capsule on royal blue, the shell on Tint 100, the ears on Tint 300) has its tone-matched edge, 5 units, screen or print colour as the output requires (table in `composition.md`). A contour around the whole mascot, when one is needed, is white.
 - [ ] **The antenna colour matches the ground**: `--color-blue-tint-800` on light, `--color-blue-tint-300` on blue or dark.
 - [ ] **His antenna points into the canvas.** Top bleed: rotated 180°; right edge: −90°; left edge: +90°; bottom: upright. If the antenna is off the trim, he is backwards.
