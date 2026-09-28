@@ -291,9 +291,10 @@ function paints(s) {
 //   not flex -> every child is absolutely positioned; read its own left/top
 //   flex     -> one line of children along the main axis, gap between them
 //
-// Nothing wraps (no flex-wrap anywhere in the deck) and no child is flex-sized in a way
-// that changes its measured box, because the measured box is what the tree already
-// reports. That leaves only where each box goes.
+// A `flex-wrap: wrap` row breaks onto a new line only where its children overflow the
+// main axis; most wrapping frames in a deck fit on one line and lay out exactly as if they
+// did not wrap. No child is flex-sized in a way that changes its measured box, because the
+// measured box is what the tree already reports. That leaves only where each box goes.
 function resolveLayout(nodes, styles, coords) {
   const pos = {};
   const clip = {};   // id -> the [x, y, w, h] its nearest `overflow: clip` ancestor allows
@@ -413,53 +414,96 @@ function resolveLayout(nodes, styles, coords) {
       return v === "auto" ? 0 : px(v, 0);
     };
 
-    const total = flowKids.reduce((a, k) => a + mainSize(k) + marginBefore(k) + marginAfter(k), 0)
-                  + gap * (flowKids.length - 1);
-    const slack = innerMain - total;
+    // One flex line: main-axis placement (justify, gaps, auto margins) and cross-axis
+    // alignment inside a band that starts at `crossStart` and is `lineCross` deep.
+    const layLine = (line, crossStart, lineCross) => {
+      const total = line.reduce((a, k) => a + mainSize(k) + marginBefore(k) + marginAfter(k), 0)
+                    + gap * (line.length - 1);
+      const slack = innerMain - total;
 
-    // `margin-<start>: auto` on a child eats all the slack before it - the bottom-anchor
-    // trick the deck uses to hold a quote attribution on one lane whatever the quote does.
-    const autoIndex = flowKids.findIndex((k) => {
-      const ks = styles[k.id] || {};
-      return (col ? ks.marginTop : ks.marginLeft) === "auto";
-    });
+      // `margin-<start>: auto` on a child eats all the slack before it - the bottom-anchor
+      // trick the deck uses to hold a quote attribution on one lane whatever the quote does.
+      const autoIndex = line.findIndex((k) => {
+        const ks = styles[k.id] || {};
+        return (col ? ks.marginTop : ks.marginLeft) === "auto";
+      });
 
-    let cursor = 0;
-    let between = gap;
-    if (autoIndex === -1) {
-      if (justify === "center") cursor = slack / 2;
-      else if (justify === "flex-end" || justify === "end") cursor = slack;
-      else if (justify === "space-between" && flowKids.length > 1) between = gap + slack / (flowKids.length - 1);
-      else if (justify === "space-around" && flowKids.length) {
-        between = gap + slack / flowKids.length;
-        cursor = (slack / flowKids.length) / 2;
+      let cursor = 0;
+      let between = gap;
+      if (autoIndex === -1) {
+        if (justify === "center") cursor = slack / 2;
+        else if (justify === "flex-end" || justify === "end") cursor = slack;
+        else if (justify === "space-between" && line.length > 1) between = gap + slack / (line.length - 1);
+        else if (justify === "space-around" && line.length) {
+          between = gap + slack / line.length;
+          cursor = (slack / line.length) / 2;
+        }
+        else if (justify === "space-evenly" && line.length) {
+          between = gap + slack / (line.length + 1);
+          cursor = slack / (line.length + 1);
+        }
       }
-      else if (justify === "space-evenly" && flowKids.length) {
-        between = gap + slack / (flowKids.length + 1);
-        cursor = slack / (flowKids.length + 1);
+
+      line.forEach((k, i) => {
+        if (i === autoIndex) cursor += slack;
+
+        const ks = styles[k.id] || {};
+        const selfAlign = ks.alignSelf && ks.alignSelf !== "auto" ? ks.alignSelf : align;
+        let cross = 0;
+        if (selfAlign === "center") cross = (lineCross - crossSize(k)) / 2;
+        else if (selfAlign === "flex-end" || selfAlign === "end") cross = lineCross - crossSize(k);
+
+        cursor += marginBefore(k);
+
+        const [tx, ty] = translateOf(ks.translate, k.w, k.h);
+        const crossMargin = col ? px(ks.marginLeft === "auto" ? 0 : ks.marginLeft, 0)
+                                : px(ks.marginTop === "auto" ? 0 : ks.marginTop, 0);
+        const x = (col ? innerX + crossStart + cross + crossMargin : innerX + cursor) + tx;
+        const y = (col ? innerY + cursor : innerY + crossStart + cross + crossMargin) + ty;
+        walk(k, x, y, clipRect, spinning);
+
+        cursor += mainSize(k) + marginAfter(k) + between;
+      });
+    };
+
+    // `flex-wrap: wrap` starts a new line when the next child would overflow the main
+    // axis. A 2 x 2 grid of cells is one wrapping row, and laying it out as one line puts
+    // all four cells side by side, half of them off the slide.
+    const wraps = fs.flexWrap === "wrap" || fs.flexWrap === "wrap-reverse";
+    const lines = [[]];
+    let used = 0;
+    for (const k of flowKids) {
+      const size = mainSize(k) + marginBefore(k) + marginAfter(k);
+      const cur = lines[lines.length - 1];
+      if (wraps && cur.length && used + gap + size > innerMain + 0.5) {
+        lines.push([k]);
+        used = size;
+      } else {
+        used += (cur.length ? gap : 0) + size;
+        cur.push(k);
       }
     }
-
-    flowKids.forEach((k, i) => {
-      if (i === autoIndex) cursor += slack;
-
-      const ks = styles[k.id] || {};
-      const selfAlign = ks.alignSelf && ks.alignSelf !== "auto" ? ks.alignSelf : align;
-      let cross = 0;
-      if (selfAlign === "center") cross = (innerCross - crossSize(k)) / 2;
-      else if (selfAlign === "flex-end" || selfAlign === "end") cross = innerCross - crossSize(k);
-
-      cursor += marginBefore(k);
-
-      const [tx, ty] = translateOf(ks.translate, k.w, k.h);
-      const crossMargin = col ? px(ks.marginLeft === "auto" ? 0 : ks.marginLeft, 0)
-                              : px(ks.marginTop === "auto" ? 0 : ks.marginTop, 0);
-      const x = (col ? innerX + cross + crossMargin : innerX + cursor) + tx;
-      const y = (col ? innerY + cursor : innerY + cross + crossMargin) + ty;
-      walk(k, x, y, clipRect, spinning);
-
-      cursor += mainSize(k) + marginAfter(k) + between;
-    });
+    if (lines.length === 1) {
+      layLine(lines[0], 0, innerCross);
+    } else {
+      // Lines stack along the cross axis with the cross gap. `align-content` defaults to
+      // stretch, which shares any leftover cross space equally between the lines.
+      const crossGap = px(col ? fs.columnGap : fs.rowGap, px(fs.gap, 0));
+      const depths = lines.map((l) => Math.max(...l.map(crossSize)));
+      const spare = innerCross - depths.reduce((a, d) => a + d, 0) - crossGap * (lines.length - 1);
+      const ac = fs.alignContent || "normal";
+      let at = 0, extra = 0, step = crossGap;
+      if (spare > 0) {
+        if (ac === "normal" || ac === "stretch") extra = spare / lines.length;
+        else if (ac === "center") at = spare / 2;
+        else if (ac === "flex-end" || ac === "end") at = spare;
+        else if (ac === "space-between") step = crossGap + spare / (lines.length - 1);
+      }
+      lines.forEach((l, i) => {
+        layLine(l, at, depths[i] + extra);
+        at += depths[i] + extra + step;
+      });
+    }
   };
 
   const root = nodes.find((n) => n.depth === 0);

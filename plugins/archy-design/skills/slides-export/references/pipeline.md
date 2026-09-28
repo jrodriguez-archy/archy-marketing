@@ -162,6 +162,7 @@ All of these were found by a pin disagreeing:
 | An 8-digit hex (`#FFFFFF2E`) | `hex()` drops the alpha, and a translucent disc ships solid |
 | `background-position` with `cover` | One screenshot shown in two boxes at two crops |
 | `overflow: clip` on an ancestor | An oversized image at a negative offset (the reframing device) |
+| `flex-wrap: wrap` that really wraps | A 2 x 2 grid of cells is one wrapping row; laid out as one line, half the cells land off the slide and the clip drops their icons |
 
 **An absolutely positioned child of a FLEX frame is out of flow.** CSS resolves it against the padding box exactly as in a block frame, and flexbox never sees it. The resolver once checked `position` only in its non-flex branch, so six pinned bar frames came out stacked in a vertical pile at one x, each internally correct, and nothing threw. The tell: several siblings reporting the *same* x (or y) with a spacing equal to their own height plus the parent's gap.
 

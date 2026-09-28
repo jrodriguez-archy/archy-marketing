@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.3.2 (2026-09-28)
+
+- slides-export: `flex-wrap: wrap` rows now break onto new lines where their children overflow, so a 2 x 2 or 3 x 2 grid of cells exports as a grid instead of one row running off the slide. Frames whose children fit on one line lay out exactly as before.
+
 ## archy-design 0.3.1 (2026-09-28)
 
 - slides-export: a rotated image clipped by the artboard (the mascot turned -90deg bleeding off an edge) is now cropped in its own unrotated frame and re-centred on the visible part, instead of losing the wrong side.
