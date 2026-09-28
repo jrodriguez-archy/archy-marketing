@@ -204,13 +204,15 @@ Day-before reminder with the event name as a Ruler-flanked masthead, on the dark
 
 ### Archy - Ads
 
-File: `Archy - Ads`, `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`.
+File: `Archy - Ads`, `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`. **Not a master yet**: its pieces are being designed as future templates and have no slots. Use them as references (duplicate or clone parts into your own file); never edit them in place. The `ad` skill covers how to work from them.
 
-| Template | Formats |
-|---|---|
-| `Claim Stack` | Post, Stories, OG |
-| `Platform · One-pager` | 1500×1942 (Letter proportion) |
-| `Platform · Post` | 1080×1080 |
+| Page | Pieces | Formats |
+|---|---|---|
+| `MDIB Social Summit Ad` | `Platform · One-pager`, `Platform · Post`, `Logo · Post` | 1500×1942, 1080×1080 |
+| `SDCDS Marketing Material` | `SDCDS Facets Ad A` / `B` (print, plus CMYK export copies) | 1600×975 |
+| `AE Spotlights` | Person-led ad, Options A to E (`Meet John`, `The Arch`, `Grid Card`, `Mosaic`, `Forum White`) | Post 1080×1080, Stories 1080×1920 |
+
+Third-party ad references for inspiration live in the `Refs - Ads` file (not brand material).
 
 ### Archy - Various Collateral
 

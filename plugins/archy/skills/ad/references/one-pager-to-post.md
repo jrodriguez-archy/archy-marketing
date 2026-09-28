@@ -6,8 +6,7 @@ Read this when deriving a square social Post from a taller ad (such as the Platf
 
 Paper file **`Archy - Ads`** (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`):
 
-- **Page 1**: `Claim Stack` Post / Stories / OG.
-- **Page 2**: `Platform · One-pager 1500×1942` (Letter proportion), rebuilt from a raster reference that sits beside it, and `Platform · Post 1080×1080` derived from it.
+- **Page `MDIB Social Summit Ad`**: `Platform · One-pager 1500×1942` (Letter proportion), rebuilt from a raster reference, and `Platform · Post 1080×1080` derived from it.
 
 ## The derivation
 

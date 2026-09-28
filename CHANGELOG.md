@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.6.0 (2026-09-28)
+
+- archy: `ad` and `chrome-store` are now real skills (they only had references before, so they never triggered). `ad` works from the Archy - Ads pieces as references until an ads master exists; `chrome-store` covers the store listing images built from native product UI.
+- archy: the Archy - Ads catalog lists what the file holds today (MDIB Social Summit, SDCDS print ads, AE Spotlights); `Claim Stack` removed, since it no longer exists.
+- README lists `ad` and `chrome-store`.
+
 ## archy 0.5.0 (2026-09-28)
 
 - archy: new `doc-brand` skill, the DOC (Dental Ownership Collective) identity: sources of truth and traps, tokens (including new alpha, tint and radius tokens), the lockup and its colourways, the five ad themes, track coding, Satoshi and the two-weight headline, voice and CTA per theme, review checklist.

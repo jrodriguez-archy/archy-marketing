@@ -120,6 +120,8 @@ Two plugins live in this repository.
 | `brand` | Archy brand rules: colours, type, Rulers, the mascot, logos, voice, review checklist, template catalog |
 | `social-post` | Event social: Post, Stories and OG link previews |
 | `deck` | Slides from the Master - Decks library |
+| `ad` | Archy ads: person-led spotlights, one-pagers and their Posts, print ads, from the Archy - Ads pieces |
+| `chrome-store` | Chrome Web Store listing images for Archy extensions |
 | `offsite-brand` | The Archy Offsite 2026 identity |
 | `doc-brand` | DOC (Dental Ownership Collective) brand rules: tokens, the lockup, themes, Satoshi, voice, review checklist |
 | `doc-ad` | DOC ads from the DOC - Ads master: 19 layouts, five themes, 1:1 / 4:5 / 9:16 |
