@@ -71,7 +71,7 @@ function addSpec(pres, spec, pageNumber) {
       slide.addShape(pres.ShapeType.rect, spun({
         x: inch(it.x), y: inch(it.y), w: inch(it.w), h: inch(it.h),
         fill: fillOf(it),
-        line: { type: "none" },
+        line: it.line ? { color: it.line.color, width: pt(it.line.width) } : { type: "none" },
       }));
       continue;
     }
@@ -80,7 +80,7 @@ function addSpec(pres, spec, pageNumber) {
       slide.addShape(pres.ShapeType.ellipse, spun({
         x: inch(it.x), y: inch(it.y), w: inch(it.w), h: inch(it.h),
         fill: fillOf(it),
-        line: { type: "none" },
+        line: it.line ? { color: it.line.color, width: pt(it.line.width) } : { type: "none" },
       }));
       continue;
     }
@@ -90,7 +90,7 @@ function addSpec(pres, spec, pageNumber) {
       slide.addShape(pres.ShapeType.roundRect, spun({
         x: inch(it.x), y: inch(it.y), w: inch(it.w), h: inch(it.h),
         fill: fillOf(it),
-        line: { type: "none" },
+        line: it.line ? { color: it.line.color, width: pt(it.line.width) } : { type: "none" },
         rectRadius: inch(it.h / 2),
       }));
       continue;

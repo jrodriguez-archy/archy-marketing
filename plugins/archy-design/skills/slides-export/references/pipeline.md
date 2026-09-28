@@ -163,12 +163,16 @@ All of these were found by a pin disagreeing:
 | `background-position` with `cover` | One screenshot shown in two boxes at two crops |
 | `overflow: clip` on an ancestor | An oversized image at a negative offset (the reframing device) |
 | `flex-wrap: wrap` that really wraps | A 2 x 2 grid of cells is one wrapping row; laid out as one line, half the cells land off the slide and the clip drops their icons |
+| `align-items: baseline` | A "129 +71" row: the smaller figure sat on the top edge, 7px high. Text children are placed by font metrics (`FONT_METRICS`, Inter so far); a face with no metrics stays top-aligned and is reported when it shares a row with a known one |
+| `background-size: 100%` | Full width at the picture's own aspect; stretched to the box instead, a screenshot came out 2.5% taller |
 
 **An absolutely positioned child of a FLEX frame is out of flow.** CSS resolves it against the padding box exactly as in a block frame, and flexbox never sees it. The resolver once checked `position` only in its non-flex branch, so six pinned bar frames came out stacked in a vertical pile at one x, each internally correct, and nothing threw. The tell: several siblings reporting the *same* x (or y) with a spacing equal to their own height plus the parent's gap.
 
 **Rotation is modelled, and it is the one transform that does not survive as-is.** `paper2spec.js` carries a `{cx, cy, deg}` pivot down the subtree of any rotated frame and swings each leaf's own **centre** around it; `build.js` passes `rotate` to `addShape` / `addImage` / `addText`. pptx spins a shape about its own centre while Paper spins about the frame's top-left (Paper normalises `transform-origin` to `0% 0%`), so the resolver converts between the two. Sign and unit (degrees, clockwise) carry across unchanged. **Nested rotation throws** rather than composing silently.
 
 **A rotated image that bleeds off the artboard is cropped in its own frame, not the world's.** The clip window is in world space, but `srcRect` crops the picture before pptx turns it, so `rotatedCrop()` maps the visible part of the rotated footprint back into the unrotated picture and re-centres the cropped box on what shows. A mascot turned -90deg and running off the right edge loses its *height*; cropping the unrotated box against the window cuts the wrong side and shifts the rest. Only quarter turns can be cropped (any other angle clips to a non-rectangle), and the script throws on the others.
+
+**A border that is the same on all four sides is the shape's own outline**, inset by half its width because CSS draws inside the box and pptx centres the line on the edge. Four strips square off a rounded pill's corners and, on a rotated card, each strip spins about its own centre and drifts off the card. The remaining strips (a different border per side, or a border round a picture) are swung round the frame's centre when it is rotated and cut to the clip window like the frame.
 
 **Borders are emitted per side, as thin rects, and deferred to the end.** pptx cannot give a shape a different border per side (a nav strip framed on three sides so its seam with the hero stays open). They are flushed last because a frame is met *before* its children, so emitted in place every hairline lands under the screenshot it outlines.
 

@@ -295,6 +295,21 @@ function paints(s) {
 // main axis; most wrapping frames in a deck fit on one line and lay out exactly as if they
 // did not wrap. No child is flex-sized in a way that changes its measured box, because the
 // measured box is what the tree already reports. That leaves only where each box goes.
+// Ascent and descent as a fraction of the font size (hhea metrics), for `align-items:
+// baseline`. A text node's first baseline sits at half the leading plus the ascent, so two
+// sizes in one row line up only when the smaller one is pushed down by the difference.
+const FONT_METRICS = {
+  Inter: [0.96875, 0.2421875],
+};
+function baselineOf(k, ks) {
+  const fam = String(ks.fontFamily || "").split(",").map((f) => f.trim().replace(/^["']|["']$/g, ""));
+  const m = fam.map((f) => FONT_METRICS[f.split("-")[0]]).find(Boolean);
+  const size = px(ks.fontSize, 0);
+  if (!m || !size) return null;
+  const lh = px(ks.lineHeight, size * 1.2);
+  return (lh - (m[0] + m[1]) * size) / 2 + m[0] * size;
+}
+
 function resolveLayout(nodes, styles, coords) {
   const pos = {};
   const clip = {};   // id -> the [x, y, w, h] its nearest `overflow: clip` ancestor allows
@@ -428,6 +443,24 @@ function resolveLayout(nodes, styles, coords) {
         return (col ? ks.marginTop : ks.marginLeft) === "auto";
       });
 
+      // `align-items: baseline` on a row: every text child's first baseline goes on the
+      // deepest one. A child that is not text, or is set in a face with no metrics here,
+      // stays on the top edge, and a font without metrics is reported.
+      const baseShift = {};
+      if (!col && (align === "baseline" || align === "first baseline" || align === "last baseline")) {
+        const bases = line.map((k) => (k.component === "Text" ? baselineOf(k, styles[k.id] || {}) : null));
+        // A row where only some faces are known cannot line up; say so. A row where none
+        // are known (a two-tone headline, merged into one text box below) needs nothing.
+        const unknown = line.filter((k, i) => k.component === "Text" && bases[i] === null);
+        if (unknown.length && unknown.length < line.length) {
+          for (const k of unknown) {
+            console.error(`  ! baseline row: no metrics for ${(styles[k.id] || {}).fontFamily} on ${k.id} "${k.name}" \u2014 top-aligned`);
+          }
+        }
+        const top = Math.max(...bases.filter((b) => b !== null));
+        line.forEach((k, i) => { if (bases[i] !== null) baseShift[k.id] = top - bases[i]; });
+      }
+
       let cursor = 0;
       let between = gap;
       if (autoIndex === -1) {
@@ -449,7 +482,7 @@ function resolveLayout(nodes, styles, coords) {
 
         const ks = styles[k.id] || {};
         const selfAlign = ks.alignSelf && ks.alignSelf !== "auto" ? ks.alignSelf : align;
-        let cross = 0;
+        let cross = baseShift[k.id] || 0;
         if (selfAlign === "center") cross = (lineCross - crossSize(k)) / 2;
         else if (selfAlign === "flex-end" || selfAlign === "end") cross = lineCross - crossSize(k);
 
@@ -657,6 +690,64 @@ function borderItems(n, s, x, y) {
   return out;
 }
 
+// One border on all four sides (same width, style and colour) is the shape's own outline.
+// Split into four strips it breaks twice: on a rounded pill the straight strips square off
+// the corners, and on a rotated card each strip spins about its own centre, so the sides
+// drift off the card. Returns { width, color } or null.
+function uniformBorder(s) {
+  const all = px(s.borderWidth, 0);
+  const sides = ["Top", "Right", "Bottom", "Left"].map((side) => ({
+    w: px(s["border" + side + "Width"], s.borderStyle || s.borderColor ? all : 0),
+    style: s["border" + side + "Style"] || s.borderStyle,
+    color: hex(s["border" + side + "Color"] || s.borderColor),
+  }));
+  const [a] = sides;
+  if (!a.w || a.style === "none" || !a.color) return null;
+  if (sides.some((b) => b.w !== a.w || b.style !== a.style || b.color !== a.color)) return null;
+  return { width: a.w, color: a.color };
+}
+
+// The border strips of a frame that is rotated or clipped. A rotated frame spins as ONE
+// piece about its centre, so each strip's centre is swung round the frame's centre before
+// the strip gets the same angle. A clipped frame's strips are cut to the window like the
+// frame itself; one that falls outside it is dropped.
+function placeStrips(strips, n, x, y, rot, win) {
+  if (rot) {
+    const t = (rot * Math.PI) / 180;
+    const cx = x + n.w / 2, cy = y + n.h / 2;
+    for (const b of strips) {
+      const dx = b.x + b.w / 2 - cx, dy = b.y + b.h / 2 - cy;
+      b.x = cx + dx * Math.cos(t) - dy * Math.sin(t) - b.w / 2;
+      b.y = cy + dx * Math.sin(t) + dy * Math.cos(t) - b.h / 2;
+      b.rot = rot;
+    }
+    return strips;
+  }
+  if (!win) return strips;
+  const out = [];
+  for (const b of strips) {
+    const v = intersect(win, [b.x, b.y, b.w, b.h]);
+    if (v[2] <= 0 || v[3] <= 0) continue;
+    out.push({ ...b, x: v[0], y: v[1], w: v[2], h: v[3] });
+  }
+  return out;
+}
+
+// `background-size` other than cover / contain: one or two lengths, each a percentage of
+// the box, a px length or `auto`. `100%` is the full width at the picture's own aspect,
+// which is how a screenshot is set into a frame that is taller than it. Stretching it to
+// the box instead distorts it.
+function sizedBox(size, nat, bw, bh) {
+  const parts = String(size).trim().split(/\s+/);
+  const len = (t, of) => (t === undefined || t === "auto") ? null
+    : String(t).endsWith("%") ? (parseFloat(t) / 100) * of : px(t, null);
+  let w = len(parts[0], bw), h = len(parts[1], bh);
+  if (w === null && h === null) return [nat.w, nat.h];
+  if (h === null) h = w * nat.h / nat.w;
+  if (w === null) w = h * nat.w / nat.h;
+  return [w, h];
+}
+
 function convert(dump) {
   const fsOf = (n) => (dump.styles || {})[n.id] || {};
   const nodes = parseTree(dump.tree);
@@ -841,8 +932,8 @@ function convert(dump) {
       const { x, y, rot } = at(n);
       // A border sits on top of whatever the frame holds, so it is emitted last - but it
       // is collected first, because each branch below ends in a `continue`.
-      const borders = borderItems(n, s, x, y);
-      if (rot) for (const b of borders) b.rot = rot;
+      const line = uniformBorder(s);
+      const borders = placeStrips(borderItems(n, s, x, y), n, x, y, rot, clip[n.id]);
       // A fully rounded frame holding a photo is a circular portrait, and pptx can do that
       // - but only on the picture itself, so the radius has to travel with the image
       // rather than becoming a shape. Read it before the image branch consumes the node.
@@ -866,7 +957,17 @@ function convert(dump) {
         // 0% and a 386px hero at 48% - so a fit resolved by eye shows the same band twice.
         let box = [x, y, n.w, n.h];
         const size = String(s.backgroundSize || "");
-        if (size === "cover" || size === "contain") {
+        if (size && size !== "cover" && size !== "contain" && !/^100%\s+100%$/.test(size)) {
+          const nat = imageSize(src);
+          if (!nat) {
+            console.error(`  ! ${dump.name}: cannot read the size of ${src} \u2014 ` +
+                          `"${n.name}" will be stretched instead of sized ${size}.`);
+          } else {
+            const [dw, dh] = sizedBox(size, nat, n.w, n.h);
+            const [fx, fy] = positionOf(s.backgroundPosition);
+            box = [x + (n.w - dw) * fx, y + (n.h - dh) * fy, dw, dh];
+          }
+        } else if (size === "cover" || size === "contain") {
           const nat = imageSize(src);
           if (!nat) {
             console.error(`  ! ${dump.name}: cannot read the size of ${src} \u2014 ` +
@@ -918,6 +1019,15 @@ function convert(dump) {
       const clear = 1 - (1 - alpha) * op;
       if (clear > 0.005) item.transparency = Math.round(clear * 100);
       if (rot) item.rot = rot;
+      if (line) {
+        // CSS draws the border inside the box; pptx centres the outline on the edge. Inset
+        // the shape by half the width so the outer edge lands where Paper's does.
+        item.x += line.width / 2; item.y += line.width / 2;
+        item.w -= line.width; item.h -= line.width;
+        item.line = line;
+        items.push(item);
+        continue;
+      }
       items.push(item);
       outlines.push(...borders);
       continue;

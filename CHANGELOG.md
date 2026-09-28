@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.3.3 (2026-09-28)
+
+- slides-export: a border that is the same on all four sides becomes the shape's own outline, so a pill badge keeps a round ring and a rotated sticker keeps its frame. Other borders are still per-side strips, now swung with a rotated frame and cut to the clip window.
+- slides-export: `align-items: baseline` rows line text up on the baseline (Inter metrics), so a small figure next to a large one no longer sits high.
+- slides-export: `background-size` lengths such as `100%` keep the picture's aspect instead of stretching it to the box.
+
 ## archy-design 0.3.2 (2026-09-28)
 
 - slides-export: `flex-wrap: wrap` rows now break onto new lines where their children overflow, so a 2 x 2 or 3 x 2 grid of cells exports as a grid instead of one row running off the slide. Frames whose children fit on one line lay out exactly as before.
