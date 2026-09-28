@@ -58,7 +58,10 @@ else
   for part in "${PARTS[@]}"; do
     if [[ "$part" == *-* ]]; then lo="${part%-*}"; hi="${part#*-}"; else lo="$part"; hi="$part"; fi
     for n in $(seq "$lo" "$hi"); do
-      for f in dump/"$n"-*.json; do [ -e "$f" ] && FILES+=("$f"); done
+      # Dumps are zero-padded (07-…), so 7 and 07 both have to find them.
+      for f in dump/"$n"-*.json dump/"$(printf '%02d' "$((10#$n))")"-*.json; do
+        [ -e "$f" ] && [[ ! " ${FILES[*]:-} " == *" $f "* ]] && FILES+=("$f")
+      done
     done
   done
   [ ${#FILES[@]} -eq 0 ] && { echo "no dumps match $RANGE" >&2; exit 1; }

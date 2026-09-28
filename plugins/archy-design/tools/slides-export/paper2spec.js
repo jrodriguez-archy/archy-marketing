@@ -486,6 +486,38 @@ function intersect(a, b) {
   return [x, y, Math.max(0, r - x), Math.max(0, bt - y)];
 }
 
+// Crop a rotated image to a world-space clip window. (x, y, w, h) is the unrotated box
+// whose centre is where pptx spins it, so the rotated footprint is that box turned about
+// its centre. The visible part of the footprint is mapped back into the picture's own
+// frame to get the crop; pptx then keeps `x, y`, takes the crop's size and spins that about
+// ITS centre, so the box is re-centred on the visible part. Returns {} when nothing is cut,
+// null when everything is. Only quarter turns: any other angle clips to a non-rectangle.
+function rotatedCrop(win, x, y, w, h, deg, slide, name) {
+  if (Math.abs(deg - Math.round(deg / 90) * 90) > 0.01) {
+    throw new Error(`${slide}: "${name}" is rotated ${deg}deg and clipped \u2014 only quarter turns can be cropped`);
+  }
+  const q = ((Math.round(deg / 90) % 4) + 4) % 4;
+  const cx = x + w / 2, cy = y + h / 2;
+  const [bw, bh] = q % 2 ? [h, w] : [w, h];
+  const vis = intersect(win, [cx - bw / 2, cy - bh / 2, bw, bh]);
+  if (vis[2] <= 0 || vis[3] <= 0) return null;
+  if (Math.abs(vis[2] - bw) <= 0.5 && Math.abs(vis[3] - bh) <= 0.5) return {};
+  // World -> picture: undo the turn about the centre.
+  const t = (-deg * Math.PI) / 180;
+  const back = (px, py) => {
+    const dx = px - cx, dy = py - cy;
+    return [w / 2 + dx * Math.cos(t) - dy * Math.sin(t),
+            h / 2 + dx * Math.sin(t) + dy * Math.cos(t)];
+  };
+  const a = back(vis[0], vis[1]);
+  const b = back(vis[0] + vis[2], vis[1] + vis[3]);
+  const r = (v) => Math.round(v * 100) / 100;
+  const lx = r(Math.min(a[0], b[0])), ly = r(Math.min(a[1], b[1]));
+  const lw = r(Math.abs(b[0] - a[0])), lh = r(Math.abs(b[1] - a[1]));
+  const vcx = vis[0] + vis[2] / 2, vcy = vis[1] + vis[3] / 2;
+  return { crop: { x: lx, y: ly, w: lw, h: lh }, x: r(vcx - lw / 2), y: r(vcy - lh / 2) };
+}
+
 // The two-tone headline: stacked Text nodes in a flex column at gap 0, all set in the
 // same face at the same size, differing only in colour. That is Paper's workaround for
 // not being able to colour part of a text node - CLAUDE.md calls it a colour split
@@ -694,7 +726,15 @@ function convert(dump) {
       // Vector art bleeds off an edge as readily as a photo does - the mascot runs off
       // the top - and the artboard's own `overflow: clip` is what cuts it.
       const win = clip[n.id];
-      if (win) {
+      if (win && rot) {
+        // A rotated asset: the clip window is in world space but the crop is in the
+        // picture's own unrotated frame. The mascot turned -90deg and bleeding off the
+        // right edge loses its HEIGHT, not its width; cropping the unrotated box instead
+        // cut the wrong side and shifted what was left.
+        const cropped = rotatedCrop(win, x, y, n.w, n.h, rot, dump.name, n.name);
+        if (cropped === null) continue;
+        Object.assign(item, cropped);
+      } else if (win) {
         const vis = intersect(win, [x, y, n.w, n.h]);
         if (Math.abs(vis[2] - n.w) > 0.5 || Math.abs(vis[3] - n.h) > 0.5) {
           if (vis[2] <= 0 || vis[3] <= 0) continue;

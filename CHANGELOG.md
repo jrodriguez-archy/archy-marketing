@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.3.1 (2026-09-28)
+
+- slides-export: a rotated image clipped by the artboard (the mascot turned -90deg bleeding off an edge) is now cropped in its own unrotated frame and re-centred on the visible part, instead of losing the wrong side.
+- slides-export: `export.sh 7` finds the zero-padded dump `07-…`; a single-digit selection used to match nothing.
+
 ## archy 0.4.7 and archy-design 0.3.0 (2026-09-25)
 
 - archy-design: the `gradients` skill and tool are now `pixel` (`/archy-design:pixel`, `tools/pixel/pixel.py`), covering both texture families: `pixel.py gradient …` for Pixel Gradients and `pixel.py effect dissolve | behind | tone` for Pixel Effects.

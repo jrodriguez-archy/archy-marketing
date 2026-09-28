@@ -167,6 +167,8 @@ All of these were found by a pin disagreeing:
 
 **Rotation is modelled, and it is the one transform that does not survive as-is.** `paper2spec.js` carries a `{cx, cy, deg}` pivot down the subtree of any rotated frame and swings each leaf's own **centre** around it; `build.js` passes `rotate` to `addShape` / `addImage` / `addText`. pptx spins a shape about its own centre while Paper spins about the frame's top-left (Paper normalises `transform-origin` to `0% 0%`), so the resolver converts between the two. Sign and unit (degrees, clockwise) carry across unchanged. **Nested rotation throws** rather than composing silently.
 
+**A rotated image that bleeds off the artboard is cropped in its own frame, not the world's.** The clip window is in world space, but `srcRect` crops the picture before pptx turns it, so `rotatedCrop()` maps the visible part of the rotated footprint back into the unrotated picture and re-centres the cropped box on what shows. A mascot turned -90deg and running off the right edge loses its *height*; cropping the unrotated box against the window cuts the wrong side and shifts the rest. Only quarter turns can be cropped (any other angle clips to a non-rectangle), and the script throws on the others.
+
 **Borders are emitted per side, as thin rects, and deferred to the end.** pptx cannot give a shape a different border per side (a nav strip framed on three sides so its seam with the hero stays open). They are flushed last because a frame is met *before* its children, so emitted in place every hairline lands under the screenshot it outlines.
 
 ---
