@@ -14,7 +14,7 @@ Three identities live in this plugin and they never mix:
 | Identity | Skill | Paper files |
 |---|---|---|
 | **Archy** | this one | `Brand`, `Master - Events`, `Archy - Ads`, `Master - Decks`, `Archy - Various Collateral` |
-| **DOC** (Dental Ownership Collective) | `doc-brand` | `DOC - Brand`, `DOC - Ads` |
+| **DOC** (Dental Ownership Collective) | `doc-brand` (ads: `doc-ad`) | `DOC - Brand`, `DOC - Ads` |
 | **Archy Offsite 2026** | `offsite-brand` | `Archy Offsite - 2026` |
 
 If the request does not say which one, infer it from the event, file or context; ask only when it is genuinely unclear. Never apply one identity's tokens, type, logo or mascot to another.

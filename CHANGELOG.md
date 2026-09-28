@@ -6,6 +6,13 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.5.0 (2026-09-28)
+
+- archy: new `doc-brand` skill, the DOC (Dental Ownership Collective) identity: sources of truth and traps, tokens (including new alpha, tint and radius tokens), the lockup and its colourways, the five ad themes, track coding, Satoshi and the two-weight headline, voice and CTA per theme, review checklist.
+- archy: new `doc-ad` skill for DOC ads from the `DOC - Ads` master: the ad chassis (auto-layout structure, margins, lockup ladder, fixed CTA button, format rules), type sizing, and a catalog of the 19 layouts.
+- archy: `paper-quirks.md`: `color-mix()` is unreliable rather than always dropped; give a tint its own token.
+- archy: the brand skill points DOC ads to `doc-ad`. README lists the DOC skills; a stale duplicate skills table removed.
+
 ## archy-design 0.3.3 (2026-09-28)
 
 - slides-export: a border that is the same on all four sides becomes the shape's own outline, so a pill badge keeps a round ring and a rotated sticker keeps its frame. Other borders are still per-side strips, now swung with a rotated frame and cut to the clip window.

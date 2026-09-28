@@ -121,6 +121,8 @@ Two plugins live in this repository.
 | `social-post` | Event social: Post, Stories and OG link previews |
 | `deck` | Slides from the Master - Decks library |
 | `offsite-brand` | The Archy Offsite 2026 identity |
+| `doc-brand` | DOC (Dental Ownership Collective) brand rules: tokens, the lockup, themes, Satoshi, voice, review checklist |
+| `doc-ad` | DOC ads from the DOC - Ads master: 19 layouts, five themes, 1:1 / 4:5 / 9:16 |
 
 **`archy-design`**, for designers (it installs `archy` with it):
 
@@ -140,18 +142,6 @@ Skills run on their own when your request matches; you can also call one directl
 ### For designers
 
 Follow the setup above, then also install **archy-design** from **+ → Plugins → Add plugin**. To publish changes you need write access to this repository with your own GitHub account; ask Marketing & Design. The export tools also need Node and Python on your Mac (the skills tell you what is missing).
-
----|---|
-| `brand` | Archy brand rules: colours, type, Rulers, the mascot, logos, voice, review checklist |
-| `social-post` | Event social: Post, Stories and OG link previews |
-| `deck` | Slides from the Master - Decks library |
-| `slides-export` | Turn Paper slides into an editable Google Slides / PowerPoint file |
-| `figma-export` | Publish a Paper artboard into Figma as editable layers |
-| `print-pdf` | Turn a Paper PDF into a print-ready file |
-| `hugeicons` | Bring Hugeicons into a Paper file |
-| `offsite-brand` | The Archy Offsite 2026 identity |
-
-Skills run on their own when your request matches; you can also call one directly, for example `/archy:social-post`.
 
 ---
 
