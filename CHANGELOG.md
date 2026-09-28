@@ -6,6 +6,14 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.6.1 (2026-09-28)
+
+- archy: new `tools/fonts/install-satoshi.sh`: installs DOC's Satoshi from Fontshare (never from this repository, per its licence), registers it with macOS and clears the quarantine flag; prints the manual steps if it cannot.
+- archy: `doc-brand` starts with a font check: without Satoshi installed, Paper silently renders DOC in the system sans. Claude offers to install it and waits for Paper to be reopened.
+- archy: `paper-quirks.md`: editing a text node's style while its font is missing rewrites the family to `system-ui` for good; how to detect and restore it; installing a font file is not always enough.
+- archy: `doc-ad`: on a 1:1 the height can cap the hero before the width; how to clean the working copy of the 285-artboard master.
+- README: DOC setup note about Satoshi.
+
 ## archy 0.6.0 (2026-09-28)
 
 - archy: `ad` and `chrome-store` are now real skills (they only had references before, so they never triggered). `ad` works from the Archy - Ads pieces as references until an ads master exists; `chrome-store` covers the store listing images built from native product UI.

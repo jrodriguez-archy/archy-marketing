@@ -122,6 +122,12 @@ Each of these is accepted, often reported back by `get_computed_styles`, and pai
 
 ---
 
+## Fonts that are not installed
+
+- **Paper renders only fonts it can find on this Mac or on Google Fonts.** Onest, Inter, Open Sans and Overpass come from Google Fonts; a font like DOC's Satoshi has to be installed locally. When it is missing, every text node that asks for it renders in the system sans with no warning, while `get_jsx` and `get_computed_styles` still report the intended family, so the file looks right on paper and wrong on screen.
+- **While a font is missing, editing a text node's style destroys its family.** Any `update_styles` on a Text node (a colour, a size, a token swap) makes Paper rewrite `fontFamily` to `system-ui, sans-serif`, permanently. Setting the family back is refused until Paper can see the font. Nodes only touched with `set_text_content` keep their family. **So check `get_font_family_info` for the brand's face before the first style edit of a session**, and fix the install before editing anything. To find damage afterwards, `find_nodes` with `{styleName: "fontFamily", styleValue: "system-ui, sans-serif"}` (an exact value: a bare `system-ui*` also matches the normal fallback at the end of every stack). Restore each node with its own weight's face (`"Satoshi-Bold", "Satoshi", system-ui, sans-serif`), copying a healthy sibling.
+- **Installing a font file is not always enough.** Files copied into a `~/Library/Fonts` folder that did not exist before may not be registered by macOS, and no app sees them until they are (Font Book's *Install* does it; so does the `install-satoshi.sh` tool). Paper reads the list at launch: quit it completely (Cmd+Q) and reopen after installing. Files that came from a download may also carry a quarantine flag worth clearing.
+
 ## Typography identification
 
 - **Onest and Inter cannot be told apart by measurement at body sizes. The tell is the `y`.** Their width/cap-height ratios agree to within ±0.02em of tracking, so fitting rendered widths against a rasterised paste returns a tie and then picks the wrong one (it once chose Inter for a whole one-pager set in Onest). **Onest's `y` drops and curls into a hook to the left; Inter's is a straight diagonal cut at an angle.** The `g` tail confirms it. Identify the face by rendering both candidates over the source crop and looking at the `y` *before* measuring anything.

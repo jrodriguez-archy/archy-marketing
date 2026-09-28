@@ -22,6 +22,7 @@ Run this after filling or adapting a DOC piece, and before reporting it as done.
 
 ## Type
 
+- [ ] Satoshi is installed (`get_font_family_info` returns it) and the screenshot shows Satoshi, not a system fallback. A file that says Satoshi can still render in another face.
 - [ ] Satoshi only; nothing lighter than Regular 400.
 - [ ] Two-weight headline: two nodes, the Bold half starts a line, both halves the same colour (ads), the gap suits the grammar (`identity.md`).
 - [ ] The hero type fills the measure (longest line close to the column width) unless the layout caps it.

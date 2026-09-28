@@ -53,7 +53,8 @@ Paper traps that apply here (full list in `archy:brand` › `paper-quirks.md`): 
 
 ## Sizing type
 
-- **Fill the measure.** After every copy change, resize the hero type until its longest line reaches about 890 to 920 of the 936 column (measure at the node's own tracking; body copy has none). A themed variant may carry a different size from its siblings because its copy is different. Only copy that already fills the column keeps its size.
+- **Fill the measure, within the height.** After every copy change, resize the hero type until its longest line reaches about 890 to 920 of the 936 column (measure at the node's own tracking; body copy has none). A themed variant may carry a different size from its siblings because its copy is different. Only copy that already fills the column keeps its size.
+- **On a 1:1 the height often caps the hero before the width does.** A four-line two-weight headline plus a body and a CTA bar leaves little room: growing it to fill the width pushes it against the lockup and the CTA. Grow until either the width fills or the gaps above and below the Body reach their floor (about 48 to the lockup and to the CTA), whichever comes first, and screenshot.
 - **Measure widths in one call**: a `flex-direction: row; gap: 0` frame of `width: max-content` candidates, then `get_children` (each `x` is the running sum). Delete the frame afterwards.
 - **The lead under a headline is a second voice**: start around 0.45 × the headline (about 48 to 50 on a 120 headline), leading about 1.2 to 1.3. Supporting lines under a stat run around 0.22 × the stat.
 - **One headline break for all three formats** of a campaign, so they read as one; body copy may break differently per format, always at a sense unit.

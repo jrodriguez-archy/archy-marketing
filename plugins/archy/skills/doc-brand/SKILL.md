@@ -48,6 +48,15 @@ If a copy cannot be made, ask the user to duplicate the file in Paper (right-cli
 
 ## Workflow
 
+0. **Check the font first.** Call `get_font_family_info` with `Satoshi`. Satoshi is not on Google Fonts, so Paper only has it when it is installed on this Mac; when it is missing Paper silently renders every DOC text node in the system sans, and every screenshot, measurement and fit is wrong while the file itself still says Satoshi. An empty result means it is missing, even when the file lists Satoshi among its fonts.
+
+   **If it is missing, install it before designing:**
+   1. Tell the user Satoshi is needed, and ask before installing.
+   2. Run `"${CLAUDE_PLUGIN_ROOT}/tools/fonts/install-satoshi.sh"`. It downloads the official package from Fontshare, copies the OTF weights into `~/Library/Fonts` and clears macOS's quarantine flag (a downloaded font that keeps the flag may not load).
+   3. If the script cannot install it, it prints the manual steps: pass them on (open `fontshare.com/fonts/satoshi`, *Download family*, unzip, select every `.otf` in `Fonts/OTF`, double-click, *Install*).
+   4. Ask the user to quit Paper completely (Cmd+Q) and open it again, then check with `get_font_family_info` once more. Only start designing when it answers.
+
+   **Never commit the font files to this repository or send them to anyone.** Satoshi's licence (ITF Free Font License) allows installing it on the team's own machines, but not redistributing it through a repository, a public server or to outside agencies; each person gets it from Fontshare.
 1. **Read the brief** and pick the starting layout (the production skill's catalog), or 2 or 3 of them as options when none was named.
 2. **Make or open the working copy.** Ask once for missing facts; continue with visible placeholders when they are not available yet.
 3. **Fill and adapt.** Copy first, then everything the piece needs: re-break the headline so the weight change lands on a line end, re-size type to the new copy, keep the lockup ladder.
