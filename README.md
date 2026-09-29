@@ -60,6 +60,8 @@ Open Paper Desktop with any file. Start a new session in the workspace folder an
 
 If Claude answers with the file's name, you are ready.
 
+**Not sure where to start?** Ask Claude "It's my first time, what can I do?". It checks your setup, shows what you can ask for with examples, and offers to make a first piece with you.
+
 **Working on DOC?** DOC uses the Satoshi typeface, which Paper does not include. The first time you ask for a DOC piece, Claude checks for it and, with your OK, installs it from Fontshare (its free, official source). Then quit Paper (Cmd+Q) and open it again. If the automatic install does not work, Claude gives you the steps to do it by hand.
 
 ---

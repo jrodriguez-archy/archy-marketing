@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.10.0 (2026-09-29)
+
+- archy: new `start` skill for first-time users: checks that Paper is connected (and Satoshi for DOC work), lists what they can ask for with one example per skill, gives the key tips (real facts, untouched masters, options, exports) and offers a first piece.
+
 ## archy 0.9.0 (2026-09-29)
 
 - archy: `doc-video` master rebuilt with the editor's source files for the F3 Foundations videos: 55 templates in eight sections (Structure, Lower Thirds, Text and Lists, Numbers, Charts, Diagrams, Icons, Heroes), 29 Overlay twins, new codes `<Code> · <Name>`, one section label per row. The `Video` page holds templates only; each video gets its own page.
