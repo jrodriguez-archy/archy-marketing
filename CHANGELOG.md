@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.11.2 (2026-09-29)
+
+- archy: `templates.md` › `Night Out Illustration` re-laid out: four blocks spread over the safe area, larger subhead, details and button, extra `Stars` layers, and on Stories a larger wordmark and a 1.35× cocktail. Limits updated.
+- archy: `templates.md` › `Night Out Venue`: two-line headline at 100px, headline and perks pill grouped, content centred below a larger venue photo, larger wordmark, and a `BK Fade` that keeps the drinks pattern at the edges.
+
 ## archy 0.11.1 (2026-09-29)
 
 - archy: `doc-video` › S3 Speaker Lower Third: the role tag hangs off the right end of the name box, not centred under it.

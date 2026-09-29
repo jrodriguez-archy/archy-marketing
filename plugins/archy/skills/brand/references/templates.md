@@ -208,18 +208,18 @@ Day-before reminder with the event name as a Ruler-flanked masthead, on the dark
 
 A free evening Archy hosts for local dentists (drinks, food, golf, a dinner), with a call to sign up. From the Dallas Topgolf campaign. Four formats: Post, Stories, OG, Square. **Use when** Archy is the host, there is a date, time and place, and no venue photo (or a lighter, illustrated feel is wanted). **Not when** it is a booth at a trade show, or a talk with a named speaker (use `Speaker Invite`).
 
-`Content` has two groups: `Header` (Archy wordmark + headline) at the top and `Body` (subhead, details, button) at the bottom, with `justify-content: space-between`; the gap between them is where the cocktail sits. The OG has no button.
+`Content` spans the safe area (Post y 150–1240, Stories y 380–1560, Square y 90–990) with four blocks spread by `justify-content: space-between`: `Header` (wordmark + headline), `slot-text-subhead`, `Details`, `Button`. The cocktail sits beside the headline; `Stars` layers add sparkles in the open areas. Stories runs a larger wordmark (324×125) and the cocktail at 1.35× (resize `Cocktail`, which scales the lime by percentage, then the glass and sparkle SVGs by the same factor), bleeding off the top right. When a longer copy changes a block's height the gaps absorb it; keep every star clear of the text. The OG has no button.
 
 | Slot | Post / Stories / Square | OG | Example | Notes |
 |---|---|---|---|---|
-| `slot-text-headline` | ≤ 20 characters per line, 2 lines, break with `\n` | ≤ 20 per line, 2 lines | `A Free Night Out\nFor Dallas Dentists` | 96/104 bold (84/84 on the OG). A third line pushes into the cocktail: shorten first, then reduce the size |
-| `slot-text-subhead` | ≤ 43 characters per line, 2 lines | ≤ 60 per line, 2 lines | `Just free drinks, great food, a few rounds of golf, and Dallas dentists who get it.` | One sentence, the offer in plain words |
-| `slot-text-city` | ≤ 15 characters | ≤ 15 | `Dallas, TX` | `City, ST` |
+| `slot-text-headline` | ≤ 20 characters per line, 2 lines, break with `\n` | ≤ 20 per line, 2 lines | `A Free Night Out\nFor Dallas Dentists` | 100/106 bold (84/84 on the OG). A third line pushes into the cocktail: shorten first, then reduce the size |
+| `slot-text-subhead` | ≤ 34 characters per line, 3 lines (Stories ≤ 30; Square 42px, 2 lines of ≤ 45) | ≤ 52 per line, 2 lines | `Just free drinks, great food, a few rounds of golf, and Dallas dentists who get it.` | One sentence, the offer in plain words. Post 54/75 with `text-wrap: pretty`, Stories 62/83 with `balance` |
+| `slot-text-city` | ≤ 14 characters | ≤ 15 | `Dallas, TX` | `City, ST` |
 | `slot-text-venue` | ≤ 21 characters | ≤ 18 | `Topgolf Dallas` | |
-| `slot-text-date` | ≤ 19 characters | ≤ 20 | `Friday, October 9` | Weekday + date, format from `voice.md` |
+| `slot-text-date` | ≤ 18 characters | ≤ 19 | `Friday, October 9` | Weekday + date, format from `voice.md` |
 | `slot-text-time` | ≤ 24 characters | ≤ 24 | `6:00 – 8:00 PM` | |
-| `slot-text-cta` | ≤ 30 characters | (no button) | `Claim your spot` | Sentence case, the button grows with it |
-| `optional-illustration` | Swoosh, cocktail and sparkles | Cocktail and sparkles | | Delete the whole layer for a plain ground. Then set `Content` to `justify-content: flex-start` with a 96px gap so the body does not sink to the bottom |
+| `slot-text-cta` | ≤ 26 characters | (no button) | `Claim your spot` | Inter Medium 36, padding 28 / 44, arrow 36. Sentence case, the button grows with it |
+| `optional-illustration` | Swoosh, cocktail, sparkles, `Stars` | Cocktail, sparkles, `Stars` | | Delete the whole layer for a plain ground; the layout needs no other change |
 
 Fixed by design: the labels (`Location`, `Date & Time`), the arrow icon, the wordmark. The illustration keeps its own asset colours (lime, glass blues); do not recolour it.
 
@@ -227,16 +227,16 @@ Fixed by design: the labels (`Location`, `Date & Time`), the arrow icon, the wor
 
 The same hosted evening, led by a photo of the venue. From the Dallas Topgolf campaign. Four formats: Post, Stories, OG, Square. **Use when** Archy hosts at a named venue and there is a good photo of it. **Not when** there is no venue photo (use `Night Out Illustration`).
 
-Everything is centred on Post, Stories and Square; the OG sets the content left-aligned beside a photo column.
+Everything is centred on Post, Stories and Square; the OG sets the content left-aligned beside a photo column. `Content` holds three groups with an 80px gap (56 on the Square), centred in the ground below the photo: `Header` (headline + perks pill, 40px apart), `Details`, and the wordmark (288×112; 180×70 on the OG). A `BK Fade` over the drinks pattern (a dark oval behind the text plus a fade to the bottom) keeps the texture at the edges only.
 
 | Slot | Post / Stories | Square | OG | Example | Notes |
 |---|---|---|---|---|---|
-| `slot-image-venue` | Top band 1080×353 (Stories 1080×600) | Top band 1080×280 | Left column 353×630 | Topgolf building | `background-size: cover`. A photo from the requester or the venue, never generated (see *Photos* in the brand skill) |
-| `slot-text-headline` | ≤ 15 characters per line, 3 lines | ≤ 22 per line, 2 lines | ≤ 25 per line, 2 lines | `30 Dallas\ndentists.\nOne night out.` | 120/124 bold (88 Square, 64 OG). Break with `\n` |
+| `slot-image-venue` | Top band 1080×420 (Stories 1080×700) | Top band 1080×320 | Left column 420×630 | Topgolf building | `background-size: cover`. A photo from the requester or the venue, never generated (see *Photos* in the brand skill) |
+| `slot-text-headline` | ≤ 20 characters per line, 2 lines | ≤ 22 per line, 2 lines | ≤ 25 per line, 2 lines | `30 Dallas dentists.\nOne night out.` | 100/104 bold (88 Square, 64 OG). Break with `\n` |
 | `slot-text-perks` | ≤ 49 characters, 1 line | ≤ 49 | ≤ 55 | `Free golf, appetizers, drinks & socializing` | Typed in sentence case, set uppercase by the style. The white pill grows with the text |
 | `slot-text-city`, `slot-text-venue` | ≤ 14 / ≤ 20 characters | same | ≤ 12 / ≤ 18 | `Dallas, TX`, `Topgolf Dallas` | |
 | `slot-text-date`, `slot-text-time` | ≤ 19 / ≤ 24 characters | same | ≤ 20 / ≤ 24 | `Friday, October 9`, `6:00 – 8:00 PM` | |
-| `optional-illustration` | Drinks pattern at 0.16 opacity | | | | Delete for a plain ground. On Stories the `BK Fade` goes with it |
+| `optional-illustration` | Drinks pattern at 0.16 opacity | | | | Delete for a plain ground; the `BK Fade` can go with it |
 
 The drinks pattern is texture, not content: it stays at low opacity (it arrived with a `multiply` blend, which is banned). Fixed by design: labels, pill style, the wordmark at the bottom (top of the column on the OG).
 
