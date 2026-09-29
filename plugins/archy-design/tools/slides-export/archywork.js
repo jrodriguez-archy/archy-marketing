@@ -62,7 +62,7 @@ function output(p) {
 }
 
 // An asset a spec names as "assets/…": the project's own copy in WORK wins, and the
-// generic set shipped with the tool (assets-base/) is the fallback, so the 55-layout
+// generic set shipped with the tool (assets-base/) is the fallback, so the 57-layout
 // template library builds in an empty work directory.
 function asset(p) {
   if (path.isAbsolute(p)) return p;

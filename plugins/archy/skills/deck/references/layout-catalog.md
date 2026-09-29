@@ -2,7 +2,7 @@
 
 Read this when choosing a layout for content in hand, adding a layout to the library, deriving a new slide from an existing one, or placing an image or logo slot.
 
-The library is the Paper file **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 55 layouts at 1920 × 1080, all with export specs. Shared geometry (header, Rulers, type scale) is in `slide-system.md`; the dark layouts' rules in `dark-set.md`; chart construction in `charts.md`. Export to Google Slides is the `archy-design:slides-export` skill.
+The library is the Paper file **Master - Decks** (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 57 layouts at 1920 × 1080, all with export specs. Shared geometry (header, Rulers, type scale) is in `slide-system.md`; the dark layouts' rules in `dark-set.md`; chart construction in `charts.md`. Export to Google Slides is the `archy-design:slides-export` skill.
 
 ---
 
@@ -20,7 +20,7 @@ Dark layouts are marked **◆**. See `dark-set.md` for what earns one.
 
 | Page | Layouts |
 |---|---|
-| **Frames** (8) | `Cover` · `Statement` · **◆**`Manifesto` · `Agenda` · `Section Divider` · `Quote Statement` · **◆**`The Ask` · `Closing` |
+| **Frames** (10) | `Cover` · `Statement` · **◆**`Manifesto` · `Agenda` · `Section Divider` · **◆**`Section Preview` · `Section Emoji` · `Quote Statement` · **◆**`The Ask` · `Closing` |
 | **Numbers** (6) | **◆**`Big Number` · **◆**`Number Full-bleed` · **◆**`Two Numbers` · `Metrics 2×2` · `Metrics 3-up` · `Split stats` |
 | **Charts** (9) | `Bars` · `Line / Area` · **◆**`Cohort Curves` · `Horizontal Bars` · `Stacked Bars` · `Waterfall` · `Chart + Hero Number` · `Two Charts` · **◆**`Market Sizing` |
 | **Lists** (10) | `Columns 2-up` · `Columns 3-up` · `Columns 4-up` · `Numbered rows` · `Icon List` · `Product grid` · **◆**`Platform Stack` · **◆**`Key-value rows` · `Timeline` · `Roadmap` |
@@ -73,6 +73,8 @@ The same test that removes an element from a composition removes a layout from t
 | `Two Charts` | Light | Two 784-wide plots of 4 bars, sub-titles instead of a legend | none |
 | `Agenda` | Light | 8 items, 2 columns × 4 rows of 177, ordinal in a fixed 60px slot + title 30/38 | none |
 | `Section Divider` | Royal Blue 500 | Section number 160/160 + title 128/128, both left-aligned. **No header band, no eyebrow** | none |
+| `Section Preview` | Dark Background | Eyebrow `Part NN`, title 128/128 bottom-left ending at 960; the Cover's spine at 1315 and an `In this part` list (26/34, one item per slide of the section) bottom-aligned in the right column at x 1413. **No header band** | none |
+| `Section Emoji` | Light | One native emoji in a 160 × 160 slot, eyebrow `Part NN`, title 128/128 in `--color-light-text`. **No header band** | none |
 | `Quote Statement` | Royal Blue 500 | One quote at 72/96 Onest Regular, left-aligned, + attribution. **No header band** | none |
 | `Closing` | Royal Blue 500 | `Thank you.` 128/128 + one contact block; the Cover's spine and wordmark | none |
 | `Logo Wall` | Light | 4 × 4 ruled cells, one 240 × 80 logo slot centred in each | none |
@@ -103,7 +105,7 @@ Note: `charts.md` ("Name the mark in place") states that once `Market Sizing`'s 
 
 The source deck has no closing slide.
 
-**The meta page number is `NN` on every template, on purpose.** It is a placeholder: the exporter (see the `archy-design:slides-export` skill) substitutes the real number from the slide index. Hand-typing fifty-five numbers is the same staleness trap as numbering the artboards.
+**The meta page number is `NN` on every template, on purpose.** It is a placeholder: the exporter (see the `archy-design:slides-export` skill) substitutes the real number from the slide index. Hand-typing fifty-seven numbers is the same staleness trap as numbering the artboards.
 
 ---
 

@@ -102,7 +102,7 @@ const text = (layer, x, y, w, h, t, o = {}) => ({
 // These five x values are READ OUT OF PAPER, not derived. They were 1416 / 1580 / 1606 /
 // 1772 / 1798 for a while - arithmetic from "1824 minus a measured content width of 408"
 // - and Paper actually resolves the row three pixels further left, at 1413 / 1577 / 1603 /
-// 1769 / 1795. Three pixels is invisible on one slide; the meta is on all fifty-five, so
+// 1769 / 1795. Three pixels is invisible on one slide; the meta is on all fifty-seven, so
 // it was a consistent 3px drift across the whole deck against the design it copies.
 const meta = (c) => [
   text("Meta Slot", 1413, 96, 164, 22, "Confidential", {
@@ -1386,6 +1386,54 @@ const sectionDivider = {
   ],
 };
 
+// ---------------------------------------------------------------- Section Preview
+
+// A divider that also says what the section holds. Navy so it reads as a beat, the
+// Cover's spine at 1315 opening a right column, and the list bottom-aligned with the
+// title at 960. Rulers are solid --color-dark-border (the current rule), not the
+// legacy white 0.3.
+const NAVY = { ...DARK, rule: "0000C9" };
+const PREVIEW_ITEMS = ["Market", "Customers", "Pricing", "Channels", "Partnerships", "Roadmap"];
+
+const sectionPreview = {
+  name: "Section Preview",
+  canvas: { w: 1920, h: 1080 },
+  background: NAVY.bg,
+  items: [
+    rulerH(20, NAVY), rulerH(1056, NAVY),
+    rect("Ruler V Divider", 1315, 20, 2, 1038, NAVY.rule),
+    eyebrow("Part 04", NAVY),
+    ...meta(NAVY),
+    text("Section Title", 96, 832, 1123, 128, "Go to market",
+      { font: ONEST, size: 128, line: 128, track: -0.02, color: NAVY.h1 }),
+    text("In This Part Label", 1413, 638, 411, 24, "In this part",
+      { font: INTER_SEMI, size: 20, line: 24, track: 0.05, color: NAVY.eyebrow, upper: true }),
+    ...PREVIEW_ITEMS.map((t, i) =>
+      text(`Item ${i + 1}`, 1413, 686 + i * 48, 411, 34, t,
+        { size: 26, line: 34, color: NAVY.body })),
+  ],
+};
+
+// ---------------------------------------------------------------- Section Emoji
+
+// The warm divider for culture and onboarding decks: white ground, one native emoji as
+// the picture, the eyebrow as the section number. The emoji ships as a PNG because
+// colour emoji do not survive as text in the export.
+const sectionEmoji = {
+  name: "Section Emoji",
+  canvas: { w: 1920, h: 1080 },
+  background: LIGHT.bg,
+  items: [
+    rulerH(20, LIGHT), rulerH(1056, LIGHT),
+    ...meta(LIGHT),
+    { type: "image", layer: "Emoji", src: "assets/emoji-rocket.png", x: 96, y: 300, w: 160, h: 160 },
+    text("Eyebrow", 96, 524, 400, 24, "Part 04",
+      { font: INTER_SEMI, size: 20, line: 24, track: 0.05, color: LIGHT.eyebrow, upper: true }),
+    text("Section Title", 96, 580, 1500, 128, "Go to market",
+      { font: ONEST, size: 128, line: 128, track: -0.02, color: LIGHT.h1 }),
+  ],
+};
+
 // ---------------------------------------------------------------- Closing
 
 // Derived from the Cover so it shares its spine - the 1335 vertical and the wordmark in
@@ -1824,7 +1872,7 @@ const roadmap = {
 
 // ================================================================ The dark set
 //
-// Thirteen layouts on --color-dark-background. The header inversion on a dark ground is a
+// Fourteen layouts on --color-dark-background (`Section Preview` is defined with the Frames). The header inversion on a dark ground is a
 // FIXED mapping in CLAUDE.md, which means a dark version of an existing layout is a free
 // recolour - and a recolour is not a layout. So every one of these is a distribution that
 // does not exist on light, and each is a slide whose job is to be a BEAT in the deck
@@ -1835,7 +1883,7 @@ const roadmap = {
 // posters: pptxgenjs supports no gradient fills, so a gradient ground would have to go in
 // as a background image on every slide and stop being an editable shape. `Capture +
 // Scrim` is the one place a raster is unavoidable, and it is one image rather than
-// thirteen.
+// fourteen.
 
 // Two caps and nothing else - used by the layouts with no header band at all.
 const darkCaps = () => [rulerH(20, DARK), rulerH(1056, DARK)];
@@ -2366,6 +2414,7 @@ const screenTrio = {
 const categories = {
   Frames: {
     cover, statement, manifesto, agenda, sectionDivider, quoteStatement, theAsk, closing,
+    sectionPreview, sectionEmoji,
   },
   Numbers: {
     bigNumber, numberFullBleed, twoNumbers, metrics, metrics3up, splitStats,

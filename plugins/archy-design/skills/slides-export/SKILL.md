@@ -33,7 +33,7 @@ Every script takes its work directory from `--work DIR`, else `$ARCHY_WORK`, els
 
 ## 2. Template library (Master - Decks)
 
-The 55 layouts already have hand-written specs:
+The 57 layouts already have hand-written specs:
 
 ```bash
 export ARCHY_WORK="$BASE/templates"

@@ -1,6 +1,6 @@
 ---
 name: deck
-description: Build Archy presentation slides in Paper from the Master - Decks template library (55 layouts, 1920×1080). Use when someone needs a slide, a deck, or an existing deck re-set in the Archy system. For taking slides out to PowerPoint or Google Slides, use archy-design:slides-export.
+description: Build Archy presentation slides in Paper from the Master - Decks template library (57 layouts, 1920×1080). Use when someone needs a slide, a deck, or an existing deck re-set in the Archy system. For taking slides out to PowerPoint or Google Slides, use archy-design:slides-export.
 ---
 
 # Archy decks
@@ -9,7 +9,7 @@ Load the `brand` skill first; its hard rules and workflow apply here unchanged.
 
 ## Source
 
-Paper file `Master - Decks` (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 55 layouts on one page per content category (Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase). Pick a layout by the **content in hand** ("three stats and a claim"), using `references/layout-catalog.md`.
+Paper file `Master - Decks` (`app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`): 57 layouts on one page per content category (Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase). Pick a layout by the **content in hand** ("three stats and a claim"), using `references/layout-catalog.md`.
 
 ## Starting point: two paths
 

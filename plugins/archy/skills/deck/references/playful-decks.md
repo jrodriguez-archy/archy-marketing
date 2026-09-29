@@ -1,6 +1,6 @@
 # Playful decks
 
-Read this when a deck is meant to be warm rather than corporate: onboarding, culture, celebrations, team updates. The reference is `Deck - HR Onboarding` (`app.paper.design/file/01M3A033W28Q9BKKYRT0P7QFX7`), 23 slides built on the Master - Decks system.
+Read this when a deck is meant to be warm rather than corporate: onboarding, culture, celebrations, team updates. The reference is `Deck - HR Onboarding` (`app.paper.design/file/01M3A033W28Q9BKKYRT0P7QFX7`), 24 slides built on the Master - Decks system.
 
 **It is an exception the requester asks for, not a default.** A welcome for new hires is warm by content, which is what makes the extra play legitimate. Business and data slides inside the same deck stay clean; that contrast is the point.
 
@@ -10,6 +10,15 @@ Read this when a deck is meant to be warm rather than corporate: onboarding, cul
 - **The mascot in a few extra spots**, on slides that are a pause: a section divider, a culture slide, the Closing. All his rules still hold (antenna into the canvas, about two thirds visible, eyes clear of the crop, edges per the ground).
 - **One tilted sticker** (about −6°, white with a 3px royal border), on the Cover.
 - **A rising line** replacing a flat timeline axis, with the marks climbing inside a fixed-height frame per column so every text lane below stays flat.
+
+## Section dividers
+
+Three divider layouts live in Frames: `Section Divider` (royal blue, numbered), **◆**`Section Preview` (navy, with the section's slides listed on the right) and `Section Emoji` (white, one emoji as the picture). `Section Emoji` is the one made for warm decks; any of the three works.
+
+- **One family per deck.** Pick one divider layout and use it for every cut, numbered in order (`01`, `02`), so the dividers read as a system.
+- **A divider marks a real change of subject**, typically two or three in a deck of about 20 slides. None right after the Cover (the Cover already opens the first section), none before a section of a single slide, none before the Closing.
+- **A divider with the mascot counts toward his two or three appearances.** When the deck already has him on the Closing and elsewhere, use a divider without him.
+- `Section Preview`'s list is the section's slide names, so update it by hand when slides move between sections.
 
 ## What the play may not touch
 

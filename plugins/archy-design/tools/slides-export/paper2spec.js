@@ -1,6 +1,6 @@
 // Paper artboard -> build.js spec, mechanically.
 //
-// The 55-layout library in specs.js is hand-written, because those layouts are the design
+// The 57-layout library in specs.js is hand-written, because those layouts are the design
 // system and writing them out by hand is how they got verified. The Offsite deck is the
 // opposite case: ~56 one-off artboards that already exist on the canvas and only need to
 // come back out. Hand-writing those specs would be transcription, not design, so this

@@ -1,6 +1,6 @@
 # The Dark Set
 
-Read this when deciding whether a slide should sit on a dark ground, building one of the thirteen dark layouts, or colouring a chart or image slot on navy.
+Read this when deciding whether a slide should sit on a dark ground, building one of the fourteen dark layouts, or colouring a chart or image slot on navy.
 
 The dark layouts are marked **◆** in `layout-catalog.md`. The dark-ground header mapping (eyebrow, headline, meta, Rulers, body) is in `slide-system.md`; the solid-Rulers rule in `../../brand/references/composition.md`.
 
@@ -8,13 +8,14 @@ The dark layouts are marked **◆** in `layout-catalog.md`. The dark-ground head
 
 ## What earns a dark slide
 
-Thirteen of the fifty-five layouts sit on `--color-dark-background`, and they exist for one reason: **a dark slide is a beat in the deck, not a page of information.** It is punctuation between light sections. `Big Number` and `Matrix` were dark long before the set was filled out, and both are stop-and-look slides; that is the pattern, not a coincidence.
+Fourteen of the fifty-seven layouts sit on `--color-dark-background`, and they exist for one reason: **a dark slide is a beat in the deck, not a page of information.** It is punctuation between light sections. `Big Number` and `Matrix` were dark long before the set was filled out, and both are stop-and-look slides; that is the pattern, not a coincidence.
 
 **That test is strict, because a dark version of an existing layout is a free recolour.** The header inversion on a dark ground is a fixed mapping, so re-grounding `Metrics 2×2` costs nothing and produces nothing. Every dark layout in the library is therefore a *distribution* that does not exist on light:
 
 | Layout | Distribution |
 |---|---|
 | `Manifesto` | Ink in the lower two thirds |
+| `Section Preview` | A title anchored bottom-left against the section's contents in the Cover's right column |
 | `The Ask` | Anchored top and bottom with a void between |
 | `Number Full-bleed` | Type as the whole image |
 | `Platform Stack` | Bands of unequal height |
@@ -28,7 +29,7 @@ Thirteen of the fifty-five layouts sit on `--color-dark-background`, and they ex
 
 ## The ground
 
-**The ground is flat navy, not the dark gradient.** The brand defines a dark gradient ground for posters and it is open to explore on a slide, but `pptxgenjs` supports no gradient fills at all: a gradient ground would go into the `.pptx` as a background image on every dark slide and stop being an editable shape. Flat `--color-dark-background` exports as a real solid fill. The one place a raster is unavoidable is `Capture + Scrim`'s `BK Fade`, and that is one image rather than thirteen.
+**The ground is flat navy, not the dark gradient.** The brand defines a dark gradient ground for posters and it is open to explore on a slide, but `pptxgenjs` supports no gradient fills at all: a gradient ground would go into the `.pptx` as a background image on every dark slide and stop being an editable shape. Flat `--color-dark-background` exports as a real solid fill. The one place a raster is unavoidable is `Capture + Scrim`'s `BK Fade`, and that is one image rather than fourteen.
 
 ---
 

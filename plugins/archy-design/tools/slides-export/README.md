@@ -30,7 +30,7 @@ work directory; a relative output path always lands there. The shared resolution
 `archywork.js` / `archywork.py`.
 
 Code lookups stay beside the code: `tokens.json`, and `assets-base/`, the generic images the
-55-layout template library needs (the wordmark, the fourteen Hugeicons, `bk-fade-dark.png`).
+57-layout template library needs (the wordmark, the fourteen Hugeicons, `bk-fade-dark.png`, the sample emoji).
 An image a spec names as `assets/<file>` is taken from the work directory first and from
 `assets-base/<file>` otherwise, so the library builds in an empty work directory.
 
@@ -109,7 +109,7 @@ its embedded `ppt/fonts/Onest-regular.fntdata` files carry that exporter's signa
 
 ## Writing a spec
 
-All fifty-five live in `specs.js`, as a module rather than fifty-five JSON files, so the
+All fifty-seven live in `specs.js`, as a module rather than fifty-seven JSON files, so the
 parts that are identical by construction - the Rulers frame, the Meta line, the
 three-part header - are written and verified **once**. That mirrors the design system (the `archy:brand` skill),
 which says to derive a new light layout by duplicating `Metrics 2×2`, not by
@@ -226,7 +226,7 @@ the values and the labels beside them; the geometry follows in proportion.
 - **`breakLine: true` produces two `<a:p>` paragraphs**, not an `<a:br/>`. Fine, but check
   `lnSpc` landed on *both* - on only the first, the second line drifts.
 - **Hex colours: no `#`, no alpha.** Both corrupt the file. Use `transparency: 0-100`.
-- **Gradient fills are not supported at all.** This is why the thirteen dark layouts sit
+- **Gradient fills are not supported at all.** This is why the fourteen dark layouts sit
   on flat `--color-dark-background` rather than the dark gradient ground: a gradient would
   become a background image on every one of them and stop being an editable shape. The one
   gradient the library genuinely needs is `Capture + Scrim`'s `BK Fade`, and that goes in
@@ -247,12 +247,12 @@ the body lines break. Then type a longer headline and confirm nothing shrinks.
 
 ## Status
 
-All **fifty-five** layouts have specs and build into one deck - 1,527 shapes, schema
-validation passing, every string present, 21 images embedded. Slides come out **grouped by
+All **fifty-seven** layouts have specs and build into one deck - 1,557 shapes, schema
+validation passing, every string present, 22 images embedded. Slides come out **grouped by
 the seven library categories** (`CATEGORY_ORDER` in `build.js`), the same grouping as the
 Paper pages - this is a template library, not a deck.
 
-Thirteen of the fifty-five are dark. They are not recolours: the header inversion on a dark
+Fourteen of the fifty-seven are dark. They are not recolours: the header inversion on a dark
 ground is a fixed mapping in the design system (the `archy:brand` skill), so a dark twin of an existing layout would cost
 nothing and add nothing. Each dark layout is a distribution that does not exist on light -
 see *The dark set* in the design system (the `archy:brand` skill).

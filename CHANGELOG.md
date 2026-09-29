@@ -6,6 +6,16 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.7.0 (2026-09-28)
+
+- archy: two new section-divider layouts in `Master - Decks` › Frames: **◆**`Section Preview` (navy, title bottom-left, the section's slides listed in the Cover's right column) and `Section Emoji` (white, one emoji, eyebrow `Part NN`). The library is now 57 layouts, 14 of them dark.
+- archy: `layout-catalog.md`, `dark-set.md` and the layout counts in `deck`, `templates.md` and `tokens.md` updated to match.
+- archy: `playful-decks.md` gains *Section dividers*: one divider family per deck, where a divider earns its place, and how a divider with the mascot counts toward his appearances.
+
+## archy-design 0.4.0 (2026-09-28)
+
+- archy-design: `slides-export` specs for `Section Preview` and `Section Emoji` (solid `--color-dark-border` Rulers on navy; the emoji ships as `assets-base/emoji-rocket.png`). Template deck builds to 57 slides.
+
 ## archy 0.6.1 (2026-09-28)
 
 - archy: new `tools/fonts/install-satoshi.sh`: installs DOC's Satoshi from Fontshare (never from this repository, per its licence), registers it with macOS and clears the quarantine flag; prints the manual steps if it cannot.
