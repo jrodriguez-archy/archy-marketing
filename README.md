@@ -12,7 +12,25 @@ The same setup covers **DOC** (Dental Ownership Collective) and the **Archy Offs
 |---|---|
 | **Paper Desktop** | The Paper app installed and signed in to the Archy team |
 | **Claude desktop app** | With the **Code** tab |
-| **The Archy Workspace folder** | The `workspace` folder from this repository (see step 1) |
+| **The Archy Workspace folder** | The `workspace` folder from this repository (see step 1). Not needed with the quick install |
+
+---
+
+## Quick install (about 1 minute)
+
+In a Claude Code session, paste these two lines, one at a time:
+
+```
+/plugin marketplace add jrodriguez-archy/archy-marketing
+```
+
+```
+/plugin install archy@archy-marketing
+```
+
+The first line connects Claude to the Archy plugin catalog; the second installs the **archy** plugin, with the Paper plugin included. Then go to [step 4](#4-check-it-works) to check it works. Designers can add **archy-design** the same way: `/plugin install archy-design@archy-marketing`.
+
+If Claude does not recognize the commands, use the one-time setup below instead.
 
 ---
 
