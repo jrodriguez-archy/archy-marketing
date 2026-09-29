@@ -58,7 +58,7 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 ### Master - Events (event social)
 
-File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*). Masters are named `TPL · <Template> · <Format> <W×H>`.
+File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*). The `Night Out` templates add a fourth, **Square 1080×1080** (content column x 105–975, y 90–990), in the fourth column of their row. `Event Cover` is a single 1200×900 format. Masters are named `TPL · <Template> · <Format> <W×H>`.
 
 At a glance, to pick 2 or 3 options that differ from each other:
 
@@ -73,6 +73,9 @@ At a glance, to pick 2 or 3 options that differ from each other:
 | `Countdown Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
 | `Booth Invite Offer` | Booth invite with a giveaway | Royal blue | Like `Booth Invite Photo`, plus an offer strip with a team or sponsor logo ("Win prizes + Bulls tickets") |
 | `Countdown Offer` | Day-before reminder with a giveaway | Royal blue | Like `Countdown Mascot`, plus the offer strip |
+| `Night Out Illustration` | Hosted social evening (dinner, drinks, golf) with a sign-up | Dark navy | Cocktail illustration and sparkles off the top right, label/value details, primary button |
+| `Night Out Venue` | Hosted social evening at a named venue | Dark navy | Venue photo band on top, drinks pattern texture, white perks pill, centred |
+| `Event Cover` | Cover image for the event page or invite (1200×900) | Royal blue photo | Venue photo under a royal blue scrim, white card with `Archy \| Event` lockup, guest photo circle |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
 
@@ -200,6 +203,56 @@ Day-before reminder with the event name as a Ruler-flanked masthead, on the dark
 | `slot-text-headline` | `Tomorrow is the day`: two lines on Post and Stories, one on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters |
 | `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
+
+#### Night Out Illustration
+
+A free evening Archy hosts for local dentists (drinks, food, golf, a dinner), with a call to sign up. From the Dallas Topgolf campaign. Four formats: Post, Stories, OG, Square. **Use when** Archy is the host, there is a date, time and place, and no venue photo (or a lighter, illustrated feel is wanted). **Not when** it is a booth at a trade show, or a talk with a named speaker (use `Speaker Invite`).
+
+`Content` has two groups: `Header` (Archy wordmark + headline) at the top and `Body` (subhead, details, button) at the bottom, with `justify-content: space-between`; the gap between them is where the cocktail sits. The OG has no button.
+
+| Slot | Post / Stories / Square | OG | Example | Notes |
+|---|---|---|---|---|
+| `slot-text-headline` | ≤ 20 characters per line, 2 lines, break with `\n` | ≤ 20 per line, 2 lines | `A Free Night Out\nFor Dallas Dentists` | 96/104 bold (84/84 on the OG). A third line pushes into the cocktail: shorten first, then reduce the size |
+| `slot-text-subhead` | ≤ 43 characters per line, 2 lines | ≤ 60 per line, 2 lines | `Just free drinks, great food, a few rounds of golf, and Dallas dentists who get it.` | One sentence, the offer in plain words |
+| `slot-text-city` | ≤ 15 characters | ≤ 15 | `Dallas, TX` | `City, ST` |
+| `slot-text-venue` | ≤ 21 characters | ≤ 18 | `Topgolf Dallas` | |
+| `slot-text-date` | ≤ 19 characters | ≤ 20 | `Friday, October 9` | Weekday + date, format from `voice.md` |
+| `slot-text-time` | ≤ 24 characters | ≤ 24 | `6:00 – 8:00 PM` | |
+| `slot-text-cta` | ≤ 30 characters | (no button) | `Claim your spot` | Sentence case, the button grows with it |
+| `optional-illustration` | Swoosh, cocktail and sparkles | Cocktail and sparkles | | Delete the whole layer for a plain ground. Then set `Content` to `justify-content: flex-start` with a 96px gap so the body does not sink to the bottom |
+
+Fixed by design: the labels (`Location`, `Date & Time`), the arrow icon, the wordmark. The illustration keeps its own asset colours (lime, glass blues); do not recolour it.
+
+#### Night Out Venue
+
+The same hosted evening, led by a photo of the venue. From the Dallas Topgolf campaign. Four formats: Post, Stories, OG, Square. **Use when** Archy hosts at a named venue and there is a good photo of it. **Not when** there is no venue photo (use `Night Out Illustration`).
+
+Everything is centred on Post, Stories and Square; the OG sets the content left-aligned beside a photo column.
+
+| Slot | Post / Stories | Square | OG | Example | Notes |
+|---|---|---|---|---|---|
+| `slot-image-venue` | Top band 1080×353 (Stories 1080×600) | Top band 1080×280 | Left column 353×630 | Topgolf building | `background-size: cover`. A photo from the requester or the venue, never generated (see *Photos* in the brand skill) |
+| `slot-text-headline` | ≤ 15 characters per line, 3 lines | ≤ 22 per line, 2 lines | ≤ 25 per line, 2 lines | `30 Dallas\ndentists.\nOne night out.` | 120/124 bold (88 Square, 64 OG). Break with `\n` |
+| `slot-text-perks` | ≤ 49 characters, 1 line | ≤ 49 | ≤ 55 | `Free golf, appetizers, drinks & socializing` | Typed in sentence case, set uppercase by the style. The white pill grows with the text |
+| `slot-text-city`, `slot-text-venue` | ≤ 14 / ≤ 20 characters | same | ≤ 12 / ≤ 18 | `Dallas, TX`, `Topgolf Dallas` | |
+| `slot-text-date`, `slot-text-time` | ≤ 19 / ≤ 24 characters | same | ≤ 20 / ≤ 24 | `Friday, October 9`, `6:00 – 8:00 PM` | |
+| `optional-illustration` | Drinks pattern at 0.16 opacity | | | | Delete for a plain ground. On Stories the `BK Fade` goes with it |
+
+The drinks pattern is texture, not content: it stays at low opacity (it arrived with a `multiply` blend, which is banned). Fixed by design: labels, pill style, the wordmark at the bottom (top of the column on the OG).
+
+#### Event Cover
+
+The cover image for the event's registration page or invite (1200×900), from the Dallas Topgolf campaign. One format. **Use when** an event page, Luma or email invite needs a header image. **Not when** the piece is a social post (use the `Night Out` templates).
+
+A white card (`Content`, 844×804 at 48, 48, padding 56) on a venue photo tinted by a royal blue `Scrim` at 0.8 (a solid scrim replaces the `overlay` blend it arrived with). Inside: `Logo Lockup` (royal blue wordmark, 2px `Divider`, kicker), headline, and a `Footer` row with the guest photo circle and the subhead.
+
+| Slot | Limit | Example | Notes |
+|---|---|---|---|
+| `slot-image-venue` | Full bleed 1200×900 | Topgolf bays | Under the `Scrim`; any photo reads as a blue duotone. From the requester or the venue, never generated |
+| `slot-text-kicker` | ≤ 12 characters | `Event` | Set uppercase by the style (`Event`, `Dinner`, `Webinar`) |
+| `slot-text-headline` | ≤ 17 characters per line, 3 lines | `A Free Night Out\nFor Dallas Dentists` | 88/96 medium, navy (`--color-light-text`) |
+| `slot-image-photo` | 216 circle, 4px royal blue ring | Guests toasting | People enjoying the venue. Real photos only |
+| `slot-text-subhead` | ≤ 25 characters per line, 3 lines | `A few rounds of Topgolf, free drinks, apps and great company on us` | |
 
 
 ### Archy - Ads

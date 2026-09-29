@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.11.0 (2026-09-29)
+
+- archy: three new `Master - Events` templates from the Dallas Topgolf campaign: `Night Out Illustration` and `Night Out Venue` (hosted social evening, Post, Stories, OG and a new Square 1080×1080 format) and `Event Cover` (1200×900 event page or invite cover). Catalog rows, slots and measured limits in `templates.md`.
+- archy: `brand` › *Photos* adds venue photos (`slot-image-venue`) as a third allowed kind: from the requester or the venue, never generated.
+- archy: `social-post` covers hosted evenings, the Square format and the event cover, and asks for the time and the call to action.
+
 ## archy 0.10.0 (2026-09-29)
 
 - archy: new `start` skill for first-time users: checks that Paper is connected (and Satoshi for DOC work), lists what they can ask for with one example per skill, gives the key tips (real facts, untouched masters, options, exports) and offers a first piece.
