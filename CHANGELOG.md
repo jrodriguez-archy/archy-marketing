@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.9.0 (2026-09-29)
+
+- archy: `doc-video` master rebuilt with the editor's source files for the F3 Foundations videos: 55 templates in eight sections (Structure, Lower Thirds, Text and Lists, Numbers, Charts, Diagrams, Icons, Heroes), 29 Overlay twins, new codes `<Code> · <Name>`, one section label per row. The `Video` page holds templates only; each video gets its own page.
+- archy: `doc-video` › `template-catalog.md` rewritten for the new codes, including the new lower thirds, checklist, numbered lists, equation stacks, icon equations, donuts with stats and single-icon layouts.
+- archy: `doc-video` › `video-system.md` updated to the exact source values (`--color-video-ground`, `--color-video-ink`, `--color-video-ink-soft`, `--color-video-tag`, red-500 result boxes and icons, red-400 bullets, cream-200 tiles with an 8px radius), a 46-icon library, and a new section on turning an editor's source file into templates.
+
 ## archy 0.8.0 (2026-09-29)
 
 - archy: new `doc-video` skill for DOC course video graphics, built on the `DOC - Videos Foundations` master (36 templates at 1920×1080: structure, lists and quotes, figure chains, charts, concept diagrams, icon tiles, hero illustrations; every split template has a transparent `· Overlay` twin).
