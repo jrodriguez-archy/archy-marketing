@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.11.1 (2026-09-29)
+
+- archy: `doc-video` › S3 Speaker Lower Third: the role tag hangs off the right end of the name box, not centred under it.
+- archy: `doc-video` › T2 Numbered List: how to centre the digit in its red square.
+- archy: `brand` › `paper-quirks.md`: a layer hidden in Paper cannot be shown through the MCP; rebuild it visible or toggle it by hand.
+
 ## archy 0.11.0 (2026-09-29)
 
 - archy: three new `Master - Events` templates from the Dallas Topgolf campaign: `Night Out Illustration` and `Night Out Venue` (hosted social evening, Post, Stories, OG and a new Square 1080×1080 format) and `Event Cover` (1200×900 event page or invite cover). Catalog rows, slots and measured limits in `templates.md`.

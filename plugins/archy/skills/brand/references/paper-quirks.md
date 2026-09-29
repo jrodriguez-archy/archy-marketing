@@ -61,6 +61,7 @@ When a paste arrives with something broken and there is no obvious control for i
 
 ## Writing nodes (write_html, duplicate, rename, text)
 
+- **A layer hidden in Paper cannot be shown through the MCP.** `get_node_info` reports `isVisible: false`, and `display` or `visibility` set with `update_styles` are accepted and change nothing (a hidden optional field in a template stays hidden). Rebuild the layer visible with `write_html`, copying the hidden one's styles from `get_computed_styles`, then delete the hidden one; or ask the designer to toggle it in the layer panel.
 - **`write_html` silently drops an empty `<div>`.** Give a new container a throwaway text child, move the real children in, delete the placeholder.
 - **`write_html` ignores `data-name`.** Every node comes back as `Frame` / `Rectangle` / `Text`. Follow each write with `rename_nodes`; there is no way to name nodes at creation.
 - **`write_html` can hand back ids that a later `write_html` re-allocates, destroying the first batch silently.** One body write returned `68V-0 … 697-0`; the next `write_html` into a *different* artboard on the same page returned `68V-0 … 68Z-0` again, and the first subtree was gone, with no error. **If a `write_html` result contains an id you have already seen this session, the earlier nodes are gone.** `get_children` on the parent is the check. Mitigations: do not interleave writes across two artboards, and screenshot after each body.

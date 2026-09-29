@@ -59,6 +59,8 @@ Centring a multi-line text node in Paper: `text-align` is ignored on a fixed-wid
 
 - Chains read left to right or top to bottom: a connector is a thin video-ink line ending in a red-400 dot tucked under the next box.
 - Only figure and result boxes are red; everything else is a cream-100 box. Tag boxes (D2, D3) have square corners.
+- **Speaker lower third (S3):** the role tag hangs off the right end of the name box, not centred under it: it overlaps the last ~170px of the box and runs past its right edge. The box width follows the name, so place the tag after setting the name (absolute `left`, `translate: none`) and make the same change in the Overlay.
+- **Numbered squares (T2):** size each number's frame to its square (52×52, same `left` / `top`) and give the digit a `line-height` equal to the square's height (52px), so it sits centred. A digit box shorter than its line-height pushes the digit low.
 
 ## Icon tiles
 
