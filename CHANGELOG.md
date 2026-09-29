@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.8.0 (2026-09-29)
+
+- archy: new `doc-video` skill for DOC course video graphics, built on the `DOC - Videos Foundations` master (36 templates at 1920×1080: structure, lists and quotes, figure chains, charts, concept diagrams, icon tiles, hero illustrations; every split template has a transparent `· Overlay` twin).
+- archy: `doc-video` references: `template-catalog.md` (each template, its layout and its source moment in the Foundations videos) and `video-system.md` (frame, split and Overlay, colour and type measured on the videos, boxes, icon tiles, icon library, heroes, Paper notes, video review checks).
+- archy: `doc-brand` now names `doc-video` and the `DOC - Videos Foundations` master.
+
 ## archy 0.7.0 (2026-09-28)
 
 - archy: two new section-divider layouts in `Master - Decks` › Frames: **◆**`Section Preview` (navy, title bottom-left, the section's slides listed in the Cover's right column) and `Section Emoji` (white, one emoji, eyebrow `Part NN`). The library is now 57 layouts, 14 of them dark.

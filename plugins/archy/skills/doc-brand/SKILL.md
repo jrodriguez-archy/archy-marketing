@@ -1,11 +1,11 @@
 ---
 name: doc-brand
-description: DOC (Dental Ownership Collective) brand rules for any work in Paper. Load before creating, filling, reviewing or exporting any DOC piece (ads, and any other DOC asset), or anything in the `DOC - Brand` or `DOC - Ads` Paper files. DOC is its own identity, separate from Archy and from the Archy Offsite.
+description: DOC (Dental Ownership Collective) brand rules for any work in Paper. Load before creating, filling, reviewing or exporting any DOC piece (ads, video graphics, and any other DOC asset), or anything in the `DOC - Brand`, `DOC - Ads` or `DOC - Videos Foundations` Paper files. DOC is its own identity, separate from Archy and from the Archy Offsite.
 ---
 
 # DOC brand
 
-**DOC, the Dental Ownership Collective**, is the ownership education platform for dentists who want their own practice. It is a brand of its own: Archy appears on it only as a sponsor ("Sponsored by Archy", "Brought to you by Archy"). Production skills for DOC (`doc-ad`) load this first.
+**DOC, the Dental Ownership Collective**, is the ownership education platform for dentists who want their own practice. It is a brand of its own: Archy appears on it only as a sponsor ("Sponsored by Archy", "Brought to you by Archy"). Production skills for DOC (`doc-ad`, `doc-video`) load this first.
 
 ## Separation, both ways
 
@@ -18,7 +18,7 @@ The guidelines and templates are the base, not a lock. Start from the templates,
 
 ## Always true
 
-1. **Never touch a master.** `DOC - Ads` is the master for ads and `DOC - Brand` holds the guidelines. Work in a copy (see *Where the work goes*).
+1. **Never touch a master.** `DOC - Ads` is the master for ads, `DOC - Videos Foundations` the master for video graphics, and `DOC - Brand` holds the guidelines. Work in a copy (see *Where the work goes*).
 2. **Tokens, never hex.** Every colour, weight, tracking, spacing and radius on the canvas is a `var(--…)` from the file. If a value is missing, flag it and ask for a token rather than typing a hex or a hand number (tokens: `references/tokens.md`).
 3. **Satoshi only**, Regular 400 as the lightest weight on DOC pieces (details in `references/identity.md`).
 4. **The lockup is outlined artwork**, copied from the file, never re-typed, redrawn or recoloured beyond its documented colourways.
