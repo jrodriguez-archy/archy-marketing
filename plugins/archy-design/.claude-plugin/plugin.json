@@ -1,8 +1,8 @@
 {
   "name": "archy-design",
   "displayName": "Archy - Design",
-  "version": "0.5.0",
-  "description": "For Archy designers: prepare templates for the marketing team, explore new designs on brand, publish rules and templates, and export to Google Slides, Figma and print.",
+  "version": "0.5.1",
+  "description": "For Archy designers: prepare templates for the marketing team, explore new designs on brand, publish rules and templates, export to Google Slides, Figma and print, and edit DOC course videos in Tesseract.",
   "author": {
     "name": "Juan Rodriguez",
     "email": "jrodriguez@archy.com"

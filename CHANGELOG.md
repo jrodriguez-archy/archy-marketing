@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.5.1 (2026-09-30)
+
+- archy-design: the plugin description now mentions DOC course video editing.
+
 ## archy-design 0.5.0 (2026-09-30)
 
 - archy-design: new skill `doc-video-edit`: edits a DOC Foundations course video end to end in Tesseract from the two camera files, the brief and the video's page in `DOC - Videos Foundations` (cut list, camera plan, native animated graphics, red section wipes, intro and end card, sound, grade), with a builder (`scripts/`) that turns a per-video `video.json` into the project.
@@ -14,6 +18,7 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - doc-video-edit: camera rhythm: A/B changes follow ideas and land at sentence ends, shots hold ~8 to 20 s, and `build_video.py` prints `pacing:` warnings (short shots, same-camera zoom cuts, a split or card not covered by its graphic).
 - doc-video-edit: a five-point checklist for every cut (ends a thought, real pause checked by transcribing each side, face still, cameras in sync, holds in the export).
 - doc-video-edit: multicam as one picture: `scripts/cam_sync.py` measures the picture offset between cameras (`cam_offset`), `reframe` composes each camera without enlarging the face, and `scripts/grade_match.py` matches CAM B's grade to CAM A by measurement.
+- doc-video-edit: a lower third never covers the face: every lower third is checked on its actual shot after a reframe.
 
 ## archy 0.11.2 (2026-09-29)
 
