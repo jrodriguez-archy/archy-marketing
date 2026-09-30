@@ -1,0 +1,42 @@
+{
+ "project": "<Video name>.tsrct",
+ "fonts_dir": "../../brand/fonts",
+ "intro_name": "Intro <video code>",
+ "assets": {},
+ "grade": {},
+ "timing": {
+  "intro": 10.0,
+  "voice_end_src": 0.0,
+  "ff_tail": 1.5,
+  "ff_fade": 0.6,
+  "xfade": 0.4,
+  "endcard": 6.0,
+  "wipe_cover": 0.95
+ },
+ "mix": {"endcard_gain": 5.6, "wipe_gain": 4.0},
+ "segments": [[0.0, 0.0]],
+ "segments_notes": ["one line per join: source times, what was removed, how it was verified"],
+ "shots": [[0.0, 0.0, "A", "full"]],
+ "wipes": [],
+ "closing": {"start_src": 0.0},
+ "graphics": [
+  {"type": "speaker_lt", "name": "01 LT <Speaker>", "in": 0.5, "out": 7.3, "name_text": "<Speaker name>", "role": "<Role>"},
+  {"type": "split_list", "name": "02 Split <Title>", "in": 0.0, "out": 0.0, "title": ["<Title>"], "items": ["<Item>"], "at": [0.0]},
+  {"type": "split_numbered", "name": "03 Split <Title>", "in": 0.0, "out": 0.0, "title": "<Title>", "items": ["<Item>"], "at": [0.0]},
+  {"type": "split_blocks", "name": "04 Split <A vs B>", "in": 0.0, "out": 0.0,
+   "blocks": [{"label": "<A>", "items": ["<Item>"], "title_at": 0.0, "at": [0.0]}]},
+  {"type": "caption_lt", "name": "05 LT <Caption>", "in": 0.0, "out": 0.0, "top": 740, "lines": ["<Line 1>", "<Line 2>"]},
+  {"type": "number_card", "name": "06 Card <Figure>", "in": 0.0, "out": 0.0, "figure": "$500K - $1M+", "label": "<Label>",
+   "count": {"all": true, "delay": 200, "dur": 1300}},
+  {"type": "split_result", "name": "08 Split <N7>", "in": 0.0, "out": 0.0, "label": "<Label>", "figure": "<$130,000>",
+   "caption": ["<Caption line 1>", "<line 2>"], "at_label": 0.0, "at_figure": 0.0, "at_caption": 0.0},
+  {"type": "split_equals", "name": "09 Split <N6>", "in": 0.0, "out": 0.0, "label": ["<Line 1>", "<Line 2>"],
+   "result": "<Result>", "at_label": 0.0, "at_result": 0.0},
+  {"type": "split_pairs", "name": "10 Split <N8>", "in": 0.0, "out": 0.0,
+   "pairs": [{"label": "<Label>", "figure": "<Figure>", "at_label": 0.0, "at_figure": 0.0}]},
+  {"type": "equation_split", "name": "11 Split <N3>", "in": 0.0, "out": 0.0, "top": "<Top box>", "result": "<Result>",
+   "caption": "<Caption>", "at": [0.0, 0.0, 0.0], "count": true},
+  {"type": "full_card", "name": "12 Card <Mid-video T10>", "in": 0.0, "out": 0.0, "lines": ["<Bold line 1\nline 2>", "<Regular line 1\nline 2>"]},
+  {"type": "closing_card", "name": "13 Card <Closing>", "lines": ["<Line 1>", "<Line 2>"]}
+ ]
+}

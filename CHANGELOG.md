@@ -6,6 +6,15 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.5.0 (2026-09-30)
+
+- archy-design: new skill `doc-video-edit`: edits a DOC Foundations course video end to end in Tesseract from the two camera files, the brief and the video's page in `DOC - Videos Foundations` (cut list, camera plan, native animated graphics, red section wipes, intro and end card, sound, grade), with a builder (`scripts/`) that turns a per-video `video.json` into the project.
+- doc-video-edit: builders for S3, L1, T1, T2 (with a highlighted section-marker state), T4 (with re-entry), T7, T11 (every number counts up), N3, N6, N7, N8, and T10 at the end or inside the video.
+- doc-video-edit: house rules: `_Post_` footage is not re-cut, every sound ends on a fade, the intro music leaves in one slow progressive descent, number cards get reading time, an ending on camera crossfades into the end card, and every export is scanned for black frames.
+- doc-video-edit: camera rhythm: A/B changes follow ideas and land at sentence ends, shots hold ~8 to 20 s, and `build_video.py` prints `pacing:` warnings (short shots, same-camera zoom cuts, a split or card not covered by its graphic).
+- doc-video-edit: a five-point checklist for every cut (ends a thought, real pause checked by transcribing each side, face still, cameras in sync, holds in the export).
+- doc-video-edit: multicam as one picture: `scripts/cam_sync.py` measures the picture offset between cameras (`cam_offset`), `reframe` composes each camera without enlarging the face, and `scripts/grade_match.py` matches CAM B's grade to CAM A by measurement.
+
 ## archy 0.11.2 (2026-09-29)
 
 - archy: `templates.md` › `Night Out Illustration` re-laid out: four blocks spread over the safe area, larger subhead, details and button, extra `Stars` layers, and on Stories a larger wordmark and a 1.35× cocktail. Limits updated.

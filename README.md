@@ -160,6 +160,7 @@ Two plugins live in this repository.
 | `print-pdf` | Turn a Paper PDF into a print-ready file |
 | `hugeicons` | Bring Hugeicons into a Paper file |
 | `pixel` | Pixel textures: gradient backgrounds (PNG, video loops, live Webflow) and pixel effects on photos |
+| `doc-video-edit` | Edit a DOC course video end to end in Tesseract: cuts, cameras, animated graphics from Paper, wipes, sound and grade |
 
 Skills run on their own when your request matches; you can also call one directly, for example `/archy:social-post` or `/archy-design:prepare-template`.
 
