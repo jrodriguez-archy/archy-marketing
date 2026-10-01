@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Measure the DOC house colour on a video and compare it with the targets (references/color-guide.md).
+"""Measure the colour of both cameras of a DOC video: CAM B against CAM A, and against the targets of the
+video folder's COLOR_GUIDE.md when there is one.
 
   measure_color.py PROJECT_DIR                    render preview frames of the built project
   measure_color.py PROJECT_DIR --export FILE.mp4  measure an exported video instead
@@ -9,16 +10,31 @@ takes the middle frame and measures:
   skin  mean RGB of skin-coloured pixels in the upper half (r > g > b, r - b > 18 and > 18 % of r, r > 90;
         the cream lower-third box is excluded)
   wall  mean RGB of the background in the two top corners (x < 18 % or x > 83 %, y < 22 %)
-and prints them next to the targets with the difference. Match CAM B to CAM A first (same person, same
-words: the two cameras must look the same), then both to the targets.
+Without a COLOR_GUIDE.md it checks only B - A (same person, same words: the cameras must look the same).
+With one, it reads the skin and wall targets and tolerances from its table rows, e.g.
+  | Skin | **191 154 133** | +-5 per channel | ...
+  | Wall | **94 106 94** | +-6 per channel | ...
+and checks both cameras against them as well.
 """
-import io, json, os, subprocess, sys
+import glob, io, json, os, re, subprocess, sys
 from PIL import Image
 
-# House targets: the median CAM A of the six approved Module 9 videos (F9.1-F9.6, 2026-09-30),
-# 8-bit RGB of the 1080p export. CAM A was already consistent across them; CAM B drifted.
-TARGET = {"skin": (191, 154, 133), "wall": (94, 106, 94)}
 TOL = {"skin": 5, "wall": 6}          # max per-channel difference that still reads as the same picture
+
+def guide_targets(root):
+    """Skin and wall targets (and tolerances) from the folder's COLOR_GUIDE.md, or None."""
+    hits = [f for f in glob.glob(os.path.join(root, "*")) if os.path.basename(f).lower() == "color_guide.md"]
+    if not hits:
+        return None, None
+    text = open(hits[0], encoding="utf-8").read()
+    target, tol = {}, dict(TOL)
+    for k in ("skin", "wall"):
+        m = re.search(r"\|\s*" + k + r"\s*\|\s*\**\s*(\d+)\s+(\d+)\s+(\d+)\s*\**\s*\|\s*(?:\D{0,3}?(\d+))?", text, re.I)
+        if m:
+            target[k] = tuple(int(m.group(i)) for i in (1, 2, 3))
+            if m.group(4):
+                tol[k] = int(m.group(4))
+    return (target if len(target) == 2 else None), tol
 
 T = os.environ.get("TSRCT") or os.path.expanduser("~/Library/Application Support/Tesseract/bin/tsrct")
 
@@ -60,19 +76,32 @@ def main():
             continue
         res[cam] = {k: tuple(sum(m[k][i] for m in ms) / len(ms) for i in range(3)) for k in ("skin", "wall")}
     fmt = lambda c: "%5.0f %5.0f %5.0f" % c
+    sign = lambda d: "%+5.0f %+5.0f %+5.0f" % d
+    target, tol = guide_targets(root)
     ok = True
-    print(f"{'':6s}{'':6s}{'R     G     B':>18s}   diff vs target")
+    if target:
+        print(f"{'':12s}{'R     G     B':>18s}   diff vs COLOR_GUIDE.md target")
+    else:
+        print("no COLOR_GUIDE.md in the video folder: checking CAM B against CAM A only")
+        print(f"{'':12s}{'R     G     B':>18s}")
     for cam, m in res.items():
         for k in ("skin", "wall"):
-            d = tuple(m[k][i] - TARGET[k][i] for i in range(3))
-            bad = max(abs(v) for v in d) > TOL[k]
-            ok &= not bad
-            print(f"CAM {cam} {k:5s} {fmt(m[k])}   {'%+5.0f %+5.0f %+5.0f' % d}{'   <- adjust' if bad else ''}")
+            if target:
+                d = tuple(m[k][i] - target[k][i] for i in range(3))
+                bad = max(abs(v) for v in d) > tol[k]
+                ok &= not bad
+                print(f"CAM {cam} {k:5s} {fmt(m[k])}   {sign(d)}{'   <- adjust' if bad else ''}")
+            else:
+                print(f"CAM {cam} {k:5s} {fmt(m[k])}")
     if "A" in res and "B" in res:
-        d = tuple(res["B"]["wall"][i] - res["A"]["wall"][i] for i in range(3))
-        s = tuple(res["B"]["skin"][i] - res["A"]["skin"][i] for i in range(3))
-        print(f"B - A  skin {'%+5.0f %+5.0f %+5.0f' % s}   wall {'%+5.0f %+5.0f %+5.0f' % d}")
-    print(f"target skin {fmt(TARGET['skin'])}   wall {fmt(TARGET['wall'])}   {'OK' if ok else 'OUT OF RANGE'}")
+        ds = {k: tuple(res["B"][k][i] - res["A"][k][i] for i in range(3)) for k in ("skin", "wall")}
+        ba_bad = any(max(abs(v) for v in ds[k]) > (tol or TOL)[k] for k in ds)
+        ok &= not ba_bad
+        print(f"B - A  skin {sign(ds['skin'])}   wall {sign(ds['wall'])}{'   <- match B to A' if ba_bad else ''}")
+    if target:
+        print(f"target skin {fmt(target['skin'])}   wall {fmt(target['wall'])}   {'OK' if ok else 'OUT OF RANGE'}")
+    else:
+        print("OK" if ok else "B DOES NOT MATCH A")
 
 if __name__ == "__main__":
     main()

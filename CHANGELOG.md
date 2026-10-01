@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.6.1 (2026-10-01)
+
+- doc-video-edit: a colour guide is no longer a plugin rule: when the video folder has a `COLOR_GUIDE.md`, grade to it (`measure_color.py` reads its skin and wall targets); without one, grade from the setup suggestion and match CAM B to CAM A (`measure_color.py` checks B - A only). `references/color-guide.md` removed.
+- doc-video-edit: `scripts/export_final.sh` (ProRes -> x264 export) removed; export with `tsrct export --fps 24`.
+
 ## archy-design 0.6.0 (2026-10-01)
 
 - doc-video-edit: where to cut inside a pause is now decided per cut, not by a fixed offset: the outgoing shot ends on the finished thought, the incoming shot starts with life (speech, a breath, a movement), never on a silent, frozen face (edit-system > Cameras, "Where to cut", and checklist point 3).

@@ -23,7 +23,7 @@
       "displayName": "Archy - Design",
       "source": "./plugins/archy-design",
       "description": "For Archy designers: prepare templates, explore designs, publish updates, export to Slides, Figma and print, and edit DOC course videos.",
-      "version": "0.6.0"
+      "version": "0.6.1"
     }
   ]
 }
