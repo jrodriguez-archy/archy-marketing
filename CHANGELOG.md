@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.6.2 (2026-10-01)
+
+- doc-video-edit: no dead air at section starts: the speaker is already talking on the first frame after the intro (start the take ~0.1 s before the first word) and as each wipe opens (a long pause there shortened to ~0.4 s, the join hidden at the wipe cover); on `_Post_` footage only with the user's OK.
+- doc-video-edit: closing without a T10 goes out ~0.45 s after the last word, then the crossfade; a longer `_Post_` tail (over ~1 s) is proposed for a trim, and ending the take there is enough when the speaker stays still.
+- doc-video-edit: a black frame on a cut is fixed by moving the cut 1-2 frames; aligning it to a source frame does not help.
+
 ## archy-design 0.6.1 (2026-10-01)
 
 - doc-video-edit: a colour guide is no longer a plugin rule: when the video folder has a `COLOR_GUIDE.md`, grade to it (`measure_color.py` reads its skin and wall targets); without one, grade from the setup suggestion and match CAM B to CAM A (`measure_color.py` checks B - A only). `references/color-guide.md` removed.
