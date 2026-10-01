@@ -16,19 +16,17 @@
 
 ## Grade
 
-The course footage arrives log or flat (grey, low contrast); the two cameras differ.
+**The house grade is `references/color-guide.md`.** It holds the measured targets for skin and wall that both cameras must hit, the starting values for each camera, the limits, the grain and the export. Every video is graded the same way:
 
-1. `setup_project.py` measures each camera's luminance at 0.5 / 50 / 99.5 % over five frames and suggests: levels black = p0.5 - 10, white = p99.5 + 12; CAM B gamma matched so its midtone lands on CAM A's; hue/saturation +30; temperature +15.
-2. Check a frame of each camera and adjust by eye (skin natural and slightly warm, blacks not crushed, the wall not teal). The suggestion is a start, not the answer.
-3. **Match CAM B to CAM A: every camera must look the same** (house rule, F9.3 v5 and F9.5 v4). The cameras film the same person saying the same thing, so a cut from A to B must not change the colour of the person or the room.
-   - Compare what both cameras see, on graded frames (`tsrct preview`): the skin (same face: match its hue, r/g and b/g; its level only roughly, because the side camera sees the shadow side), the wall right beside the head (level and colour; the angles may see different parts of the wall) and anything neutral such as the shirt (white balance). When they disagree, skin wins.
-   - Targets: ratios within ~0.01, wall and skin highlights (p95) within a few levels. Then check an A/B cut by eye.
-   - `scripts/grade_match.py <Video>` automates it: it renders graded frames of both cameras from a throwaway copy of the project, measures skin (weighted double) and wall, and searches B's gamma, temperature, tint and saturation until they land on A's (`--write` saves it to video.json; rebuild, then check the cut).
-   - Behaviour of the controls: temperature moves blue; saturation warms skin but also greens a green wall; a positive `tint` is green, a negative one magenta; levels gamma shifts chroma too, so re-check after it. When skin is too cool but the wall is already right, raise saturation instead of a magenta tint (which fixes skin but turns the wall red).
-   - Landed values: F9.1 B gamma 1.12 -> 1.04, temp 15 -> 20, tint -2, sat 26. F9.3 B tint +5. F9.5 (flat 4K Post) A 70/177 sat 30 temp 15; B 43/178 gamma 1.08 sat 40 temp 28 tint -5. F9.6 A 63/177 sat 30 temp 15; B 45/185 gamma 1.34 sat 64 temp 19.
-4. Already graded finals (wide luminance range) get an identity grade; check them by eye too, and still match B to A.
+1. Start both cameras from the guide's starting values (section 2), with the grain.
+2. Build, then run `scripts/measure_color.py <Video>`: it measures skin and wall on three speaker shots per camera and prints them against the targets and B - A.
+3. Adjust one control at a time as the guide's section 3 describes (CAM A first, then CAM B) until it reads OK, staying inside the limits (saturation +35 at most, B gamma 0.95 to 1.15, levels range not under ~95): past them the grade amplifies the noise and banding of the source.
+4. Check one A/B cut by eye: same person, same words, so a cut must not change the colour of the person or the room.
+5. Export (direct `tsrct export`) and measure the export with `measure_color.py <Video> --export <file>`.
 
-Units: `levels` works in 0-255 (0-1 values render black); `hueSaturation.saturation` and `temperatureTint.temperature` are small-number scales (30 and 15 are moderate).
+Already graded finals (wide luminance range) may need only a light match: start from an identity grade, measure, and adjust to the same targets.
+
+Units: `levels` works in 0-255 (0-1 values render black); `hueSaturation.saturation` and `temperatureTint.temperature` are small-number scales (30 and 15 are moderate). Temperature moves blue; saturation moves skin and wall away from neutral together; a positive `tint` is green, a negative one magenta; levels gamma shifts chroma too, so re-measure after it.
 
 ## Colour of the ground
 

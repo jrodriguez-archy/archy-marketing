@@ -6,6 +6,14 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.6.0 (2026-10-01)
+
+- doc-video-edit: where to cut inside a pause is now decided per cut, not by a fixed offset: the outgoing shot ends on the finished thought, the incoming shot starts with life (speech, a breath, a movement), never on a silent, frozen face (edit-system > Cameras, "Where to cut", and checklist point 3).
+- doc-video-edit: new `scripts/cut_pick.py` chooses that frame for every camera change by measuring each camera's face movement through the pause against its own talking movement (still, life, blink); `cut_check.py --pick` shows the choice and the reason, `--snap` applies it, and every moved cut is then checked by eye.
+- doc-video-edit: `cut_check.py` reports the silence each shot holds at every cut and a LOOK flag with the psheet frames to watch; the contradictory fixed-offset rules and flags (DEAD-HOLD, LATE-CUT, DEAD-AIR) are removed.
+- doc-video-edit: house colour guide `references/color-guide.md` (measured skin and wall targets for both cameras, starting values, limits, grain, export) with `scripts/measure_color.py`, and `scripts/export_final.sh` for 10-bit finals; `grade_match.py` and its out-of-limit per-video values are removed.
+- doc-video-edit: the export step uses Tesseract's direct export (with the house grain) and measures the export's colour.
+
 ## archy-design 0.5.1 (2026-09-30)
 
 - archy-design: the plugin description now mentions DOC course video editing.

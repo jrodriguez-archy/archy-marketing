@@ -1,23 +1,30 @@
 #!/usr/bin/env python3
-"""Check (and optionally snap) the camera cuts of a DOC video.
+"""Report the camera cuts of a DOC video and choose where in each pause to cut.
 
   cut_check.py PROJECT_DIR           report every shot change in .tesseract-work/video.json
-  cut_check.py PROJECT_DIR --snap    move camera changes (A<->B, punch in/out) onto the nearest
-                                     breath gap and write video.json (video_prev.json keeps the old)
+  cut_check.py PROJECT_DIR --pick    also choose the best frame for every camera change (cut_pick.py: looks at
+                                     both cameras in the pause) and show it with the reason; writes nothing
+  cut_check.py PROJECT_DIR --snap    same choice, written to video.json (video_prev.json keeps the old).
+                                     Then watch every cut that moved.
 
-House rule: a camera change lands at a sentence end with a pause of ~350 ms or more (dialogue
-below -40 dBFS), cut ~4 frames (0.17 s) before the next sentence's first word, so the new angle
-arrives with the new thought. Shots hold ~8-20 s, never under ~5 s. Changes into or out of a split / card enter on
-their anchor word and are only reported, never moved; dialogue joins are never moved.
+House rule (edit-system > Cameras, "Where to cut"): a camera change goes where a thought ends, in a real
+pause, and is placed by watching it: the outgoing shot ends on the finished thought, the incoming one starts
+with life (speech, a breath, a movement), never on a silent, frozen face. There is no fixed offset.
 
-Flags: SHORT (camera shot < 5 s), SHORT-PAUSE (pause at the cut < 350 ms), IN-SPEECH (cut while he is talking), SANDWICH (short shot
-between two graphics), MID-SENTENCE (camera change or punch-in not after a sentence end: . ? ! on the word before).
-Word times come from words.json (whisper), which can lag the audio by 0.3-0.5 s: the waveform
-decides, the words only label.
+Columns: out = silence the outgoing shot holds before the cut, in = silence the incoming shot shows before
+he speaks (both from the waveform). Flags: MID-SENTENCE (no . ? ! on the word before), IN-SPEECH (cut while
+he is talking), SHORT-PAUSE (pause < 350 ms), SHORT (camera shot < 5 s), SANDWICH (short shot between two
+graphics), LOOK (the incoming shot opens on more than ~0.25 s of silence, or the outgoing one holds more than
+~1 s: watch the frames and decide). For every LOOK the report prints a psheet.py line with those frames.
+Word times come from words.json (whisper), which can drift 0.3-1 s: the waveform decides, the words only label.
 """
 import array, json, math, os, shutil, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cut_pick  # noqa: E402
 
-GAP_DB, GAP_MS, SEARCH, LEAD = -40.0, 120, 0.4, 0.17
+GAP_DB, GAP_MS, SEARCH = -40.0, 120, 0.4
+FRAME = 1001 / 24000
+LOOK_IN, LOOK_OUT = 0.25, 1.0   # only "worth a look" thresholds, not placement rules
 PAUSE_MS, MIN_SHOT = 350, 5.0   # house rule (edit-system > Cameras): pause >= ~350 ms under -40 dBFS; shots >= ~5 s
 GRAPHIC = {"split", "split2", "card"}
 
@@ -42,6 +49,7 @@ def gaps(db):
 def main():
     root = os.path.abspath(sys.argv[1])
     snap = "--snap" in sys.argv
+    pick = "--pick" in sys.argv
     work = os.path.join(root, ".tesseract-work")
     cfg = json.load(open(os.path.join(work, "video.json")))
     db = levels(os.path.join(root, cfg["dialogue_source"]))
@@ -58,7 +66,8 @@ def main():
         best = None
         for a, b in G:
             if a - SEARCH <= t <= b + SEARCH:
-                cand = max(a, b - LEAD)
+                # the pause nearest to the cut (cut_pick.py chooses the frame inside it)
+                cand = (a + b) / 2
                 d = abs(cand - t)
                 if best is None or d < best[0]:
                     best = (d, cand, a, b)
@@ -78,8 +87,17 @@ def main():
         a = [w[2] for w in words if w[0] >= t - 0.02][:3]
         return f"{' '.join(b)} | {' '.join(a)}"
 
-    flags_total, moved = 0, 0
-    print(f"{'#':>2} {'cut':>7} {'shot':>5}  change                 level  flags / suggestion        words")
+    tpath = os.path.join(work, "timing.json")
+    tshots = json.load(open(tpath))["shots"] if os.path.exists(tpath) else []
+    def edit_of(t):
+        """edit time of a source cut, from the last build (timing.json)"""
+        for a, b, c, f, ea, eb, *z in tshots:
+            if abs(a - t) < 0.02:
+                return ea
+        return None
+
+    flags_total, moved, look = 0, 0, []
+    print(f"{'#':>2} {'cut':>7} {'shot':>5}  change                 out   in   flags / suggestion        words")
     for i in range(1, len(shots)):
         p, s = shots[i - 1], shots[i]
         t, dur = s[0], s[1] - s[0]
@@ -100,17 +118,43 @@ def main():
             g = near_gap(t)
             if g and (g[3] - g[2]) * 1000 < PAUSE_MS:
                 flags.append("SHORT-PAUSE")
-            if g and abs(g[1] - t) > 0.02:
-                sug = f"-> {g[1]:.2f} (gap {g[2]:.2f}-{g[3]:.2f})"
-                if snap:
-                    p[1] = s[0] = round(g[1], 2)
-                    moved += 1
+
+            wiped = any(abs(t - w) < 0.05 for w in cfg.get("wipes", []))
+            if g and (pick or snap) and not wiped:
+                # choose the frame by looking at both cameras (cut_pick.py); no fixed offset
+                best, why = cut_pick.pick(root, cfg, (g[2], g[3]), p[2], s[2])
+                if abs(best - t) > 0.02:
+                    sug = f"-> {best:.3f} ({why})"
+                    if snap:
+                        p[1] = s[0] = best
+                        moved += 1
+                else:
+                    sug = f"ok ({why})"
+            elif g and abs(g[1] - t) > 0.02 and not wiped:
+                sug = f"pause {g[2]:.2f}-{g[3]:.2f} (--pick to choose the frame)"
             elif not g:
                 sug = "no gap within 0.4 s"
+        # silence each side shows (speech edges at about -45 dBFS)
+        i_ = int(p[1] * 100)
+        while i_ > 0 and db[i_] < -45: i_ -= 1
+        sil_out = max(0.0, p[1] - (i_ + 1) / 100)
+        j_ = int(s[0] * 100)
+        while j_ < len(db) - 1 and db[j_] < -45: j_ += 1
+        sil_in = max(0.0, j_ / 100 - s[0])
+        under_wipe = any(abs(t - w) < 0.05 for w in cfg.get("wipes", []))
+        if (kind != "graphic" or join) and not under_wipe and (sil_in > LOOK_IN or sil_out > LOOK_OUT):
+            flags.append("LOOK")
+            if edit_of(t) is not None:
+                e = edit_of(t)
+                look.append(" ".join(f"{e + k * FRAME:.3f}" for k in range(-4, 5)))
         flags_total += len(flags)
         change = f"{p[2]}{p[3]}->{s[2]}{s[3]}" + (" JOIN" if join else "")
-        print(f"{i:2d} {t:7.2f} {dur:5.2f}  {change:22s} {lv:5.0f}  {' '.join(flags + [sug]):25s} {ctx(t)[:60]}")
+        print(f"{i:2d} {t:7.2f} {dur:5.2f}  {change:22s} {sil_out:4.2f} {sil_in:4.2f}  {' '.join(flags + [sug]):25s} {ctx(t)[:60]}")
     print(f"\n{flags_total} flags")
+    if look:
+        print("\nWatch these cuts (9 frames around each, edit times of the last build):")
+        for l in look:
+            print(f"  psheet.py <Video>/<Video>.tsrct look.png 9 {l}")
     if snap and moved:
         shutil.copy(os.path.join(work, "video.json"), os.path.join(work, "video_prev.json"))
         json.dump(cfg, open(os.path.join(work, "video.json"), "w"), indent=1, ensure_ascii=False)
