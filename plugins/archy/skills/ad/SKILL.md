@@ -1,6 +1,6 @@
 ---
 name: ad
-description: Create Archy ads in Paper (paid social, person-led spotlights, one-pagers and the Posts derived from them, print ads), starting from the pieces in the Archy - Ads file. Use when someone needs an Archy ad, an ad for a sponsor or partner event, an AE or speaker spotlight, a one-pager, or a square Post adapted from a larger ad. Not for event booth posts (social-post) or DOC ads (doc-ad).
+description: Create Archy ads in Paper (paid social, person-led spotlights, one-pagers and the Posts derived from them, print ads), starting from the Master - Ads templates and the pieces in the Archy - Ads file. Use when someone needs an Archy ad, an ad for a sponsor or partner event, an AE or speaker spotlight, a one-pager, or a square Post adapted from a larger ad. Not for event booth posts (social-post) or DOC ads (doc-ad).
 ---
 
 # Archy ads
@@ -9,7 +9,9 @@ Load the `brand` skill first and follow it: never touch the source pieces, keep 
 
 ## Source
 
-Paper file `Archy - Ads` (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`). **It is not a master yet**: its pieces are being designed as future templates and carry no slots. Treat them as references:
+**Templates:** `Master - Ads` (`app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`), page `Templates`, holds the slot-ready ads (today `AE Spotlight`, Post and Stories). Fill them like any master: work in a copy (see *Where the work goes* in the `brand` skill) and follow the slot table in `../brand/references/templates.md` (*Master - Ads*).
+
+**References:** Paper file `Archy - Ads` (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`). **It is not a master yet**: its pieces are being designed as future templates and carry no slots. Treat them as references:
 
 - never edit them in place; work in the requester's file or a new one;
 - borrow freely: duplicate artboards into your file, or clone parts (lockups, buttons, the mascot, benefit rows) with `<x-paper-clone>` when working in the same file, or `get_jsx` → `write_html` across files;
@@ -21,7 +23,7 @@ What is there today is in `../brand/references/templates.md` (*Archy - Ads*). Th
 
 | The ad has | Start from | Rules |
 |---|---|---|
-| A person (an AE, a speaker, a team member) with a headline, benefits and a CTA | `AE Spotlights`, the option closest to the brief | `references/ad-layouts.md` |
+| A person (an AE, a speaker, a team member) with a headline, benefits and a CTA | `TPL · AE Spotlight` in `Master - Ads`; for another direction, the closest of the `AE Spotlights` options | `references/ad-layouts.md` |
 | A product claim with the mascot, as a tall one-pager | `Platform · One-pager` | `references/one-pager-to-post.md` |
 | A square Post derived from a taller ad | `Platform · Post` | `references/one-pager-to-post.md` |
 | A print ad at a physical size | `SDCDS Facets Ad A` / `B` | then `archy-design:print-pdf` for the printer file |
@@ -36,7 +38,7 @@ When the requester has not chosen, offer 2 or 3 directions that differ in ground
 3. **Fill and adapt**: copy first, then everything the piece needs. Type runs bigger than feels safe on the hero only; one hero per format; the lockup, Rulers, button and mascot follow `composition.md`.
 4. **Other formats**: Stories keeps the Post's sizes and repositions; the OG is re-laid out (`composition.md`, *Event three-format family*).
 5. **Review** every artboard with `../brand/references/review-checklist.md`, plus the ad rules in the references.
-6. **Deliver**: the artboards, what each started from, the copy used, what was adapted, what is pending. If a piece should become a reusable template, say so; preparing it is `archy-design:prepare-template`, once the ads master exists.
+6. **Deliver**: the artboards, what each started from, the copy used, what was adapted, what is pending. If a piece should become a reusable template, say so; preparing it is `archy-design:prepare-template`, into `Master - Ads`.
 
 Exports are the requester's call; if asked, export PNG at 1x (Paper saves to `~/Downloads`). Print goes through `archy-design:print-pdf`.
 

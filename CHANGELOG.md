@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.12.0 (2026-10-05)
+
+- New master file `Master - Ads` with its first template, `AE Spotlight` (Post 1080×1080, Stories 1080×1920): slot table with measured limits in `templates.md`.
+- AE Spotlight: the name plate is anchored to the bottom so a two-line name grows upward; on Stories the `Meet <Name>.` row wraps for long names; `Meet` scales with the name.
+- `ad` skill starts person-led ads from `TPL · AE Spotlight`; the `AE Spotlights` explorations stay as references.
+
 ## archy-design 0.6.2 (2026-10-01)
 
 - doc-video-edit: no dead air at section starts: the speaker is already talking on the first frame after the intro (start the take ~0.1 s before the first word) and as each wipe opens (a long pause there shortened to ~0.4 s, the join hidden at the wipe cover); on `_Post_` footage only with the user's OK.

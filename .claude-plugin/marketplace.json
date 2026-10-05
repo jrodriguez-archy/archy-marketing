@@ -16,7 +16,7 @@
       "displayName": "Archy - Marketing",
       "source": "./plugins/archy",
       "description": "Produce on-brand Archy, DOC and Offsite assets in Paper from approved templates.",
-      "version": "0.11.2"
+      "version": "0.12.0"
     },
     {
       "name": "archy-design",

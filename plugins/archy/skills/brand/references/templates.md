@@ -255,6 +255,28 @@ A white card (`Content`, 844×804 at 48, 48, padding 56) on a venue photo tinted
 | `slot-text-subhead` | ≤ 25 characters per line, 3 lines | `A few rounds of Topgolf, free drinks, apps and great company on us` | |
 
 
+### Master - Ads (ads)
+
+File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`, page `Templates`. Rows: Post at x 0, Stories at x 1160. The page `AE Spotlights` keeps the five original explorations as references.
+
+| Template | Purpose | Ground | Signature |
+|---|---|---|---|
+| `AE Spotlight` | Introduce one Account Executive (or any person) to local practices, with a demo CTA | White, with a royal blue photo panel | Two-tone hero `Meet <Name>.`, three benefit rows, cut-out portrait over Pixel Dissolve, white name plate |
+
+#### AE Spotlight
+
+Masters: `TPL · AE Spotlight · Post 1080×1080`, `TPL · AE Spotlight · Stories 1080×1920`. **Use when** a person is the message: an AE, a speaker or a team member introduced by first name, with a demo or meeting CTA. **Not when** the ad sells a product claim (use `Platform · One-pager` / `Platform · Post` in `Archy - Ads`) or announces an event booth (`Master - Events`).
+
+| Slot | Post | Stories | Example | Notes |
+|---|---|---|---|---|
+| `slot-text-ae-first-name` | ≤ 7 characters at full size, 1 line; down to 70% (≤ 10) | ≤ 5 beside `Meet`; longer names drop to a second line (≤ 9 at full size) | `Sarah.` | Keep the period. `Meet` scales with the name so the hero always reads as one size. On Stories, reduce first to stay on one line, then let the row wrap |
+| `slot-text-ae-name` | ≤ 18 characters per line, 2 lines | ≤ 35 per line, 2 lines | `Sarah Thompson` | Name plate, Onest semibold. The plate is anchored to the bottom (Post: the CTA baseline), so a second line grows it upward |
+| `slot-text-ae-title` | ≤ 29 characters per line, 2 lines | ≤ 57 per line, 2 lines | `Sr. Account Executive` | Shares the plate with the name: when the name takes two lines, keep the title to one (`Sr. Enterprise AE`) |
+| `optional-ae-location` / `slot-text-ae-location` | ≤ 20 characters (≤ 24 at 85%) | ≤ 46 characters | `Austin, TX` | Pill, set uppercase by the style. Remove the whole pill when there is no city; nothing else moves |
+| `slot-image-ae` | Cut-out portrait (transparent PNG), bottom aligned | Same image twice: in the panel and in the head pop-out above it | | Always the person's real photo, background removed. Framing like the sample: head and shoulders, face in the upper half |
+
+Fixed by design: `Meet`, the subline, the three benefit rows, the CTA, the wordmark, the gradient panel and the Pixel Dissolve. Change them only when the brief needs it (the rules in `../ad/references/ad-layouts.md` still apply). On Stories the hero fits on two lines only while the content column stays above the photo panel (y 1160): check the CTA on the screenshot.
+
 ### Archy - Ads
 
 File: `Archy - Ads`, `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`. **Not a master yet**: its pieces are being designed as future templates and have no slots. Use them as references (duplicate or clone parts into your own file); never edit them in place. The `ad` skill covers how to work from them.
@@ -263,7 +285,7 @@ File: `Archy - Ads`, `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`. **Not a
 |---|---|---|
 | `MDIB Social Summit Ad` | `Platform · One-pager`, `Platform · Post`, `Logo · Post` | 1500×1942, 1080×1080 |
 | `SDCDS Marketing Material` | `SDCDS Facets Ad A` / `B` (print, plus CMYK export copies) | 1600×975 |
-| `AE Spotlights` | Person-led ad, Options A to E (`Meet John`, `The Arch`, `Grid Card`, `Mosaic`, `Forum White`) | Post 1080×1080, Stories 1080×1920 |
+| `AE Spotlights` | Person-led ad, Options A to E (`Meet John`, `The Arch`, `Grid Card`, `Mosaic`, `Forum White`). Option A is now the `AE Spotlight` master in `Master - Ads` | Post 1080×1080, Stories 1080×1920 |
 
 Third-party ad references for inspiration live in the `Refs - Ads` file (not brand material).
 
