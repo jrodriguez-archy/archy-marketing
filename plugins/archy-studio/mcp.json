@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "archy-studio": {
-      "type": "http",
-      "url": "https://archystudio.vercel.app/mcp"
-    }
-  }
-}
