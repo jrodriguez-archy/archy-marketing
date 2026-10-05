@@ -24,6 +24,13 @@
       "source": "./plugins/archy-design",
       "description": "For Archy designers: prepare templates, explore designs, publish updates, export to Slides, Figma and print, and edit DOC course videos.",
       "version": "0.6.2"
+    },
+    {
+      "name": "archy-studio",
+      "displayName": "Archy - Studio",
+      "source": "./plugins/archy-studio",
+      "description": "Make finished Archy marketing pieces (PNG) from approved templates by just asking. No design tool needed.",
+      "version": "0.1.0"
     }
   ]
 }
