@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.7.2 (2026-10-05)
+
+- business-card, print-pdf: print files are named `<Piece> - Print - Bleed.pdf` and `<Piece> - Print - Bleed - Crop Marks.pdf` (`Print` implies CMYK; `Bleed` on both, since both carry it).
+
 ## archy-design 0.7.1 (2026-10-05)
 
 - business-card: a card ships as exactly two PDFs (crop marks, bleed only), each with both sides; no single-page files.

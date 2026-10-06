@@ -60,10 +60,10 @@ Every card ships as exactly two PDFs, both keeping the 0.125 in bleed and each h
 
 | Version | Page | How |
 |---|---|---|
-| `<Full Name> - Business Card - Print CMYK - Crop Marks.pdf` | 4.5 × 3 in (324 × 216 pt), card centred, crop marks, TrimBox / BleedBox | `print-pdf` step 5 with `-dTW=252 -dTH=144 -dBL=9 -dSW=844.08 -dSH=505.92` |
-| `<Full Name> - Business Card - Print CMYK - Bleed.pdf` | 3.75 × 2.25 in (270 × 162 pt), no marks | `print-pdf` step 4 at 270 × 162 |
+| `<Full Name> - Business Card - Print - Bleed - Crop Marks.pdf` | 4.5 × 3 in (324 × 216 pt), card centred, crop marks, TrimBox / BleedBox | `print-pdf` step 5 with `-dTW=252 -dTH=144 -dBL=9 -dSW=844.08 -dSH=505.92` |
+| `<Full Name> - Business Card - Print - Bleed.pdf` | 3.75 × 2.25 in (270 × 162 pt), no marks | `print-pdf` step 4 at 270 × 162 |
 
-No single-page files for cards: the two PDFs are the delivery. Group them per batch and person: `<batch>/<Full Name>/`. If someone needs to edit a side in Illustrator, they open that page alone (Illustrator's PDF import, *Page preview* on one page), which comes in as editable curves.
+Both names say `Bleed` because both files carry it; only one adds `Crop Marks`. `Print` already means CMYK, so the colour space is not in the name. No single-page files for cards: the two PDFs are the delivery. Group them per batch and person: `<batch>/<Full Name>/`. If someone needs to edit a side in Illustrator, they open that page alone (Illustrator's PDF import, *Page preview* on one page), which comes in as editable curves.
 
 Before handing over, run the `print-pdf` plate checks, render both versions and look at them, and ask the requester to scan the QR from the PDF with a phone.
 

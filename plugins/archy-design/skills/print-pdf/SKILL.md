@@ -102,5 +102,5 @@ Do **not** pass `OutputICCProfile` here, or the plates get re-mapped. Then confi
 ## 8. Deliver
 
 - **The combined file is the delivery.** Illustrator opens a multi-page PDF with "All" as embedded PDF objects that behave like images; opening one page at a time (*Page preview*) brings it in as editable curves. Split pages into separate files (`qpdf final.pdf --pages . <n> -- "<name> - <Side>.pdf"`) only when the requester asks for them. Business cards never ship single pages (see `business-card`).
-- Name the files `<Piece> - Print CMYK - Crop Marks.pdf` / `<Piece> - Print CMYK - Bleed.pdf` so the version is clear without opening them.
+- Name the files `<Piece> - Print - Bleed.pdf` and `<Piece> - Print - Bleed - Crop Marks.pdf` so the version is clear without opening them: `Print` means CMYK, `Bleed` is on every file that carries it, `Crop Marks` only on the one with marks.
 - Confirm the printer's bleed and crop-mark requirements before sending. When they are unknown, send both versions (with crop marks, and bleed only).
