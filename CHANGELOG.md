@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.7.1 (2026-10-05)
+
+- business-card: a card ships as exactly two PDFs (crop marks, bleed only), each with both sides; no single-page files.
+- print-pdf: single-page files only on request; the combined PDF is the delivery, and Illustrator users open one page at a time to get editable curves.
+
 ## archy-design 0.7.0 (2026-10-05)
 
 - New skill `business-card`: Archy business cards from the `Archy - Business Cards` templates: what to ask for, a page per print batch, slot rules (two-line name, one- or two-line role with the bottom-anchored Details block), a HubSpot booking QR generated and verified by `scripts/make_qr.py`, and delivery in two versions (crop marks, bleed only) plus single-page files.

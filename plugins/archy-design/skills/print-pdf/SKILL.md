@@ -101,6 +101,6 @@ Do **not** pass `OutputICCProfile` here, or the plates get re-mapped. Then confi
 
 ## 8. Deliver
 
-- **One file per page as well as the combined file.** Illustrator opens a multi-page PDF with "All" as embedded PDF objects that behave like images; a single-page PDF opens as editable curves. Split with `qpdf final.pdf --pages . <n> -- "<name> - <Side>.pdf"` into a `Single pages/` folder.
+- **The combined file is the delivery.** Illustrator opens a multi-page PDF with "All" as embedded PDF objects that behave like images; opening one page at a time (*Page preview*) brings it in as editable curves. Split pages into separate files (`qpdf final.pdf --pages . <n> -- "<name> - <Side>.pdf"`) only when the requester asks for them. Business cards never ship single pages (see `business-card`).
 - Name the files `<Piece> - Print CMYK - Crop Marks.pdf` / `<Piece> - Print CMYK - Bleed.pdf` so the version is clear without opening them.
 - Confirm the printer's bleed and crop-mark requirements before sending. When they are unknown, send both versions (with crop marks, and bleed only).
