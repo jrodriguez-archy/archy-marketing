@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.13.1 (2026-10-06)
+
+- doc-video: numbered squares (T2, T7, any figure in a square) centre the digit with a flex frame instead of hand offsets, plus a small optical correction (Satoshi figures sit low; a `1` looks left-heavy), checked with a screenshot at scale 4.
+
 ## archy-design 0.7.2 (2026-10-05)
 
 - business-card, print-pdf: print files are named `<Piece> - Print - Bleed.pdf` and `<Piece> - Print - Bleed - Crop Marks.pdf` (`Print` implies CMYK; `Bleed` on both, since both carry it).
