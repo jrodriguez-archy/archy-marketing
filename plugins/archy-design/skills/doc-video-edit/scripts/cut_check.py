@@ -1,30 +1,24 @@
 #!/usr/bin/env python3
-"""Report the camera cuts of a DOC video and choose where in each pause to cut.
+"""Report the camera cuts of a DOC video and flag the measurable errors. Writes nothing.
 
   cut_check.py PROJECT_DIR           report every shot change in .tesseract-work/video.json
-  cut_check.py PROJECT_DIR --pick    also choose the best frame for every camera change (cut_pick.py: looks at
-                                     both cameras in the pause) and show it with the reason; writes nothing
-  cut_check.py PROJECT_DIR --snap    same choice, written to video.json (video_prev.json keeps the old).
-                                     Then watch every cut that moved.
 
 House rule (edit-system > Cameras, "Where to cut"): a camera change goes where a thought ends, in a real
-pause, and is placed by watching it: the outgoing shot ends on the finished thought, the incoming one starts
-with life (speech, a breath, a movement), never on a silent, frozen face. There is no fixed offset.
+pause, and the frame inside the pause is chosen by watching it. This script only catches what can be
+measured (a cut in speech, mid-sentence, in a short pause, a short shot); it never chooses or moves a cut.
 
 Columns: out = silence the outgoing shot holds before the cut, in = silence the incoming shot shows before
 he speaks (both from the waveform). Flags: MID-SENTENCE (no . ? ! on the word before), IN-SPEECH (cut while
 he is talking), SHORT-PAUSE (pause < 350 ms), SHORT (camera shot < 5 s), SANDWICH (short shot between two
-graphics), LOOK (the incoming shot opens on more than ~0.25 s of silence, or the outgoing one holds more than
-~1 s: watch the frames and decide). For every LOOK the report prints a psheet.py line with those frames.
+graphics), LOOK (either shot holds more than ~1 s of silence at the cut: watch the frames and decide; a
+shorter silence is the editor's call, not a fault). For every LOOK the report prints a psheet.py line with those frames.
 Word times come from words.json (whisper), which can drift 0.3-1 s: the waveform decides, the words only label.
 """
-import array, json, math, os, shutil, subprocess, sys
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import cut_pick  # noqa: E402
+import array, json, math, os, subprocess, sys
 
 GAP_DB, GAP_MS, SEARCH = -40.0, 120, 0.4
 FRAME = 1001 / 24000
-LOOK_IN, LOOK_OUT = 0.25, 1.0   # only "worth a look" thresholds, not placement rules
+LOOK_IN, LOOK_OUT = 1.0, 1.0    # only "worth a look" thresholds, not placement rules
 PAUSE_MS, MIN_SHOT = 350, 5.0   # house rule (edit-system > Cameras): pause >= ~350 ms under -40 dBFS; shots >= ~5 s
 GRAPHIC = {"split", "split2", "card"}
 
@@ -48,8 +42,6 @@ def gaps(db):
 
 def main():
     root = os.path.abspath(sys.argv[1])
-    snap = "--snap" in sys.argv
-    pick = "--pick" in sys.argv
     work = os.path.join(root, ".tesseract-work")
     cfg = json.load(open(os.path.join(work, "video.json")))
     db = levels(os.path.join(root, cfg["dialogue_source"]))
@@ -66,7 +58,7 @@ def main():
         best = None
         for a, b in G:
             if a - SEARCH <= t <= b + SEARCH:
-                # the pause nearest to the cut (cut_pick.py chooses the frame inside it)
+                # the pause nearest to the cut
                 cand = (a + b) / 2
                 d = abs(cand - t)
                 if best is None or d < best[0]:
@@ -96,7 +88,7 @@ def main():
                 return ea
         return None
 
-    flags_total, moved, look = 0, 0, []
+    flags_total, look = 0, []
     print(f"{'#':>2} {'cut':>7} {'shot':>5}  change                 out   in   flags / suggestion        words")
     for i in range(1, len(shots)):
         p, s = shots[i - 1], shots[i]
@@ -118,22 +110,8 @@ def main():
             g = near_gap(t)
             if g and (g[3] - g[2]) * 1000 < PAUSE_MS:
                 flags.append("SHORT-PAUSE")
-
-            wiped = any(abs(t - w) < 0.05 for w in cfg.get("wipes", []))
-            if g and (pick or snap) and not wiped:
-                # choose the frame by looking at both cameras (cut_pick.py); no fixed offset
-                best, why = cut_pick.pick(root, cfg, (g[2], g[3]), p[2], s[2])
-                if abs(best - t) > 0.02:
-                    sug = f"-> {best:.3f} ({why})"
-                    if snap:
-                        p[1] = s[0] = best
-                        moved += 1
-                else:
-                    sug = f"ok ({why})"
-            elif g and abs(g[1] - t) > 0.02 and not wiped:
-                sug = f"pause {g[2]:.2f}-{g[3]:.2f} (--pick to choose the frame)"
-            elif not g:
-                sug = "no gap within 0.4 s"
+            if not g:
+                sug = "no pause within 0.4 s"
         # silence each side shows (speech edges at about -45 dBFS)
         i_ = int(p[1] * 100)
         while i_ > 0 and db[i_] < -45: i_ -= 1
@@ -155,10 +133,6 @@ def main():
         print("\nWatch these cuts (9 frames around each, edit times of the last build):")
         for l in look:
             print(f"  psheet.py <Video>/<Video>.tsrct look.png 9 {l}")
-    if snap and moved:
-        shutil.copy(os.path.join(work, "video.json"), os.path.join(work, "video_prev.json"))
-        json.dump(cfg, open(os.path.join(work, "video.json"), "w"), indent=1, ensure_ascii=False)
-        print(f"snapped {moved} camera changes (previous config in video_prev.json)")
 
 if __name__ == "__main__":
     main()

@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.7.3 (2026-10-06)
+
+- doc-video-edit: the frame of a camera change inside its pause is chosen by eye again. `cut_pick.py` and `cut_check.py --pick` / `--snap` are removed: on approved videos the script moved up to 17 cuts per video by 0.3 to 1.1 s, biased late, onto the mouth opening and sometimes into another pause.
+- doc-video-edit: `cut_check.py` is a report only: it flags measurable errors (in speech, mid-sentence, short pause, short shot, sandwich) and LOOK only for a silence over ~1 s; it never moves a cut.
+
 ## archy 0.13.1 (2026-10-06)
 
 - doc-video: numbered squares (T2, T7, any figure in a square) centre the digit with a flex frame instead of hand offsets, plus a small optical correction (Satoshi figures sit low; a `1` looks left-heavy), checked with a screenshot at scale 4.
