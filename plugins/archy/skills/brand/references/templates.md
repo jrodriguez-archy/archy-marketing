@@ -298,6 +298,26 @@ File: `Archy - Various Collateral`, `app.paper.design/file/01M37ZJ6ECM7XJ5TG5W2Z
 | `Chrome Store · Feature Explainer` | 1280×800 |
 | `Chrome Store · Sneak Peek Promo` | 440×280 |
 
+### Archy - Business Cards
+
+File: `Archy - Business Cards`, `app.paper.design/file/01M46XGRN8YXH5EXG4QSX0N446`, page `Business Cards`. Print templates, 3.5 × 2 in, made and exported with the `archy-design:business-card` skill. Artboards are 1125 × 675 (300 px/in, 0.125 in bleed included) on the print-equivalent tokens (`tokens.md`). Each has a `Guides` frame on top: trim (red) and safe zone (green, the box every element touches); hide it with `opacity: 0` before export. Real cards go on a page per print batch (`Oct 2026 - 1`), named `<Full Name> · Front 3.5×2 in` / `· Back QR 3.5×2 in`.
+
+| Template | Purpose | Ground | Signature |
+|---|---|---|---|
+| `Business Card · Front` | Every card | Print royal blue | White wordmark, two-tone tagline, navy moon pattern on the right |
+| `Business Card · Back` | Contact side, no booking link | Print tint 100 | Two-line name, role, email, phone, light blue arc, `archy.com` |
+| `Business Card · Back QR` | Contact side with a demo booking link | Print tint 100 | Same column, `SCAN TO BOOK` QR plate in place of the arc |
+
+| Slot | Back | Back QR | Example | Notes |
+|---|---|---|---|---|
+| `slot-text-name` | ≤ 12 characters per line, 2 lines | ≤ 11 per line, 2 lines | `First Name\nLast Name` | 100 / 102 Onest bold. First name, line break, last name |
+| `slot-text-role` | ≤ 22 characters on 1 line at 50 / 60 | Same | `Account Executive` | Longer roles wrap to 2 lines at 40 / 49 (`Sales Development\nRepresentative`). The Details block is anchored to the bottom, so it grows upward |
+| `slot-text-email` | ≤ 38 characters | Same | `name@archy.com` | 40 / 56 medium |
+| `slot-text-phone` | ≤ 22 characters | Same | `000-000-0000` | Shares its baseline with `archy.com` |
+| `slot-image-qr` | | 45 × 45 modules, 254 px | | Generated from the person's HubSpot meetings link, `--color-black`. The template holds a placeholder that does not scan on purpose |
+
+Fixed by design: the front, the arc, the plate, `SCAN TO BOOK`, `archy.com`. Sample content in the templates is placeholder (`First Name`, `name@archy.com`, `000-000-0000`) so a forgotten field shows at proof.
+
 ### Master - Decks
 
 File: `Master - Decks`, `app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7`. 57 slide layouts at 1920×1080, one page per category. The roster is in the `deck` skill (`layout-catalog.md`).

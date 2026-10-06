@@ -14,6 +14,7 @@ For how those tokens are composed on a canvas (Rulers, the mascot, lockups, layo
 | **Master - Events** (Paper) | `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD` | Page **Templates**: event campaign artboards |
 | **Ads** (Paper) | `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0` | Campaign ads being designed as future templates (not a master yet): pages `MDIB Social Summit Ad` (Platform one-pager and Post), `SDCDS Marketing Material` (print ads), `AE Spotlights` (person-led ad, five options). Catalog in `templates.md` |
 | **Master - Decks** (Paper) | `app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7` | Slide template library, 1920 × 1080. **One page per content category**: Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase. 57 layouts, all with export specs (see `templates.md`) |
+| **Business Cards** (Paper) | `app.paper.design/file/01M46XGRN8YXH5EXG4QSX0N446` | Page **Business Cards**: the card templates (front, back, back with QR) at 3.5 × 2 in + bleed, on print-equivalent tokens. Print batches live on dated pages. Made with the `archy-design:business-card` skill |
 | **Various Collateral** (Paper) | `app.paper.design/file/01M37ZJ6ECM7XJ5TG5W2Z2YR4N` | Page `Chrome - Portal Manager`: Chrome Web Store listing images for the Portal Manager extension, plus the product frames they are built from |
 
 The export tooling (Slides export to `.pptx`, Figma export) and the source material it depends on ship with this plugin under the relevant skills; they are not listed here.
@@ -61,6 +62,25 @@ The rule exists to protect *wrapping body copy*. A single-line label or value ne
 | Blue Tint 800 (`--color-blue-tint-800`) | `#00004E` | Dark ground |
 | Blue Tint 100 / 200 / 300 | | Light text on blue |
 | White (`--color-white`) | | |
+
+## Print-equivalent tokens
+
+Paper works in RGB only; CMYK happens once, in the print PDF (`archy-design:print-pdf`). On press, `--color-royal-blue-500` and the bright tints fall outside the CMYK gamut and print duller (royal blue lands at ~C88 M70), so the screen shows a colour the card will never have.
+
+A print piece that must match material already printed carries **print-equivalent tokens**: RGB values measured from the printed piece, defined in that file only and named `--color-print-<role>`. They sit inside the CMYK gamut, so the conversion keeps them and the screen shows what prints. The set in `Archy - Business Cards`:
+
+| Token | Hex | Role | CMYK (GRACoL 2006) |
+|---|---|---|---|
+| `--color-print-royal-blue` | `#224F9D` | Royal blue ground | C92 M72 Y1 K0 |
+| `--color-print-royal-blue-text` | `#2B4E9D` | Royal blue type on light grounds | C90 M73 Y0 K0 |
+| `--color-print-navy` | `#242D61` | Navy shapes, borders | C98 M96 Y28 K18 |
+| `--color-print-navy-text` | `#1D1F42` | Body type on light grounds | C98 M99 Y40 K46 |
+| `--color-print-tint-100` | `#E3F1FC` | Light ground, light type on blue | C11 M1 Y0 K0 |
+| `--color-print-tint-300` | `#6DB3E4` | Light accent shapes | C57 M15 Y0 K0 |
+
+Use them for print pieces in that family; screen pieces keep the core palette. A QR on a print piece is `--color-black`, which `print-pdf` turns into pure K. Small body type in a dark 4-colour build (like `--color-print-navy-text`) is sensitive to registration; when the printer flags it, move that text to a simpler build.
+
+**Guide tokens** (`--color-guide-trim`, `--color-guide-safe`) colour the trim and safe-zone overlays on print templates, at low opacity. They are never part of a design and are hidden (`opacity: 0`) before export.
 
 ---
 

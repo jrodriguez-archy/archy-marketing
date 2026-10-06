@@ -1,0 +1,37 @@
+%!PS
+% Crop marks prelude for Ghostscript (print-pdf skill, step 5).
+% Places each page of a Paper PDF (artwork already including bleed) centred on a
+% larger sheet, draws crop marks outside the bleed and writes TrimBox / BleedBox.
+%
+% Usage (all values in points, 72 pt = 1 in):
+%   gs -o out.pdf -sDEVICE=pdfwrite -dFIXEDMEDIA \
+%      -dDEVICEWIDTHPOINTS=<TW+72> -dDEVICEHEIGHTPOINTS=<TH+72> -dNoOutputFonts \
+%      -dTW=<trim w> -dTH=<trim h> -dBL=<bleed> -dSW=<source w> -dSH=<source h> \
+%      marks.ps -f in.pdf
+% Example, business card 3.5 x 2 in with 0.125 in bleed from a 1125 x 675 px artboard:
+%   -dDEVICEWIDTHPOINTS=324 -dDEVICEHEIGHTPOINTS=216 -dTW=252 -dTH=144 -dBL=9 -dSW=844.08 -dSH=505.92
+% SW / SH are the page size pdfinfo reports for the Paper export.
+
+/O 36 def                                  % sheet margin from trim to sheet edge (0.5 in)
+/AW TW BL 2 mul add def                    % artwork width = trim + bleed
+/AH TH BL 2 mul add def
+/S AH SH div def                           % scale by height
+/Tx AW SW S mul sub 2 div def              % centre the tiny horizontal overshoot
+/X0 O BL sub def                           % artwork origin on the sheet
+/T0 O def  /T1x O TW add def  /T1y O TH add def
+/G BL 3 add def  /L 18 def                 % marks start 3 pt past the bleed, 18 pt long
+<<
+ /Install { X0 Tx add X0 translate S S scale 0 0 SW SH rectclip }
+ /BeginPage { pop [ {ThisPage} << /TrimBox [T0 T0 T1x T1y]
+     /BleedBox [X0 X0 T1x BL add T1y BL add] >> /PUT pdfmark }
+ /EndPage { exch pop 2 ne {
+   % initgraphics re-applies Install, so undo it before drawing on the sheet
+   gsave initgraphics 1 S div dup scale X0 Tx add neg X0 neg translate initclip
+   0.25 setlinewidth 1 1 1 1 setcmykcolor          % registration: all four plates
+   /seg { moveto lineto stroke } def
+   T0 G sub T0 T0 G sub L sub T0 seg      T0 G sub T1y T0 G sub L sub T1y seg
+   T1x G add T0 T1x G add L add T0 seg    T1x G add T1y T1x G add L add T1y seg
+   T0 T0 G sub T0 T0 G sub L sub seg      T1x T0 G sub T1x T0 G sub L sub seg
+   T0 T1y G add T0 T1y G add L add seg    T1x T1y G add T1x T1y G add L add seg
+   grestore true } { false } ifelse }
+>> setpagedevice

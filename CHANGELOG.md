@@ -6,6 +6,19 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.7.0 (2026-10-05)
+
+- New skill `business-card`: Archy business cards from the `Archy - Business Cards` templates: what to ask for, a page per print batch, slot rules (two-line name, one- or two-line role with the bottom-anchored Details block), a HubSpot booking QR generated and verified by `scripts/make_qr.py`, and delivery in two versions (crop marks, bleed only) plus single-page files.
+- print-pdf: text converted to curves (`-dNoOutputFonts`), checked with `pdffonts`.
+- print-pdf: crop marks with `scripts/marks.ps`: sheet 0.5 in larger than trim, 0.25 pt registration marks outside the bleed, TrimBox and BleedBox written; documents the `initgraphics` trap that draws marks inside the artwork.
+- print-pdf: deliver one file per page as well, since Illustrator opens multi-page PDFs as embedded objects; hide guide layers with `opacity: 0` before export; design QRs in `--color-black`; multi-artboard exports, the canvas-colour base fill and plate checks at 600 dpi.
+
+## archy 0.13.0 (2026-10-05)
+
+- New template family in the catalog: `Archy - Business Cards` (Front, Back, Back QR at 3.5 × 2 in + bleed), with guides, slot limits and the long-role rule (`templates.md`).
+- tokens.md: print-equivalent tokens (`--color-print-*`) for print pieces that must match material already printed, with their CMYK builds, and the guide tokens; the Business Cards file in *Where things live*.
+- paper-quirks.md: `display: none` then `block` strips `position: absolute` from a frame's children; hide with `opacity: 0`.
+
 ## archy 0.12.0 (2026-10-05)
 
 - New master file `Master - Ads` with its first template, `AE Spotlight` (Post 1080×1080, Stories 1080×1920): slot table with measured limits in `templates.md`.
