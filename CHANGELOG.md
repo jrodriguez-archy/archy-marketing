@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.17.3 (2026-10-08)
+
+- Event Cover is the Cover format of each event template, not a template of its own: masters renamed `TPL · <Template> · [Theme ·] Cover 1200×900`, the Night Out covers' subhead slot is `slot-text-cover-subhead`. templates, composition and social-post updated.
+
 ## archy 0.17.2 (2026-10-08)
 
 - Master - Ads: one page per template, named after it; page `Templates` renamed to `AE Spotlight` (node ids unchanged, Archy Studio unaffected). Stale note about the `AE Spotlights` explorations page removed.

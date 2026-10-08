@@ -205,7 +205,7 @@ Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Du
 | `Square` | 1080 × 1080 | x 105–975, y 90–990 |
 | `Event Cover` (event page thumbnail) | 1200 × 900 | everything inside the white card (48px from the trim, 56px padding) |
 
-The Square is the Post compressed: same blocks, smaller headline, shorter photo band (see `templates.md`). The Event Cover is its own piece, not a derived format: a Pixel Tone photo ground, a white card, a headline and one content block.
+The Square is the Post compressed: same blocks, smaller headline, shorter photo band (see `templates.md`). The Cover is one more format of the template (named `TPL · <Template> · Cover 1200×900`), with its own layout rather than a compressed Post: a Pixel Tone photo ground, a white card, a headline and one content block.
 
 **Rulers rotate with the format.** Horizontal Rulers separating stacked rows on a Post become **vertical dividers** between columns on the OG, where the same rows sit side by side. The device survives the re-layout; its orientation does not.
 
