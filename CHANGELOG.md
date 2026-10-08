@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.15.0 (2026-10-08)
+
+- Square 1080×1080: every `Master - Events` template now has a Square in the fourth column of its row (the Post compressed: content column x 105–975, y 90–990). The catalog lists what changes per template so the copy fits (headline size and break, shorter photo bands, smaller mascot, no `Speaker` label, no offer strip on the offer templates, badge placement).
+- social-post: Square is built with Stories and OG once a template is chosen, and its headline break is set by hand like the OG.
+- brand: portraits are centred in their circle every time, cropped with `background-size` / `background-position` on an image layer that fills the circle, never offset with `left` / `top`; the review checklist checks it at `scale: 2`.
+
 ## archy 0.14.0 (2026-10-08)
 
 - Event Cover: eight covers in `Master - Events` (Booth, Booth Photo, Speaker, Booth Light, Booth Photo Band, Booth Offer, Night Out, Night Out Venue), one in the fifth column of the row whose template it follows; the countdowns have no cover. The cover is the Webflow CMS event page thumbnail: a Pixel Tone ground of the city or venue, a white card with the `Archy | Event` + partner lockup, a two-node headline and one content block.

@@ -58,7 +58,15 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 ### Master - Events (event social)
 
-File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*). The `Night Out` templates add a fourth, **Square 1080×1080** (content column x 105–975, y 90–990), in the fourth column of their row. `Event Cover` (1200×900) is the thumbnail of the event page in the Webflow CMS; it sits in the fifth column of the row whose template it follows (x 4830).
+File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*) and **Square 1080×1080**, the fourth column of each row (x 3600). `Event Cover` (1200×900) is the thumbnail of the event page in the Webflow CMS; it sits in the fifth column of the row whose template it follows (x 4830).
+
+**Square 1080×1080** is the Post compressed to the square: content column x 105–975, y 90–990, same blocks and order. What changes, so the copy fits:
+- Headlines drop to 76–84px and usually run two lines. On the booth templates break them as `Meet Archy at <event start>\n<rest>` (`Meet Archy at Hinman\nDental Meeting`); `Booth Photo Band` keeps the Post's three lines so the mascot stays clear of the text. Countdowns keep `Tomorrow\nis the day` at 124–160px.
+- Photo bands shrink (city band 240–350px tall) and the mascot runs at 70–80% of the Post size, still about two thirds visible.
+- `Speaker Invite` drops the `Speaker` label and runs the portrait at 160.
+- `Booth Invite Offer` and `Countdown Offer` drop the offer strip on the Square (it does not fit with the lockup); `Booth Invite Offer` also drops the venue line and gives the room to the city photo (1080×300). `Content` runs to the bottom margin with `justify-content: space-between`, so the lockup sits on y 990 and the freed space becomes air and larger type (headline 88 / 136, city 54).
+- Badges keep their size. Place them by screenshot: a badge never touches a text, a pill or the trim; keep about 40px of ground between the badge and any of them.
+- Portraits stay centred in their circle when the circle shrinks (see *Photos* in the brand skill).
 
 Masters are named `TPL · <Template> · <Format> <W×H>`; covers `TPL · Event Cover · <Variant> · Cover 1200×900`. The countdown templates (`Countdown Mascot`, `Countdown Masthead`, `Countdown Offer`) have no cover: a day-before reminder never becomes an event page.
 

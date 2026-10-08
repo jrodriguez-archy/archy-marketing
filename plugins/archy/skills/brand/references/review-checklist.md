@@ -23,6 +23,8 @@ Run this after filling or adapting a template, and before reporting the work as 
 - [ ] **No orphaned last line in a two-tone headline.** If the first node wraps, check the frame width against the content column before anything else.
 - [ ] **A call to action is present** where the format needs one (URL, button, date to register), and it reads at the piece's viewing size.
 
+- [ ] **Every portrait is centred in its circle.** The face (eyes to chin) sits on the circle's centre on every format, checked at `scale: 2`; the image layer fills the circle and is cropped with `background-size` / `background-position`, not offset with `left` / `top`.
+
 ## Type
 
 - [ ] **`line-height` is never below `font-size`** on wrapping copy (a paste once carried 65px text on 32px leading, and badge text at `line-height: 0`). Exception: display type at 150px+ and single-line labels or values may be set solid or a hair under.
