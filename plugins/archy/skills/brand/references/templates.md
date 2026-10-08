@@ -58,7 +58,9 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 ### Master - Events (event social)
 
-File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*). The `Night Out` templates add a fourth, **Square 1080×1080** (content column x 105–975, y 90–990), in the fourth column of their row. `Event Cover` is a single 1200×900 format. Masters are named `TPL · <Template> · <Format> <W×H>`.
+File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as three formats: Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*). The `Night Out` templates add a fourth, **Square 1080×1080** (content column x 105–975, y 90–990), in the fourth column of their row. `Event Cover` (1200×900) is the thumbnail of the event page in the Webflow CMS; it sits in the fifth column of the row whose template it follows (x 4830).
+
+Masters are named `TPL · <Template> · <Format> <W×H>`; covers `TPL · Event Cover · <Variant> · Cover 1200×900`. The countdown templates (`Countdown Mascot`, `Countdown Masthead`, `Countdown Offer`) have no cover: a day-before reminder never becomes an event page.
 
 At a glance, to pick 2 or 3 options that differ from each other:
 
@@ -75,7 +77,7 @@ At a glance, to pick 2 or 3 options that differ from each other:
 | `Countdown Offer` | Day-before reminder with a giveaway | Royal blue | Like `Countdown Mascot`, plus the offer strip |
 | `Night Out Illustration` | Hosted social evening (dinner, drinks, golf) with a sign-up | Dark navy | Cocktail illustration and sparkles off the top right, label/value details, primary button |
 | `Night Out Venue` | Hosted social evening at a named venue | Dark navy | Venue photo band on top, drinks pattern texture, white perks pill, centred |
-| `Event Cover` | Cover image for the event page or invite (1200×900) | Royal blue photo | Venue photo under a royal blue scrim, white card with `Archy \| Event` lockup, guest photo circle |
+| `Event Cover` | Thumbnail of the event page in the Webflow CMS (1200×900) | Pixel Tone of the city or venue | White card with `Archy \| Event` + partner lockup, big headline, one content block (booth button, speaker, or photo + text) |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
 
@@ -242,16 +244,30 @@ The drinks pattern is texture, not content: it stays at low opacity (it arrived 
 
 #### Event Cover
 
-The cover image for the event's registration page or invite (1200×900), from the Dallas Topgolf campaign. One format. **Use when** an event page, Luma or email invite needs a header image. **Not when** the piece is a social post (use the `Night Out` templates).
+The thumbnail of the event's page in the Webflow CMS (1200×900). One format (no Square, Stories or OG), one cover per event, placed in the fifth column of the row whose template it follows (x 4830). **Use when** an event page, Luma or email invite needs a header image. **Not when** the piece is a social post or a day-before reminder. Pick the cover that matches the social template of the same campaign (the table below); when the event has no social template yet, choose by content: a booth, a speaker, or a hosted evening.
 
-A white card (`Content`, 844×804 at 48, 48, padding 56) on a venue photo tinted by a royal blue `Scrim` at 0.8 (a solid scrim replaces the `overlay` blend it arrived with). Inside: `Logo Lockup` (royal blue wordmark, 2px `Divider`, `Event Label`: `Event`, fixed on every cover, not a slot, never replaced by the event name), headline, and a `Footer` row with the guest photo circle and the subhead.
+Every cover is built the same way:
 
-| Slot | Limit | Example | Notes |
+- **Ground:** always a photo related to the event (the host city or the venue), turned into a Pixel Tone, even when the social template it follows is illustrated. A cover is its own piece, not a copy of the Post: no illustrations, no mascot, no call-to-action button. The tone is made with the `archy-design:pixel` tool (`effect tone <photo> --gradient <name> --size 1200x900`). Match the ground of the template the cover follows: `royal-blue` for royal blue templates, `navy` for dark navy ones, `ice --invert` for light ones. Place photos only, never a person. Use the requester's photo; a city photo may be generated (see *Photos* in the brand skill); a venue photo is never generated.
+- **Card:** white `Content` (844×804 at 48, 48, padding 56), flex column with a 48px gap. On top, `Logo Lockup`: royal blue wordmark, 2px `Divider`, `Event Label` (`Event`, fixed on every cover: not a slot, never replaced by the event name) and `slot-logo-partner` pushed to the right (navy on the white card; recolour a white partner mark to `--color-light-text` by setting `fill` on every path, not only the root SVG; about 230 wide, 300 for a wide mark).
+- **Headline:** two nodes, `slot-text-headline-1` (medium) + `slot-text-headline-2` (bold, the event or talk name), navy, 80–104px. On a light ground follow `Booth Light Rulers`: both semibold, the second in `--color-neutral`.
+- **One content block at the bottom**, nothing else. The page itself carries the city, venue, date and time, so the cover does not repeat them:
+  - **Booth:** a 2px `Ruler` (`--color-light-border`), then the `Booth Button` (radius 8, padding 24 / 36, `slot-text-booth` 44px bold uppercase, `Booth #1039`). On a blue or navy ground: a `--color-blue-tint-100` label with royal blue text. On a light ground (ice), where a pale label would disappear: a royal blue label with white text.
+  - **Booth + offer:** the booth block, with `optional-offer` at the right of the same row: `slot-logo-offer` (the team or sponsor mark, about 100 tall) and `slot-text-offer` in navy, 28px bold uppercase, two lines (`Win prizes +\nBulls tickets`).
+  - **Speaker:** `slot-image-speaker` (210 circle, 4px royal blue ring, face centred), `Speaker` label, `slot-text-speaker-name` (56), `slot-text-speaker-role` and `slot-text-speaker-company` (32, one line each). The text column is `flex: 1; min-width: 0` so a longer role wraps instead of leaving the card.
+  - **Photo + text:** `slot-image-photo` (240 circle) and `slot-text-subhead` (52 semibold navy, 2 or 3 lines, break with `\n`). The subhead adds something the headline does not say (what happens there, where), never a rephrase of it. Two covers of the same event use different photos.
+- Nothing ever leaves the card except the ground; check every text on the screenshot.
+
+| Cover | Row | Ground | Content block |
 |---|---|---|---|
-| `slot-image-venue` | Full bleed 1200×900 | Topgolf bays | Under the `Scrim`; any photo reads as a blue duotone. From the requester or the venue, never generated |
-| `slot-text-headline` | ≤ 17 characters per line, 3 lines | `A Free Night Out\nFor Dallas Dentists` | 88/96 medium, navy (`--color-light-text`) |
-| `slot-image-photo` | 216 circle, 4px royal blue ring | Guests toasting | People enjoying the venue. Real photos only |
-| `slot-text-subhead` | ≤ 25 characters per line, 3 lines | `A few rounds of Topgolf, free drinks, apps and great company on us` | |
+| `TPL · Event Cover · Booth` | Booth Icon List | Royal Blue tone (Atlanta) | Booth |
+| `TPL · Event Cover · Booth Photo` | Booth Invite Photo | Navy tone (Atlanta) | Booth |
+| `TPL · Event Cover · Speaker` | Speaker Invite | Royal Blue tone (Denver) | Speaker |
+| `TPL · Event Cover · Booth Light` | Booth Light Rulers | Ice tone (Atlanta) | Booth |
+| `TPL · Event Cover · Booth Photo Band` | Booth Photo Band | Ice tone (Atlanta), headline medium + bold in navy (no mascot on the covers) | Booth |
+| `TPL · Event Cover · Booth Offer` | Booth Invite Offer | Royal Blue tone (Chicago) | Booth + offer |
+| `TPL · Event Cover · Night Out` | Night Out Illustration | Navy tone (Topgolf patio at night); circle: the bays | Photo + text |
+| `TPL · Event Cover · Night Out Venue` | Night Out Venue | Navy tone (Topgolf building); circle: guests | Photo + text |
 
 
 ### Master - Ads (ads)

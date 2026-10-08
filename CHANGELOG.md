@@ -6,6 +6,16 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.14.0 (2026-10-08)
+
+- Event Cover: eight covers in `Master - Events` (Booth, Booth Photo, Speaker, Booth Light, Booth Photo Band, Booth Offer, Night Out, Night Out Venue), one in the fifth column of the row whose template it follows; the countdowns have no cover. The cover is the Webflow CMS event page thumbnail: a Pixel Tone ground of the city or venue, a white card with the `Archy | Event` + partner lockup, a two-node headline and one content block.
+- social-post: the event page cover is part of the default delivery when there is an event page, with its own step.
+- brand: without a venue photo, a cover takes a Pixel Tone of the host city; review checklist gains an *Event covers* section; composition lists the cover's safe area.
+
+## archy-design 0.7.4 (2026-10-08)
+
+- pixel: the ground of an `Event Cover` is a Pixel Tone of the city or venue photo, in the tone of the social template's ground.
+
 ## archy 0.13.2 (2026-10-08)
 
 - Event Cover: the `Event` label next to the Archy wordmark is fixed on every cover (layer `Event Label`, formerly `slot-text-kicker`); it is not a slot and is never replaced by the event name.

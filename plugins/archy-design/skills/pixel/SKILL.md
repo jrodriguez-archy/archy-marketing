@@ -36,6 +36,7 @@ The values in this skill are a **starting point**, not a rule. Tune them to the 
 | A person bleeding off the bottom of the frame | Pixel Dissolve |
 | A headshot in a small or square frame | Pixels Behind |
 | A city, office or practice behind text | Pixel Tone (never on people) |
+| The ground of an `Event Cover` (1200×900 event page thumbnail) | Pixel Tone of the city or venue photo, in the tone of the social template's ground: `royal-blue`, `navy` or `ice --invert` |
 
 ## Pixel Gradients
 

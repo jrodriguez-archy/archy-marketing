@@ -95,6 +95,13 @@ Run this after filling or adapting a template, and before reporting the work as 
 - [ ] **No blobs, meshes, glows, drop shadows, decorative rotations or blend modes.**
 - [ ] **No mint in event pieces.**
 
+## Event covers
+
+- [ ] **Nothing leaves the white card** except the ground; the longest line of the headline and every content-block text end inside the 56px padding.
+- [ ] **The ground is a Pixel Tone of a place photo** (city or venue), in the tone of the template's ground; no person, no illustration, no mascot, no button.
+- [ ] **One content block only**, and no city, venue, date or time repeated from the page.
+- [ ] **A white partner mark was recoloured to navy** on every path; check it at `scale: 2`.
+
 ## Before reporting
 
 - [ ] A final full-artboard `get_screenshot` taken after the last fix.

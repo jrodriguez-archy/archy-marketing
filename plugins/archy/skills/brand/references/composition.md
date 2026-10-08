@@ -201,6 +201,9 @@ Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Du
 | `N.1 … Post` | 1080 × 1350 | x 105–975, y 105–1245 |
 | `N.2 … Stories` | 1080 × 1920 | x 105–975, **y 250–1670**; Instagram's UI covers the top and bottom 250px |
 | `N.3 … OG / Link preview` | 1200 × 630 | ~60–72px margins |
+| `Event Cover` (event page thumbnail) | 1200 × 900 | everything inside the white card (48px from the trim, 56px padding) |
+
+The Event Cover is its own piece, not a derived format: a Pixel Tone photo ground, a white card, a headline and one content block.
 
 **Rulers rotate with the format.** Horizontal Rulers separating stacked rows on a Post become **vertical dividers** between columns on the OG, where the same rows sit side by side. The device survives the re-layout; its orientation does not.
 
