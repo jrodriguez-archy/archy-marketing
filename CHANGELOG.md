@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.15.1 (2026-10-08)
+
+- paper-quirks: "Your Paper file is currently disconnected from the server" refuses every write: retry once after a moment, then reopen the file; re-check the last writes made before the drop.
+- paper-quirks: a white mark with many paths is recoloured path by path; `fill` on the root SVG is accepted but does not render.
+- paper-quirks: an imported illustration can mix % and px children; resize every px child by the same factor, or move it instead of resizing.
+
 ## archy 0.15.0 (2026-10-08)
 
 - Square 1080×1080: every `Master - Events` template now has a Square in the fourth column of its row (the Post compressed: content column x 105–975, y 90–990). The catalog lists what changes per template so the copy fits (headline size and break, shorter photo bands, smaller mascot, no `Speaker` label, no offer strip on the offer templates, badge placement).
