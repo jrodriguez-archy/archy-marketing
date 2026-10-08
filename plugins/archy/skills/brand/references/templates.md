@@ -275,7 +275,7 @@ Every cover is built the same way:
 
 ### Master - Ads (ads)
 
-File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`, page `Templates`. One row per variant, rows 2080 apart; in each row the themes sit side by side: White at x 0 (Post) and 1160 (Stories), Royal Blue at 2320 / 3480, Navy at 4640 / 5800. The page `AE Spotlights` keeps the five original explorations as references.
+File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`. The whole file is templates, one page per template, named after it (today page `AE Spotlight`); a new ad template gets its own page. On each page, one row per variant starting at y 0, rows 2080 apart; in each row the themes sit side by side: White at x 0 (Post) and 1160 (Stories), Royal Blue at 2320 / 3480, Navy at 4640 / 5800.
 
 | Template | Purpose | Variants | Themes |
 |---|---|---|---|

@@ -9,7 +9,7 @@ Load the `brand` skill first and follow it: never touch the source pieces, keep 
 
 ## Source
 
-**Templates:** `Master - Ads` (`app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`), page `Templates`, holds the slot-ready ads (today `AE Spotlight`, Post and Stories). Fill them like any master: work in a copy (see *Where the work goes* in the `brand` skill) and follow the slot table in `../brand/references/templates.md` (*Master - Ads*).
+**Templates:** `Master - Ads` (`app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`), holds the slot-ready ads, one page per template named after it (today page `AE Spotlight`, Post and Stories). Fill them like any master: work in a copy (see *Where the work goes* in the `brand` skill) and follow the slot table in `../brand/references/templates.md` (*Master - Ads*).
 
 **References:** Paper file `Archy - Ads` (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`). **It is not a master yet**: its pieces are being designed as future templates and carry no slots. Treat them as references:
 

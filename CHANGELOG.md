@@ -6,6 +6,14 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.17.2 (2026-10-08)
+
+- Master - Ads: one page per template, named after it; page `Templates` renamed to `AE Spotlight` (node ids unchanged, Archy Studio unaffected). Stale note about the `AE Spotlights` explorations page removed.
+
+## archy-design 0.8.2 (2026-10-08)
+
+- prepare-template: in `Master - Ads` a new template gets its own page; variants and themes go on their template's page.
+
 ## archy 0.17.1 (2026-10-08)
 
 - templates: row order of `Master - Events`, grouped by job, with the themes of one template in consecutive rows (Navy above Royal Blue).
