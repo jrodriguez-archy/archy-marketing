@@ -6,6 +6,18 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.16.0 (2026-10-08)
+
+- AE Spotlight: five variants (Meet Name, The Arch, Grid Card, Mosaic, Forum), each in three themes (White, Royal Blue, Navy), Post and Stories: 30 masters in `Master - Ads`, one row per variant, themes side by side. Same slot names in every variant.
+- templates: new *Templates, variants, formats and themes* section: a template can hold several designs of one purpose; artboards are named `TPL · <Template> · <Variant> · <Theme> · <Format> <W×H>`; a theme changes colour only, on the brand grounds.
+- templates: AE Spotlight catalog rewritten with the variant table, the theme recipe and name/title limits per variant; Stories location limit corrected to 29 characters.
+- ad: pick the AE Spotlight variant (Meet Name by default) and theme.
+
+## archy-design 0.8.0 (2026-10-08)
+
+- prepare-template: a design for an existing purpose becomes a variant of that template (same slots), even with the same content; colour-only changes become themes. Naming with variant and theme, and build on the active page before moving to `Templates`.
+- explore: a reusable exploration becomes a new template or a variant, by purpose.
+
 ## archy 0.15.1 (2026-10-08)
 
 - paper-quirks: "Your Paper file is currently disconnected from the server" refuses every write: retry once after a moment, then reopen the file; re-check the last writes made before the drop.

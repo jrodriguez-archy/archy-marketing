@@ -10,6 +10,23 @@ Each `Master - …` file holds its templates on the `Templates` page. **Nothing 
 
 A template is named `TPL · <Family> · <Format> <W×H>`, with no numbers. A piece is named `<Event or campaign> · <Format> <W×H>`, for example `Hinman 2027 · Post 1080×1350`.
 
+### Templates, variants, formats and themes
+
+A template can hold several designs of the same job. Four levels, from broad to narrow:
+
+| Level | What it is | Example |
+|---|---|---|
+| **Template** | The purpose: what the piece is for | `AE Spotlight` |
+| **Variant** | One design (layout and composition) for that purpose | `The Arch`, `Grid Card` |
+| **Format** | A size | `Post 1080×1080`, `Stories 1080×1920` |
+| **Theme** | The colour treatment, on one of the brand grounds | `White`, `Royal Blue`, `Navy` |
+
+A template with variants is named `TPL · <Template> · <Variant> · <Theme> · <Format> <W×H>`, for example `TPL · AE Spotlight · The Arch · Navy · Post 1080×1080`. On the `Templates` page each variant is a row and the themes sit side by side as Post + Stories pairs.
+
+- **Every variant uses the same slot names**, so the same facts fill any of them and switching variant costs nothing. A slot only one variant has is documented as that variant's own.
+- **A theme changes colour only.** Slots, sizes and positions are identical across the themes of a variant.
+- **Themes come from the brand grounds** (`tokens.md`), always with tokens, and only where the variant reads well on that ground. A variant does not need every theme.
+
 ---
 
 ## Slots
@@ -22,7 +39,7 @@ A slot is a layer named for what it holds, where a piece is meant to change. The
 | `slot-image-<role>` | A picture to replace | `slot-image-photo`, `slot-image-speaker` |
 | `slot-logo-partner` | The partner's mark, next to the Archy wordmark | |
 | `optional-<role>` | A block to remove when there is no content for it | `optional-tickets-offer` |
-| `variant-<name>` | One of several pre-designed versions; keep one | `variant-ground-dark` |
+| `variant-<name>` | One of several pre-designed versions of a block inside one artboard; keep one. Whole alternative designs are variants of the template instead (above) | `variant-ground-dark` |
 
 A two-tone headline is two text nodes (Paper cannot colour part of one), so it is two slots: `slot-text-headline-1` and `slot-text-headline-2`, split where the design splits it.
 
@@ -280,25 +297,62 @@ Every cover is built the same way:
 
 ### Master - Ads (ads)
 
-File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`, page `Templates`. Rows: Post at x 0, Stories at x 1160. The page `AE Spotlights` keeps the five original explorations as references.
+File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`, page `Templates`. One row per variant, rows 2080 apart; in each row the themes sit side by side: White at x 0 (Post) and 1160 (Stories), Royal Blue at 2320 / 3480, Navy at 4640 / 5800. The page `AE Spotlights` keeps the five original explorations as references.
 
-| Template | Purpose | Ground | Signature |
+| Template | Purpose | Variants | Themes |
 |---|---|---|---|
-| `AE Spotlight` | Introduce one Account Executive (or any person) to local practices, with a demo CTA | White, with a royal blue photo panel | Two-tone hero `Meet <Name>.`, three benefit rows, cut-out portrait over Pixel Dissolve, white name plate |
+| `AE Spotlight` | Introduce one Account Executive (or any person) to local practices, with a demo CTA | Meet Name, The Arch, Grid Card, Mosaic, Forum | White, Royal Blue, Navy |
 
 #### AE Spotlight
 
-Masters: `TPL · AE Spotlight · Post 1080×1080`, `TPL · AE Spotlight · Stories 1080×1920`. **Use when** a person is the message: an AE, a speaker or a team member introduced by first name, with a demo or meeting CTA. **Not when** the ad sells a product claim (use `Platform · One-pager` / `Platform · Post` in `Archy - Ads`) or announces an event booth (`Master - Events`).
+Masters: `TPL · AE Spotlight · <Variant> · <Theme> · Post 1080×1080` and `… · Stories 1080×1920`, 30 artboards. **Use when** a person is the message: an AE, a speaker or a team member, with a demo or meeting CTA. **Not when** the ad sells a product claim (use `Platform · One-pager` / `Platform · Post` in `Archy - Ads`) or announces an event booth (`Master - Events`).
 
-| Slot | Post | Stories | Example | Notes |
-|---|---|---|---|---|
-| `slot-text-ae-first-name` | ≤ 7 characters at full size, 1 line; down to 70% (≤ 10) | ≤ 5 beside `Meet`; longer names drop to a second line (≤ 9 at full size) | `Sarah.` | Keep the period. `Meet` scales with the name so the hero always reads as one size. On Stories, reduce first to stay on one line, then let the row wrap |
-| `slot-text-ae-name` | ≤ 18 characters per line, 2 lines | ≤ 35 per line, 2 lines | `Sarah Thompson` | Name plate, Onest semibold. The plate is anchored to the bottom (Post: the CTA baseline), so a second line grows it upward |
-| `slot-text-ae-title` | ≤ 29 characters per line, 2 lines | ≤ 57 per line, 2 lines | `Sr. Account Executive` | Shares the plate with the name: when the name takes two lines, keep the title to one (`Sr. Enterprise AE`) |
-| `optional-ae-location` / `slot-text-ae-location` | ≤ 20 characters (≤ 24 at 85%) | ≤ 46 characters | `Austin, TX` | Pill, set uppercase by the style. Remove the whole pill when there is no city; nothing else moves |
-| `slot-image-ae` | Cut-out portrait (transparent PNG), bottom aligned | Same image twice: in the panel and in the head pop-out above it | | Always the person's real photo, background removed. Framing like the sample: head and shoulders, face in the upper half |
+**Variants.** Meet Name is the default; offer one or two others when the requester has not chosen.
 
-Fixed by design: `Meet`, the subline, the three benefit rows, the CTA, the wordmark, the gradient panel and the Pixel Dissolve. Change them only when the brief needs it (the rules in `../ad/references/ad-layouts.md` still apply). On Stories the hero fits on two lines only while the content column stays above the photo panel (y 1160): check the CTA on the screenshot.
+| Variant | Signature | Headline |
+|---|---|---|
+| Meet Name | Two-tone hero `Meet <Name>.` beside a full-height photo panel, white name plate on the photo | `Meet <first name>.` + subline (slot) |
+| The Arch | Portrait inside an arch, white name plate at its foot | `Meet Your Local Archy Platform Expert`, Title Case by design |
+| Grid Card | Rulers across the whole canvas, benefits in three columns, small square portrait beside the name and CTA (Stories: portrait at the bottom) | `Meet your local Archy platform expert.` |
+| Mosaic | Content column beside a tall photo panel with a name tile under it (Stories: tile and photo at the bottom) | Same, four lines |
+| Forum | Name and role under the headline, above the benefits; half photo panel on Ice | Same, four lines |
+
+**Themes.**
+
+| | White | Royal Blue | Navy |
+|---|---|---|---|
+| Ground | `white` | `royal-blue-500` | `dark-background` |
+| Wordmark, icons | `royal-blue-500` | `white` | wordmark `white`, icons `blue-tint-300` |
+| Headline accent | `royal-blue-500` | `blue-tint-200` | `blue-tint-300` |
+| Text | `light-text` | `white` | `white` |
+| Rulers | `light-border` | `#2A5DF6` | `dark-border` |
+| CTA | `royal-blue-500`, white label | `white`, royal label | `royal-blue-500`, white label |
+| Location pill on the ground | `blue-tint-100`, royal text and dot | `white`, `primary-blue-600` text, royal dot | `dark-foreground`, white text, `blue-tint-300` dot |
+
+A photo panel that would disappear into the ground takes another gradient: The Arch uses Gradient Royal Blue on White and Navy, Mosaic uses it on Navy, Meet Name uses Gradient Navy on Royal Blue. A pill or plate sitting on the photo keeps its colours in every theme. A Ruler inside a blue block (the Mosaic tile seam) stays `#2A5DF6` on every ground.
+
+**Slots.** The same in every variant and theme.
+
+| Slot | Example | Notes |
+|---|---|---|
+| `slot-text-ae-first-name` | `Sarah.` | Meet Name only. Keep the period. Post: ≤ 7 characters at full size, down to 70% (≤ 10). Stories: ≤ 5 beside `Meet`, longer names drop to a second line (≤ 9). `Meet` scales with the name |
+| `slot-text-ae-name` | `Sarah Thompson` | Limits per variant below |
+| `slot-text-ae-title` | `Sr. Account Executive` | Limits per variant below |
+| `optional-ae-location` / `slot-text-ae-location` | `Austin, TX` | Post ≤ 20 characters (≤ 24 at 85%), Stories ≤ 29, every variant. Typed in title case, set uppercase by the style. Remove the whole pill when there is no city; nothing else moves |
+| `optional-ae-plate` | | Meet Name and The Arch: the white plate holding name and title. Anchored to the bottom, so a second line grows it upward. Remove it when neither is known |
+| `slot-image-ae` | | Cut-out portrait (transparent PNG), head and shoulders, face in the upper half. Stories holds it twice in every variant (panel and `Photo Pop-out`); fill both. Always the person's real photo |
+
+| Variant | `ae-name` Post / Stories | `ae-title` Post / Stories | Where they sit |
+|---|---|---|---|
+| Meet Name | ≤ 18 per line, 2 lines / ≤ 35 per line, 2 lines | ≤ 29 per line, 2 lines / ≤ 57 per line, 2 lines | Plate on the photo. When the name takes two lines, keep the title to one (`Sr. Enterprise AE`) |
+| The Arch | ≤ 16 / ≤ 19 | ≤ 24 / ≤ 30 | Plate at the foot of the arch. A longer name breaks with `\n` and the plate grows upward; keep it off the face |
+| Grid Card | ≤ 21 / ≤ 21 | ≤ 31 / ≤ 31 | Name cell, one line each; on Stories keep it left of the portrait |
+| Mosaic | ≤ 18 / ≤ 23 | ≤ 29 / ≤ 37 | Name tile, one line each |
+| Forum | ≤ 24 / ≤ 40 | ≤ 35 / ≤ 60 | Under the headline, one line each |
+
+Limits are measured from the sample text at the template's size; when copy runs over, rewrap where the table allows two lines, then reduce the type a little, then shorten.
+
+Fixed by design: the headlines of The Arch, Grid Card, Mosaic and Forum, the Meet Name subline, the three benefit rows, the CTA, the wordmark, the photo gradients and the Pixel Dissolve. Change them only when the brief needs it (the rules in `../ad/references/ad-layouts.md` still apply). On Meet Name Stories the hero fits on two lines only while the content column stays above the photo panel (y 1160): check the CTA on the screenshot.
 
 ### Archy - Ads
 
@@ -308,7 +362,7 @@ File: `Archy - Ads`, `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`. **Not a
 |---|---|---|
 | `MDIB Social Summit Ad` | `Platform · One-pager`, `Platform · Post`, `Logo · Post` | 1500×1942, 1080×1080 |
 | `SDCDS Marketing Material` | `SDCDS Facets Ad A` / `B` (print, plus CMYK export copies) | 1600×975 |
-| `AE Spotlights` | Person-led ad, Options A to E (`Meet John`, `The Arch`, `Grid Card`, `Mosaic`, `Forum White`). Option A is now the `AE Spotlight` master in `Master - Ads` | Post 1080×1080, Stories 1080×1920 |
+| `AE Spotlights` | Person-led ad, Options A to E (`Meet John`, `The Arch`, `Grid Card`, `Mosaic`, `Forum White`). All five are now variants of the `AE Spotlight` master in `Master - Ads` | Post 1080×1080, Stories 1080×1920 |
 
 Third-party ad references for inspiration live in the `Refs - Ads` file (not brand material).
 

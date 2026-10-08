@@ -19,7 +19,7 @@ For designers. Load the brand skill for the identity in question first (`archy:b
 
 ## When an exploration should become a template
 
-If the piece is a layout the marketing team will reuse, and it holds a content shape no template has, finish it with the `prepare-template` skill so it lands in the right `Master - …` file with named slots and a catalog entry.
+If the piece is a layout the marketing team will reuse, finish it with the `prepare-template` skill so it lands in the right `Master - …` file with named slots and a catalog entry: as a new template when it serves a purpose no template has, or as a variant of the template whose purpose it shares.
 
 ## When you learn something
 

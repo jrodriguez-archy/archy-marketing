@@ -23,7 +23,7 @@ What is there today is in `../brand/references/templates.md` (*Archy - Ads*). Th
 
 | The ad has | Start from | Rules |
 |---|---|---|
-| A person (an AE, a speaker, a team member) with a headline, benefits and a CTA | `TPL · AE Spotlight` in `Master - Ads`; for another direction, the closest of the `AE Spotlights` options | `references/ad-layouts.md` |
+| A person (an AE, a speaker, a team member) with a headline, benefits and a CTA | `TPL · AE Spotlight` in `Master - Ads`: pick the variant (Meet Name by default) and the theme (White, Royal Blue, Navy) | `references/ad-layouts.md` |
 | A product claim with the mascot, as a tall one-pager | `Platform · One-pager` | `references/one-pager-to-post.md` |
 | A square Post derived from a taller ad | `Platform · Post` | `references/one-pager-to-post.md` |
 | A print ad at a physical size | `SDCDS Facets Ad A` / `B` | then `archy-design:print-pdf` for the printer file |

@@ -10,9 +10,14 @@ For designers. Load `archy:brand` first: every template must already follow the 
 ## 1. Pick the source and the master file
 
 - The source is a finished campaign or a new design. The destination is the matching `Master - …` file, page `Templates`. Masters keep the three formats together (Post, Stories, OG) when the family has them.
-- Before building, check the catalog (`archy:brand` → `references/templates.md`, *At a glance*): **a new template has to hold a content shape the others cannot**. If it is the same layout as an existing one with different copy, improve that one instead.
-- Duplicate the source artboards onto `Templates` (never edit the original in place), one row per template (Post at `left: 0`, Stories at 1160, OG at 2320, rows about 2080 apart), `translate: none`.
-- Name them `TPL · <Template> · <Format> <W×H>`, with no numbers.
+- Before building, check the catalog (`archy:brand` → `references/templates.md`, *At a glance*) and decide what the design is:
+  - **A new template** when it serves a purpose no template has.
+  - **A new variant** of an existing template when it serves the same purpose with a different design, even with exactly the same content. Give it the template's slot names.
+  - **A new theme** of a variant when only the colours change: recolour a copy with tokens on another brand ground (`templates.md`, *Templates, variants, formats and themes*).
+  - **An improvement** of the existing master when it is the same design with different copy.
+- Duplicate the source artboards onto `Templates` (never edit the original in place), one row per template or variant (Post at `left: 0`, Stories at 1160, OG at 2320, rows about 2080 apart), `translate: none`. With themes, the themes of a row sit side by side as Post + Stories pairs.
+- Name them `TPL · <Template> · <Format> <W×H>`, or `TPL · <Template> · <Variant> · <Theme> · <Format> <W×H>` when the template has variants, with no numbers.
+- Paper only screenshots the active page: build and review the copies on the page that is open, then move them to `Templates` with `move_nodes`.
 
 ## 2. Fix it against the brand
 
