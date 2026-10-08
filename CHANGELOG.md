@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.17.1 (2026-10-08)
+
+- templates: row order of `Master - Events`, grouped by job, with the themes of one template in consecutive rows (Navy above Royal Blue).
+
 ## archy 0.17.0 (2026-10-08)
 
 - Master - Events: every template runs on a Pixel Gradient (gradient PNG over the ground token), recipe in `templates.md` and the pixel skill.

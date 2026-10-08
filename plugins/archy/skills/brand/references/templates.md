@@ -77,6 +77,8 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*) and **Square 1080×1080**, the fourth column of each row (x 3600). `Event Cover` (1200×900) is the thumbnail of the event page in the Webflow CMS; it sits in the fifth column of the row whose template it follows (x 4830).
 
+One row per template (or per theme), rows 2080 apart, grouped by job: `Booth Icon List`, `Booth Invite Photo` (Navy, then Royal Blue), `Countdown Mascot` (Navy, then Royal Blue), `Countdown Masthead`, `Speaker Invite`, `Booth Light Rulers`, `Booth Photo Band`, `Night Out Illustration`, `Night Out Venue`. The themes of one template always sit in consecutive rows, Navy above Royal Blue, each with its own cover. A new template or theme joins its group; move the rows below it down rather than leaving it at the end.
+
 **Square 1080×1080** is the Post compressed to the square: content column x 105–975, y 90–990, same blocks and order. What changes, so the copy fits:
 - Headlines drop to 76–84px and usually run two lines. On the booth templates break them as `Meet Archy at <event start>\n<rest>` (`Meet Archy at Hinman\nDental Meeting`); `Booth Photo Band` keeps the Post's three lines so the mascot stays clear of the text. Countdowns keep `Tomorrow\nis the day` at 124–160px.
 - Photo bands shrink (city band 240–350px tall) and the mascot runs at 70–80% of the Post size, still about two thirds visible.
