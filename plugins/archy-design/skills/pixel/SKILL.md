@@ -36,6 +36,7 @@ The values in this skill are a **starting point**, not a rule. Tune them to the 
 | A person bleeding off the bottom of the frame | Pixel Dissolve |
 | A headshot in a small or square frame | Pixels Behind |
 | A city, office or practice behind text | Pixel Tone (never on people) |
+| The ground of a `Master - Events` template (Post, Stories, OG, Square) | a Pixel Gradient, with the template recipe below |
 | The ground of an `Event Cover` (1200×900 event page thumbnail) | Pixel Tone of the city or venue photo, in the tone of the social template's ground: `royal-blue`, `navy` or `ice --invert` |
 
 ## Pixel Gradients
@@ -66,6 +67,15 @@ python3 "$TOOL" gradient png sky --cell 24 --steps 3 --out "$WORK"   # a bigger,
 ```
 
 In Paper, set the PNG as the artboard or frame background with a percent-encoded `file://` URL and `background-size: cover` in the same call (see the brand skill's `paper-quirks.md`, *Images*).
+
+**Event template recipe.** Render at twice the artboard size with `--cell 16`: an explicit `--cell` is in px of the output file, so the canvas gets 8px cells in every format. Use `--steps 4` on dark grounds and `--steps 6` on light ones, where the grain should stay faint. Keep the ground token as the artboard's `backgroundColor` under the PNG.
+
+```bash
+python3 "$TOOL" gradient png royal-blue --size 2160x2700 --cell 16 --steps 4 --out "$WORK/post"   # Post 1080×1350
+python3 "$TOOL" gradient png pure-white --size 2400x1260 --cell 16 --steps 6 --out "$WORK/og"     # OG 1200×630, light
+```
+
+Each format gets its own file (sizes differ). The tool names every file `<preset>-pixel-subtle.png`, so write each format to its own folder or Paper may reuse an earlier upload. Rulers and photo bars on these grounds: `tokens.md`, *Ruler colours per ground*.
 
 ### Video loop
 

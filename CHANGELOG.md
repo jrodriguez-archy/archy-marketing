@@ -6,6 +6,21 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.17.0 (2026-10-08)
+
+- Master - Events: every template runs on a Pixel Gradient (gradient PNG over the ground token), recipe in `templates.md` and the pixel skill.
+- Templates merged into themes: `Booth Invite Offer` is now `Booth Invite Photo · Royal Blue` (the old one is `· Navy`), `Countdown Offer` is `Countdown Mascot · Royal Blue` (`· Navy`), `Event Cover · Booth Offer` is `Event Cover · Booth Photo · Royal Blue` (`· Navy`).
+- `optional-offer`, `slot-text-offer` and `slot-logo-offer` removed from the event templates and covers; the freed room went to the photo band or to air above the logos.
+- tokens: Ruler colours on Pixel Gradients (`#4D77F8` 3px on royal blue, `--color-dark-border` 3px on navy) and the 6px photo bar (royal blue on navy, sky on royal blue and light grounds).
+- composition: 3px Rulers on a Pixel Gradient, photo bar rule, no `BK Fade` in the event templates.
+- Night Out Illustration: no swoosh; `Cocktail` fitted to the glass and one `Star` layer per sparkle at 0.45 opacity. Night Out Venue: no drinks pattern or `BK Fade`, photo bar added.
+- Event Cover: the Pixel Tone is the whole ground, nothing goes on top of it.
+
+## archy-design 0.8.1 (2026-10-08)
+
+- pixel: event template recipe (`--cell 16` at 2x, `--steps 4` dark, `--steps 6` light, one folder per format).
+- prepare-template: Pixel Gradient grounds and the photo bar; offer slots dropped from the examples.
+
 ## archy 0.16.1 (2026-10-08)
 
 - AE Spotlight: name, title and location limits per variant replaced with the ones Archy Studio measures; Studio ids for each variant and theme.

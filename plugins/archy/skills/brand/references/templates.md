@@ -81,27 +81,27 @@ File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Eve
 - Headlines drop to 76–84px and usually run two lines. On the booth templates break them as `Meet Archy at <event start>\n<rest>` (`Meet Archy at Hinman\nDental Meeting`); `Booth Photo Band` keeps the Post's three lines so the mascot stays clear of the text. Countdowns keep `Tomorrow\nis the day` at 124–160px.
 - Photo bands shrink (city band 240–350px tall) and the mascot runs at 70–80% of the Post size, still about two thirds visible.
 - `Speaker Invite` drops the `Speaker` label and runs the portrait at 160.
-- `Booth Invite Offer` and `Countdown Offer` drop the offer strip on the Square (it does not fit with the lockup); `Booth Invite Offer` also drops the venue line and gives the room to the city photo (1080×300). `Content` runs to the bottom margin with `justify-content: space-between`, so the lockup sits on y 990 and the freed space becomes air and larger type (headline 88 / 136, city 54).
+- `Booth Invite Photo · Royal Blue` drops the venue line on the Square and gives the room to the city photo (1080×300). `Content` runs to the bottom margin with `justify-content: space-between`, so the lockup sits on y 990 and the freed space becomes air and larger type (headline 88 / 136, city 54).
 - Badges keep their size. Place them by screenshot: a badge never touches a text, a pill or the trim; keep about 40px of ground between the badge and any of them.
 - Portraits stay centred in their circle when the circle shrinks (see *Photos* in the brand skill).
 
-Masters are named `TPL · <Template> · <Format> <W×H>`; covers `TPL · Event Cover · <Variant> · Cover 1200×900`. The countdown templates (`Countdown Mascot`, `Countdown Masthead`, `Countdown Offer`) have no cover: a day-before reminder never becomes an event page.
+Masters are named `TPL · <Template> · <Format> <W×H>`; a template with themes adds the theme (`TPL · Booth Invite Photo · Navy · Post 1080×1350`, see *Templates, variants, formats and themes*). Covers are `TPL · Event Cover · <Variant> · Cover 1200×900`, plus the theme when their row has one. The countdown templates (`Countdown Mascot`, `Countdown Masthead`) have no cover: a day-before reminder never becomes an event page.
+
+**Grounds.** Every event template runs on a Pixel Gradient (see the `archy-design:pixel` skill): the artboard keeps its ground token as `backgroundColor` and the gradient PNG on top (`background-size: cover`). `royal-blue` on royal blue templates, `navy` on dark navy ones, `white` or `pure-white` on light ones, made at twice the artboard size with `--cell 16` (8px cells on the canvas) and `--steps 4` on dark grounds, `--steps 6` on light grounds so the grain stays faint. Rulers and photo bars on these grounds follow `tokens.md`, *Ruler colours per ground*.
 
 At a glance, to pick 2 or 3 options that differ from each other:
 
 | Template | Purpose | Ground | Signature |
 |---|---|---|---|
 | `Booth Icon List` | Booth invite | Royal blue | Kicker pill, three icon rows with Rulers, the mascot off the top |
-| `Booth Invite Photo` | Booth invite | Dark navy | City photo band on top, booth badge |
+| `Booth Invite Photo` | Booth invite | Themes: Navy, Royal Blue | City photo band on top with a photo bar, booth badge |
 | `Booth Light Rulers` | Booth invite | White | Rulers grid, two-tone headline, booth button |
 | `Booth Photo Band` | Booth invite | Light blue gradient | City photo as a base band at the bottom, the mascot off the side |
 | `Speaker Invite` | Talk, dinner, local event | Royal blue | Speaker portrait and name, date & time, optional share note |
-| `Countdown Mascot` | Day-before reminder | Dark navy | Centred "Tomorrow is the day", the mascot and badge on top |
+| `Countdown Mascot` | Day-before reminder | Themes: Navy, Royal Blue | Centred "Tomorrow is the day", the mascot and badge on top |
 | `Countdown Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
-| `Booth Invite Offer` | Booth invite with a giveaway | Royal blue | Like `Booth Invite Photo`, plus an offer strip with a team or sponsor logo ("Win prizes + Bulls tickets") |
-| `Countdown Offer` | Day-before reminder with a giveaway | Royal blue | Like `Countdown Mascot`, plus the offer strip |
-| `Night Out Illustration` | Hosted social evening (dinner, drinks, golf) with a sign-up | Dark navy | Cocktail illustration and sparkles off the top right, label/value details, primary button |
-| `Night Out Venue` | Hosted social evening at a named venue | Dark navy | Venue photo band on top, drinks pattern texture, white perks pill, centred |
+| `Night Out Illustration` | Hosted social evening (dinner, drinks, golf) with a sign-up | Dark navy | Cocktail illustration and loose sparkles, label/value details, primary button |
+| `Night Out Venue` | Hosted social evening at a named venue | Dark navy | Venue photo band on top with a photo bar, white perks pill, centred |
 | `Event Cover` | Thumbnail of the event page in the Webflow CMS (1200×900) | Pixel Tone of the city or venue | White card with `Archy \| Event` + partner lockup, big headline, one content block (booth button, speaker, or photo + text) |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
@@ -138,16 +138,21 @@ Fixed by design (adjust only when the piece needs it): the kicker pill, labels (
 
 Booth invite with a photo of the host city. **Use when** there is a booth and a good city photo. **Not when** there is no photo of the city (use `Booth Icon List` or `Booth Light Rulers`).
 
+Two themes, same slots and layout: `TPL · Booth Invite Photo · Navy · <Format>` (royal blue badge) and `TPL · Booth Invite Photo · Royal Blue · <Format>` (navy badge, `Join Archy at <event>` in the Chicago sample). The Royal Blue theme's photo band is taller (Post 1080×496, Stories 1080×800) and its Square drops the venue line. A 6px `Ruler` bar marks the photo edge (`tokens.md`). On the OG the photo fills the artboard and the `Scrim` carries the grain: the theme's gradient PNG with `mask-image: linear-gradient(90deg, black 0%, black 64%, transparent 92%)`, so it fades into the photo.
+
 | Slot | Notes |
 |---|---|
-| `slot-image-photo` | City photo, `background-size: cover`. Post band 1080×379, Stories 1080×600, OG right half behind a scrim |
-| `slot-text-headline` | About 16 characters per line, 3 lines (Post, Stories); 2 lines on the OG. `Meet Archy at <event>` |
+| `slot-image-photo` | City photo, `background-size: cover`. Post band 1080×379 (Royal Blue 1080×496), Stories 1080×600 (Royal Blue 1080×800), OG right side behind the `Scrim` |
+| `slot-text-headline` | About 16 characters per line, 3 lines (Post, Stories); 2 lines on the OG. `Meet Archy at <event>` or `Join Archy at <event>` |
 | `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
 | `slot-text-booth` | Inside the badge: 5 characters (`#1039`) |
+| `slot-logo-partner` | The organiser (Hinman, Chicago Dental Society in the samples) |
 
 #### Countdown Mascot
 
 Day-before reminder. **Use when** the event is tomorrow. **Not when** it is an invitation weeks ahead.
+
+Two themes, same slots: `TPL · Countdown Mascot · Navy · <Format>` (royal blue badge) and `TPL · Countdown Mascot · Royal Blue · <Format>` (navy badge). On the Royal Blue Post and Stories the mascot, badge and central block sit lower and the extra air goes above the logos.
 
 | Slot | Notes |
 |---|---|
@@ -193,33 +198,6 @@ Booth invite on a light ground with the city photo as a base band. **Use when** 
 | `slot-image-photo` | Bottom band on Post and Stories, right third on the OG |
 | Logos | Archy in royal blue, partner in navy on this ground |
 
-#### Booth Invite Offer
-
-`Booth Invite Photo` with a giveaway strip, from the Chicago Midwinter campaign. **Use when** there is a booth and a prize or tickets to promote. **Not when** there is no offer (use `Booth Invite Photo`).
-
-| Slot | Notes |
-|---|---|
-| `slot-image-photo` | City photo band (Chicago in the sample) |
-| `slot-text-headline` | `Join Archy at <event>`, 3 lines |
-| `slot-text-city`, `slot-text-venue`, `slot-text-date` | Venue not on the OG |
-| `slot-text-booth` | Inside the badge: 5 characters |
-| `optional-offer` | The giveaway strip (Post, Stories). Remove it if there is no offer |
-| `slot-text-offer` | Uppercase line in the navy bar, which grows with the text; about 30 characters |
-| `slot-logo-offer` | The team or sponsor mark at the left of the bar (the Bulls in the sample) |
-| `slot-logo-partner` | The organiser (Chicago Dental Society in the sample) |
-
-#### Countdown Offer
-
-`Countdown Mascot` with the giveaway strip, from the Chicago Midwinter campaign. **Use when** the event is tomorrow and there is an offer to promote.
-
-| Slot | Notes |
-|---|---|
-| `slot-text-kicker` | Event name in the white pill |
-| `slot-text-headline` | `Tomorrow is the day` |
-| `slot-text-city`, `slot-text-venue` | Venue not on the OG |
-| `slot-text-booth` | Inside the badge |
-| `optional-offer`, `slot-text-offer`, `slot-logo-offer` | As in `Booth Invite Offer` (Post, Stories) |
-
 #### Countdown Masthead
 
 Day-before reminder with the event name as a Ruler-flanked masthead, on the dark navy ground. **Use when** the event is tomorrow and the name should lead. **Not when** it is an early invitation.
@@ -235,7 +213,7 @@ Day-before reminder with the event name as a Ruler-flanked masthead, on the dark
 
 A free evening Archy hosts for local dentists (drinks, food, golf, a dinner), with a call to sign up. From the Dallas Topgolf campaign. Four formats: Post, Stories, OG, Square. **Use when** Archy is the host, there is a date, time and place, and no venue photo (or a lighter, illustrated feel is wanted). **Not when** it is a booth at a trade show, or a talk with a named speaker (use `Speaker Invite`).
 
-`Content` spans the safe area (Post y 150–1240, Stories y 380–1560, Square y 90–990) with four blocks spread by `justify-content: space-between`: `Header` (wordmark + headline), `slot-text-subhead`, `Details`, `Button`. The cocktail sits beside the headline; `Stars` layers add sparkles in the open areas. Stories runs a larger wordmark (324×125) and the cocktail at 1.35× (resize `Cocktail`, which scales the lime by percentage, then the glass and sparkle SVGs by the same factor), bleeding off the top right. When a longer copy changes a block's height the gaps absorb it; keep every star clear of the text. The OG has no button.
+`Content` spans the safe area (Post y 150–1240, Stories y 380–1560, Square y 90–990) with four blocks spread by `justify-content: space-between`: `Header` (wordmark + headline), `slot-text-subhead`, `Details`, `Button`. The cocktail sits beside the headline. `optional-illustration` holds the `Cocktail` (a frame fitted to the glass, so it moves and scales on its own) and one `Star` layer per sparkle, white at 0.45 opacity, scattered in the open areas: move, duplicate or delete them one by one. Keep them sparse (about 12 to 17 per format) and never on a text, a button or cut by the trim. Stories runs a larger wordmark (324×125) and the cocktail at 1.35×, bleeding off the top right. When a longer copy changes a block's height the gaps absorb it; check the stars again. The OG has no button.
 
 | Slot | Post / Stories / Square | OG | Example | Notes |
 |---|---|---|---|---|
@@ -246,7 +224,7 @@ A free evening Archy hosts for local dentists (drinks, food, golf, a dinner), wi
 | `slot-text-date` | ≤ 18 characters | ≤ 19 | `Friday, October 9` | Weekday + date, format from `voice.md` |
 | `slot-text-time` | ≤ 24 characters | ≤ 24 | `6:00 – 8:00 PM` | |
 | `slot-text-cta` | ≤ 26 characters | (no button) | `Claim your spot` | Inter Medium 36, padding 28 / 44, arrow 36. Sentence case, the button grows with it |
-| `optional-illustration` | Swoosh, cocktail, sparkles, `Stars` | Cocktail, sparkles, `Stars` | | Delete the whole layer for a plain ground; the layout needs no other change |
+| `optional-illustration` | `Cocktail` and `Star` layers | same | | Delete the whole layer for a plain ground; the layout needs no other change |
 
 Fixed by design: the labels (`Location`, `Date & Time`), the arrow icon, the wordmark. The illustration keeps its own asset colours (lime, glass blues); do not recolour it.
 
@@ -254,7 +232,7 @@ Fixed by design: the labels (`Location`, `Date & Time`), the arrow icon, the wor
 
 The same hosted evening, led by a photo of the venue. From the Dallas Topgolf campaign. Four formats: Post, Stories, OG, Square. **Use when** Archy hosts at a named venue and there is a good photo of it. **Not when** there is no venue photo (use `Night Out Illustration`).
 
-Everything is centred on Post, Stories and Square; the OG sets the content left-aligned beside a photo column. `Content` holds three groups with an 80px gap (56 on the Square), centred in the ground below the photo: `Header` (headline + perks pill, 40px apart), `Details`, and the wordmark (288×112; 180×70 on the OG). A `BK Fade` over the drinks pattern (a dark oval behind the text plus a fade to the bottom) keeps the texture at the edges only.
+Everything is centred on Post, Stories and Square; the OG sets the content left-aligned beside a photo column. `Content` holds three groups with an 80px gap (56 on the Square), centred in the ground below the photo: `Header` (headline + perks pill, 40px apart), `Details`, and the wordmark (288×112; 180×70 on the OG). The ground is the navy Pixel Gradient alone (no pattern, no `BK Fade`), and a 6px royal blue `Ruler` bar marks the photo edge (vertical on the OG, at x 420).
 
 | Slot | Post / Stories | Square | OG | Example | Notes |
 |---|---|---|---|---|---|
@@ -263,9 +241,8 @@ Everything is centred on Post, Stories and Square; the OG sets the content left-
 | `slot-text-perks` | ≤ 49 characters, 1 line | ≤ 49 | ≤ 55 | `Free golf, appetizers, drinks & socializing` | Typed in sentence case, set uppercase by the style. The white pill grows with the text |
 | `slot-text-city`, `slot-text-venue` | ≤ 14 / ≤ 20 characters | same | ≤ 12 / ≤ 18 | `Dallas, TX`, `Topgolf Dallas` | |
 | `slot-text-date`, `slot-text-time` | ≤ 19 / ≤ 24 characters | same | ≤ 20 / ≤ 24 | `Friday, October 9`, `6:00 – 8:00 PM` | |
-| `optional-illustration` | Drinks pattern at 0.16 opacity | | | | Delete for a plain ground; the `BK Fade` can go with it |
 
-The drinks pattern is texture, not content: it stays at low opacity (it arrived with a `multiply` blend, which is banned). Fixed by design: labels, pill style, the wordmark at the bottom (top of the column on the OG).
+Fixed by design: labels, pill style, the photo bar, the wordmark at the bottom (top of the column on the OG).
 
 #### Event Cover
 
@@ -273,12 +250,11 @@ The thumbnail of the event's page in the Webflow CMS (1200×900). One format (no
 
 Every cover is built the same way:
 
-- **Ground:** always a photo related to the event (the host city or the venue), turned into a Pixel Tone, even when the social template it follows is illustrated. A cover is its own piece, not a copy of the Post: no illustrations, no mascot, no call-to-action button. The tone is made with the `archy-design:pixel` tool (`effect tone <photo> --gradient <name> --size 1200x900`). Match the ground of the template the cover follows: `royal-blue` for royal blue templates, `navy` for dark navy ones, `ice --invert` for light ones. Place photos only, never a person. Use the requester's photo; a city photo may be generated (see *Photos* in the brand skill); a venue photo is never generated.
+- **Ground:** always a photo related to the event (the host city or the venue), turned into a Pixel Tone, even when the social template it follows is illustrated. A cover is its own piece, not a copy of the Post: no illustrations, no mascot, no call-to-action button. The tone is made with the `archy-design:pixel` tool (`effect tone <photo> --gradient <name> --size 1200x900`). Match the ground of the template the cover follows: `royal-blue` for royal blue templates, `navy` for dark navy ones, `ice --invert` for light ones. Place photos only, never a person. Use the requester's photo; a city photo may be generated (see *Photos* in the brand skill); a venue photo is never generated. The Pixel Tone already is the grain: never add a gradient or scrim layer on top of it.
 - **Card:** white `Content` (844×804 at 48, 48, padding 56), flex column with a 48px gap. On top, `Logo Lockup`: royal blue wordmark, 2px `Divider`, `Event Label` (`Event`, fixed on every cover: not a slot, never replaced by the event name) and `slot-logo-partner` pushed to the right (navy on the white card; recolour a white partner mark to `--color-light-text` by setting `fill` on every path, not only the root SVG; about 230 wide, 300 for a wide mark).
 - **Headline:** two nodes, `slot-text-headline-1` (medium) + `slot-text-headline-2` (bold, the event or talk name), navy, 80–104px. On a light ground follow `Booth Light Rulers`: both semibold, the second in `--color-neutral`.
 - **One content block at the bottom**, nothing else. The page itself carries the city, venue, date and time, so the cover does not repeat them:
   - **Booth:** a 2px `Ruler` (`--color-light-border`), then the `Booth Button` (radius 8, padding 24 / 36, `slot-text-booth` 44px bold uppercase, `Booth #1039`). On a blue or navy ground: a `--color-blue-tint-100` label with royal blue text. On a light ground (ice), where a pale label would disappear: a royal blue label with white text.
-  - **Booth + offer:** the booth block, with `optional-offer` at the right of the same row: `slot-logo-offer` (the team or sponsor mark, about 100 tall) and `slot-text-offer` in navy, 28px bold uppercase, two lines (`Win prizes +\nBulls tickets`).
   - **Speaker:** `slot-image-speaker` (210 circle, 4px royal blue ring, face centred), `Speaker` label, `slot-text-speaker-name` (56), `slot-text-speaker-role` and `slot-text-speaker-company` (32, one line each). The text column is `flex: 1; min-width: 0` so a longer role wraps instead of leaving the card.
   - **Photo + text:** `slot-image-photo` (240 circle) and `slot-text-subhead` (52 semibold navy, 2 or 3 lines, break with `\n`). The subhead adds something the headline does not say (what happens there, where), never a rephrase of it. Two covers of the same event use different photos.
 - Nothing ever leaves the card except the ground; check every text on the screenshot.
@@ -286,11 +262,11 @@ Every cover is built the same way:
 | Cover | Row | Ground | Content block |
 |---|---|---|---|
 | `TPL · Event Cover · Booth` | Booth Icon List | Royal Blue tone (Atlanta) | Booth |
-| `TPL · Event Cover · Booth Photo` | Booth Invite Photo | Navy tone (Atlanta) | Booth |
+| `TPL · Event Cover · Booth Photo · Navy` | Booth Invite Photo · Navy | Navy tone (Atlanta) | Booth |
+| `TPL · Event Cover · Booth Photo · Royal Blue` | Booth Invite Photo · Royal Blue | Royal Blue tone (Chicago) | Booth |
 | `TPL · Event Cover · Speaker` | Speaker Invite | Royal Blue tone (Denver) | Speaker |
 | `TPL · Event Cover · Booth Light` | Booth Light Rulers | Ice tone (Atlanta) | Booth |
 | `TPL · Event Cover · Booth Photo Band` | Booth Photo Band | Ice tone (Atlanta), headline medium + bold in navy (no mascot on the covers) | Booth |
-| `TPL · Event Cover · Booth Offer` | Booth Invite Offer | Royal Blue tone (Chicago) | Booth + offer |
 | `TPL · Event Cover · Night Out` | Night Out Illustration | Navy tone (Topgolf patio at night); circle: the bays | Photo + text |
 | `TPL · Event Cover · Night Out Venue` | Night Out Venue | Navy tone (Topgolf building); circle: guests | Photo + text |
 

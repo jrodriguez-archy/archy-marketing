@@ -25,7 +25,7 @@ The hairline rules borrowed from the website (1px `#EEE` verticals inset from th
 
 They are the preferred structuring device across every ground, not just light ones. **Reach for Rulers before reaching for a container**: information sitting directly on the surface, separated by a Ruler, beats the same information boxed in a card. Only box something when the box itself carries meaning.
 
-At poster scale use **2px**; 1px vanishes on a phone. On every ground a Ruler is a solid colour (see `tokens.md`).
+At poster scale use **2px** on flat grounds and **3px** on a Pixel Gradient, where the grain swallows a 2px line; 1px vanishes on a phone. On every ground a Ruler is a solid colour (see `tokens.md`).
 
 - **Content must never touch the column verticals, and there are two ways out.** The verticals sit at 96 and 1822, so anything that runs the full content width (96 → 1824) lands on them. Either **inset the content to the cell lane** (136 → 1784), which is the normal fix, or **drop the verticals** when the layout is too dense to give up that width (six cards across the column need every pixel; there the two verticals come off and the full-bleed horizontals stay). Inset first; removing them is the answer only when the content genuinely cannot afford the 80px.
 - **Side verticals run the full height, trim to trim.** A vertical that stops short of the top or bottom edge reads as unfinished. In a grid, a photo may fill its cell flush to the Rulers (the photo is the cell); that is the one case where content meets a Ruler.
@@ -188,13 +188,14 @@ Inside a text block 12; label to a photo or any non-text block 20; between detai
 ### Photos
 
 - **A photo can leave the column.** Full-bleed is the strongest thing it can do on a light layout: run it 0 → 1080 with square corners, outside the content column entirely, so it breaks the grid the Rulers establish. Sitting it **below all the content** as a base band that bleeds off the bottom reads better than parking it in the middle, where it cuts the piece in half. A framed photo inside the column (mat, border, rounded corners) was tried and rejected: the frame reads as fussy at poster scale.
+- **A photo band meets the ground with a photo bar**: a 6px solid `Ruler` along the edge, full bleed (colour per ground in `tokens.md`). It replaces a soft fade between photo and ground.
 - **Rings over a photo derive from `--color-white` at low opacity**, not from a blue tint: a 4px portrait ring is white at 0.45, because it has to let the photo read through. Pasted equivalents (`#7194FE`, `#5391F9`) decode to exactly that. **This does not extend to lines on a flat or gradient ground**: a footer divider or any Ruler is a solid colour, since translucent lines darken wherever they cross.
 
 ---
 
 ## Event three-format family (Post / Stories / OG)
 
-Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Duplicate and adapt, never rebuild, so the SVG assets (logos, badge ribbon, Bulls mark, mascot) carry over intact.
+Every campaign ships as **`N.1` / `N.2` / `N.3`**, all derived from the Post. Duplicate and adapt, never rebuild, so the SVG assets (logos, badge ribbon, mascot) carry over intact.
 
 | | Size | Safe area |
 |---|---|---|
@@ -218,9 +219,9 @@ The Square is the Post compressed: same blocks, smaller headline, shorter photo 
 
 **Count the labels when you budget an OG.** Every label adds its line-height *plus* its gap, ~42px at OG scale, which is most of a margin. Sizing from the values alone and forgetting the labels overshoots the artboard.
 
-**1200 × 630 is the Open Graph standard**: the preview card when a link is shared on Facebook, LinkedIn, X, Slack, Discord, WhatsApp, plus feed link ads. It renders around 500px wide, so legibility beats completeness. Drop the secondary hook (the Bulls tickets bar) and the venue line; keep title, city, dates, booth badge and the logos.
+**1200 × 630 is the Open Graph standard**: the preview card when a link is shared on Facebook, LinkedIn, X, Slack, Discord, WhatsApp, plus feed link ads. It renders around 500px wide, so legibility beats completeness. Drop any secondary hook and the venue line; keep title, city, dates, booth badge and the logos.
 
-**Structure every artboard the same way:** one `Content` frame with real auto-layout (flex column + gap) holding the stacked blocks. Only bleed and overlay layers stay absolute: background art, photo band, scrim, `BK Fade`, the mascot, the badge. Layer order should read top-to-bottom like the design does.
+**Structure every artboard the same way:** one `Content` frame with real auto-layout (flex column + gap) holding the stacked blocks. Only bleed and overlay layers stay absolute: background art, photo band, photo bar, scrim, `BK Fade`, the mascot, the badge. Layer order should read top-to-bottom like the design does.
 
 **Spacing:** the gap *between* blocks must exceed the gap *within* a block. Getting this backwards is the most common reason a layout feels cramped.
 
@@ -244,7 +245,7 @@ The Square is the Post compressed: same blocks, smaller headline, shorter photo 
 
 6. **Fading background art:** a `BK Fade` rectangle above the art and below everything else, `linear-gradient(180deg, transparent 0%, var(--color-<artboard background>) N%)`. The gradient must reach full opacity **before** the art ends, or a faint ghost survives. `transparent → token` interpolates cleanly in Chromium (no grey midpoint, colour still from a token). Match the end colour to that artboard's own background token (`--color-royal-blue-500` on the blue families, `--color-dark-background` on the navy ones; see the ground table in `tokens.md`).
 
-   **Vector background art always gets one; it is not optional.** Wherever the art's own bottom edge falls inside the canvas, it renders as a hard horizontal line with flat ground beneath it, and it reads as a mistake. The check is mechanical: if `art top + art height < artboard height`, that artboard needs a `BK Fade`. Only art that is clipped by the trim can go without. Add it at the same time as the art, not as a later fix; it has been forgotten and caught in review more than once.
+   **Vector background art always gets one; it is not optional.** Wherever the art's own bottom edge falls inside the canvas, it renders as a hard horizontal line with flat ground beneath it, and it reads as a mistake. The check is mechanical: if `art top + art height < artboard height`, that artboard needs a `BK Fade`. Only art that is clipped by the trim can go without. Add it at the same time as the art, not as a later fix; it has been forgotten and caught in review more than once. The `Master - Events` templates no longer carry background art (their texture is the Pixel Gradient), so they have no `BK Fade`; a piece that brings vector art back brings its fade with it.
 
    **This is not a Stories-only device.** Any format where the vector skyline competes with the content wants one. On the Post it starts at the photo edge and runs to the bottom, so the logos land on clean background while a hint of skyline survives behind the title. Reach for the fade before reaching for lower opacity: dimming the art flattens it everywhere, the fade keeps it strong where it reads as texture and removes it where it fights type.
 

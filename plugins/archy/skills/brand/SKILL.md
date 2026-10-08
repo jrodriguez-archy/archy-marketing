@@ -53,7 +53,7 @@ If the request does not say which one, infer it from the event, file or context;
 
 ## Photos
 
-Three kinds of photo live in the templates: **speaker portraits**, **city photos** (the city bands of `Booth Invite Photo`, `Booth Invite Offer`, `Booth Photo Band`) and **venue photos** (`slot-image-venue` in `Night Out Venue` and `Event Cover`, plus the guest photo in the cover's circle). Every other template runs on its flat Archy ground; do not add photos or background art to it.
+Three kinds of photo live in the templates: **speaker portraits**, **city photos** (the city bands of `Booth Invite Photo` and `Booth Photo Band`) and **venue photos** (`slot-image-venue` in `Night Out Venue` and `Event Cover`, plus the guest photo in the cover's circle). Every other template runs on its Archy ground (a Pixel Gradient on the event templates, see `templates.md`); do not add photos or background art to it.
 
 - **Speaker portrait:** always from the requester or the speaker. Never generate a photo of a real person. If there is none yet, keep the portrait frame with a placeholder and list it as pending.
   **Centre the face in the circle, every time.** The image layer fills the circle exactly (`width` / `height` 100%, `left` / `top` 0) and the crop is done with `background-size` (about `175% auto` for a head-and-shoulders photo) and `background-position` until the face (eyes to chin) sits on the circle's centre. Never frame it by offsetting an oversized image layer with `left` / `top`: that offset is in pixels and slides the face off-centre as soon as the circle is resized. Check it with a screenshot at `scale: 2`.

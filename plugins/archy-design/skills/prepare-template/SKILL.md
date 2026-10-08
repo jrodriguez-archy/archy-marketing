@@ -26,9 +26,9 @@ Screenshot each artboard and run `archy:brand` → `references/review-checklist.
 - **Rulers and dividers at `opacity` or white-alpha** → solid colour for the ground (table in `tokens.md`). A divider drawn as an SVG path cannot be recoloured with `update_styles`: replace it with a 2px frame with a `backgroundColor`.
 - **Hex fills** → tokens.
 - **Labels typed wrong** and hidden by `text-transform` (`location`, `Date & TIME`) → type them properly.
-- **Fixed-width SVG shapes behind text** (a pill, an offer bar) → a frame with `backgroundColor`, `padding`, `borderRadius` and `width: fit-content`, so a longer text stays inside.
+- **Fixed-width SVG shapes behind text** (a pill, a label bar) → a frame with `backgroundColor`, `padding`, `borderRadius` and `width: fit-content`, so a longer text stays inside.
 - **Fixed-width text columns** that make a longer string wrap (a spaced date) → widen the column, rebalance the gaps.
-- **Background art or fades with no job** → remove them. Templates run on the flat Archy grounds; photos only for speaker portraits and untreated city photos.
+- **Background art or fades with no job** → remove them. Templates run on the Archy grounds: a Pixel Gradient on event templates (`archy-design:pixel`, recipe in `templates.md`), with the ground token kept as `backgroundColor`; photos only for speaker portraits and untreated city photos. A photo band gets its 6px photo bar (`tokens.md`).
 - **Sample copy** in the house style (`voice.md`), e.g. `March 12 – 14, 2026`.
 
 ## 3. Separate the partner logo
@@ -45,10 +45,10 @@ Never move or duplicate a vector *element* into another SVG: it lands hundreds o
 
 Rename every layer that changes per piece (convention in `templates.md`, *Slots*):
 
-- `slot-text-<role>`: `kicker`, `headline` (or `headline-1` / `-2` for two-tone), `city`, `venue`, `date`, `datetime`, `booth`, `speaker-name`, `speaker-role`, `speaker-company`, `offer`, `footer-note`…
+- `slot-text-<role>`: `kicker`, `headline` (or `headline-1` / `-2` for two-tone), `city`, `venue`, `date`, `datetime`, `booth`, `speaker-name`, `speaker-role`, `speaker-company`, `perks`, `footer-note`…
 - `slot-image-<role>`: `photo`, `speaker`.
-- `slot-logo-partner`, `slot-logo-offer`.
-- `optional-<role>` for a block that can go when empty (`optional-offer`, `optional-footer-note`).
+- `slot-logo-partner`.
+- `optional-<role>` for a block that can go when empty (`optional-footer-note`, `optional-illustration`).
 
 Read the tree (`get_tree_summary`) and confirm each name against the node's actual text: children are not always in the same order between formats. Name the mascot `Mascot`.
 

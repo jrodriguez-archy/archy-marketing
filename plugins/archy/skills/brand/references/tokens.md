@@ -29,7 +29,7 @@ The source of truth for tokens is the live website's stylesheet, mirrored as Pap
 
 Everything on a canvas goes through a token: `var(--color-…)`, never a hex.
 
-The only sanctioned hexes are computed tints that Paper cannot express as a token (Paper drops `color-mix()`, see `paper-quirks.md`). When you use one, note which tokens it derives from. The one in current use is `#2A5DF6` (see *Ruler colours* below).
+The only sanctioned hexes are computed tints that Paper cannot express as a token (Paper drops `color-mix()`, see `paper-quirks.md`). When you use one, note which tokens it derives from. Two are in current use: `#2A5DF6` and `#4D77F8` (see *Ruler colours* below).
 
 ---
 
@@ -92,6 +92,8 @@ Two grounds:
 |---|---|
 | **Blue** | `linear-gradient(180deg, var(--color-primary-blue-600) 0%, var(--color-royal-blue-500) 55%)` |
 | **Dark** | `linear-gradient(180deg, var(--color-dark-foreground) 0%, var(--color-dark-background) 55%)` |
+
+**Event templates use a Pixel Gradient instead** (`archy-design:pixel`): the gradient PNG over the ground token as `backgroundColor` (`--color-royal-blue-500`, `--color-dark-background`, `--color-light-background`, `--color-light-foreground`), with the preset that matches the ground (`royal-blue`, `navy`, `pure-white`, `white`). The linear gradients above remain for slides and pieces without grain.
 
 Which one a campaign uses is a **design decision carried in the paste, not a default.** Decode the pasted gradient before replacing it (a raw `oklab()` gradient is unreadable by eye; convert the stops to hex first) and map it to whichever pair it is closer to.
 
@@ -158,6 +160,11 @@ The site's own radii are only `.5 / .75 / 1rem`.
 | White / light gradient | `--color-light-border` (#EEE) on pure white; `--color-blue-tint-200` on a blue-tinted light gradient |
 | Royal blue (blue gradient, `--color-primary-blue-600` → `--color-royal-blue-500`) | `#2A5DF6`: `--color-royal-blue-500` + 16 % white, hex because Paper drops `color-mix()` |
 | Dark navy (`--color-dark-background`) | `--color-dark-border` (#0000C9, = Primary Blue 600), the Brand Styleguide's own "Divider on dark". Never white at 0.3 |
+| Royal blue Pixel Gradient | `#4D77F8`: `--color-royal-blue-500` + 30 % white, 3px. `#2A5DF6` disappears into the lighter grain cells |
+| Navy Pixel Gradient | `--color-dark-border`, 3px |
+| Light Pixel Gradient (`white`, `pure-white`) | As on the light grounds above (`--color-light-border`, `--color-blue-tint-200`) |
+
+**Photo bar.** Where a photo band meets the ground, a 6px solid bar named `Ruler` marks the edge, full bleed, on top of the photo edge: `--color-royal-blue-500` on navy grounds, `--color-sky-blue-400` on royal blue and light grounds (a royal bar vanishes on royal blue). Vertical when the photo is a side column (OG).
 
 The same table is documented on the canvas: Brand → Styleguide → *Rulers* section (right after *Borders & dividers*), one swatch per ground with the two lines crossing so the intersection is visible. Keep the two in sync.
 
