@@ -244,12 +244,11 @@ The drinks pattern is texture, not content: it stays at low opacity (it arrived 
 
 The cover image for the event's registration page or invite (1200×900), from the Dallas Topgolf campaign. One format. **Use when** an event page, Luma or email invite needs a header image. **Not when** the piece is a social post (use the `Night Out` templates).
 
-A white card (`Content`, 844×804 at 48, 48, padding 56) on a venue photo tinted by a royal blue `Scrim` at 0.8 (a solid scrim replaces the `overlay` blend it arrived with). Inside: `Logo Lockup` (royal blue wordmark, 2px `Divider`, kicker), headline, and a `Footer` row with the guest photo circle and the subhead.
+A white card (`Content`, 844×804 at 48, 48, padding 56) on a venue photo tinted by a royal blue `Scrim` at 0.8 (a solid scrim replaces the `overlay` blend it arrived with). Inside: `Logo Lockup` (royal blue wordmark, 2px `Divider`, `Event Label`: `Event`, fixed on every cover, not a slot, never replaced by the event name), headline, and a `Footer` row with the guest photo circle and the subhead.
 
 | Slot | Limit | Example | Notes |
 |---|---|---|---|
 | `slot-image-venue` | Full bleed 1200×900 | Topgolf bays | Under the `Scrim`; any photo reads as a blue duotone. From the requester or the venue, never generated |
-| `slot-text-kicker` | ≤ 12 characters | `Event` | Set uppercase by the style (`Event`, `Dinner`, `Webinar`) |
 | `slot-text-headline` | ≤ 17 characters per line, 3 lines | `A Free Night Out\nFor Dallas Dentists` | 88/96 medium, navy (`--color-light-text`) |
 | `slot-image-photo` | 216 circle, 4px royal blue ring | Guests toasting | People enjoying the venue. Real photos only |
 | `slot-text-subhead` | ≤ 25 characters per line, 3 lines | `A few rounds of Topgolf, free drinks, apps and great company on us` | |

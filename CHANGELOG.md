@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.13.2 (2026-10-08)
+
+- Event Cover: the `Event` label next to the Archy wordmark is fixed on every cover (layer `Event Label`, formerly `slot-text-kicker`); it is not a slot and is never replaced by the event name.
+
 ## archy-design 0.7.3 (2026-10-06)
 
 - doc-video-edit: the frame of a camera change inside its pause is chosen by eye again. `cut_pick.py` and `cut_check.py --pick` / `--snap` are removed: on approved videos the script moved up to 17 cuts per video by 0.3 to 1.1 s, biased late, onto the mouth opening and sometimes into another pause.
