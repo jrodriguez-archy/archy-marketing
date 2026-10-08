@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.17.4 (2026-10-08)
+
+- templates: the Event Cover tone follows the ground of its template (and theme), and Archy Studio applies it by itself.
+
 ## archy 0.17.3 (2026-10-08)
 
 - Event Cover is the Cover format of each event template, not a template of its own: masters renamed `TPL · <Template> · [Theme ·] Cover 1200×900`, the Night Out covers' subhead slot is `slot-text-cover-subhead`. templates, composition and social-post updated.
