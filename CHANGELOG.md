@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.16.1 (2026-10-08)
+
+- AE Spotlight: name, title and location limits per variant replaced with the ones Archy Studio measures; Studio ids for each variant and theme.
+
 ## archy 0.16.0 (2026-10-08)
 
 - AE Spotlight: five variants (Meet Name, The Arch, Grid Card, Mosaic, Forum), each in three themes (White, Royal Blue, Navy), Post and Stories: 30 masters in `Master - Ads`, one row per variant, themes side by side. Same slot names in every variant.

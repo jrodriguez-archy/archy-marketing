@@ -307,7 +307,7 @@ File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`, page `
 
 Masters: `TPL · AE Spotlight · <Variant> · <Theme> · Post 1080×1080` and `… · Stories 1080×1920`, 30 artboards. **Use when** a person is the message: an AE, a speaker or a team member, with a demo or meeting CTA. **Not when** the ad sells a product claim (use `Platform · One-pager` / `Platform · Post` in `Archy - Ads`) or announces an event booth (`Master - Events`).
 
-**Variants.** Meet Name is the default; offer one or two others when the requester has not chosen.
+**Variants.** Meet Name is the default; offer one or two others when the requester has not chosen. Archy Studio renders every variant and theme (`design` / `theme` ids: `meet-name`, `the-arch`, `grid-card`, `mosaic`, `forum`; `white`, `royal`, `navy`).
 
 | Variant | Signature | Headline |
 |---|---|---|
@@ -338,19 +338,19 @@ A photo panel that would disappear into the ground takes another gradient: The A
 | `slot-text-ae-first-name` | `Sarah.` | Meet Name only. Keep the period. Post: ≤ 7 characters at full size, down to 70% (≤ 10). Stories: ≤ 5 beside `Meet`, longer names drop to a second line (≤ 9). `Meet` scales with the name |
 | `slot-text-ae-name` | `Sarah Thompson` | Limits per variant below |
 | `slot-text-ae-title` | `Sr. Account Executive` | Limits per variant below |
-| `optional-ae-location` / `slot-text-ae-location` | `Austin, TX` | Post ≤ 20 characters (≤ 24 at 85%), Stories ≤ 29, every variant. Typed in title case, set uppercase by the style. Remove the whole pill when there is no city; nothing else moves |
+| `optional-ae-location` / `slot-text-ae-location` | `Austin, TX` | Post ≤ 20 characters (≤ 24 at 85%; Grid Card ≤ 42, its top row is free), Stories ≤ 29, every variant. Typed in title case, set uppercase by the style. Remove the whole pill when there is no city; nothing else moves |
 | `optional-ae-plate` | | Meet Name and The Arch: the white plate holding name and title. Anchored to the bottom, so a second line grows it upward. Remove it when neither is known |
 | `slot-image-ae` | | Cut-out portrait (transparent PNG), head and shoulders, face in the upper half. Stories holds it twice in every variant (panel and `Photo Pop-out`); fill both. Always the person's real photo |
 
 | Variant | `ae-name` Post / Stories | `ae-title` Post / Stories | Where they sit |
 |---|---|---|---|
 | Meet Name | ≤ 18 per line, 2 lines / ≤ 35 per line, 2 lines | ≤ 29 per line, 2 lines / ≤ 57 per line, 2 lines | Plate on the photo. When the name takes two lines, keep the title to one (`Sr. Enterprise AE`) |
-| The Arch | ≤ 16 / ≤ 19 | ≤ 24 / ≤ 30 | Plate at the foot of the arch. A longer name breaks with `\n` and the plate grows upward; keep it off the face |
-| Grid Card | ≤ 21 / ≤ 21 | ≤ 31 / ≤ 31 | Name cell, one line each; on Stories keep it left of the portrait |
-| Mosaic | ≤ 18 / ≤ 23 | ≤ 29 / ≤ 37 | Name tile, one line each |
-| Forum | ≤ 24 / ≤ 40 | ≤ 35 / ≤ 60 | Under the headline, one line each |
+| The Arch | ≤ 15 per line, 2 lines / ≤ 18 per line, 2 lines | ≤ 24 per line, 2 lines / ≤ 30 per line, 2 lines | Plate at the foot of the arch. A longer name breaks with `\n` and the plate grows upward; keep it off the face (Stories: left half) |
+| Grid Card | ≤ 19 / ≤ 15 | ≤ 30 / ≤ 25 | Name cell, one line each; on Stories keep it left of the portrait |
+| Mosaic | ≤ 18 / ≤ 25 | ≤ 29 / ≤ 41 | Name tile, one line each (fixed text width: 378 Post, 535 Stories) |
+| Forum | ≤ 24 / ≤ 42 | ≤ 35 / ≤ 62 | Under the headline, one line each |
 
-Limits are measured from the sample text at the template's size; when copy runs over, rewrap where the table allows two lines, then reduce the type a little, then shorten.
+Limits are measured by Archy Studio on each design and theme; when copy runs over, rewrap where the table allows two lines, then reduce the type a little, then shorten.
 
 Fixed by design: the headlines of The Arch, Grid Card, Mosaic and Forum, the Meet Name subline, the three benefit rows, the CTA, the wordmark, the photo gradients and the Pixel Dissolve. Change them only when the brief needs it (the rules in `../ad/references/ad-layouts.md` still apply). On Meet Name Stories the hero fits on two lines only while the content column stays above the photo panel (y 1160): check the CTA on the screenshot.
 
