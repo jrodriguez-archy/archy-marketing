@@ -36,6 +36,7 @@ The values in this skill are a **starting point**, not a rule. Tune them to the 
 | A person bleeding off the bottom of the frame | Pixel Dissolve |
 | A headshot in a small or square frame | Pixels Behind |
 | A city, office or practice behind text | Pixel Tone (never on people) |
+| A photo ad whose ground dissolves into the photo | a Band (`effect band`) |
 | The ground of a `Master - Events` template (Post, Stories, OG, Square) | a Pixel Gradient, with the template recipe below |
 | The ground of an `Event Cover` (1200×900 event page thumbnail) | Pixel Tone of the city or venue photo, in the tone of the social template's ground: `royal-blue`, `navy` or `ice --invert` |
 
@@ -128,6 +129,17 @@ python3 "$TOOL" effect behind --gradient sky --size 378x378 --photo cutout.png -
 ```
 
 Writes `behind-ground.png`: the gradient with a band of cells (Navy, Royal Blue, Tint 200 by default) rising from `--start` (a third of the way down) to the trim. Use it as the frame's background and put the untouched cut-out on top.
+
+### Band, a ragged edge into a photo (ads)
+
+```bash
+python3 "$TOOL" effect band --size 1080x520 --out "$WORK/band"                                   # rises from the bottom
+python3 "$TOOL" effect band --gradient navy --size 1080x568 --solid 22 --flip --out "$WORK/band"  # hangs from the top
+```
+
+The gradient below and a ramp of cells above that builds up with Bayer order plus noise, so the solid edge is a gentle wave, not a ruled line. `--jitter` is the height of the wave in rows (6 by default; 16 reads as too pronounced), `--solid` the row where every column is solid, `--flip` puts the solid part on top. `--render-height` renders taller and crops to `--size`, so bands of different heights keep the same edge. Cells default to one tone darker, one equal and one lighter than the ground. Used by `Photo Headline` in `Master - Ads` (sizes and positions in `templates.md`).
+
+**A band is never stretched.** When it changes size, regenerate it at the new size in whole 8px cells; stretching it in Paper makes the cells rectangular.
 
 ### Pixel Tone, a place photo as a quiet background
 

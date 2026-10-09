@@ -6,6 +6,17 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.18.0 (2026-10-08)
+
+- New template in `Master - Ads`, page `Photo Headline`: one claim told by a photo, three variants (Full Photo, Photo Bottom, Split), Royal Blue and Navy, Square 1080×1080, Post 1080×1350 and Stories 1080×1920 (18 masters). Slot table with measured limits in `templates.md`; the headline is one white block whose size follows the copy (87 to 115).
+- templates: format names in `Master - Ads` (`Square` 1080×1080, `Post` 1080×1350; AE Spotlight keeps `Post` for its 1080×1080); AE Spotlight column positions moved into its own section.
+- ad: Photo Headline added to the starting points.
+- review-checklist: a pixel band or Pixel Gradient is never stretched.
+
+## archy-design 0.9.0 (2026-10-08)
+
+- pixel: new `effect band`, a gradient that dissolves into a photo with a gentle ragged edge (`--jitter`, `--solid`, `--flip`, `--render-height`); reproduces the Photo Headline bands exactly. Rule: a band is never stretched, it is regenerated at the new size.
+
 ## archy 0.17.4 (2026-10-08)
 
 - templates: the Event Cover tone follows the ground of its template (and theme), and Archy Studio applies it by itself.

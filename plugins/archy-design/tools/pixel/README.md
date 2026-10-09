@@ -18,6 +18,7 @@ python3 "$TOOL" gradient webflow                       # the Webflow custom-code
 python3 "$TOOL" effect dissolve --gradient royal-blue --size 470x1080 --start 864 --photo cutout.png --photo-rect -124,120,718,960
 python3 "$TOOL" effect behind --gradient sky --size 378x378 --photo cutout.png --photo-rect -116,-17,605,808
 python3 "$TOOL" effect tone city.jpg --gradient ice --invert --size 1080x1080
+python3 "$TOOL" effect band --gradient royal-blue --size 1080x520 --solid 20 --jitter 6
 ```
 
 - `presets.json` is the single definition of the gradients: each one is a base token plus a front colour that moves `amount` of the way toward a second token. The six blobs are shared, so the family stays consistent.

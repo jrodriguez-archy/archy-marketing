@@ -275,15 +275,18 @@ Every cover is built the same way:
 
 ### Master - Ads (ads)
 
-File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`. The whole file is templates, one page per template, named after it (today page `AE Spotlight`); a new ad template gets its own page. On each page, one row per variant starting at y 0, rows 2080 apart; in each row the themes sit side by side: White at x 0 (Post) and 1160 (Stories), Royal Blue at 2320 / 3480, Navy at 4640 / 5800.
+File: `Master - Ads`, `app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`. The whole file is templates, one page per template, named after it (pages `AE Spotlight` and `Photo Headline`); a new ad template gets its own page. On each page, one row per variant starting at y 0, rows 2080 apart; in each row the themes sit side by side, each theme with its formats in order (column positions in each template's section).
+
+**Format names in this file.** `Square` is 1080×1080, `Post` is 1080×1350, `Stories` is 1080×1920. AE Spotlight predates this and calls its 1080×1080 `Post`.
 
 | Template | Purpose | Variants | Themes |
 |---|---|---|---|
 | `AE Spotlight` | Introduce one Account Executive (or any person) to local practices, with a demo CTA | Meet Name, The Arch, Grid Card, Mosaic, Forum | White, Royal Blue, Navy |
+| `Photo Headline` | One product claim told by a photo: a big headline, a subline and a demo CTA over a scene that shows the problem or the result | Full Photo, Photo Bottom, Split | Royal Blue, Navy |
 
 #### AE Spotlight
 
-Masters: `TPL · AE Spotlight · <Variant> · <Theme> · Post 1080×1080` and `… · Stories 1080×1920`, 30 artboards. **Use when** a person is the message: an AE, a speaker or a team member, with a demo or meeting CTA. **Not when** the ad sells a product claim (use `Platform · One-pager` / `Platform · Post` in `Archy - Ads`) or announces an event booth (`Master - Events`).
+Masters: `TPL · AE Spotlight · <Variant> · <Theme> · Post 1080×1080` and `… · Stories 1080×1920`, 30 artboards. In each row: White at x 0 (Post) and 1160 (Stories), Royal Blue at 2320 / 3480, Navy at 4640 / 5800. **Use when** a person is the message: an AE, a speaker or a team member, with a demo or meeting CTA. **Not when** the ad sells a product claim (use `Platform · One-pager` / `Platform · Post` in `Archy - Ads`) or announces an event booth (`Master - Events`).
 
 **Variants.** Meet Name is the default; offer one or two others when the requester has not chosen. Archy Studio renders every variant and theme (`design` / `theme` ids: `meet-name`, `the-arch`, `grid-card`, `mosaic`, `forum`; `white`, `royal`, `navy`).
 
@@ -331,6 +334,51 @@ A photo panel that would disappear into the ground takes another gradient: The A
 Limits are measured by Archy Studio on each design and theme; when copy runs over, rewrap where the table allows two lines, then reduce the type a little, then shorten.
 
 Fixed by design: the headlines of The Arch, Grid Card, Mosaic and Forum, the Meet Name subline, the three benefit rows, the CTA, the wordmark, the photo gradients and the Pixel Dissolve. Change them only when the brief needs it (the rules in `../ad/references/ad-layouts.md` still apply). On Meet Name Stories the hero fits on two lines only while the content column stays above the photo panel (y 1160): check the CTA on the screenshot.
+
+#### Photo Headline
+
+Masters: `TPL · Photo Headline · <Variant> · <Theme> · <Format>`, 18 artboards: three variants, two themes, `Square 1080×1080`, `Post 1080×1350` and `Stories 1080×1920`. Rows: Full Photo y 0, Photo Bottom y 2080, Split y 4160; in each row Royal Blue at x 0 / 1160 / 2320 (Square, Post, Stories), Navy at 3480 / 4640 / 5800. **Use when** the message is one claim a photo can carry (a frozen server, a closet with no server in it, a before and after). **Not when** a person is the message (`AE Spotlight`) or the ad needs the mascot or product UI (`Archy - Ads`).
+
+| Variant | Signature |
+|---|---|
+| Full Photo | The photo fills the frame; the headline sits on solid navy at the top that fades into the photo; a pixel band rises from the bottom under the wordmark and CTA |
+| Photo Bottom | Headline and subline on the gradient at the top; the band dissolves down into the photo, which fills the rest; wordmark and CTA on the photo |
+| Split | As Photo Bottom with two photos side by side (540 each) and an optional label on each: a before and after, or any comparison |
+
+**How it is built.** Layer order: photo(s), `Shade Top` / `Shade Bottom` (navy `color-mix` fades so text reads on any photo), `Pixel Band`, labels, `Content`. `Content` is one auto-layout column, 80px from every edge (Stories: y 250 to 1670): `Main` (headline + subline, gap 28) at the top, `Footer` (wordmark + CTA, space-between) at the bottom. The band is a PNG made with `archy-design:pixel` (`effect band`), never stretched; its distance to the text is fixed per format:
+
+- Full Photo: the band starts 168px above the footer's top, so its ragged edge reaches the footer.
+- Photo Bottom and Split: the band is flipped (`--flip`) and its edge begins just under the subline, with about 16px of air.
+
+| Band | Square | Post | Stories |
+|---|---|---|---|
+| Full Photo | `1080x328 --render-height 360` at y 752 | `1080x336 --render-height 360` at y 1014 | `1080x520` at y 1400 |
+| Photo Bottom, Split | `1080x568 --solid 22 --flip` at y 0 | same as Square | `1080x736 --solid 22 --flip` at y 0 |
+
+Navy takes the same commands with `--gradient navy`. When the text block grows or the footer moves, regenerate the band at the new height (whole 8px cells) and keep these distances.
+
+**Themes.**
+
+| | Royal Blue | Navy |
+|---|---|---|
+| Band | `royal-blue` gradient, cells `primary-blue-600`, `royal-blue-500`, `sky-blue-400` | `navy` gradient, cells `blue-tint-700`, `primary-blue-600`, `royal-blue-500` |
+| CTA on the band (Full Photo) | `white`, royal label and arrow | `royal-blue-500`, white label and arrow |
+| CTA and labels on a photo | `royal-blue-500` (Before label `blue-tint-800`), white label, 3px border `color-mix(in oklab, var(--color-white) 40%, transparent)` | same |
+
+Ground `dark-background`, text `white`, wordmark `white` and the navy shades are the same in both.
+
+**Slots.** The same in every variant, format and theme.
+
+| Slot | Example | Notes |
+|---|---|---|
+| `slot-text-headline` | `What your closet looks like after the cloud.` | One white block, Onest SemiBold, `--tracking-tight`, at most 2 lines in every format. Size follows the copy: base 87/96 (≤ 22 characters per line, about 44 in all); when each line is ≤ 17 characters it grows up to 115/108 to fill the column (then gap 32 and subline 44/48). A line break in the copy (`Full schedule.\nFrozen server.`) is fine. No colour split |
+| `slot-text-subline` | `Archy runs in the cloud. No server closet needed.` | One line: ≤ 48 characters at 40/48, ≤ 44 at 44/48. Onest Medium, `--tracking-snug`. Can be deleted; the column closes up |
+| `slot-text-cta` | `Book a demo` | ≤ 24 characters, one line; the button grows to the left |
+| `slot-image-photo` | | Full Photo and Photo Bottom. A real scene, landscape or square, subject near the centre; it is cropped by `cover` to the frame (tall on Stories). The top of the Full Photo frame sits under the navy, so keep nothing important there |
+| `slot-image-left` / `slot-image-right` | | Split. Two photos of the same scene or the two things compared, 540 wide each; very tall on Stories, so subjects must survive a narrow crop |
+| `optional-label-left` / `slot-text-label-left`, `optional-label-right` / `slot-text-label-right` | `Before`, `After` | Split. One or two words (≤ 16 characters). Delete the label frame when there is no comparison |
+
+Fixed by design: the wordmark (200 Square, 233 Post, 266 Stories), the band and shades, and the CTA colours per theme.
 
 ### Archy - Ads
 

@@ -9,7 +9,7 @@ Load the `brand` skill first and follow it: never touch the source pieces, keep 
 
 ## Source
 
-**Templates:** `Master - Ads` (`app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`), holds the slot-ready ads, one page per template named after it (today page `AE Spotlight`, Post and Stories). Fill them like any master: work in a copy (see *Where the work goes* in the `brand` skill) and follow the slot table in `../brand/references/templates.md` (*Master - Ads*).
+**Templates:** `Master - Ads` (`app.paper.design/file/01M4697421B4576AVJ6RKSRGE3`), holds the slot-ready ads, one page per template named after it (pages `AE Spotlight` and `Photo Headline`). Fill them like any master: work in a copy (see *Where the work goes* in the `brand` skill) and follow the slot table in `../brand/references/templates.md` (*Master - Ads*).
 
 **References:** Paper file `Archy - Ads` (`app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0`). **It is not a master yet**: its pieces are being designed as future templates and carry no slots. Treat them as references:
 
@@ -24,6 +24,7 @@ What is there today is in `../brand/references/templates.md` (*Archy - Ads*). Th
 | The ad has | Start from | Rules |
 |---|---|---|
 | A person (an AE, a speaker, a team member) with a headline, benefits and a CTA | `TPL · AE Spotlight` in `Master - Ads`: pick the variant (Meet Name by default) and the theme (White, Royal Blue, Navy) | `references/ad-layouts.md` |
+| One product claim a photo can carry (the problem, the result, a before and after), with a headline and a demo CTA | `TPL · Photo Headline` in `Master - Ads`: Full Photo, Photo Bottom or Split; Royal Blue or Navy; Square, Post or Stories | `../brand/references/templates.md` (*Photo Headline*) |
 | A product claim with the mascot, as a tall one-pager | `Platform · One-pager` | `references/one-pager-to-post.md` |
 | A square Post derived from a taller ad | `Platform · Post` | `references/one-pager-to-post.md` |
 | A print ad at a physical size | `SDCDS Facets Ad A` / `B` | then `archy-design:print-pdf` for the printer file |

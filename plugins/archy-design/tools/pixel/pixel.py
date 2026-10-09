@@ -305,6 +305,9 @@ def cmd_webflow(args):
 import random
 
 LIGHT_CELLS = ["blue-tint-300", "white", "sky-blue-400", "blue-tint-200"]
+# Band cells: one darker, one equal, one lighter than the ground, so the edge reads as grain, not as a new colour.
+BAND_CELLS = {"royal-blue": ["primary-blue-600", "royal-blue-500", "sky-blue-400"],
+              "navy": ["blue-tint-700", "primary-blue-600", "royal-blue-500"]}
 DARK_CELLS = ["blue-tint-800", "royal-blue-500", "sky-blue-400", "blue-tint-300"]
 LIGHT_GROUNDS = {"ice", "pure-white", "white", "mist"}
 
@@ -406,6 +409,47 @@ def cmd_photo_behind(args):
     print("\n".join(out))
 
 
+def cmd_photo_band(args):
+    """A band that dissolves into a photo: the gradient below, a ragged ramp of cells above."""
+    w, h = parse_size(args.size); k = args.scale
+    rh = args.render_height or h
+    W2, H2, C = round(w * k), round(rh * k), round(args.cell * k)
+    gw, gh = W2 // C, H2 // C
+    g = ground(args.gradient, W2, H2, C)
+    cols = token_list(args.colours or ",".join(BAND_CELLS.get(args.gradient, BAND_CELLS["royal-blue"])), args.gradient)
+    rnd = random.Random(args.seed)
+
+    def smooth(period):
+        ks = [rnd.random() for _ in range(gw // period + 3)]
+        def n(x):
+            i, f = divmod(x / period, 1); i = int(i); f = f * f * (3 - 2 * f)
+            return ks[i] * (1 - f) + ks[i + 1] * f
+        return n
+    n1, n2 = smooth(14), smooth(4)
+    img = Image.new("RGBA", (W2, H2), (0, 0, 0, 0))
+    for gx in range(gw):
+        end = args.solid - round(args.jitter * (0.7 * n1(gx) + 0.3 * n2(gx)))   # row where this column turns solid
+        for gy in range(gh):
+            box = (gx * C, gy * C)
+            cell = g.crop((gx * C, gy * C, gx * C + C, gy * C + C))
+            if gy >= end:
+                img.paste(cell, box); continue
+            t = gy / end
+            if t ** args.curve > 0.55 * B8[gy % 8][gx % 8] + 0.45 * rnd.random():
+                if rnd.random() < (1 - t) * 0.5 + 0.35:
+                    img.paste(Image.new("RGBA", (C, C), cols[rnd.randrange(len(cols))] + (255,)), box)
+                else:
+                    img.paste(cell, box)
+    img = img.crop((0, 0, W2, round(h * k)))
+    if args.flip:
+        img = img.transpose(Image.FLIP_TOP_BOTTOM)
+    d = out_dir(args)
+    p = os.path.join(d, "band-%s-%dx%d%s.png" % (args.gradient, w, h, "-top" if args.flip else ""))
+    img.save(p, optimize=True)
+    print(p)
+    print("grid %d x %d cells, solid from row %d (up to %d rows earlier)" % (gw, gh, args.solid, args.jitter), file=sys.stderr)
+
+
 def cmd_photo_tone(args):
     g = targets(args.gradient)[0]
     base, front = colours(g)
@@ -452,6 +496,19 @@ def main():
     # Pixel Effects
     ep = fam.add_parser("effect", help="Pixel Effects: the grain applied to a photo")
     sub = ep.add_subparsers(dest="cmd", required=True)
+    bp = sub.add_parser("band", help="a band that dissolves into a photo with a ragged edge (ads)")
+    bp.add_argument("--gradient", default="royal-blue")
+    bp.add_argument("--size", required=True, help="band size on the canvas, e.g. 1080x328; whole cells only")
+    bp.add_argument("--render-height", type=int, default=None, help="render taller and crop to --size (keeps the same edge across heights)")
+    bp.add_argument("--scale", type=float, default=2)
+    bp.add_argument("--cell", type=float, default=8)
+    bp.add_argument("--colours", default=None, help="cell tokens; default depends on the gradient")
+    bp.add_argument("--solid", type=int, default=20, help="row (in cells from the top) by which every column is solid")
+    bp.add_argument("--jitter", type=int, default=6, help="how many rows earlier a column may turn solid: the height of the wave")
+    bp.add_argument("--curve", type=float, default=1.6, help="how fast the cells build up")
+    bp.add_argument("--seed", type=int, default=29)
+    bp.add_argument("--flip", action="store_true", help="solid at the top, dissolving downward (photo below the band)")
+    bp.add_argument("--out", default=None)
     for c in ("dissolve", "behind", "tone"):
         p = sub.add_parser(c)
         p.add_argument("--gradient", default="royal-blue", help="ground gradient (tone: whose two tones to use)")
@@ -482,7 +539,7 @@ def main():
         RECIPE["steps"] = args.steps
     run = {("gradient", "list"): cmd_list, ("gradient", "webflow"): cmd_webflow, ("gradient", "png"): cmd_png,
            ("gradient", "video"): cmd_video, ("gradient", "frames"): cmd_frames, ("gradient", "web"): cmd_web,
-           ("effect", "dissolve"): cmd_photo_dissolve, ("effect", "behind"): cmd_photo_behind, ("effect", "tone"): cmd_photo_tone}
+           ("effect", "dissolve"): cmd_photo_dissolve, ("effect", "behind"): cmd_photo_behind, ("effect", "tone"): cmd_photo_tone, ("effect", "band"): cmd_photo_band}
     run[(args.family, args.cmd)](args)
 
 

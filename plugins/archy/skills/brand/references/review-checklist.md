@@ -58,6 +58,7 @@ Run this after filling or adapting a template, and before reporting the work as 
 - [ ] **Label pill on royal blue** is `--color-white` with `--color-primary-blue-600` text.
 - [ ] **The ground gradient was decoded, not guessed.** A pasted `oklab()` gradient was converted to hex and mapped to the nearer of the two grounds, and the three dependent items (badge, `BK Fade` end stop, label pill) follow that ground.
 - [ ] **No sticker overlaps type** (a badge covering a letter of the headline is a legibility failure).
+- [ ] **No pixel band or Pixel Gradient is stretched.** Its cells are square and whole: when a band or ground changes size, it was regenerated with `archy-design:pixel` at the new size, never resized in Paper.
 - [ ] **On a Pixel Gradient, Rulers are 3px in the gradient's colour** (`#4D77F8` on royal blue, `--color-dark-border` on navy) and every photo band ends in its 6px photo bar (`tokens.md`). An `Event Cover` ground is already a Pixel Tone: nothing goes on top of it.
 
 ## Background art
