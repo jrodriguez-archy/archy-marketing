@@ -77,7 +77,7 @@ Limits are measured on the canvas at each slot's own size. They are a guide for 
 
 File: `Master - Events`, `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD`. Every template ships as Post 1080×1350, Stories 1080×1920, OG 1200×630 (see `composition.md`, *Event three-format family*) and **Square 1080×1080**, the fourth column of each row (x 3600). Most also have a **Cover 1200×900** format, the thumbnail of the event page in the Webflow CMS, in the fifth column of the row (x 4830): the `Event Cover` layout below, made from the same facts.
 
-One row per template (or per theme), rows 2080 apart, grouped by job: `Booth Icon List`, `Booth Invite Photo` (Navy, then Royal Blue), `Countdown Mascot` (Navy, then Royal Blue), `Countdown Masthead`, `Speaker Invite`, `Booth Light Rulers`, `Booth Photo Band`, `Night Out Illustration`, `Night Out Venue`. The themes of one template always sit in consecutive rows, Navy above Royal Blue, each with its own cover. A new template or theme joins its group; move the rows below it down rather than leaving it at the end.
+One row per template (or per theme), rows 2080 apart, grouped by job: `Booth Icon List`, `Booth Invite Photo` (Navy, then Royal Blue), `Countdown Mascot` (Navy, then Royal Blue), `Countdown Masthead`, `Speaker Invite`, `Booth Light Rulers`, `Booth Photo Band`, `Night Out Illustration`, `Night Out Venue`, `Night Out Photo Fade`, `Night Out Scorecard`. The themes of one template always sit in consecutive rows, Navy above Royal Blue, each with its own cover. A new template or theme joins its group; move the rows below it down rather than leaving it at the end.
 
 **Square 1080×1080** is the Post compressed to the square: content column x 105–975, y 90–990, same blocks and order. What changes, so the copy fits:
 - Headlines drop to 76–84px and usually run two lines. On the booth templates break them as `Meet Archy at <event start>\n<rest>` (`Meet Archy at Hinman\nDental Meeting`); `Booth Photo Band` keeps the Post's three lines so the mascot stays clear of the text. Countdowns keep `Tomorrow\nis the day` at 124–160px.
@@ -104,6 +104,8 @@ At a glance, to pick 2 or 3 options that differ from each other:
 | `Countdown Masthead` | Day-before reminder | Dark navy | Ruler-flanked masthead, huge headline, badge on the masthead |
 | `Night Out Illustration` | Hosted social evening (dinner, drinks, golf) with a sign-up | Dark navy | Cocktail illustration and loose sparkles, label/value details, primary button |
 | `Night Out Venue` | Hosted social evening at a named venue | Dark navy | Venue photo band on top with a photo bar, white perks pill, centred |
+| `Night Out Photo Fade` | Hosted social evening at a named venue | Dark navy | Venue photo on top dissolving into the navy through a pixel ramp, left-aligned headline, two-column details, white button |
+| `Night Out Scorecard` | Hosted social evening built around an activity | Dark navy | Activity illustration (bowling by default) off the top right, sparkles, tilted scorecard card, royal button |
 | `Event Cover` (the Cover format of each template above, not a template of its own) | Thumbnail of the event page in the Webflow CMS (1200×900) | Pixel Tone of the city or venue | White card with `Archy \| Event` + partner lockup, big headline, one content block (booth button, speaker, or photo + text) |
 
 Common to all: `slot-logo-partner` sits at the right of the lockup (about 100 tall on Post and Stories, smaller on the OG); balance it optically with the Archy wordmark. Kickers and event names are typed in title case; the style sets them uppercase. Dates follow `voice.md` (`March 12 – 14, 2026`).
@@ -245,6 +247,39 @@ Everything is centred on Post, Stories and Square; the OG sets the content left-
 | `slot-text-date`, `slot-text-time` | ≤ 19 / ≤ 24 characters | same | ≤ 20 / ≤ 24 | `Friday, October 9`, `6:00 – 8:00 PM` | |
 
 Fixed by design: labels, pill style, the photo bar, the wordmark at the bottom (top of the column on the OG).
+
+#### Night Out Photo Fade
+
+A hosted evening led by a photo of the venue that dissolves into the navy ground. From the Rancho Cucamonga campaign (Punch Bowl Social). Five formats: Post, Stories, OG, Square, Cover; row y 22880. **Use when** Archy hosts at a named venue and there is a good photo of it, and a calmer, editorial look than `Night Out Venue` is wanted. **Not when** there is no venue photo (use `Night Out Illustration` or `Night Out Scorecard`).
+
+Layers: `slot-image-venue` (the photo, its top part shows), `Pixel Band`, `Content`. The band is a navy ramp from `archy-design:pixel` (`effect band --gradient navy --colours blue-tint-800,blue-tint-700`: navy tones only, no royal), never stretched; its solid edge sits just above the headline. Square: band 1080×752 at y 328 (`--render-height 816 --solid 18`, photo at top −24); Post: 1080×768 at y 582 (same settings); Stories: 1080×1320 at y 600 (`--solid 38`); OG: a 630×920 band (`--solid 30`) rotated so the solid side sits under the text, 920×630 at x 0, photo column on the right. `Content` is left-aligned on the safe area: wordmark at the top, `Header` (headline + subhead), `Details` (two equal columns) and `Button` at the bottom.
+
+| Slot | Post / Square / Stories | OG | Example | Notes |
+|---|---|---|---|---|
+| `slot-image-venue` | Top of the frame | Right column | Punch Bowl Social | A photo from the requester or the venue, never generated. Keep the subject in the upper half: the lower part goes under the pixels |
+| `slot-text-headline` | ≤ 18 characters per line, 2 lines | ≤ 19 per line, 2 lines | `Pull up a chair, Inland Empire.` | One white block, Onest SemiBold 112/114 (OG 72). No colour split |
+| `slot-text-subhead` | ≤ 47 characters, 1 line (Stories ≤ 35, 2 lines) | ≤ 29 per line, 2 lines | `Dinner, drinks and great company, all on us.` | |
+| `optional-location`: `slot-text-venue`, `slot-text-city` | ≤ 21 / ≤ 22 characters | ≤ 20 / ≤ 21 | `Punch Bowl Social`, `Rancho Cucamonga, CA` | Left column, half the width |
+| `optional-date`: `slot-text-date`, `slot-text-time` | ≤ 21 / ≤ 24 characters | ≤ 21 / ≤ 23 | `Thursday, November 12`, `6:00 – 9:00 PM` | Right column, half the width |
+| `slot-text-cta` | ≤ 26 characters | (no button) | `Claim your spot` | White button, royal label |
+
+Cover: the `Event Cover` layout with a navy Pixel Tone of the venue photo as its ground and the same photo in the circle; `slot-text-headline-1` / `-2` (≤ 21 / ≤ 18 characters) split the headline, `slot-text-cover-subhead` ≤ 46 per line, 3 lines.
+
+#### Night Out Scorecard
+
+A hosted evening built around an activity, with an illustration and a playful scorecard. From the Rancho Cucamonga campaign (bowling at Punch Bowl Social). Five formats: Post, Stories, OG, Square, Cover; row y 24960. **Use when** the evening has an activity (bowling, golf, games) and a lighter, illustrated feel is wanted. **Not when** there is a good venue photo that should lead (`Night Out Photo Fade`).
+
+The ground is the navy Pixel Gradient alone (no background art). `optional-illustration` holds `slot-image-illustration` (a transparent PNG; the bowling pins and ball are the default, `Event Assets/Night Out Scorecard/illustration-bowling.png`) and loose sparkle groups; keep the sparkles off text, the card and the button, and check them again when a format changes height. `optional-card` is the scorecard, tilted −2°: a designed element, so another activity needs its own card from the design team; delete the whole block to leave it out. The OG has no card and adds a subhead.
+
+| Slot | Post / Square / Stories | OG | Example | Notes |
+|---|---|---|---|---|
+| `slot-image-illustration` | Off the top right (Stories: tilted, beside the wordmark) | Right half | Bowling pins and ball | Transparent PNG from the design team; never generated as a photo |
+| `slot-text-headline` | ≤ 17 characters per line, 2 lines (Stories ≤ 16) | ≤ 15 per line, 2 lines | `Strike up a conversation.` | One white block, Onest SemiBold 112/118 |
+| `slot-text-card-player`, `slot-text-card-total` | ≤ 13 characters per line, 2 lines / ≤ 5 characters | (no card) | `Inland Empire Dentists`, `On us` | Inside `optional-card` |
+| `slot-text-subhead` | (none) | ≤ 56 characters, 1 line | `Dinner and drinks are on us.` | OG only |
+| Details, `slot-text-cta` | as Night Out Photo Fade | as Night Out Photo Fade | | Royal button, white label |
+
+Cover: as Night Out Photo Fade, with the venue photo as the ground (navy Pixel Tone) and in the circle (`slot-text-headline-1` / `-2` ≤ 19 / ≤ 18 characters, `slot-text-cover-subhead` ≤ 47 per line, 3 lines).
 
 #### Event Cover
 
