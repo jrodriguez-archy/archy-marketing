@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.19.1 (2026-10-09)
+
+- templates: Photo Headline's photo keeps its subject between the navy top and the pixel band (band start per format); reframe inside the frame, or extend the scene when the photo cannot show it there.
+- review-checklist: the photo's subject is clear of the pixel band and the copy on every format.
+
 ## archy 0.19.0 (2026-10-08)
 
 - Two new hosted-evening templates in `Master - Events`, each with Post, Stories, OG, Square and Cover: `Night Out Photo Fade` (a venue photo dissolving into the navy ground through a navy-only pixel ramp, left-aligned text, two-column details) and `Night Out Scorecard` (a replaceable activity illustration, bowling by default, and an optional scorecard card). Slot tables with measured limits in `templates.md`; the details columns share the width equally so a long venue or date never pushes the other off the column.
