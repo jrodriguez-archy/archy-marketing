@@ -12,7 +12,7 @@ the middle and reads as a different ground - the exact reason the CSS asks for o
 Reads <work>/dump/*.json and writes <work>/assets/gradients ($ARCHY_WORK or --work=DIR;
 see archywork.py). tokens.json is the tool's own.
 """
-import io, os, re, sys, glob, hashlib
+import io, os, re, sys, glob, hashlib, math
 from PIL import Image
 
 import sys; sys.dont_write_bytecode = True   # never write __pycache__ into the plugin folder
@@ -58,67 +58,150 @@ def hexrgb(h):
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def render(css, tokens, w, h, path):
-    oklab = " in oklab" in css or "(in oklab" in css
-    angle = 180
-    m = re.search(r"(-?[\d.]+)deg", css)
+STOP_RE = re.compile(r"(var\(--[a-z0-9-]+\)|#[0-9a-fA-F]{3,8}|rgba?\([^)]*\)|oklab\([^)]*\)|transparent)"
+                     r"\s*(-?[\d.]+%)?")
+
+
+def colour(c, tokens):
+    """A stop colour as (r, g, b, alpha 0-1). Tokens, hex with alpha, rgb(a) and the
+    oklab(L a b / A) Paper writes for a transparent stop."""
+    c = c.strip()
+    if c.startswith("var"):
+        c = tokens[re.search(r"--[a-z0-9-]+", c).group(0)]
+    if c == "transparent":
+        return (0, 0, 0, 0.0)
+    if c.startswith("#"):
+        h = c[1:]
+        if len(h) in (3, 4):
+            h = "".join(ch * 2 for ch in h)
+        a = int(h[6:8], 16) / 255 if len(h) == 8 else 1.0
+        return hexrgb(h[:6]) + (a,)
+    nums = re.findall(r"-?[\d.]+%?", c)
+    num = lambda s, scale=1: float(s[:-1]) / 100 * scale if s.endswith("%") else float(s)
+    if c.startswith("rgb"):
+        a = num(nums[3], 1) if len(nums) > 3 else 1.0
+        return (round(num(nums[0], 255)), round(num(nums[1], 255)), round(num(nums[2], 255)), a)
+    if c.startswith("oklab"):
+        L = num(nums[0], 1)
+        a = num(nums[3], 1) if len(nums) > 3 else 1.0
+        return from_oklab((L, float(nums[1]), float(nums[2]))) + (a,)
+    raise SystemExit("unreadable gradient colour: %s" % c)
+
+
+def parse(css, tokens):
+    angle = 180.0                              # CSS default: top -> bottom
+    m = re.match(r"linear-gradient\(\s*(?:in \w+\s*)?(-?[\d.]+)deg", css)
     if m:
         angle = float(m.group(1))
-    if angle % 180 != 0:
-        raise SystemExit("only vertical gradients are handled: %s" % css)
-
-    stops = []
-    for colour, pos in re.findall(r"(var\(--[a-z0-9-]+\)|#[0-9a-fA-F]{3,8})\s*([\d.]+)%", css):
-        c = tokens[re.search(r"--[a-z0-9-]+", colour).group(0)] if colour.startswith("var") else colour
-        stops.append((float(pos) / 100.0, hexrgb(c)))
+    elif "to top" in css:
+        angle = 0.0
+    body = css[css.index("(") + 1:-1]
+    stops = [(colour(c, tokens), float(p[:-1]) / 100 if p else None)
+             for c, p in STOP_RE.findall(body)]
     if len(stops) < 2:
         raise SystemExit("could not parse two stops from: %s" % css)
-    stops.sort()
+    # A stop with no position sits evenly between its neighbours (first 0, last 1).
+    if stops[0][1] is None:
+        stops[0] = (stops[0][0], 0.0)
+    if stops[-1][1] is None:
+        stops[-1] = (stops[-1][0], 1.0)
+    i = 0
+    while i < len(stops):
+        if stops[i][1] is None:
+            j = i
+            while stops[j][1] is None:
+                j += 1
+            p0, p1 = stops[i - 1][1], stops[j][1]
+            for k in range(i, j):
+                stops[k] = (stops[k][0], p0 + (p1 - p0) * (k - i + 1) / (j - i + 1))
+            i = j
+        i += 1
+    return angle, " in oklab" in css or "(in oklab" in css, stops
 
-    down = angle == 180                       # 180deg runs top -> bottom in CSS
-    img = Image.new("RGB", (1, h))
+
+def sample(stops, oklab, t):
+    """Colour at t along the line, interpolated premultiplied (as CSS does), so a fade to
+    transparent does not pass through grey."""
+    if t <= stops[0][1]:
+        return stops[0][0]
+    if t >= stops[-1][1]:
+        return stops[-1][0]
+    for (c0, p0), (c1, p1) in zip(stops, stops[1:]):
+        if p0 <= t <= p1:
+            f = (t - p0) / (p1 - p0) if p1 > p0 else 0
+            a0, a1 = c0[3], c1[3]
+            a = a0 + (a1 - a0) * f
+            if a <= 0:
+                return (0, 0, 0, 0.0)
+            v0 = to_oklab(c0[:3]) if oklab else c0[:3]
+            v1 = to_oklab(c1[:3]) if oklab else c1[:3]
+            v = tuple((v0[k] * a0 + (v1[k] * a1 - v0[k] * a0) * f) / a for k in range(3))
+            rgb = from_oklab(v) if oklab else tuple(max(0, min(255, round(x))) for x in v)
+            return rgb + (a,)
+    return stops[-1][0]
+
+
+def render_layer(css, tokens, w, h):
+    angle, oklab, stops = parse(css, tokens)
+    if angle % 180 == 0:
+        # Vertical: one exact column, stretched sideways (the common ground and scrim).
+        col = Image.new("RGBA", (1, h))
+        px = col.load()
+        for y in range(h):
+            t = y / (h - 1) if angle == 180 else 1 - y / (h - 1)
+            r, g, b, a = sample(stops, oklab, t)
+            px[0, y] = (r, g, b, round(a * 255))
+        return col.resize((w, h), Image.NEAREST)
+    # Any other angle, per CSS: the gradient line runs through the centre at `angle`
+    # (0deg points up, clockwise) and is long enough that the corners hit 0% and 100%.
+    # Rendered at a quarter of the size and scaled up; the ramp is smooth, so nothing shows.
+    sw, sh = max(2, w // 4), max(2, h // 4)
+    rad = math.radians(angle)
+    dx, dy = math.sin(rad), -math.cos(rad)
+    length = abs(w * dx) + abs(h * dy)
+    img = Image.new("RGBA", (sw, sh))
     px = img.load()
-    for y in range(h):
-        t = (y / (h - 1)) if down else 1 - (y / (h - 1))
-        # Before the first stop and after the last, the colour is flat - which is what
-        # makes a 0%..55% gradient sit on solid colour for its bottom 45%.
-        if t <= stops[0][0]:
-            px[0, y] = stops[0][1]
-            continue
-        if t >= stops[-1][0]:
-            px[0, y] = stops[-1][1]
-            continue
-        for i in range(len(stops) - 1):
-            (p0, c0), (p1, c1) = stops[i], stops[i + 1]
-            if p0 <= t <= p1:
-                f = (t - p0) / (p1 - p0) if p1 > p0 else 0
-                if oklab:
-                    a, b = to_oklab(c0), to_oklab(c1)
-                    px[0, y] = from_oklab(tuple(a[k] + (b[k] - a[k]) * f for k in range(3)))
-                else:
-                    px[0, y] = tuple(round(c0[k] + (c1[k] - c0[k]) * f) for k in range(3))
-                break
-    img.resize((w, h), Image.NEAREST).save(path)
+    for j in range(sh):
+        y = (j + 0.5) * h / sh - h / 2
+        for i in range(sw):
+            x = (i + 0.5) * w / sw - w / 2
+            r, g, b, a = sample(stops, oklab, (x * dx + y * dy) / length + 0.5)
+            px[i, j] = (r, g, b, round(a * 255))
+    return img.resize((w, h), Image.BILINEAR)
+
+
+def render(layers, tokens, w, h, path):
+    """CSS paints the FIRST layer on top, so composite from the last one up."""
+    out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    for css in reversed(layers):
+        out = Image.alpha_composite(out, render_layer(css, tokens, w, h))
+    if out.getextrema()[3][0] == 255:
+        out = out.convert("RGB")             # opaque ground: no alpha channel needed
+    out.save(path)
 
 
 def main():
-    os.makedirs(OUT, exist_ok=True)
-    tokens = {}
     import json
-    for k, v in json.load(io.open(archywork.here("tokens.json"), encoding="utf-8")).items():
-        tokens[k] = v
+    os.makedirs(OUT, exist_ok=True)
+    tokens = json.load(io.open(archywork.here("tokens.json"), encoding="utf-8"))
     seen, made = set(), 0
     for f in sorted(glob.glob(os.path.join(DIR, "dump", "*.json"))):
-        for css in GRAD_RE.findall(io.open(f, encoding="utf-8").read()):
-            key = hashlib.sha1(css.encode()).hexdigest()[:12]
+        dump = json.load(io.open(f, encoding="utf-8"))
+        for s in (dump.get("styles") or {}).values():
+            layers = GRAD_RE.findall(str(s.get("backgroundImage") or ""))
+            if not layers:
+                continue
+            # Same key as paper2spec's gradientPath(): every layer joined with ", ".
+            key = hashlib.sha1(", ".join(layers).encode()).hexdigest()[:12]
             if key in seen:
                 continue
             seen.add(key)
             path = os.path.join(OUT, key + ".png")
             if os.path.exists(path):
                 continue
-            render(css, tokens, 1920, 1080, path)
-            print("  %s  %s" % (key, css[:70]))
+            size = lambda v, d: int(float(v[:-2])) if isinstance(v, str) and v.endswith("px") else d
+            render(layers, tokens, size(s.get("width"), 1920), size(s.get("height"), 1080), path)
+            print("  %s  %d layer(s)  %s" % (key, len(layers), layers[0][:60]))
             made += 1
     print("gradients: %d rendered, %d already there" % (made, len(seen) - made))
 

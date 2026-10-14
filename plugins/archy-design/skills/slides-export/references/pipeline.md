@@ -52,6 +52,10 @@ Paper's own `export` writes to `~/Downloads`, which macOS TCC blocks scripts fro
 
 Use the per-weight family names (`Onest`, `Onest SemiBold`, `Inter`, `Inter Medium`, `Inter SemiBold`) and **never a bold flag**. Those are the exact names Google Slides uses.
 
+**Satoshi (the DOC face) is not in Google Slides**, so a DOC slide falls back to another face there. Swap it in Slides for a Google font of the same build (Plus Jakarta Sans is the closest; DM Sans also works) and re-check line breaks.
+
+**`tokens.json` lists every token the exporter resolves**: the Archy colours, type families, weights, tracking and radii, plus the `--doc-*` mirrors a deck file creates for a DOC slide. A deck that defines a token of its own needs it added there, or a colour throws `unknown token`.
+
 **`write_html` normalises a per-weight family back to the bare one**, storing `"Inter", system-ui, sans-serif` with `fontWeight: 500`. `paper2spec`'s `fontFace()` therefore recovers the face from `fontWeight` when the family carries no hyphen (500 → Medium, 600 → SemiBold, 700 → Bold). Without that, a 96px SemiBold title exported as regular Inter.
 
 ---
@@ -165,6 +169,8 @@ All of these were found by a pin disagreeing:
 | `flex-wrap: wrap` that really wraps | A 2 x 2 grid of cells is one wrapping row; laid out as one line, half the cells land off the slide and the clip drops their icons |
 | `align-items: baseline` | A "129 +71" row: the smaller figure sat on the top edge, 7px high. Text children are placed by font metrics (`FONT_METRICS`, Inter so far); a face with no metrics stays top-aligned and is reported when it shares a row with a known one |
 | `background-size: 100%` | Full width at the picture's own aspect; stretched to the box instead, a screenshot came out 2.5% taller |
+| A token as a font family or weight (`fontFamily: var(--font-body)`, `fontWeight: var(--font-weight-bold)`) | Only colours and lengths were resolved, so the face came out as a name Slides does not have. `resolveVars()` now substitutes every token in `tokens.json` up front (except `backgroundImage`, whose CSS keys the gradient picture) |
+| An Inter face stored as `Inter-Regular_SemiBold` | Spaced as-is it is "Inter Regular_SemiBold", which Slides silently replaces. `fontFace()` drops the `Regular_` part; a generic family (`system-ui` on an emoji) exports as Inter |
 
 **An absolutely positioned child of a FLEX frame is out of flow.** CSS resolves it against the padding box exactly as in a block frame, and flexbox never sees it. The resolver once checked `position` only in its non-flex branch, so six pinned bar frames came out stacked in a vertical pile at one x, each internally correct, and nothing threw. The tell: several siblings reporting the *same* x (or y) with a spacing equal to their own height plus the parent's gap.
 
@@ -173,6 +179,8 @@ All of these were found by a pin disagreeing:
 **A rotated image that bleeds off the artboard is cropped in its own frame, not the world's.** The clip window is in world space, but `srcRect` crops the picture before pptx turns it, so `rotatedCrop()` maps the visible part of the rotated footprint back into the unrotated picture and re-centres the cropped box on what shows. A mascot turned -90deg and running off the right edge loses its *height*; cropping the unrotated box against the window cuts the wrong side and shifts the rest. Only quarter turns can be cropped (any other angle clips to a non-rectangle), and the script throws on the others.
 
 **A border that is the same on all four sides is the shape's own outline**, inset by half its width because CSS draws inside the box and pptx centres the line on the edge. Four strips square off a rounded pill's corners and, on a rotated card, each strip spins about its own centre and drifts off the card. The remaining strips (a different border per side, or a border round a picture) are swung round the frame's centre when it is rotated and cut to the clip window like the frame.
+
+**A `line-through` is drawn as a bar, not the OOXML strike.** The struck claim is a design device (a thick red bar through a quote), while OOXML's strike is always text-coloured and hairline. A one-line text whose box hugs its text (no fixed px width) gets a rect of the CSS thickness and colour, centred about 0.1 em below the middle of the line box (measured on Onest and Inter), deferred so it sits on the type. A fixed-width or wrapping box does not tell the ink width, so it falls back to the native strike and is reported: set that node to `width: max-content` in Paper to get the bar. Retyping the struck words in Slides does not move the bar; resize it by hand.
 
 **Borders are emitted per side, as thin rects, and deferred to the end.** pptx cannot give a shape a different border per side (a nav strip framed on three sides so its seam with the hero stays open). They are flushed last because a frame is met *before* its children, so emitted in place every hairline lands under the screenshot it outlines.
 
@@ -205,7 +213,7 @@ A small factory module for the header, Meta and Rulers every slide shares keeps 
 
 Google Slides cannot take SVG, so vector art (the wordmark, icons, the mascot, logos) goes in as PNG.
 
-- **`jsx2png.py <in.jsx> <out.png> [scale]`** (default scale 4.0) converts the React attribute spellings `get_jsx` returns (`fillRule`, `strokeWidth`, `stopColor`, …) back to SVG ones and substitutes tokens from `tokens.json` (a `var()` fill renders as black outside Paper). Anything left camelCase is *silently ignored* by the renderer, which is how a gradient or a fill-rule goes missing without an error. **Never retype path data: copy the markup, and check the ink is non-zero.**
+- **`jsx2png.py <in.jsx> <out.png> [scale]`** (default scale 4.0; on macOS it adds the Homebrew lib folders to the cairo search path itself) converts the React attribute spellings `get_jsx` returns (`fillRule`, `strokeWidth`, `stopColor`, …) back to SVG ones and substitutes tokens from `tokens.json` (a `var()` fill renders as black outside Paper). Anything left camelCase is *silently ignored* by the renderer, which is how a gradient or a fill-rule goes missing without an error. **Never retype path data: copy the markup, and check the ink is non-zero.**
 - **A connector arrow is width-specific**, the one asset that cannot be reused by name. Its viewBox is the node's own width (`0 0 200 16`, `0 0 90 16`), not a 24 grid, so scaling the 200px file into an 80px box stretches the head into a wedge. One PNG per width: `arrow-right`, `arrow-right-140`, `arrow-right-90`, `arrow-right-80`.
 - **Never point a new slide at an existing asset PNG on the strength of its name.** Example: a `user-group.png` already on disk was *green*, built for another slide. Read the ink with `get_jsx` on the node and generate a suffixed variant (`user-group-royal`, `-white`) rather than assuming the file matches. The same read caught an icon being **white** on its royal panel where a blue tint was the obvious guess.
 - **The wordmark** is the 5-path mark off the Paper canvas, `viewBox "0 5 252 98"` in a `translate(0 21.752)` group; its 252 × 98 ink matches a 360 × 140 placement exactly. Never take it from the Webflow `index.html`: that inline SVG is missing the counter of the "A" and renders as "∩rchy".
@@ -219,9 +227,12 @@ Google Slides cannot take SVG, so vector art (the wordmark, icons, the mascot, l
 
 **`make-gradients.py` renders every CSS gradient the dumps reference to a PNG (`$WORK/assets/gradients/`), in Oklab**, because that is what the canvas says (`linear-gradient(in oklab …)`). The same two blues lerped in sRGB desaturate through the middle and read as a different ground.
 
+- **Any angle, any number of layers.** A scrim built from two corners (`linear-gradient(20deg, …), linear-gradient(200deg, …)`) is one picture: the layers are composited (the first listed on top) at the node's own size and keyed by a hash of all of them, which for a single layer is the old key.
+- **Transparent stops survive.** `oklab(0% 0 0 / 0%)`, `transparent`, `rgba()` and 8-digit hex keep their alpha, interpolated premultiplied as CSS does, and the PNG keeps its alpha channel so the photo shows through the scrim. An opaque ground is saved without one.
+
 ### Photos
 
-**Photos live on Paper's CDN, not on disk.** `get_computed_styles` reports `url(https://app.paper.design/file-assets/…)`. **`fetch-photos.py`** caches every referenced image by asset id in `$WORK/assets/photos/`, so the deck rebuilds offline and a re-run costs nothing. The CDN **403s a bare urllib request**; the script sends a browser User-Agent.
+**Photos live on Paper's CDN, not on disk.** `get_computed_styles` reports `url(https://app.paper.design/file-assets/…)`. **`fetch-photos.py`** caches every referenced image by asset id in `$WORK/assets/photos/`, so the deck rebuilds offline and a re-run costs nothing. The CDN **403s a bare urllib request**; the script sends a browser User-Agent. **WebP and AVIF are stored converted to PNG** (`<asset>.png`, the path `imagePath()` expects): Slides does not import them, and the exporter cannot read their size, so a `cover` photo would ship stretched.
 
 **`shrink-media.py` is a required last step on a photo-heavy deck.** The CDN hands back the *original upload*, so a 2000px portrait ships inside a 208px well and the file leaves `build.js` at 68 MB. Capping every raster at 3× its largest placement takes it to 23 MB with nothing visible lost, and Google Slides has to convert every one of those pixels on import. Vector-derived assets are already generated at 4× their box and are left alone by the same rule.
 

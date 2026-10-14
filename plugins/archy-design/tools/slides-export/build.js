@@ -207,6 +207,8 @@ function addSpec(pres, spec, pageNumber) {
 
       // letterSpacing is silently ignored; charSpacing is the real option, in points.
       if (it.track) opts.charSpacing = it.track * it.size * PX_TO_PT;
+      // A struck line paper2spec could not draw as a bar (see `line-through` there).
+      if (it.strike) opts.strike = "sngStrike";
       // A per-run colour would be overridden by a paragraph-level one.
       if (!it.runs) opts.color = it.color;
 

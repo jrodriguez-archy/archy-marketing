@@ -32,7 +32,10 @@ def main():
             if asset in seen:
                 continue
             seen.add(asset)
-            path = os.path.join(OUT, "%s.%s" % (asset, ext))
+            # Slides cannot take WebP or AVIF: those are stored converted to PNG, the
+            # path paper2spec's imagePath() expects for them.
+            convert = ext.lower() in ("webp", "avif")
+            path = os.path.join(OUT, "%s.%s" % (asset, "png" if convert else ext))
             if os.path.exists(path) and os.path.getsize(path) > 0:
                 cached += 1
                 continue
@@ -44,7 +47,11 @@ def main():
             if size == 0:
                 os.remove(path)
                 raise SystemExit("empty download: %s" % url)
-            print("  %s.%s  %d KB" % (asset, ext, size // 1024))
+            if convert:
+                from PIL import Image
+                Image.open(path).save(path, "PNG")   # Pillow sniffs the real format
+                size = os.path.getsize(path)
+            print("  %s  %d KB" % (os.path.basename(path), size // 1024))
             got += 1
     print("photos: %d fetched, %d already cached" % (got, cached))
 

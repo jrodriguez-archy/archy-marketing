@@ -38,6 +38,27 @@ const TOKENS = JSON.parse(
   fs.readFileSync(path.join(__dirname, "tokens.json"), "utf8")
 );
 
+// Substitute every known var(--token) in a style object up front. Colours, lengths, font
+// families and weights all arrive as tokens (`fontFamily: var(--font-body)`,
+// `fontWeight: var(--font-weight-bold)`), and only some readers below resolve them; an
+// unresolved family exports as a face name Slides does not have. Unknown tokens are left
+// as they are, so hex() still refuses an unknown colour loudly.
+function resolveVars(styles) {
+  const out = {};
+  for (const [id, s] of Object.entries(styles || {})) {
+    const r = {};
+    for (const [k, v] of Object.entries(s || {})) {
+      // backgroundImage stays as Paper wrote it: a gradient's picture is keyed by a hash of
+      // that exact CSS (gradientPath / make-gradients.py), tokens and all.
+      r[k] = typeof v === "string" && k !== "backgroundImage"
+        ? v.replace(/var\((--[a-z0-9-]+)\)/gi, (m, t) => (TOKENS[t] !== undefined ? TOKENS[t] : m))
+        : v;
+    }
+    out[id] = r;
+  }
+  return out;
+}
+
 // "var(--color-white)" / "#FFF" / "rgb(1, 61, 245)" -> "FFFFFF", no leading #.
 // build.js rejects a "#" and an 8-digit hex outright: both corrupt the file.
 // The alpha of an 8-digit hex or an rgba(), as a pptx `transparency` (0-100). Paper
@@ -113,7 +134,13 @@ const translateOf = (v, w, h) => {
 // The exporter wants the per-weight family names Google Slides itself uses - "Onest
 // SemiBold", not Onest with a bold flag. Paper stores them hyphenated in the stack.
 function fontFace(fontFamily, weight) {
-  const first = String(fontFamily || "").split(",")[0].replace(/["']/g, "").trim();
+  let first = String(fontFamily || "").split(",")[0].replace(/["']/g, "").trim();
+  // Some Inter nodes come back as "Inter-Regular_SemiBold" / "Inter-Regular_Medium" (the
+  // font's PostScript style name). Spaced as-is that is "Inter Regular_SemiBold", a face
+  // Slides does not have, so it falls back silently. Drop the "Regular_" part.
+  first = first.replace(/-Regular_/, "-");
+  // A generic family (an emoji node set in system-ui) has no Slides face of its own.
+  if (/^(system-ui|sans-serif|-apple-system|ui-sans-serif)$/i.test(first)) first = "Inter";
   // Paper stores the per-weight face hyphenated ("Onest-SemiBold"). Google Slides wants it
   // spaced - and the 400 weight is just the family name there, never "Onest Regular",
   // which does not resolve and silently falls back.
@@ -196,10 +223,12 @@ function parseTree(summary) {
 // pptxgenjs supports no gradient fill at all, so a gradient ground is embedded as a
 // bitmap that make-gradients.py renders - keyed by a hash of the CSS, so the dump keeps
 // the declaration Paper reported and the two cannot drift apart.
+// Several stacked layers (a scrim from two corners) are one picture: the key hashes every
+// layer joined with ", ", which for a single layer is the layer itself, so existing keys hold.
 function gradientPath(backgroundImage) {
-  const m = String(backgroundImage || "").match(/linear-gradient\([^()]*(?:\([^()]*\)[^()]*)*\)/);
+  const m = String(backgroundImage || "").match(/linear-gradient\([^()]*(?:\([^()]*\)[^()]*)*\)/g);
   if (!m) return null;
-  const key = crypto.createHash("sha1").update(m[0]).digest("hex").slice(0, 12);
+  const key = crypto.createHash("sha1").update(m.join(", ")).digest("hex").slice(0, 12);
   return `assets/gradients/${key}.png`;
 }
 
@@ -210,7 +239,8 @@ function imagePath(backgroundImage) {
   // not the path it came from. fetch-photos.py caches those under assets/photos by asset
   // id; pptx needs real bytes on disk either way.
   const hosted = raw.match(/url\(\s*["']?https:\/\/app\.paper\.design\/file-assets\/[\w-]+\/([\w-]+)\.(\w+)["']?\s*\)/);
-  if (hosted) return `assets/photos/${hosted[1]}.${hosted[2]}`;
+  // Slides cannot take WebP or AVIF, so fetch-photos.py stores those converted to PNG.
+  if (hosted) return `assets/photos/${hosted[1]}.${/^(webp|avif)$/i.test(hosted[2]) ? "png" : hosted[2]}`;
 
   const local = raw.match(/url\(\s*["']?(file:\/\/[^"')]+)["']?\s*\)/);
   if (local) return decodeURIComponent(local[1].replace(/^file:\/\//, ""));
@@ -749,6 +779,7 @@ function sizedBox(size, nat, bw, bh) {
 }
 
 function convert(dump) {
+  dump = { ...dump, styles: resolveVars(dump.styles) };
   const fsOf = (n) => (dump.styles || {})[n.id] || {};
   const nodes = parseTree(dump.tree);
   const styles = dump.styles || {};
@@ -924,6 +955,30 @@ function convert(dump) {
       if (op < 1) item.transparency = Math.round((1 - op) * 100);
       if (rot) item.rot = rot;
       items.push(item);
+
+      // `text-decoration: line-through 6px <colour>`: the struck claim is a design device
+      // (a red bar through a quote), and OOXML's strike is always text-coloured and
+      // hairline. A single line whose box hugs its text is drawn as a bar of the CSS
+      // thickness and colour, deferred so it lands on top of the type. The bar centres
+      // about 0.1 em below the middle of the line box (measured on Onest and Inter). A
+      // fixed-width or wrapping box does not tell the ink width, so it falls back to the
+      // native strike, which keeps the meaning and stays editable; reported so the
+      // designer can set the node to hug its text (width: max-content) and re-export.
+      const deco = String(s.textDecoration || s.textDecorationLine || "");
+      if (/line-through/.test(deco)) {
+        const thick = px((deco.match(/([\d.]+)px/) || [])[1], Math.max(2, Math.round(size / 15)));
+        const colour = hex((deco.match(/(#[0-9a-f]{3,8}|rgba?\([^)]*\))/i) || [])[1]) || item.color;
+        const hugs = !/^[\d.]+px$/.test(String(s.width || "")) || s.width === "max-content";
+        const oneLine = n.h <= item.line * 1.5;
+        if (hugs && oneLine && !rot) {
+          outlines.push({ type: "rect", layer: `${n.name} strike`, x, y: Math.round(y + item.line / 2 + 0.1 * size - thick / 2),
+                          w: Math.round(n.w), h: thick, fill: colour });
+        } else {
+          item.strike = true;
+          console.error(`  ! ${dump.name}: ${n.id} "${n.name}" line-through exported as a native strike ` +
+                        `(box does not hug one line of text; set width: max-content in Paper for the bar)`);
+        }
+      }
       continue;
     }
 

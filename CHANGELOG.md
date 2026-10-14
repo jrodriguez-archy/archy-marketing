@@ -6,6 +6,16 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.9.1 (2026-10-14)
+
+- slides-export: `line-through` text exports as a bar in the CSS thickness and colour (the struck-claim device); a box that does not hug its text falls back to the native strike, reported.
+- slides-export: every token in `tokens.json` resolves up front, so font families and weights set as tokens export as real Slides faces; `tokens.json` gains type, weight, tracking, radius and `--doc-*` tokens.
+- slides-export: `Inter-Regular_SemiBold` style names export as `Inter SemiBold` (and Medium); a `system-ui` emoji node exports as Inter.
+- slides-export: `make-gradients.py` renders any angle, stacked layers and transparent stops (premultiplied, alpha kept), at the node's size.
+- slides-export: WebP and AVIF photos are cached as PNG, so they import into Slides and keep their `cover` crop.
+- slides-export: `jsx2png.py` finds Homebrew's cairo on macOS by itself and counts ink on any Pillow version.
+- slides-export: pipeline notes on Satoshi in Google Slides and on adding a deck's own tokens.
+
 ## archy 0.19.1 (2026-10-09)
 
 - templates: Photo Headline's photo keeps its subject between the navy top and the pixel band (band start per format); reframe inside the frame, or extend the scene when the photo cannot show it there.

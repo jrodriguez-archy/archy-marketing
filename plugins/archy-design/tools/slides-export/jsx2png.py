@@ -16,6 +16,14 @@ archywork.py), never beside this script.
 import io, os, re, sys
 import sys; sys.dont_write_bytecode = True   # never write __pycache__ into the plugin folder
 import archywork
+# cairosvg loads libcairo through ctypes, which on macOS only searches the default dyld
+# paths; Homebrew puts it in /opt/homebrew/lib (Apple silicon) or /usr/local/lib (Intel),
+# so a fresh venv fails with "no library called cairo". Add both as fallbacks; ctypes
+# reads this variable at lookup time, so setting it here is enough.
+if sys.platform == "darwin":
+    _fb = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "")
+    os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = ":".join(
+        p for p in (_fb, "/opt/homebrew/lib", "/usr/local/lib", "/usr/lib") if p)
 import cairosvg
 from PIL import Image
 
@@ -70,7 +78,8 @@ def main():
     cairosvg.svg2png(bytestring=svg.encode("utf-8"), write_to=out,
                      output_width=int(w * scale), output_height=int(h * scale))
     im = Image.open(out).convert("RGBA")
-    ink = sum(1 for p in im.get_flattened_data() if p[3] > 10)
+    # Count from the alpha histogram: works on every Pillow (get_flattened_data is 12+ only).
+    ink = sum(im.getchannel("A").histogram()[11:])
     if ink == 0:
         raise SystemExit("rendered blank - the paths did not survive the conversion")
     print("%s  %dx%d  ink px %d" % (out, im.width, im.height, ink))
