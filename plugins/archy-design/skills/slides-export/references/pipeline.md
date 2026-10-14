@@ -168,6 +168,7 @@ All of these were found by a pin disagreeing:
 | `overflow: clip` on an ancestor | An oversized image at a negative offset (the reframing device) |
 | `flex-wrap: wrap` that really wraps | A 2 x 2 grid of cells is one wrapping row; laid out as one line, half the cells land off the slide and the clip drops their icons |
 | `align-items: baseline` | A "129 +71" row: the smaller figure sat on the top edge, 7px high. Text children are placed by font metrics (`FONT_METRICS`, Inter so far); a face with no metrics stays top-aligned and is reported when it shares a row with a known one |
+| A frame printed `496×?` | `get_tree_summary` writes a 0px height (a frame whose children are all absolute) as `?`. The line did not parse, the frame was dropped, and three columns' icons and text stacked at one point; `?` now reads as 0 |
 | `background-size: 100%` | Full width at the picture's own aspect; stretched to the box instead, a screenshot came out 2.5% taller |
 | A token as a font family or weight (`fontFamily: var(--font-body)`, `fontWeight: var(--font-weight-bold)`) | Only colours and lengths were resolved, so the face came out as a name Slides does not have. `resolveVars()` now substitutes every token in `tokens.json` up front (except `backgroundImage`, whose CSS keys the gradient picture) |
 | An Inter face stored as `Inter-Regular_SemiBold` | Spaced as-is it is "Inter Regular_SemiBold", which Slides silently replaces. `fontFace()` drops the `Regular_` part; a generic family (`system-ui` on an emoji) exports as Inter |

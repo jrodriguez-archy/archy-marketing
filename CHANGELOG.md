@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.9.2 (2026-10-14)
+
+- slides-export: a frame with no height of its own (all children absolute) is printed `496×?` by `get_tree_summary`; the tree parser reads `?` as 0 instead of dropping the frame, which had stacked every column's content at the parent's origin.
+
 ## archy 0.19.2 (2026-10-14)
 
 - deck: the header band follows the headline (cap at 274 for one line, 180 for an eyebrow alone); no invented eyebrow, the headline keeps its lane.

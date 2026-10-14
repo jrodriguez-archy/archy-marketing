@@ -164,7 +164,11 @@ function fontFace(fontFamily, weight) {
 // get_tree_summary cuts a text node's content at this many characters.
 const TRUNCATION_LIMIT = 60;
 
-const NODE_RE = /^(\s*)(\w+)\s+"((?:[^"\\]|\\.)*)"\s+\(([\w-]+)\)\s+([\d.]+)×([\d.]+)(?:\s+"([\s\S]*))?$/;
+// A frame whose content is all absolutely positioned has no height of its own (0px), and
+// get_tree_summary prints that as "?" ("496×?"). Read "?" as 0: without it the line does
+// not parse, the frame is lost, and its children land at the parent's origin, so three
+// columns stack on top of each other.
+const NODE_RE = /^(\s*)(\w+)\s+"((?:[^"\\]|\\.)*)"\s+\(([\w-]+)\)\s+([\d.]+|\?)×([\d.]+|\?)(?:\s+"([\s\S]*))?$/;
 
 function parseTree(summary) {
   const nodes = [];
@@ -188,8 +192,8 @@ function parseTree(summary) {
       component: m[2],
       name: m[3],
       id: m[4],
-      w: parseFloat(m[5]),
-      h: parseFloat(m[6]),
+      w: m[5] === "?" ? 0 : parseFloat(m[5]),
+      h: m[6] === "?" ? 0 : parseFloat(m[6]),
       text: null,
     };
 
