@@ -6,6 +6,17 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.19.2 (2026-10-14)
+
+- deck: the header band follows the headline (cap at 274 for one line, 180 for an eyebrow alone); no invented eyebrow, the headline keeps its lane.
+- deck: the type scale is the minimum; step up when the band has room (one-line headline 66/70, body 30/42, footer takeaway 30/48 in a taller band), with lists of statements at 32/44.
+- deck: person-intro headline at 100/112; meta line may be reduced to `ARCHY © 2026` on request.
+- deck: a filled image cell covers its whole Ruler cell; a real person's photo is never over-cropped, and a missing one gets a brand photo placeholder.
+- deck: `Section Divider` keeps a source's "PART N OF M" counter as an eyebrow.
+- deck: a partner brand's slide (DOC) is built in that brand's system with prefixed mirrored tokens.
+- deck charts: a conceptual stage curve is one cubic path with the markers placed on it.
+- brand paper-quirks: tokens in an SVG gradient render black; a timed-out `write_html` may still land; marks with a baked-in ground.
+
 ## archy-design 0.9.1 (2026-10-14)
 
 - slides-export: `line-through` text exports as a bar in the CSS thickness and colour (the struck-claim device); a box that does not hug its text falls back to the native strike, reported.

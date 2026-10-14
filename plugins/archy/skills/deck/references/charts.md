@@ -55,6 +55,8 @@ A value and its delta go in a flex row with **`align-items: baseline`** and a re
 
 **A line chart's legend swatch is a line segment, not a square**: 20 × 4, the same weight as the stroke. A square swatch beside a line chart describes the wrong mark.
 
+**A conceptual curve (a maturity or adoption curve with labelled stages, no data) is one smooth path.** Draw it as a single cubic Bézier from the first stage to the last, then place each stage marker *on* it: solve the curve for the marker's x and read its y. Joining segments point to point leaves a visible kink at every join, however carefully the tangents are matched by eye. Space the markers evenly in x and keep the stroke one solid token colour: Paper does not resolve tokens inside an SVG gradient (see `../../brand/references/paper-quirks.md`).
+
 **Actual is `--color-blue-tint-300`, forecast is `--color-royal-blue-500`, on a line.** The rule "forecast is royal" carries over from `Bars`, but the *quiet* half cannot: a 4px stroke in `--color-blue-tint-200` nearly vanishes on white, where a bar of that colour reads fine. The area wash under the whole series is `--color-blue-tint-50`, light enough not to compete with the stroke.
 
 ---

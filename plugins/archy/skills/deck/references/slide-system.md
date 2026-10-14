@@ -45,7 +45,11 @@ All added because the 1080-derived scale left the band looking empty:
 
 **Every slide carries the same three-part header:** eyebrow top-left (`--color-royal-blue-500` on light), meta top-right, two-tone headline below. The headline is **two stacked text nodes**, because Paper cannot colour part of one: first line `--color-light-text`, second `--color-neutral`.
 
-**The meta line is `[optional slot] | ARCHY © 2026 | NN`.** The optional slot holds free text ("Confidential", a client name, nothing) and is grouped **with its own divider** so deleting one node leaves a clean `ARCHY © 2026 | 01`.
+**The meta line is `[optional slot] | ARCHY © 2026 | NN`.** The optional slot holds free text ("Confidential", a client name, nothing) and is grouped **with its own divider** so deleting one node leaves a clean `ARCHY © 2026 | 01`. A requester may want the meta reduced to `ARCHY © 2026` alone; then delete the slot, both dividers and `NN` on every slide right after duplicating its layout, so no slide is missed.
+
+**No eyebrow in the source, no eyebrow on the slide.** Do not invent one to fill the slot: leave it out and keep the headline in its lane (top 144), so the headlines line up as the slides page past.
+
+**A slide that introduces a person** (a speaker's "Hi, I'm …") sets the two-tone headline at display size, 100/112, centred vertically in the header band.
 
 ### Header on a dark ground
 
@@ -67,6 +71,8 @@ On the **royal-blue** ground (Cover, Statement) the headline's second line is `-
 ## The Rulers frame
 
 **Slides use the full Rulers frame**, not just cell separators: full-bleed horizontals at y **20 / 344 / 1056** capping the top, the header band and the foot, plus verticals at the column boundaries running between the header and foot rules. A 4-column grid puts them at 96 / 528 / 960 / 1392 / 1824; a 2-column grid at 96 / 960 / 1824. This is the same graph-paper device as the website and the event posters.
+
+**The header band follows the headline.** The 344 cap is sized for a two-line headline. With a one-line headline move it up to **274** (the same 60px of air under the headline) and give the content band the 70px: move the header Ruler, start the column verticals at 274 and lengthen them, and shift the content frames up by the same amount. A slide with an eyebrow and no headline caps the band at **180**. Every other Ruler stays put.
 
 **A slide with no header band gets only the two caps.** `Statement` and `Cover` carry the 20 and 1056 horizontals and nothing at 344: there is no header band to cap. The Cover adds **one vertical at 1315** (layer `Ruler V Divider`) running the full 20 → 1058, the deck's only full-height rule: it opens a right column that the meta line sits at the top of and the wordmark fills at the bottom. Do not give the Cover verticals at 96 / 1824. Two horizontals plus one vertical is a spine, and adding the outer pair turns it into a box.
 
@@ -119,6 +125,8 @@ When an existing deck is being redesigned, the job is to re-set its content in t
 
 **Type is the one thing that does scale up.** Source decks are often set small (24pt headlines, 9.5pt captions); this system runs 60/70 headlines and 22/32 body because decks are read on a big screen. Plan for the consequence: copy that fits on one line in the source often will not here. Stack it or rewrap it first; step below the scale only as a last resort, and report any cut or size change.
 
+**The scale is the minimum, not the target.** When a band has room, step type up before leaving it empty: a one-line headline at 66/70, body 30/42, cell titles 40/48, stat values 60, a footer takeaway 30/48. Stop where a list starts to shout: five numbered statements beside ordinals read best at 32/44, not 40/52.
+
 ---
 
 ## Composition in the band
@@ -131,7 +139,7 @@ When an existing deck is being redesigned, the job is to re-set its content in t
 
 ## Bands below the content
 
-Two devices hang a strip under the content band. Both keep the family's 20 / 344 / 1056 full-bleed Rulers exactly where they are and add one more Ruler; **the content band shrinks, the caps never move.**
+Two devices hang a strip under the content band. Both keep the family's 20 / 1056 full-bleed caps (and the header cap, wherever the headline put it) and add one more Ruler; **the content band shrinks, the caps never move.**
 
 | | Extra Ruler | Content band | Strip | Type |
 |---|---|---|---|---|
@@ -143,6 +151,14 @@ Two devices hang a strip under the content band. Both keep the family's 20 / 344
 **A footer band holding a label *plus* a note starts at x 96**, aligned with the eyebrow and headline rather than at the cells' 40px inset: the strip belongs to the header's level, not the grid's. **A band holding one takeaway line on its own is centred**, and that is a correction, not a variant: the line was left-aligned on slide 78 and moved back to centre in review. Left-aligning a single sentence under a full-width grid leaves a long tail of empty band to its right, which reads as a line that failed to fill rather than as a closing statement. The x-96 rule needs a second element to hold the other end of the strip.
 
 The footer line is a *conclusion*, not a caption. It earns the band only when it says something the cells above do not.
+
+**When the grid above has air, give the footer band more height.** Move its Ruler up (for example 958 → 907, a 909 → 1056 band) and set the takeaway at 30/48 Inter Medium, centred in the band.
+
+---
+
+## A partner brand's slide inside an Archy deck
+
+A sponsor or partner slide (a DOC slide at the end of a talk, say) is built in **that brand's** system, not in the deck's: its own ground, type and lockup, and no Archy Rulers or header. Load the partner's brand skill (`doc-brand` for DOC). Mirror the partner's tokens into the deck file with a prefix (`--doc-color-red-500`, `--doc-font-sans`) so they never collide with Archy's, and copy the lockup's outlined artwork from the partner's master file rather than re-typing it. The Archy wordmark appears only as the sponsor credit.
 
 ---
 

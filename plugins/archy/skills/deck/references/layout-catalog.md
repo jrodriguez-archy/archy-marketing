@@ -72,7 +72,7 @@ The same test that removes an element from a composition removes a layout from t
 | `Chart + Hero Number` | Light | Hero 240/232 left, 5-bar plot in the right column (max 400) | none |
 | `Two Charts` | Light | Two 784-wide plots of 4 bars, sub-titles instead of a legend | none |
 | `Agenda` | Light | 8 items, 2 columns × 4 rows of 177, ordinal in a fixed 60px slot + title 30/38 | none |
-| `Section Divider` | Royal Blue 500 | Section number 160/160 + title 128/128, both left-aligned. **No header band, no eyebrow** | none |
+| `Section Divider` | Royal Blue 500 | Section number 160/160 + title 128/128, both left-aligned. **No header band.** No eyebrow by default; when the source carries a part counter ("PART 1 OF 3"), keep it as an eyebrow (20/24 white, uppercase) above the number | none |
 | `Section Preview` | Dark Background | Eyebrow `Part NN`, title 128/128 bottom-left ending at 960; the Cover's spine at 1315 and an `In this part` list (26/34, one item per slide of the section) bottom-aligned in the right column at x 1413. **No header band** | none |
 | `Section Emoji` | Light | One native emoji in a 160 × 160 slot, eyebrow `Part NN`, title 128/128 in `--color-light-text`. **No header band** | none |
 | `Quote Statement` | Royal Blue 500 | One quote at 72/96 Onest Regular, left-aligned, + attribution. **No header band** | none |
@@ -132,6 +132,10 @@ On the full-bleed slot, the Rulers were built at white 0.3; that is legacy, and 
 - **A full-bleed slot must be the first child.** Added last it sits on top of the Rulers, Meta and header and hides them. `move_nodes` to index 0. Paper's own guide also warns that an artboard-covering absolute element blocks cursor interaction underneath; for a full-bleed layout that is unavoidable, so expect to select those layers from the tree.
 - **A bento is tiles with gutters, not a ruled grid.** `Bento Grid` separates its slots with 24px gaps and carries only the 20 / 1056 caps, no Rulers between tiles. That is what the source does, and a bento whose cells were ruled would read as a table of pictures.
 - **A layout whose image bleeds off an edge drops the cap on that edge.** `Capture Bleed Bottom` has no 1056 rule and `Capture Full-bleed` no 344 rule: a Ruler cutting across an image reads as a scratch. The caps that still apply stay exactly where they are.
+
+**A filled image cell fills the whole cell, edge to edge.** In a split layout the picture covers the Ruler cell it sits in (for example 962 → 1822 × 346 → 1056, `background-size: cover`): not a bleed off the trim, not a smaller picture inset in the cell. The cell's Rulers stay. A caption pill sits on the picture at the cell's 40px inset.
+
+**A real person's photo is never over-cropped to fill a cell.** A tight headshot zoomed to fill a large cell reads as a mistake. Use a photo wide enough for the cell; when only a tight one exists, show it whole, anchored to the bottom, on the token ground closest to its background, and list a better photo as pending. When the person's photo is not available yet, place a brand photo (never a generated face presented as that person) so the slot is easy to swap, and list it as pending.
 
 A logo slot uses the same construction (240 × 80, `LOGO` label); see `slide-system.md`.
 

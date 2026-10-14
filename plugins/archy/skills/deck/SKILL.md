@@ -25,8 +25,8 @@ Either way, every slide starts as a duplicate of a Master - Decks layout. If no 
 
 1. **Content is transcribed, never authored.** When re-setting an existing deck, copy is the source's character for character. Verify against the `.pptx` text before finishing.
 2. **Every slide carries the three-part header**: eyebrow, meta line, two-tone headline (two stacked text nodes).
-3. **Canvas 1920 × 1080, margins 96**, type from the slide scale. When copy does not fit, stack it or rewrap it first; step type down only as a last resort, and report it.
-4. **Rulers frame** at y 20 / 344 / 1056 plus column verticals, solid colour for the ground.
+3. **Canvas 1920 × 1080, margins 96**, type from the slide scale. The scale is the minimum: step type up when the band has room. When copy does not fit, stack it or rewrap it first; step type down only as a last resort, and report it.
+4. **Rulers frame** at y 20 / 344 / 1056 plus column verticals, solid colour for the ground. The 344 cap follows the headline: 274 for one line, 180 with an eyebrow alone.
 5. **Charts are drawn from frames**, with bar heights derived from the data. Never eyeball a data mark.
 6. **A dark slide is a beat, not a recolour.** Use a dark layout only where the deck needs punctuation.
 7. **Rename a duplicated slide first.** Its name carries its position in the deck.
