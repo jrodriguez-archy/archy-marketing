@@ -6,6 +6,19 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.10.0 (2026-10-16)
+
+- feature-scenes: new skill for product feature scenes (one moment per feature, A Before / B After frames with the same layers for Rive, image only, full-screen crop from the top-left or module extracts, floating windows at least 56 px from the edges, hybrid UI with real structure and flagged simulated data).
+- feature-scenes: show a feature in its real place in the app first and open its result as a popup from there; check card spacing at scale 2 (title at least 16 px from its content).
+
+## archy 0.19.3 (2026-10-16)
+
+- paper-quirks: `descendantIdMap` can point at the wrong node on big trees, and a duplicated frame can swap two siblings; verify by name and order.
+- paper-quirks: CSS `zoom` works for enlarging modules and cards; a zoomed node's `left` / `top` are multiplied by the zoom.
+- paper-quirks: `display: none` drops a flex frame's direction and gap, and a hidden frame ignores new flex values.
+- paper-quirks: a `<span>` with padding is written as a Frame wrapping a Text node.
+- paper-quirks: `paper-gen://` image-to-image with `reference_nodes` keeps a reference image's look.
+
 ## archy-design 0.9.2 (2026-10-14)
 
 - slides-export: a frame with no height of its own (all children absolute) is printed `496×?` by `get_tree_summary`; the tree parser reads `?` as 0 instead of dropping the frame, which had stacked every column's content at the parent's origin.
