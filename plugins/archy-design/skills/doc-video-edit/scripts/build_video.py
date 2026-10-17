@@ -53,10 +53,13 @@ def main():
     # without an error, so the intro music played flat and cut when its file ended).
     check = os.path.join(work, "saved_check.json")
     subprocess.run([T, "project", "checkout", "--project", project, "--output", check], check=True, capture_output=True)
-    saved = {(e["target"].get("layerId"), e["target"].get("propertyType"))
-             for e in json.load(open(check))["composition"]["dynamics"]["entries"]}
-    missing = [a["property"] for a in anims + audio_anims
-               if (a["property"]["layerId"], a["property"]["propertyType"]) not in saved]
+    comp = json.load(open(check))["composition"]
+    saved = {(e["target"].get("layerId"), e["target"].get("propertyType")) for e in comp["dynamics"]["entries"]}
+    remapped = {L["id"] for L in comp["layers"] if (L.get("playback") or {}).get("keyframes")}   # saved as "playback"
+    # freeze frames (setFxLayerTimeRemap) have no "property": check the layer kept its time remap
+    missing = [a.get("property") or {"layerId": a.get("layerId"), "timeRemap": True} for a in anims + audio_anims
+               if ("property" in a and (a["property"]["layerId"], a["property"]["propertyType"]) not in saved)
+               or (a.get("type") == "setFxLayerTimeRemap" and a["layerId"] not in remapped)]
     if missing:
         sys.exit(f"saved project is missing {len(missing)} animations, e.g. {missing[:3]}: rebuild")
     print(f"verified {len(saved)} animations in the saved project (audio envelopes: {len(audio_anims)})")

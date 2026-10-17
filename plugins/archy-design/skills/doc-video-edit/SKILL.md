@@ -54,7 +54,7 @@ Change `video.json` (or `doclib.py` for a house-style change that should apply t
 
 ## Swapping proxy footage for finals
 
-When final camera files replace the proxies in `footage/` (same names):
+When final camera files replace the proxies in `footage/` (same names; finals may be `.mov` ProRes, which the scripts pick up as `*_CAM_A.mov` / `*_CAM_B.mov`):
 1. `setup_project.py <Video> --swap --dry-run`: reports each camera's offset against the current dialogue. 0.00 means every time in `video.json` still holds; otherwise shift all source times by the offset first.
-2. `setup_project.py <Video> --swap`: imports the finals as new asset IDs, re-extracts and re-levels the dialogue, re-suggests the grade (finals may already be graded).
+2. `setup_project.py <Video> --swap`: imports the finals under the first free asset IDs (it skips IDs the project already holds, even when `video.json` no longer names them), re-extracts and re-levels the dialogue, re-suggests the grade (finals may already be graded).
 3. Check the grade by eye, rebuild, re-verify the joins and the ending (a new file can end at a different point: update `timing.voice_end_src` and the last segment), export the next version. Nothing else changes.

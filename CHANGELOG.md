@@ -6,6 +6,12 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.10.2 (2026-10-16)
+
+- doc-video-edit: camera finals in `.mov` (ProRes) are found as well as `.mp4`.
+- doc-video-edit: `setup_project.py` imports under the first free asset ID when the project already holds one that `video.json` no longer names, instead of failing.
+- doc-video-edit: `build_video.py` also verifies that freeze frames (time remaps) survived the save.
+
 ## archy-design 0.10.1 (2026-10-16)
 
 - feature-scenes: a short sequence (3 or 4 frames with the same layers) when the action itself is the feature.

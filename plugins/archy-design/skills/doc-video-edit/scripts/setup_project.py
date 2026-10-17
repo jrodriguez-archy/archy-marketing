@@ -30,7 +30,9 @@ def duration_ms(f):
     return int(round(float(run("ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f)) * 1000))
 
 def one(pattern, root):
-    hits = sorted(glob.glob(os.path.join(root, pattern)))
+    """First match; a camera pattern ending in .mp4 also matches .mov (ProRes finals)."""
+    pats = [pattern] + ([pattern[:-4] + ".mov"] if "CAM_" in pattern and pattern.endswith(".mp4") else [])
+    hits = sorted(h for p in pats for h in glob.glob(os.path.join(root, p)))
     return hits[0] if hits else None
 
 def pcm(f, ss, t, sr=8000):
@@ -99,6 +101,19 @@ def next_id(base, cfg_assets):
         n += 1
     return f"{base}{n if n > 1 else ''}"
 
+def import_new(kind, project, f, base, cfg_assets, *extra):
+    """Import under the first free ID: the project can hold IDs that video.json no longer names."""
+    aid = next_id(base, cfg_assets)
+    while True:
+        r = subprocess.run([T, "project", kind, "--project", project, "--file", f, "--asset-id", aid, *extra],
+                           capture_output=True, text=True)
+        if not r.returncode:
+            return aid
+        if "already exists" not in r.stdout + r.stderr:
+            sys.exit(f"failed: import {f}\n{r.stdout}{r.stderr}")
+        cfg_assets[f"_used_{aid}"] = aid
+        aid = next_id(base, cfg_assets)
+
 def main():
     root = os.path.abspath(sys.argv[1])
     work = os.path.join(root, ".tesseract-work")
@@ -113,7 +128,7 @@ def main():
     A = cfg.setdefault("assets", {})
     cams = {"A": one("footage/*CAM_A*.mp4", root), "B": one("footage/*CAM_B*.mp4", root)}
     if not all(cams.values()):
-        sys.exit("need footage/*CAM_A*.mp4 and footage/*CAM_B*.mp4")
+        sys.exit("need footage/*CAM_A*.mp4|mov and footage/*CAM_B*.mp4|mov")
     cam_ms = duration_ms(cams["A"])
     print(f"cameras: {cam_ms / 1000:.2f} s (A), {duration_ms(cams['B']) / 1000:.2f} s (B)")
 
@@ -136,8 +151,9 @@ def main():
     ids = {}
     if SWAP or "camA" not in A:
         for c in ("A", "B"):
-            ids[c] = next_id(f"cam{c}", A) if SWAP else f"cam{c}"
-            run(T, "project", "import-video", "--project", project, "--file", cams[c], "--asset-id", ids[c])
+            ids[c] = import_new("import-video", project, cams[c], f"cam{c}", A) if SWAP else f"cam{c}"
+            if not SWAP:
+                run(T, "project", "import-video", "--project", project, "--file", cams[c], "--asset-id", ids[c])
             A[f"cam{c}"] = ids[c]
         A["cam_ms"] = cam_ms
         # frame width of the camera files: doclib scales UHD layers to the 1920 frame
@@ -166,8 +182,7 @@ def main():
     lev = os.path.join(root, f"audio/dialogue/dialogue_{tag}_lev-16.wav")
     run("ffmpeg", "-v", "error", "-y", "-i", cams["A"], "-vn", "-ac", "2", "-ar", "48000", "-c:a", "pcm_s24le", raw)
     print(run(os.path.join(HERE, "level_audio.sh"), raw, lev, "-16", "highpass=f=70,"))
-    did = next_id("dialogue-lev", A) if SWAP or "dialogue" in A else "dialogue-lev"
-    run(T, "project", "import-asset", "--project", project, "--file", lev, "--asset-id", did, "--kind", "audio")
+    did = import_new("import-asset", project, lev, "dialogue-lev", A, "--kind", "audio")
     A["dialogue"], A["dialogue_ms"] = did, duration_ms(lev)
     cfg["dialogue_source"] = os.path.relpath(raw, root)
 
@@ -175,6 +190,8 @@ def main():
         grade, stats = suggest_grade(cams, cam_ms / 1000)
         cfg["grade"] = grade
         print("grade suggestion (luma p0.5 / p50 / p99.5):", stats, "-> review on a frame and adjust by eye")
+    for k in [k for k in A if k.startswith("_used_")]:
+        del A[k]
     json.dump(cfg, open(vpath, "w"), indent=1, ensure_ascii=False)
     print(f"wrote {vpath}")
 
