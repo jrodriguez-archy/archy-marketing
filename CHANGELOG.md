@@ -6,6 +6,17 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy-design 0.10.1 (2026-10-16)
+
+- feature-scenes: a short sequence (3 or 4 frames with the same layers) when the action itself is the feature.
+- feature-scenes: a zoomed crop for UI-led sequences (zoom 1.2 to 1.3, normal air above logo and breadcrumb, `translate` to bring content into view, the video's pointer on the control).
+- feature-scenes: a large result opens as a full drawer inside the app (strip of the app under a scrim, equal side padding, long text running under a fade), not as a floating modal.
+
+## archy 0.19.4 (2026-10-16)
+
+- paper-quirks: `translate` on a child of a clipped frame shifts content without moving its siblings.
+- paper-quirks: an absolutely positioned child anchors to a flex parent even though Paper ignores `position: relative` on it.
+
 ## archy-design 0.10.0 (2026-10-16)
 
 - feature-scenes: new skill for product feature scenes (one moment per feature, A Before / B After frames with the same layers for Rive, image only, full-screen crop from the top-left or module extracts, floating windows at least 56 px from the edges, hybrid UI with real structure and flagged simulated data).
