@@ -6,6 +6,10 @@ All notable changes to the `archy` plugin. Versions follow semver:
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.19.5 (2026-10-20)
+
+- templates: Night Out Scorecard Stories headline fits up to 3 lines (the content gaps tighten; the button keeps the 250px Stories safe zone).
+
 ## archy-design 0.10.2 (2026-10-16)
 
 - doc-video-edit: camera finals in `.mov` (ProRes) are found as well as `.mp4`.

@@ -274,7 +274,7 @@ The ground is the navy Pixel Gradient alone (no background art). `optional-illus
 | Slot | Post / Square / Stories | OG | Example | Notes |
 |---|---|---|---|---|
 | `slot-image-illustration` | Off the top right (Stories: tilted, beside the wordmark) | Right half | Bowling pins and ball | Transparent PNG from the design team; never generated as a photo |
-| `slot-text-headline` | ≤ 17 characters per line, 2 lines (Stories ≤ 16) | ≤ 15 per line, 2 lines | `Strike up a conversation.` | One white block, Onest SemiBold 112/118 |
+| `slot-text-headline` | ≤ 17 characters per line, 2 lines (Stories ≤ 16 per line, up to 3 lines) | ≤ 15 per line, 2 lines | `Strike up a conversation.` | One white block, Onest SemiBold 112/118. In Stories, `Content` uses `space-between` with an 84px minimum gap, so a third line only tightens the gaps and the button stays 250px or more above the bottom edge |
 | `slot-text-card-player`, `slot-text-card-total` | ≤ 13 characters per line, 2 lines / ≤ 5 characters | (no card) | `Inland Empire Dentists`, `On us` | Inside `optional-card` |
 | `slot-text-subhead` | (none) | ≤ 56 characters, 1 line | `Dinner and drinks are on us.` | OG only |
 | Details, `slot-text-cta` | as Night Out Photo Fade | as Night Out Photo Fade | | Royal button, white label |
