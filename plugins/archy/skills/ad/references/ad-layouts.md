@@ -46,7 +46,7 @@ Build it as the website's primary button (`.button_v2`): `--color-royal-blue-500
 
 ## Pixel Effects on portraits
 
-A portrait on a gradient ground can take the pixel grain: **Pixel Dissolve** when the person bleeds off the bottom, **Pixels Behind** when the crop is a tight square. Generate them with the `archy-design:pixel` skill (`effect dissolve`, `effect behind`), never by hand. The cells start below the face, the chest and any logo on the clothes; the gradient behind shares their grid, so the piece has one grain; and a white plate over light cells keeps its colour and takes a 2px `--color-blue-tint-300` border. Cell size, colours and density are a starting point: tune them to the piece.
+A portrait on a gradient ground can take the pixel grain: **Pixel Dissolve** when the person bleeds off the bottom, **Pixels Behind** when the crop is a tight square. Generate them with the `archy:pixel` skill (`effect dissolve`, `effect behind`), never by hand. The cells start below the face, the chest and any logo on the clothes; the gradient behind shares their grid, so the piece has one grain; and a white plate over light cells keeps its colour and takes a 2px `--color-blue-tint-300` border. Cell size, colours and density are a starting point: tune them to the piece.
 
 ## The arch frame
 

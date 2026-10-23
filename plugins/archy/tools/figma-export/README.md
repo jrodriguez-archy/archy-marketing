@@ -15,7 +15,7 @@ made in Figma do not come back.
 
 ## Running it through the plugin
 
-This folder ships inside the `archy-design` plugin. The `figma-export` skill holds
+This folder ships inside the `archy` plugin. The `figma-export` skill holds
 the agent-facing workflow: with the **Paper MCP** connected (the only requirement;
 the Figma MCP is not a substitute for it), ask Claude to export an artboard from
 Paper to Figma and the skill takes it from there.

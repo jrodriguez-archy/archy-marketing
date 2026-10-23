@@ -90,4 +90,4 @@ DOC's one typographic device: a headline that changes weight mid-sentence, **Reg
 | **Footer** | Lockup at one end, meta at the other, a hairline above when there is a meta block. The same pattern closes a web page, a slide and a post |
 | **CTA button** | 336 × 79, `--radius-button`, gap 14. Label 30 / 36 Bold, `--tracking-heading`, arrow 28 × 18 (stroke 2.4). On red: fill red-500, label and arrow cream-200. On cream: inverted. On Dark: fill red-500, label and arrow cream-100. **The button never scales with the format**: it is a tap target, identical on 1:1, 4:5 and 9:16 |
 
-Icons: DOC has no defined icon library yet. When an icon is unavoidable, use Hugeicons Stroke Rounded (the `archy-design:hugeicons` skill) with a DOC token colour, and say it is provisional.
+Icons: DOC has no defined icon library yet. When an icon is unavoidable, use Hugeicons Stroke Rounded (the `archy:hugeicons` skill) with a DOC token colour, and say it is provisional.

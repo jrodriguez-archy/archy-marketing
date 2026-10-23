@@ -27,7 +27,7 @@ What is there today is in `../brand/references/templates.md` (*Archy - Ads*). Th
 | One product claim a photo can carry (the problem, the result, a before and after), with a headline and a demo CTA | `TPL · Photo Headline` in `Master - Ads`: Full Photo, Photo Bottom or Split; Royal Blue or Navy; Square, Post or Stories | `../brand/references/templates.md` (*Photo Headline*) |
 | A product claim with the mascot, as a tall one-pager | `Platform · One-pager` | `references/one-pager-to-post.md` |
 | A square Post derived from a taller ad | `Platform · Post` | `references/one-pager-to-post.md` |
-| A print ad at a physical size | `SDCDS Facets Ad A` / `B` | then `archy-design:print-pdf` for the printer file |
+| A print ad at a physical size | `SDCDS Facets Ad A` / `B` | then `archy:print-pdf` for the printer file |
 | Nothing that fits, or an AI mockup | An exploration inspired by the pieces above | `references/ad-layouts.md`, *Starting from an AI mockup* |
 
 When the requester has not chosen, offer 2 or 3 directions that differ in ground, composition and what leads (see *Options* in the `brand` skill), then build the other formats of the one they pick. Say which piece each started from, and say when it is an exploration.
@@ -39,9 +39,9 @@ When the requester has not chosen, offer 2 or 3 directions that differ in ground
 3. **Fill and adapt**: copy first, then everything the piece needs. Type runs bigger than feels safe on the hero only; one hero per format; the lockup, Rulers, button and mascot follow `composition.md`.
 4. **Other formats**: Stories keeps the Post's sizes and repositions; the OG is re-laid out (`composition.md`, *Event three-format family*).
 5. **Review** every artboard with `../brand/references/review-checklist.md`, plus the ad rules in the references.
-6. **Deliver**: the artboards, what each started from, the copy used, what was adapted, what is pending. If a piece should become a reusable template, say so; preparing it is `archy-design:prepare-template`, into `Master - Ads`.
+6. **Deliver**: the artboards, what each started from, the copy used, what was adapted, what is pending. If a piece should become a reusable template, say so; preparing it is `archy:prepare-template`, into `Master - Ads`.
 
-Exports are the requester's call; if asked, export PNG at 1x (Paper saves to `~/Downloads`). Print goes through `archy-design:print-pdf`.
+Exports are the requester's call; if asked, export PNG at 1x (Paper saves to `~/Downloads`). Print goes through `archy:print-pdf`.
 
 ## References
 

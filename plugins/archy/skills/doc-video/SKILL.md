@@ -32,7 +32,7 @@ Exports are the requester's call. Video editors need PNG at 1x; Overlays keep th
 
 ## Exploring a new graphic
 
-When nothing in the catalog carries the moment, propose a new graphic and say it is an exploration. Build it from the pieces the videos already use (video-ground ground, cream-100 boxes, cream-200 tiles, red-500 result boxes, red-400 bullets, the connector line with its red dot, 3.5px icon strokes) and in the layout the moment calls for. A graphic the team will reuse goes into the master with `archy-design:prepare-template`.
+When nothing in the catalog carries the moment, propose a new graphic and say it is an exploration. Build it from the pieces the videos already use (video-ground ground, cream-100 boxes, cream-200 tiles, red-500 result boxes, red-400 bullets, the connector line with its red dot, 3.5px icon strokes) and in the layout the moment calls for. A graphic the team will reuse goes into the master with `archy:prepare-template`.
 
 ## References
 

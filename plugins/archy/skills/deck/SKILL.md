@@ -1,6 +1,6 @@
 ---
 name: deck
-description: Build Archy presentation slides in Paper from the Master - Decks template library (57 layouts, 1920×1080). Use when someone needs a slide, a deck, or an existing deck re-set in the Archy system. For taking slides out to PowerPoint or Google Slides, use archy-design:slides-export.
+description: Build Archy presentation slides in Paper from the Master - Decks template library (57 layouts, 1920×1080). Use when someone needs a slide, a deck, or an existing deck re-set in the Archy system. For taking slides out to PowerPoint or Google Slides, use archy:slides-export.
 ---
 
 # Archy decks
@@ -43,4 +43,4 @@ Either way, every slide starts as a duplicate of a Master - Decks layout. If no 
 | `../brand/references/review-checklist.md` | Reviewing every slide |
 | `../brand/references/paper-quirks.md` | Paper tool behaviour |
 
-When the slides are done and the requester wants them in Google Slides or PowerPoint, use the `archy-design:slides-export` skill if it is installed; if not, tell the requester a designer can export them.
+When the slides are done and the requester wants them in Google Slides or PowerPoint, use the `archy:slides-export` skill.

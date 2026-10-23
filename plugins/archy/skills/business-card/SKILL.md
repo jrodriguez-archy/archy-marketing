@@ -40,7 +40,7 @@ Generate it, never redraw or trace it, from the exact link the person gave:
 
 ```bash
 python3 -m venv "${CLAUDE_PLUGIN_DATA}/qr-venv"
-"${CLAUDE_PLUGIN_DATA}/qr-venv/bin/pip" install -q segno numpy opencv-python-headless
+"${CLAUDE_PLUGIN_DATA}/qr-venv/bin/python" -m pip install -q segno numpy opencv-python-headless
 "${CLAUDE_PLUGIN_DATA}/qr-venv/bin/python" "${CLAUDE_PLUGIN_ROOT}/skills/business-card/scripts/make_qr.py" "<link>" --out "$WORK/qr.d"
 ```
 

@@ -2,7 +2,7 @@
 
 Read this before building or editing anything through the Paper MCP, and again whenever a write is accepted but nothing changes on the canvas. Every item here was verified the hard way; do not assume Paper's CSS behaves normally.
 
-Print output (PDF trimming, CMYK conversion, pure-K QR codes) lives in the `archy-design:print-pdf` skill, not here.
+Print output (PDF trimming, CMYK conversion, pure-K QR codes) lives in the `archy:print-pdf` skill, not here.
 
 ---
 
@@ -154,8 +154,8 @@ Each of these is accepted, often reported back by `get_computed_styles`, and pai
 - **`export` and `export_combined_pdf` ignore `outputPath` / `outputDirectory` and always write to `~/Downloads`**, auto-incrementing (`Combined.pdf`, `Combined (1).pdf`). macOS TCC then blocks the shell from even listing that folder, with or without the sandbox, so a script cannot pick the file up. **Finder can**: `osascript -e 'tell application "Finder" to move file "X" of (path to downloads folder) to …'` works, and is the only route to a scripted rename. This is also why the Slides exporter generates the `.pptx` from Paper's values rather than exporting anything by hand.
 - **`export_combined_pdf` only assembles artboards on the ACTIVE page.** Hand it a whole multi-page deck and every node fails with `Error assembling PDF page for "<name>"`, echoing the *same* artboard name for all of them, which hides the cause. Export one page at a time, or generate instead.
 - **`export`'s `scale` is a string** (`"1x"`), not a number; a number is rejected by the schema.
-- **Paper exports only `png / jpg / webp / avif / pdf / svg`.** There is no editable-text path out. For an editable deck use the `archy-design:slides-export` skill; for Figma use `figma-export`.
-- **Paper's PDF export is not print-ready.** For page size, the blank second page, rasterised gradients and CMYK, use the `archy-design:print-pdf` skill.
+- **Paper exports only `png / jpg / webp / avif / pdf / svg`.** There is no editable-text path out. For an editable deck use the `archy:slides-export` skill; for Figma use `figma-export`.
+- **Paper's PDF export is not print-ready.** For page size, the blank second page, rasterised gradients and CMYK, use the `archy:print-pdf` skill.
 
 ---
 

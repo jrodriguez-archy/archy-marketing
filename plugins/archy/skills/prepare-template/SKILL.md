@@ -28,7 +28,7 @@ Screenshot each artboard and run `archy:brand` → `references/review-checklist.
 - **Labels typed wrong** and hidden by `text-transform` (`location`, `Date & TIME`) → type them properly.
 - **Fixed-width SVG shapes behind text** (a pill, a label bar) → a frame with `backgroundColor`, `padding`, `borderRadius` and `width: fit-content`, so a longer text stays inside.
 - **Fixed-width text columns** that make a longer string wrap (a spaced date) → widen the column, rebalance the gaps.
-- **Background art or fades with no job** → remove them. Templates run on the Archy grounds: a Pixel Gradient on event templates (`archy-design:pixel`, recipe in `templates.md`), with the ground token kept as `backgroundColor`; photos only for speaker portraits and untreated city photos. A photo band gets its 6px photo bar (`tokens.md`).
+- **Background art or fades with no job** → remove them. Templates run on the Archy grounds: a Pixel Gradient on event templates (`archy:pixel`, recipe in `templates.md`), with the ground token kept as `backgroundColor`; photos only for speaker portraits and untreated city photos. A photo band gets its 6px photo bar (`tokens.md`).
 - **Sample copy** in the house style (`voice.md`), e.g. `March 12 – 14, 2026`.
 
 ## 3. Separate the partner logo

@@ -27,7 +27,7 @@ Exports are the requester's call; if asked, export PNG at 1x (Paper saves to `~/
 
 ## Exploring a new layout
 
-When nothing in the catalog carries the message, propose a new layout and say it is an exploration. Vary **what the piece says** (its content shape), not where the button sits: ten layout permutations of one message read as one idea. Build it on the chassis, one theme and one format first; roll it out to the other themes and formats once it is approved. A layout the team will reuse goes into the master with `archy-design:prepare-template`.
+When nothing in the catalog carries the message, propose a new layout and say it is an exploration. Vary **what the piece says** (its content shape), not where the button sits: ten layout permutations of one message read as one idea. Build it on the chassis, one theme and one format first; roll it out to the other themes and formats once it is approved. A layout the team will reuse goes into the master with `archy:prepare-template`.
 
 ## References
 

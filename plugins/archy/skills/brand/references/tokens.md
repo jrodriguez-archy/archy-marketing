@@ -10,11 +10,11 @@ For how those tokens are composed on a canvas (Rulers, the mascot, lockups, layo
 
 | | Where | Contents |
 |---|---|---|
-| **Brand** (Paper) | `app.paper.design/file/01M1EY5TFVT7MBV4DRBZXZRR9V` | 95 design tokens. Pages: **Styleguide** (color, themes, type, spacing, layout, components), **Brand Guidelines** (logo, iconography), **Icons** (164 Hugeicons), **Textures** (the pixel grain: Pixel Gradients, the nine dithered backgrounds, and Pixel Effects on photos; generated with the `archy-design:pixel` skill) |
+| **Brand** (Paper) | `app.paper.design/file/01M1EY5TFVT7MBV4DRBZXZRR9V` | 95 design tokens. Pages: **Styleguide** (color, themes, type, spacing, layout, components), **Brand Guidelines** (logo, iconography), **Icons** (164 Hugeicons), **Textures** (the pixel grain: Pixel Gradients, the nine dithered backgrounds, and Pixel Effects on photos; generated with the `archy:pixel` skill) |
 | **Master - Events** (Paper) | `app.paper.design/file/01M1F9VXX1S3JJETTVWG2H2PCD` | Page **Templates**: event campaign artboards |
 | **Ads** (Paper) | `app.paper.design/file/01M33E66BD6FJNP4BPE88V90X0` | Campaign ads being designed as future templates (not a master yet): pages `MDIB Social Summit Ad` (Platform one-pager and Post), `SDCDS Marketing Material` (print ads), `AE Spotlights` (person-led ad, five options). Catalog in `templates.md` |
 | **Master - Decks** (Paper) | `app.paper.design/file/01M1HZF1EW0RX9H3YSMJ3GAMK7` | Slide template library, 1920 × 1080. **One page per content category**: Frames · Numbers · Charts · Lists · Comparisons · Proof · Showcase. 57 layouts, all with export specs (see `templates.md`) |
-| **Business Cards** (Paper) | `app.paper.design/file/01M46XGRN8YXH5EXG4QSX0N446` | Page **Business Cards**: the card templates (front, back, back with QR) at 3.5 × 2 in + bleed, on print-equivalent tokens. Print batches live on dated pages. Made with the `archy-design:business-card` skill |
+| **Business Cards** (Paper) | `app.paper.design/file/01M46XGRN8YXH5EXG4QSX0N446` | Page **Business Cards**: the card templates (front, back, back with QR) at 3.5 × 2 in + bleed, on print-equivalent tokens. Print batches live on dated pages. Made with the `archy:business-card` skill |
 | **Various Collateral** (Paper) | `app.paper.design/file/01M37ZJ6ECM7XJ5TG5W2Z2YR4N` | Page `Chrome - Portal Manager`: Chrome Web Store listing images for the Portal Manager extension, plus the product frames they are built from |
 
 The export tooling (Slides export to `.pptx`, Figma export) and the source material it depends on ship with this plugin under the relevant skills; they are not listed here.
@@ -65,7 +65,7 @@ The rule exists to protect *wrapping body copy*. A single-line label or value ne
 
 ## Print-equivalent tokens
 
-Paper works in RGB only; CMYK happens once, in the print PDF (`archy-design:print-pdf`). On press, `--color-royal-blue-500` and the bright tints fall outside the CMYK gamut and print duller (royal blue lands at ~C88 M70), so the screen shows a colour the card will never have.
+Paper works in RGB only; CMYK happens once, in the print PDF (`archy:print-pdf`). On press, `--color-royal-blue-500` and the bright tints fall outside the CMYK gamut and print duller (royal blue lands at ~C88 M70), so the screen shows a colour the card will never have.
 
 A print piece that must match material already printed carries **print-equivalent tokens**: RGB values measured from the printed piece, defined in that file only and named `--color-print-<role>`. They sit inside the CMYK gamut, so the conversion keeps them and the screen shows what prints. The set in `Archy - Business Cards`:
 
@@ -93,7 +93,7 @@ Two grounds:
 | **Blue** | `linear-gradient(180deg, var(--color-primary-blue-600) 0%, var(--color-royal-blue-500) 55%)` |
 | **Dark** | `linear-gradient(180deg, var(--color-dark-foreground) 0%, var(--color-dark-background) 55%)` |
 
-**Event templates use a Pixel Gradient instead** (`archy-design:pixel`): the gradient PNG over the ground token as `backgroundColor` (`--color-royal-blue-500`, `--color-dark-background`, `--color-light-background`, `--color-light-foreground`), with the preset that matches the ground (`royal-blue`, `navy`, `pure-white`, `white`). The linear gradients above remain for slides and pieces without grain.
+**Event templates use a Pixel Gradient instead** (`archy:pixel`): the gradient PNG over the ground token as `backgroundColor` (`--color-royal-blue-500`, `--color-dark-background`, `--color-light-background`, `--color-light-foreground`), with the preset that matches the ground (`royal-blue`, `navy`, `pure-white`, `white`). The linear gradients above remain for slides and pieces without grain.
 
 Which one a campaign uses is a **design decision carried in the paste, not a default.** Decode the pasted gradient before replacing it (a raw `oklab()` gradient is unreadable by eye; convert the stops to hex first) and map it to whichever pair it is closer to.
 

@@ -1,10 +1,20 @@
 # Changelog
 
-All notable changes to the `archy` plugin. Versions follow semver:
+All notable changes to the `archy` plugin (and, until 0.20.0, the separate `archy-design` plugin). Versions follow semver:
 
 - **Patch**: a copy fix or a rule clarified.
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
+
+## archy 0.20.0 (2026-10-23)
+
+- One plugin: everything from `archy-design` (11 skills: `business-card`, `doc-video-edit`, `explore`, `feature-scenes`, `figma-export`, `hugeicons`, `pixel`, `prepare-template`, `print-pdf`, `publish`, `slides-export`; and the tools `figma-export`, `hugeicons`, `pixel`, `slides-export`) now ships inside `archy`, shown as "Archy - Design". The plugin is for designers; the marketing team makes pieces with Archy Studio.
+- `archy-design` is retired from the marketplace (`renames: {"archy-design": null}`): Claude Code drops it from installs and settings on its own, without deleting its data. Its skills are now `/archy:<skill>`; every reference was updated.
+- New `SessionStart` hook (`hooks/link-old-data.sh`): links each tool folder of the old `archy-design` data directory into this plugin's data directory, in place, so earlier slide exports, venvs and the Figma import plugin keep working with nothing moved.
+- `start` rewritten for designers: setup check, the skills by area, the working rules.
+- `publish`: one plugin, the clone found by its remote instead of a fixed path, only this publish's files staged, and the checks fixed (the Claude binary path and the em-dash check, which always matched the skill itself). Its `../brand/references` links now resolve.
+- `slides-export`, `business-card`: pip runs as `<venv>/bin/python -m pip`.
+- README rewritten for designers (install including the Paper marketplace, what is inside, moving from two plugins); the `workspace/` setup folder for the marketing team is removed. Anyone on marketing who still has `archy` installed receives this designer version.
 
 ## archy 0.19.5 (2026-10-20)
 

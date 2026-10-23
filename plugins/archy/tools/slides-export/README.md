@@ -14,7 +14,7 @@ absolutely-positioned leaves and emits them one-for-one. It never reimplements f
 
 ## Paths
 
-This folder ships inside the `archy-design` plugin and is replaced on every update, so
+This folder ships inside the `archy` plugin and is replaced on every update, so
 **nothing is ever written here**. Every script works in a work directory:
 
 | | |

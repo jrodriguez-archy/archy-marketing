@@ -33,4 +33,4 @@ Body copy runs **24–26px**, not the template's 22: grey descriptive lines unde
 
 ## Exporting
 
-Emoji go into the `.pptx` as PNG images, not as text (see `archy-design:slides-export`).
+Emoji go into the `.pptx` as PNG images, not as text (see `archy:slides-export`).

@@ -26,7 +26,7 @@ Every script takes its work directory from `--work DIR`, else `$ARCHY_WORK`, els
    ```bash
    npm install --prefix "$BASE" pptxgenjs@3.12.0
    python3 -m venv "$BASE/.venv"
-   "$BASE/.venv/bin/pip" install defusedxml lxml Pillow cairosvg "markitdown[pptx]"
+   "$BASE/.venv/bin/python" -m pip install defusedxml lxml Pillow cairosvg "markitdown[pptx]"
    ```
    `build.js` finds `pptxgenjs` in `$BASE/node_modules` on its own (it also looks in `$WORK` and `$WORK/..`). Run Python with `"$BASE/.venv/bin/python"`; `export.sh` picks that venv up by itself.
 3. Confirm the Paper MCP is connected and the Paper app has the file open.
