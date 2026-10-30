@@ -6,6 +6,13 @@ All notable changes to the `archy` plugin (and, until 0.20.0, the separate `arch
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.21.0 (2026-10-29)
+
+- New skill `video`: Archy video graphics from the `Master - Videos` Paper file. Template catalog by block (openers, titles, chapters, lower thirds, highlights, subtitles, quotes, product, diagrams, end cards), the 1080×1920 vertical set (V1 to V8) and the 1080×1350 feed set (F1 to F8), themes and recolouring, grid, pixels, the moon spiral, product UI, QR codes and the review checks.
+- Highlights and subtitles are separate: highlights (HL1, HL2, V5, F5) are short supporting points on royal bars; subtitles (SB1 to SB3) are the literal speech, small, centred, no box, in white or the video-only `subtitle-yellow` token.
+- `video/references/motion.md`: the Archy motion language for After Effects. Stepped stop-motion at 10 steps a second, text arrival with a sky flash, the text life rule (at most two words per title, one pixel glitch and one tremble), text masked by its box, scenes that hold still with no zoom, the 1.2 s pixel wipes, and highlight and subtitle timing.
+- `start`: an Archy video row in the menu.
+
 ## archy 0.20.0 (2026-10-23)
 
 - One plugin: everything from `archy-design` (11 skills: `business-card`, `doc-video-edit`, `explore`, `feature-scenes`, `figma-export`, `hugeicons`, `pixel`, `prepare-template`, `print-pdf`, `publish`, `slides-export`; and the tools `figma-export`, `hugeicons`, `pixel`, `slides-export`) now ships inside `archy`, shown as "Archy - Design". The plugin is for designers; the marketing team makes pieces with Archy Studio.

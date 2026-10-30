@@ -26,6 +26,7 @@ A short menu by area, one line each, naming only what exists:
 | New designs and templates | `explore`, `prepare-template` |
 | Product UI moments for marketing and video | `feature-scenes` |
 | Textures and icons | `pixel` (Pixel Gradients and Pixel Effects), `hugeicons` |
+| Archy video | `video` (graphics in Paper from Master - Videos: openers, titles, lower thirds, highlights, subtitles, product, diagrams, end cards, vertical and 4:5 feed; and how to animate them) |
 | DOC video | `doc-video` (graphics in Paper), `doc-video-edit` (the full edit in Tesseract) |
 | Out of Paper | `figma-export`, `print-pdf`, `business-card` |
 | Sharing what was learned | `publish` (rules, templates and skills to the team's repository) |

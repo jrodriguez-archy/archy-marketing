@@ -16,7 +16,7 @@
       "displayName": "Archy - Design",
       "source": "./plugins/archy",
       "description": "For Archy designers: brand rules, templates, explorations, decks, DOC and Offsite work in Paper, pixel textures, DOC course videos, and exports to Slides, Figma and print.",
-      "version": "0.20.0"
+      "version": "0.21.0"
     }
   ],
   "renames": {
