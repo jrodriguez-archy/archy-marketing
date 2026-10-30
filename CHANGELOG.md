@@ -6,6 +6,11 @@ All notable changes to the `archy` plugin (and, until 0.20.0, the separate `arch
 - **Minor**: a new template, skill or tool.
 - **Major**: a change to the slot naming convention.
 
+## archy 0.21.1 (2026-10-29)
+
+- `video`: highlight bars sit tight to the type, and their words rise one after another (40 ms apart), stepping from sky-blue-400 through blue-tint-300 to white, instead of landing as a block.
+- `video`: the speaker footage never zooms (no push in, drift or zoom out), including inside the pixel disk.
+
 ## archy 0.21.0 (2026-10-29)
 
 - New skill `video`: Archy video graphics from the `Master - Videos` Paper file. Template catalog by block (openers, titles, chapters, lower thirds, highlights, subtitles, quotes, product, diagrams, end cards), the 1080×1920 vertical set (V1 to V8) and the 1080×1350 feed set (F1 to F8), themes and recolouring, grid, pixels, the moon spiral, product UI, QR codes and the review checks.

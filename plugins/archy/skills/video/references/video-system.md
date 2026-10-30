@@ -70,7 +70,7 @@ Recolouring a Royal piece:
 
 ## Highlights and subtitles
 
-- **Highlights** carry a short point that reinforces the speaker, never a transcript. One or two lines, filled from the bottom (a one-line point sits on the lower bar). Break lines where they are most even, never ending a line on a short word (a, the, to, of) and never leaving one word alone. A point that will not fit in two lines is rewritten shorter or split into two points.
+- **Highlights** carry a short point that reinforces the speaker, never a transcript. The bars sit tight to the type (about 4px above and below the line at 48px, 7px at 88px), stacked with no gap. One or two lines, filled from the bottom (a one-line point sits on the lower bar). Break lines where they are most even, never ending a line on a short word (a, the, to, of) and never leaving one word alone. A point that will not fit in two lines is rewritten shorter or split into two points.
 - **Subtitles** carry the literal speech: centred, no box, Onest Medium with a soft dark shadow (about 60% black, 3px down, soft) so they read on bright footage. White by default; `subtitle-yellow` when the requester prefers it. One line when it fits, two at most, broken evenly. Sizes: 44/56 in 16:9 (84px from the bottom), 60/76 in 9:16 (400px from the bottom, clear of the app buttons), 48/62 in 4:5 (96px from the bottom).
 - They never share the frame with a lower third, and a highlight and a subtitle never overlap.
 

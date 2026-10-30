@@ -5,7 +5,7 @@ Read this before animating any Archy video graphic. The `Guidelines` page of `Ma
 ## Rhythm: stop-motion in steps
 
 - Every animated graphic (text, boxes, pixels, moons, cards) moves in held poses, **10 a second**: each pose holds 2 to 3 frames. In After Effects, keep normal eased keyframes and add `posterizeTime()` on every animated property, driven by one shared slider ("Steps per second") so the whole video can be retimed in one place.
-- Footage and the pixel-gradient grounds stay smooth.
+- Footage and the pixel-gradient grounds stay smooth, and the footage never zooms: no push in when it appears, no drift, no zoom out when it leaves.
 - Eases are spread over the move: outgoing speed about 1.4 times the average with 25% influence, incoming 55% influence. With steps, front-loaded eases read as a jump.
 
 ## Text arrival
@@ -40,12 +40,12 @@ Big titles do not sit dead still, but nothing runs constantly:
 
 - Every scene change is a **pixel wipe** on the 40px cell, **1.2 s in 12 steps**. The next scene shows through the cells (a matte), led by a `sky-blue-400` edge and a dithered `blue-tint-300` fringe; once covered, a few stray pixels blink off over the new scene for three steps.
 - The next scene's first words land about 0.15 s before the wipe ends, so there is never an empty frame between scenes.
-- Three wipe shapes: **Corner** (a dithered diagonal from the bottom left or bottom right, to open a section), **Pixel disk** (a disk of cells from the centre with a sky ring, into the speaker; the footage inside settles from 109% to 100%), **Rows** (staggered rows rising from the bottom, to close a section or bring in the end card). No cross-dissolves, slides or zooms.
+- Three wipe shapes: **Corner** (a dithered diagonal from the bottom left or bottom right, to open a section), **Pixel disk** (a disk of cells from the centre with a sky ring, into the speaker; the footage inside holds still), **Rows** (staggered rows rising from the bottom, to close a section or bring in the end card). No cross-dissolves, slides or zooms.
 - In After Effects, keep each wipe as two image sequences (matte and edge) at 10 fps plus a solid that holds the cover; hundreds of single frames make the project heavy and unstable.
 
 ## Highlights and subtitles
 
-- **Highlights:** the bar opens to its line's width in 0.23 s, then all the words of the point rise in together, fast, masked by the bar. The point holds about 2.5 to 3 s, then the words drop out together. Points less than 0.6 s apart keep the bars, which step to the next width; a longer pause closes them. They start after the lower third has gone.
+- **Highlights:** the bar opens to its line's width in 0.23 s, then the words rise in one after another, 40 ms apart, masked by the bar, each stepping from `sky-blue-400` through `blue-tint-300` to white as it lands (never all at once as a block). The point holds about 2.5 to 3 s, then the words drop out together. Points less than 0.6 s apart keep the bars, which step to the next width; a longer pause closes them. They start after the lower third has gone.
 - **Subtitles:** the whole line appears when the speaker starts it and leaves when the phrase ends, with a one-step fade; no rise, blur, flash or text life. A line never starts before the previous one could be read.
 
 ## After Effects notes
